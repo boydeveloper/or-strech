@@ -1,0 +1,17 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+}
+.pag__button {
+  border-radius: 8px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  width: 32px;
+  height: 32px;
+  color: #333;
+  font-weight: 600;
+  font-size: 13px;
+}

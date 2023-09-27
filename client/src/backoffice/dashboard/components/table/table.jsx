@@ -1,7 +1,7 @@
 import { formatDate } from "../../../utils/fomatDate";
 import style from "./table.module.css";
 
-const Table = ({ data, column, handleViewDetails }) => {
+const Table = ({ data, column, handleDelete }) => {
   return (
     <div className={style.tableWrapper}>
       <table className={style.table}>
@@ -20,14 +20,19 @@ const Table = ({ data, column, handleViewDetails }) => {
                 {column?.map((columnItem, index) => {
                   if (columnItem?.value === "delete") {
                     return (
-                      <td key={index + "data"} onClick={handleViewDetails}>
-                        <span className={style.details}>delete</span>
+                      <td key={index + "data"}>
+                        <span
+                          onClick={() => handleDelete(row.email)}
+                          className={style.details}
+                        >
+                          delete
+                        </span>
                       </td>
                     );
                   }
                   if (columnItem?.value === "update") {
                     return (
-                      <td key={index + "data"} onClick={handleViewDetails}>
+                      <td key={index + "data"}>
                         <span
                           className={`${style.statusPill} ${
                             row[columnItem?.value] === "update"

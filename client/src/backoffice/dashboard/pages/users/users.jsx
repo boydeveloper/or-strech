@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Table from "../../components/table/table";
 import { getUsers } from "../../../../Apis/users/userService";
 import Loader from "../../../../components/Loader";
 import style from "./users.module.css";
+import { deleteUser } from "../../../../Apis/auth/userService";
+import Pagination from "../../components/pagination/pagination";
+import toast from "react-hot-toast";
 
 function Users() {
   const navigate = useNavigate();
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(20); // Number of users to display per page
+  const [usersPerPage] = useState(20);
+  const [pageCount, setPageCount] = useState(0);
 
   const tableColumn = [
     { heading: "Name", value: "name" },
@@ -24,28 +28,36 @@ function Users() {
   const getStretchers = async () => {
     try {
       setLoading(true);
-
       const stretchersData = await getUsers(currentPage, usersPerPage);
-
       setLoading(false);
+
       const stretchers = stretchersData.users.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
 
       setUsers(stretchers);
+
+      const totalUsers = stretchersData.totalUsers;
+      const calculatedPageCount = Math.ceil(totalUsers / usersPerPage);
+      setPageCount(calculatedPageCount);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
+  const handleDeleteUser = async (email) => {
+    try {
+      const deletedUser = await deleteUser(email);
+      console.log(deletedUser);
+      toast.error(deletedUser.message);
+      getStretchers();
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
   };
 
   useEffect(() => {
@@ -73,20 +85,16 @@ function Users() {
               <Table
                 column={tableColumn && tableColumn}
                 data={users}
-                // handleViewDetails={() => setModal("")}
+                handleDelete={handleDeleteUser}
               />
             </>
           )}
           <div className={style.paginationButtons}>
-            <button onClick={handlePrevPage} disabled={currentPage === 1}>
-              Prev
-            </button>
-            <button
-              onClick={handleNextPage}
-              disabled={users && users.length < usersPerPage}
-            >
-              Next
-            </button>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={pageCount}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
       </div>
