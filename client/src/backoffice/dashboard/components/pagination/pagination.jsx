@@ -2,12 +2,24 @@ import React from "react";
 import style from "./pagination.module.css";
 import { LeftDir, RightDir } from "../../../../frontend/utils/svg";
 
-function Pagination({ currentPage, totalPages, onPageChange }) {
+function Pagination({ currentPage, pageCount, onPageChange }) {
+  console.log(currentPage);
+  console.log(pageCount);
   const renderPageNumbers = () => {
     const pageNumbers = [];
 
-    for (let i = 1; i <= totalPages; i++) {
-      pageNumbers.push(i);
+    if (pageCount <= 6) {
+      for (let i = 1; i <= pageCount; i++) {
+        pageNumbers.push(i);
+      }
+    } else {
+      for (
+        let i = Math.max(1, currentPage - 2);
+        i <= Math.min(currentPage + 2, pageCount);
+        i++
+      ) {
+        pageNumbers.push(i);
+      }
     }
 
     return pageNumbers.map((number) => (
@@ -25,21 +37,24 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 
   return (
     <div className={style.pagination}>
-      <button
-        className={style.pag__button}
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        <LeftDir />
-      </button>
+      {currentPage > 1 && (
+        <button
+          className={style.pag__button}
+          onClick={() => onPageChange(currentPage - 1)}
+        >
+          <LeftDir />
+        </button>
+      )}
       {renderPageNumbers()}
-      <button
-        className={style.pag__button}
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-      >
-        <RightDir />
-      </button>
+
+      {currentPage < pageCount && (
+        <button
+          className={style.pag__button}
+          onClick={() => onPageChange(currentPage + 1)}
+        >
+          <RightDir />
+        </button>
+      )}
     </div>
   );
 }

@@ -37,8 +37,12 @@ function Users() {
 
       setUsers(stretchers);
 
-      const totalUsers = stretchersData.totalUsers;
+      const totalUsers = stretchersData.totalNoOfUsers;
+
       const calculatedPageCount = Math.ceil(totalUsers / usersPerPage);
+      // console.log(totalUsers);
+      // console.log(usersPerPage);
+      // console.log(calculatedPageCount);
       setPageCount(calculatedPageCount);
     } catch (error) {
       console.log(error);
@@ -92,7 +96,7 @@ function Users() {
           <div className={style.paginationButtons}>
             <Pagination
               currentPage={currentPage}
-              totalPages={pageCount}
+              pageCount={pageCount}
               onPageChange={handlePageChange}
             />
           </div>
