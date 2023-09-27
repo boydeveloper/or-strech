@@ -20,7 +20,5 @@ export const authenticateUser = async (email) => {
     );
     const data = response.json();
     return data;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };

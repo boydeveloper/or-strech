@@ -35,7 +35,7 @@ function Hero() {
       localStorage.setItem("username", username);
       setLoading(true);
       const loginUser = await authenticateUser(email);
-      console.log(loginUser);
+
       navigate("/stretch");
     } else {
       setError("Please enter a valid email address");

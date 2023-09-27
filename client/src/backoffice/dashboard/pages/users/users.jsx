@@ -26,12 +26,12 @@ function Users() {
       setLoading(true);
 
       const stretchersData = await getUsers(currentPage, usersPerPage);
-      // console.log(usersPerPage);
+
       setLoading(false);
       const stretchers = stretchersData.users.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
-      console.log(stretchers);
+
       setUsers(stretchers);
     } catch (error) {
       console.log(error);

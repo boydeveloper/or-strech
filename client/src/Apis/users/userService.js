@@ -12,7 +12,5 @@ export const getUsers = async (page_no, no_of_users) => {
     );
     const data = response.json();
     return data;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
