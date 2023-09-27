@@ -46,6 +46,12 @@
 .hero__textbox {
   max-width: 100rem;
 }
+.inputContainer > h1 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #222;
+  margin-bottom: 1.6rem;
+}
 .inputContainer > input {
   border-radius: 3px;
   padding: 2rem;

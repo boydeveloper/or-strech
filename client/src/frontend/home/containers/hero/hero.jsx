@@ -62,6 +62,7 @@ function Hero() {
             </div>
             <form className="hero__formbox" onSubmit={(e) => handleSubmit(e)}>
               <div className="inputContainer">
+                <h1>Enter email address Login</h1>
                 <input
                   type="text"
                   value={email}
