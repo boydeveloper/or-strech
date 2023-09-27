@@ -1,0 +1,31 @@
+.sidebar {
+  background-color: #fff;
+  width: 12rem;
+  z-index: 1;
+  height: calc(100% - 100px);
+  position: fixed;
+  position: absolute;
+  left: 0;
+}
+.sidebar__links {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__links > a:link,
+.sidebar__links > a:visited {
+  text-decoration: none;
+  padding-block: 30px;
+  text-align: center;
+  color: #000;
+  font-size: 1.2rem;
+}
+.sidebar__links > a:link > i,
+.sidebar__links > a:visited > i {
+  font-size: 3.5rem;
+  line-height: 4.2rem;
+  color: #555;
+}
+.sidebar__links > a:link:not(:last-child),
+.sidebar__links > a:visited:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}

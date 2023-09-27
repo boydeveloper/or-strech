@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
+
+.overviewWrapper {
+  padding-top: 20px;
+  width: 100%;
+  padding-right: 4rem;
+}
+.overviewHeader {
+  width: 100%;
+  border-bottom: 1px solid #cccc;
+}
+.overviewHeader > h1 {
+  font-weight: 400;
+  font-size: 3.2rem;
+  padding-block: 20px;
+  color: #3a3a3a;
+}
+.overiewCards {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+}
+
+.overiewCard {
+  display: flex;
+  background-image: linear-gradient(to right top, #00365a, #00538a, #015994);
+  color: #fff;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: 3.5rem 2rem;
+  border-radius: 0.8rem;
+  margin-top: 4rem;
+}
+.overiewCard__details > i {
+  font-size: 4.5rem;
+  margin-bottom: 2rem;
+  display: block;
+}
+.overiewCard__details > h1 {
+  font-size: 2.6rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+.overiewCard__details > p {
+  font-size: 1.1rem;
+}
+.progressBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 11rem;
+  width: 11rem;
+  font-size: 2.8rem;
+  color: #fff;
+  border: #4d728c solid 0.5rem;
+  border-radius: 50%;
+}
+.progress {
+}

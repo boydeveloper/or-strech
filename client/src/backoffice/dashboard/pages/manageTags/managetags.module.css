@@ -1,0 +1,42 @@
+.manageTagsWrapper {
+  padding: 2rem 0;
+  width: 100%;
+  padding-right: 4rem;
+  height: 100%;
+  overflow-y: auto;
+}
+.manageTagsWrapper > header {
+  width: 100%;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #cccc;
+}
+.manageTagsWrapper > header > h1 {
+  font-weight: 400;
+  font-size: 3.2rem;
+  padding-block: 20px;
+}
+.manageTagsWrapper > form {
+  background: #fff;
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+}
+.manageTagsWrapper > form > h1 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+.manageTagsWrapper > form > div > input {
+  border: 1px solid #888;
+  padding: 1rem 1.5rem;
+}
+.manageTagsWrapper > form > div > button {
+  border-radius: 3rem;
+  padding: 1.4rem;
+  font-size: 1.4rem;
+  border: none;
+  color: #00365a;
+  background: transparent;
+  border: #00365a solid 1px;
+  margin-left: 2rem;
+}

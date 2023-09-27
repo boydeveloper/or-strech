@@ -1,0 +1,124 @@
+.auth__wrapper {
+  position: relative;
+}
+.auth__wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("../../../assets/balloon-lg.jpg");
+}
+
+.auth__card {
+  background-color: #fff;
+  display: flex;
+  border-radius: 1rem;
+  overflow: hidden;
+  max-width: 95rem;
+  width: 100%;
+}
+.img__box {
+  padding: 8rem 4rem;
+  color: #fff;
+  width: 40%;
+  background-image: url("../../../assets/loginIMG.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+.img__bg {
+  content: "";
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 400px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.login__textbox {
+  z-index: 9;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.formbox {
+  padding: 8rem;
+  background-color: #fff;
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+}
+.formbox > h1 {
+  font-size: 1.6rem;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+  margin-bottom: 2.5rem;
+}
+.inputContainer {
+  position: relative;
+  display: block;
+}
+.inputContainer > input {
+  border-radius: 0.2rem;
+  width: 100%;
+  outline: initial !important;
+  box-shadow: initial !important;
+  font-size: 1.4rem;
+  padding: 1.8rem 1.5rem;
+  line-height: 1;
+  border: 0.1rem solid #d7d7d7;
+  background: #fff;
+  color: #3a3a3a;
+  width: 100%;
+  border-color: #d7d7d7;
+  height: calc(2em + 0.8rem);
+}
+
+.inputContainer > span {
+  position: absolute;
+  cursor: text;
+  font-size: 1.1rem;
+  opacity: 1;
+  top: -0.4em;
+  left: 0.75rem;
+  z-index: 3;
+  font-weight: 300;
+  line-height: 1;
+  background-color: #ffff;
+  padding: 0 0.1rem;
+}
+
+.inputContainer > span::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  height: 0.5rem;
+  top: 0.3rem;
+  left: -0.2em;
+  right: -0.2em;
+  z-index: -1;
+}
+.formbox > button {
+  background-color: #00365a;
+  border-color: #00365a;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15), 0 1px 3px 1px rgba(0, 0, 0, 0.15) !important;
+  font-size: 1.6rem;
+  color: #fff;
+  border: none;
+  padding: 1rem 3rem;
+  width: fit-content;
+  border-radius: 6rem;
+}

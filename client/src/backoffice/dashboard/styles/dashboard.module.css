@@ -1,0 +1,16 @@
+.dashboard__layout {
+  height: 100vh;
+  background-color: #f8f8f8;
+  overflow-y: scroll;
+  /* overflow-x: scroll; */
+  /* overflow: hidden; */
+}
+.dashboard__main {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  /* padding-right: 1.5rem; */
+  height: 100%;
+  margin-left: 160px;
+  margin-top: 100px;
+}

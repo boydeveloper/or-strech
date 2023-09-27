@@ -1,0 +1,42 @@
+.dashboard__header {
+  background: #fff;
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0 1.5rem 0;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+  padding-inline: 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+}
+.header__left {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  gap: 90px;
+}
+.header__left > button {
+  background: none;
+  font-size: 3rem;
+  border: none;
+}
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header__right > img {
+  height: 50px;
+  width: 50px;
+  border: solid 2px #00365a;
+  padding: 5px;
+  border-radius: 50%;
+}
+.header__right > span {
+  font-weight: 700;
+  font-size: 1.4rem;
+}

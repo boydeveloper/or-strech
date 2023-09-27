@@ -1,0 +1,69 @@
+.ManageVideosWrapper {
+  padding: 2rem 0;
+  width: 100%;
+  padding-right: 4rem;
+  height: 100%;
+  overflow-y: auto;
+}
+.addVideoCta {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+  margin-bottom: 2rem;
+}
+.addVideoCta > button {
+  background-color: #184f90;
+  padding: 1.5rem 5rem;
+  border-radius: 5rem;
+  border: none;
+  color: #fff;
+}
+.ManageVideosWrapper > header {
+  width: 100%;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #cccc;
+}
+.ManageVideosWrapper > header > h1 {
+  font-weight: 400;
+  font-size: 3.2rem;
+  padding-block: 20px;
+}
+.videoBox {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background: #fff;
+  border-radius: 0.1rem;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+}
+.videoBox > img {
+  height: 85px;
+  width: 10%;
+  border-top-left-radius: 1.3rem;
+  border-bottom-left-radius: 1.3rem;
+  object-fit: cover;
+  /* width: 100%; */
+}
+.videoBoxDetails {
+  display: flex;
+  padding-inline: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.videoBoxDetails > h1 {
+  font-weight: 300;
+  font-size: 1.8rem;
+}
+.videoBoxDetails > span {
+  font-size: 11px;
+}
+.videoBoxDetails > button {
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 3rem;
+  background-color: #00365a;
+  color: #fff;
+}

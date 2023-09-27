@@ -1,0 +1,111 @@
+.addUsersWrapper {
+  padding: 2rem 0;
+  width: 100%;
+  padding-right: 4rem;
+  height: 100%;
+  overflow-y: auto;
+}
+.addUsersWrapper > header {
+  width: 100%;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #cccc;
+}
+.addUsersWrapper > header > h1 {
+  font-weight: 400;
+  font-size: 3.2rem;
+  padding-block: 20px;
+}
+
+.addUserMain {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+}
+.addUserMain > h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 3rem;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.inputContainer:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.inputContainer > label {
+  font-size: 1.4rem;
+}
+.inputContainer > input {
+  padding: 1.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid #000;
+}
+.adduserCta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.inputContainer {
+  position: relative;
+  display: block;
+}
+.inputContainer > input {
+  border-radius: 0.2rem;
+  width: 100%;
+  outline: initial !important;
+  box-shadow: initial !important;
+  font-size: 1.4rem;
+  padding: 1.5rem;
+  line-height: 1;
+  border: 0.1rem solid #d7d7d7;
+  background: #fff;
+  color: #3a3a3a;
+  width: 100%;
+  border-color: #d7d7d7;
+  height: calc(2em + 0.8rem);
+}
+
+.inputContainer > span {
+  position: absolute;
+  cursor: text;
+  font-size: 1.2rem;
+  opacity: 1;
+  top: -0.4em;
+  left: 0.75rem;
+  z-index: 3;
+  font-weight: 300;
+  line-height: 1;
+  background-color: #ffff;
+  padding: 0 1px;
+}
+
+.inputContainer > span::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  height: 0.5rem;
+  top: 0.3rem;
+  left: -0.2em;
+  right: -0.2em;
+  z-index: -1;
+}
+.tagsWrapper {
+  margin: 2rem 0;
+}
+.tagsWrapper > h1 {
+  font-size: 2rem;
+  font-weight: 300;
+}
+.adduserCta > button {
+  background-color: #00365a;
+  padding: 1rem 3.5rem;
+  border-radius: 1.8rem;
+  border: none;
+  font-weight: 600;
+  border-color: #00365a;
+  color: #fff;
+}
