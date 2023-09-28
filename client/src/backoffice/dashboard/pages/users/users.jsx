@@ -7,6 +7,7 @@ import style from "./users.module.css";
 import { deleteUser } from "../../../../Apis/auth/userService";
 import Pagination from "../../components/pagination/pagination";
 import toast from "react-hot-toast";
+import DeletePrompt from "../../components/deletePrompt/deletePrompt";
 
 function Users() {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ function Users() {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(20);
   const [pageCount, setPageCount] = useState(0);
+  const [emailToBeDeleted, setEmailToBeDeleted] = useState(null);
+  const [modal, setModal] = useState("");
 
   const tableColumn = [
     { heading: "Name", value: "name" },
@@ -24,25 +27,17 @@ function Users() {
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
   ];
-
   const getStretchers = async () => {
     try {
       setLoading(true);
       const stretchersData = await getUsers(currentPage, usersPerPage);
       setLoading(false);
-
       const stretchers = stretchersData.users.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
-
       setUsers(stretchers);
-
       const totalUsers = stretchersData.totalNoOfUsers;
-
       const calculatedPageCount = Math.ceil(totalUsers / usersPerPage);
-      // console.log(totalUsers);
-      // console.log(usersPerPage);
-      // console.log(calculatedPageCount);
       setPageCount(calculatedPageCount);
     } catch (error) {
       console.log(error);
@@ -52,10 +47,14 @@ function Users() {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  const handleDeleteUser = async (email) => {
+  const handleEmailToBeDelelted = (email) => {
+    setEmailToBeDeleted(email);
+    setModal("prompt");
+  };
+  const handleDeleteUser = async () => {
     try {
-      const deletedUser = await deleteUser(email);
+      const deletedUser = await deleteUser(emailToBeDeleted);
+      setModal("");
       console.log(deletedUser);
       toast.error(deletedUser.message);
       getStretchers();
@@ -89,7 +88,7 @@ function Users() {
               <Table
                 column={tableColumn && tableColumn}
                 data={users}
-                handleDelete={handleDeleteUser}
+                handleDelete={handleEmailToBeDelelted}
               />
             </>
           )}
@@ -101,6 +100,12 @@ function Users() {
             />
           </div>
         </div>
+        {modal === "prompt" && (
+          <DeletePrompt
+            proceed={handleDeleteUser}
+            cancel={() => setModal("")}
+          />
+        )}
       </div>
     </>
   );

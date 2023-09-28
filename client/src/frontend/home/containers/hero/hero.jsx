@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import { authenticateUser } from "../../../../Apis/auth/loginService";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./hero.css";
+import { authenticateUser } from "../../../../Apis/auth/loginService";
 import Loader from "../../../../components/Loader";
+import { AgreementModal } from "../../../components/index";
+import "./hero.css";
 
 function Hero() {
   const [email, setEmail] = useState("");
   const [pending, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  const [submitted, setSubmitted] = useState(false);
+  const [modal, setModal] = useState("");
   const navigate = useNavigate();
-
   const handleInputEmailChange = (event) => {
     const newEmail = event.target.value;
     setError("");
@@ -22,21 +21,25 @@ function Hero() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-
+  const closeAgreementModal = () => {
+    setModal("'");
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-
     const emailValid = validateEmail(email);
     if (emailValid) {
-      setLoading(true);
-      setError("");
+      const loggedInUser = await authenticateUser(email);
       const username = email.split("@")[0];
       localStorage.setItem("username", username);
-      setLoading(true);
-      const loginUser = await authenticateUser(email);
-
-      navigate("/stretch");
+      if (loggedInUser?.isNew === true) {
+        setModal("agreeModal");
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setError("");
+        navigate("/stretch");
+      }
     } else {
       setError("Please enter a valid email address");
       setLoading(false);
@@ -78,6 +81,7 @@ function Hero() {
           </div>
         </div>
       </div>
+      {modal === "agreeModal" && <AgreementModal close={closeAgreementModal} />}
     </div>
   );
 }

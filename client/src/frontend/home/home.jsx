@@ -6,8 +6,7 @@ import {
   SectionThree,
   SectionFour,
 } from "./containers/index";
-import Footer from "../components/footer/footer";
-import Navbar from "../components/navbar/navbar";
+import { Navbar, Footer } from "../components/index";
 function Home() {
   return (
     <div>

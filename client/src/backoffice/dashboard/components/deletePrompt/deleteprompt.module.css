@@ -1,0 +1,75 @@
+.promptWrapper {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.promptOverlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 12;
+  width: 100%;
+  height: 100%;
+}
+.promptContainer {
+  background-color: #ffff;
+  box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03),
+    0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+  border-radius: 1.2rem;
+  padding: 2rem 2.4rem;
+  z-index: 13;
+  width: 400px;
+}
+.promptContainer > h1 {
+  font-size: 2rem;
+  margin-bottom: 1.4rem;
+}
+
+.promptContainer > p {
+  font-size: 1.4rem;
+  margin-bottom: 1.4rem;
+  font-weight: 300;
+}
+.promptCta {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+}
+.promptCta > button:first-child {
+  color: #00365a;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  width: 50%;
+  padding: 10px;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+.promptCta > button:last-child {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  background: #00365a;
+  width: 50%;
+  padding: 10px;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+.promptCta > button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

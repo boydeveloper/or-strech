@@ -74,11 +74,11 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid #ccc; /* Add a border to create the "cut" effect */
-  border-right: none; /* Remove the right border */
-  border-bottom: none; /* Remove the bottom border */
+  border: 2px solid #ccc;
+  border-right: none;
+  border-bottom: none;
   box-sizing: border-box;
-  pointer-events: none; /* Allow clicks to pass through to the input */
+  pointer-events: none;
 }
 
 .form-group span {
