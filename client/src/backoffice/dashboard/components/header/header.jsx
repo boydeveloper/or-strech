@@ -9,7 +9,7 @@ function Header() {
         <button>
           <ion-icon name="menu-outline"></ion-icon>
         </button>
-        <Link to={"/backoffice/dashboard"} className="logo">
+        <Link to={"overview"} className="logo">
           <img src="/assets/svgs/mayo-clinic-logo.svg" alt="" />
         </Link>
       </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../../../../Apis/users/userService";
 import style from "./overview.module.css";
+import { Link } from "react-router-dom";
 
 function Overview() {
   const [usersNum, setUsersNum] = useState(null);
@@ -27,10 +28,6 @@ function Overview() {
                 Total stretch time this <br /> month
               </p>
             </div>
-            <div className={style.progressBar}>
-              <div className={style.progress}></div>
-              0/12
-            </div>
           </div>
           <div className={style.overiewCard}>
             <div className={style.overiewCard__details}>
@@ -38,20 +35,12 @@ function Overview() {
               <h1>{usersNum && usersNum} Users</h1>
               <p>Total number of users</p>
             </div>
-            <div className={style.progressBar}>
-              <div className={style.progress}></div>
-              0/12
-            </div>
           </div>
           <div className={style.overiewCard}>
             <div className={style.overiewCard__details}>
               <i class="iconsminds-bell mr-2 text-white align-text-bottom d-inline-block"></i>
               <h1>Temp</h1>
               <p>Place holder</p>
-            </div>
-            <div className={style.progressBar}>
-              <div className={style.progress}></div>
-              0/12
             </div>
           </div>
         </div>

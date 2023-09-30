@@ -56,7 +56,7 @@ function Users() {
       const deletedUser = await deleteUser(emailToBeDeleted);
       setModal("");
       console.log(deletedUser);
-      toast.error(deletedUser.message);
+      toast.success(deletedUser.message);
       getStretchers();
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -74,7 +74,7 @@ function Users() {
           <h1>OR-Stretch | Back Office | Users</h1>
         </header>
         <div className={style.buttonContainer}>
-          <button onClick={() => navigate("/backoffice/dashboard/add-user")}>
+          <button onClick={() => navigate("/dashboard/add-users")}>
             ADD NEW USER
           </button>
         </div>
@@ -102,6 +102,7 @@ function Users() {
         </div>
         {modal === "prompt" && (
           <DeletePrompt
+            text={"user"}
             proceed={handleDeleteUser}
             cancel={() => setModal("")}
           />

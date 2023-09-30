@@ -4,20 +4,20 @@ function Sidebar() {
   return (
     <div className={style.sidebar}>
       <div className={style.sidebar__links}>
-        <Link to={"/backoffice/dashboard/users"}>
-          <i class="glyph-icon simple-icon-people"></i>
+        <Link to={"users"}>
+          <i className="glyph-icon simple-icon-people"></i>
           <p>Manage Users </p>
         </Link>
         <Link to={"manage-tags"}>
-          <i class="simple-icon-tag"></i>
+          <i className="simple-icon-tag"></i>
           <p> Manage Tags </p>
         </Link>
         <Link to={"manage-videos"}>
-          <i class="simple-icon-social-youtube"></i>
+          <i className="simple-icon-social-youtube"></i>
           <p> Manage Videos</p>
         </Link>
         <Link>
-          <i class="simple-icon-layers"></i>
+          <i className="simple-icon-layers"></i>
 
           <p> Users Activity</p>
         </Link>

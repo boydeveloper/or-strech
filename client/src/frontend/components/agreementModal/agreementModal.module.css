@@ -112,7 +112,7 @@
   margin-top: 1em;
 }
 
-input[type="checkbox"] {
+.inputCheckbox {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -129,7 +129,7 @@ input[type="checkbox"] {
   margin-right: 0.5rem;
 }
 
-input[type="checkbox"]::before {
+.inputCheckbox::before {
   content: "";
   width: 0.8rem;
   height: 0.8rem;
@@ -148,11 +148,11 @@ input[type="checkbox"]::before {
   background-color: #02252f;
 }
 
-input[type="checkbox"]:checked::before {
+.inputCheckbox:checked::before {
   transform: scale(1);
 }
 
-input[type="checkbox"]:focus {
+.inputCheckbox:focus {
   outline: max(2px, 0.1px) solid currentColor;
   outline-offset: max(2px, 0.15em);
 }

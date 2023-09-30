@@ -15,11 +15,18 @@
   font-size: 3.2rem;
   padding-block: 20px;
 }
+.baseline {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 2rem;
+}
 .manageTagsWrapper > form {
   background: #fff;
   padding: 3rem;
   border-radius: 1rem;
   box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+  margin-bottom: 3rem;
 }
 .manageTagsWrapper > form > h1 {
   font-size: 1.8rem;

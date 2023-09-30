@@ -45,6 +45,7 @@ function AgreementModal({ close }) {
           <input
             type="checkbox"
             name="checkbox"
+            className={style.inputCheckbox}
             checked={isChecked}
             onChange={toggleCheckbox}
           />

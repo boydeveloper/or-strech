@@ -1,8 +1,11 @@
 const db = require("../models");
+const crypto = require("crypto");
 const Account = db.accounts;
 const User = db.users;
 
 const loginAccount = async (req, res) => {
+  const randomBytes = crypto.randomBytes(128);
+  const sessionId = randomBytes.toString("hex");
   let info = {
     email: req.body.email,
   };
@@ -15,6 +18,7 @@ const loginAccount = async (req, res) => {
       email: account.email,
       createdAt: account.createdAt,
       isNew: false,
+      sessionId,
     });
   } else {
     const account = await Account.create(info);
@@ -40,6 +44,7 @@ const loginAccount = async (req, res) => {
       email: account.email,
       createdAt: account.createdAt,
       isNew: true,
+      sessionId,
     });
   }
 };

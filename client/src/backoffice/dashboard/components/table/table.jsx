@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import { formatDate } from "../../../utils/fomatDate";
 import style from "./table.module.css";
 
-const Table = ({ data, column, handleDelete }) => {
+const Table = ({ data, column, handleDelete, tag }) => {
   return (
     <div className={style.tableWrapper}>
       <table className={style.table}>
@@ -22,7 +23,7 @@ const Table = ({ data, column, handleDelete }) => {
                     return (
                       <td key={index + "data"}>
                         <span
-                          onClick={() => handleDelete(row.email)}
+                          onClick={() => handleDelete(row.email || row.name)}
                           className={style.details}
                         >
                           delete
@@ -33,7 +34,12 @@ const Table = ({ data, column, handleDelete }) => {
                   if (columnItem?.value === "update") {
                     return (
                       <td key={index + "data"}>
-                        <span
+                        <Link
+                          to={
+                            tag
+                              ? `/dashboard/update-tag/${row.id}`
+                              : `/dashboard/update-user/${row.id}`
+                          }
                           className={`${style.statusPill} ${
                             row[columnItem?.value] === "update"
                               ? style.success
@@ -43,8 +49,7 @@ const Table = ({ data, column, handleDelete }) => {
                           }`}
                         >
                           update
-                          {/* {row[columnItem?.value]} */}
-                        </span>
+                        </Link>
                       </td>
                     );
                   } else if (

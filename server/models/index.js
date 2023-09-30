@@ -25,5 +25,7 @@ db.sequelize = sequelize;
 
 db.accounts = require("./accountModel.js")(sequelize, DataTypes);
 db.users = require("./userModel.js")(sequelize, DataTypes);
+db.tags = require("./tagModel.js")(sequelize, DataTypes)
+db.events = require("./eventModel.js")(sequelize, DataTypes)
 
 module.exports = db;
