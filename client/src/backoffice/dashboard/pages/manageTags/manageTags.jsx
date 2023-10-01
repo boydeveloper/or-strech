@@ -60,14 +60,17 @@ function ManageTags() {
       const deletingTag = await deleteTag(tagToBeDelelted);
       console.log(deletingTag);
       setModal("");
-      getTags();
-      if (deletingTag.isSuccess === true) {
-        toast.success(deletingTag.message);
+      if (deletingTag?.isSuccess === true) {
+        toast.success(deletingTag?.message);
+        getTags();
+      } else if (deletingTag?.message.sql) {
+        throw new Error("Old tags, cant be deleted yet!");
       } else {
-        toast.error(deletingTag.message);
+        console.log("hiii");
+        toast.error(deletingTag?.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error?.message);
     }
   };
   const handleSubmit = async (e) => {
@@ -125,7 +128,7 @@ function ManageTags() {
       <div>
         <Table
           column={tagColumns}
-          data={tags}
+          data={tags && tags}
           tag
           handleDelete={handleTagToBeDelelted}
         />
