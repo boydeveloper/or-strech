@@ -1,15 +1,15 @@
-import { useNavigate, useParams } from "react-router-dom";
-import style from "./updatetag.module.css";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getAllTags, updateTag } from "../../../../Apis/tags/tagsService";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import style from "./updatetag.module.css";
 
 function UpdateTag() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [tagToBeUpdated, setTagToBeUpdated] = useState(null);
   const [tagData, setTagData] = useState({
-    baseline_survey: 1,
+    baseline: "",
     name: "",
   });
 
@@ -30,10 +30,13 @@ function UpdateTag() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const updatedTag = await updateTag(tagData, tagToBeUpdated.name);
-
-      await toast.success(updatedTag.message);
-      navigate("/dashboard/manage-tags");
+      const updatingTag = await updateTag(tagData, tagToBeUpdated.name);
+      if (updateTag.isSuccess === true) {
+        toast.success(updatingTag.message);
+        navigate("/dashboard/manage-tags");
+      } else {
+        toast.error(updatingTag.message);
+      }
     } catch (error) {
       toast.error(message);
     }
@@ -59,8 +62,9 @@ function UpdateTag() {
           <input
             type="number"
             name="baseline"
-            readOnly
-            value={tagData.baseline_survey}
+            required
+            placeholder="1 or 0"
+            value={tagData.baseline}
             onChange={handleChange}
           />
           <span>Baseline</span>
@@ -69,14 +73,16 @@ function UpdateTag() {
           <input
             type="text"
             name="name"
+            required
+            placeholder="your new tag name"
             value={tagData.name}
             onChange={handleChange}
           />
           <span>Tag Name</span>
         </label>
         <div className={style.updateTagCta}>
-          <button>Cancel</button>
-          <button>Update</button>
+          <Link to="/dashboard/manage-tags">Back</Link>
+          <button type="submit">Update</button>
         </div>
       </form>
     </div>

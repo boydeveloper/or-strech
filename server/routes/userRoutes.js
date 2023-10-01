@@ -5,5 +5,6 @@ router.get("/listAllUsers", userController.listAllUsers);
 router.get("/listUsers", userController.listUsers);
 router.delete("/deleteUser", userController.deleteUser);
 router.put("/updateUser", userController.updateUser);
+router.get("/userDetails", userController.viewUserDetails);
 
 module.exports = router;

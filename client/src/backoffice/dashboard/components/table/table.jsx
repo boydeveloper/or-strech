@@ -52,6 +52,21 @@ const Table = ({ data, column, handleDelete, tag }) => {
                         </Link>
                       </td>
                     );
+                  }
+                  if (columnItem?.value === "baseline") {
+                    return (
+                      <td key={index + "data"}>
+                        <span
+                          className={
+                            row.baseline === true
+                              ? `${style.true}`
+                              : `${style.false}`
+                          }
+                        >
+                          {row.baseline === true ? "true" : "false"}
+                        </span>
+                      </td>
+                    );
                   } else if (
                     columnItem?.value === "createdAt" ||
                     columnItem?.value === "updatedAt"

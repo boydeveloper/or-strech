@@ -63,7 +63,6 @@ function UpdateUser() {
     });
   };
 
-  // Function to handle tag selection
   const handleTagSelect = (tagName) => {
     setSelectedTags((prevSelectedTags) => ({
       ...prevSelectedTags,
@@ -87,13 +86,17 @@ function UpdateUser() {
         tags_excel: formattedTagsArray,
       };
       console.log(updatedFormData);
-      const updatedUser = await updateUser(
+      const updatingUser = await updateUser(
         updatedFormData,
         userEmailToBeUpdated
       );
-      toast.success(updatedUser.message);
-      navigate("/dashboard/users");
-      console.log(updatedUser);
+
+      if (updatingUser.isSuccess === true) {
+        toast.success(updatingUser.message);
+        navigate("/dashboard/users");
+      } else {
+        toast.error(updatingUser.message);
+      }
     } catch (error) {
       toast.error(error.message);
     }
@@ -111,6 +114,7 @@ function UpdateUser() {
             <input
               type="email"
               name="email"
+              required
               value={formData.email}
               onChange={handleInputChange}
             />

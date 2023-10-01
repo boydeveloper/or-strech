@@ -19,7 +19,8 @@
   display: flex;
   align-items: center;
   margin-top: 1.5rem;
-  gap: 2rem;
+  gap: 0.5rem;
+  font-size: 1.8rem;
 }
 .manageTagsWrapper > form {
   background: #fff;

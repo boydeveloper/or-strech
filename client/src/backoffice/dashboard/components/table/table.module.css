@@ -68,3 +68,11 @@
   text-decoration: none;
   cursor: pointer;
 }
+.true {
+  color: #36963f;
+  font-weight: 700;
+}
+.false {
+  font-weight: 600;
+  color: #e03131;
+}

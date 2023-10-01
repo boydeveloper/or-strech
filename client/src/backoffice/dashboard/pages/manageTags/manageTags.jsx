@@ -15,14 +15,14 @@ function ManageTags() {
   const [modal, setModal] = useState("");
   const [formData, setFormData] = useState({
     name: "",
-    baseline_survey: 1,
+    baseline: 1,
   });
 
   const tagColumns = [
     { heading: "ID", value: "id" },
     { heading: "Tag Name", value: "name" },
     { heading: "created", value: "createdAt" },
-    { heading: "Baseline Survey", value: "baseline" },
+    { heading: "Baseline", value: "baseline" },
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
     { heading: "Recently Updated", value: "updatedAt" },
@@ -57,12 +57,15 @@ function ManageTags() {
   const handleDeleteTag = async () => {
     try {
       console.log(tagToBeDelelted);
-
-      const deletedTag = await deleteTag(tagToBeDelelted);
-      console.log(deletedTag);
+      const deletingTag = await deleteTag(tagToBeDelelted);
+      console.log(deletingTag);
       setModal("");
       getTags();
-      toast.success(deletedTag.message);
+      if (deletingTag.isSuccess === true) {
+        toast.success(deletingTag.message);
+      } else {
+        toast.error(deletingTag.message);
+      }
     } catch (error) {
       toast.error(error.message);
     }
@@ -71,16 +74,21 @@ function ManageTags() {
     try {
       e.preventDefault();
       console.log(formData);
-      const tagCreated = await createTag(formData);
+      const tagCreating = await createTag(formData);
+      console.log(tagCreating);
       getTags();
+      if (tagCreating.isSuccess === true) {
+        toast.success(`${tagCreating.tag.name} Tag Created`);
+      } else {
+        toast.error(tagCreating.message);
+      }
 
-      toast.success(tagCreated.message);
       setFormData({
         name: "",
-        baseline_survey: 0,
+        baseline: 0,
       });
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
 
@@ -107,8 +115,8 @@ function ManageTags() {
           <input
             type="checkbox"
             id="baseline"
-            name="baseline_survey"
-            checked={formData.baseline_survey === 1}
+            name="baseline"
+            checked={formData.baseline === 1}
             onChange={handleInputChange}
           />
           Baseline?
