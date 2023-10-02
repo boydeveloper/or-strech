@@ -61,7 +61,7 @@
 }
 
 .inputContainer > span::after {
-  content: " ";
+  content: "";
   display: block;
   position: absolute;
   height: 0.5rem;

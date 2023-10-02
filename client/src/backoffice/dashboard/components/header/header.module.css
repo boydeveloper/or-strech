@@ -20,7 +20,7 @@
   width: 100%;
   gap: 2rem;
   white-space: nowrap;
-  font-size: 1.8rem;
+
   align-items: center;
   text-decoration: none;
 }
@@ -31,7 +31,7 @@
 }
 .logo:link,
 .logo:visited > h1 {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 }
 .header__left {
   display: flex;
