@@ -24,9 +24,9 @@ const Table = ({ data, column, handleDelete, tag }) => {
                       <td key={index + "data"}>
                         <span
                           onClick={() => handleDelete(row.email || row.name)}
-                          className={style.details}
+                          className={style.failed}
                         >
-                          delete
+                          <ion-icon name="trash-outline"></ion-icon>
                         </span>
                       </td>
                     );
@@ -48,7 +48,7 @@ const Table = ({ data, column, handleDelete, tag }) => {
                               : style.failed
                           }`}
                         >
-                          update
+                          <ion-icon name="create"></ion-icon>
                         </Link>
                       </td>
                     );
@@ -63,8 +63,19 @@ const Table = ({ data, column, handleDelete, tag }) => {
                               : `${style.false}`
                           }
                         >
-                          {row.baseline === true ? "true" : "false"}
+                          {row.baseline === true ? "True" : "False"}
                         </span>
+                      </td>
+                    );
+                  } else if (columnItem?.heading === "Tag Name") {
+                    return (
+                      <td key={index + "data"}>
+                        <Link
+                          className={style.tableLink}
+                          to={`/dashboard/manage-tags/${row.name}`}
+                        >
+                          {row.name}
+                        </Link>
                       </td>
                     );
                   } else if (

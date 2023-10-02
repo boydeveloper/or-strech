@@ -3,13 +3,15 @@ import { getAllTags, updateTag } from "../../../../Apis/tags/tagsService";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import style from "./updatetag.module.css";
+import { Switch } from "../../components";
 
 function UpdateTag() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [tagToBeUpdated, setTagToBeUpdated] = useState(null);
+
   const [tagData, setTagData] = useState({
-    baseline: "",
+    baseline: null,
     name: "",
   });
 
@@ -24,14 +26,14 @@ function UpdateTag() {
     console.log(aboutToBeUpdatedTag);
     setTagData({
       name: aboutToBeUpdatedTag?.name,
-      baseline_survey: aboutToBeUpdatedTag?.baseline,
+      baseline: aboutToBeUpdatedTag?.baseline,
     });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const updatingTag = await updateTag(tagData, tagToBeUpdated.name);
-      if (updateTag.isSuccess === true) {
+      if (updatingTag.isSuccess === true) {
         toast.success(updatingTag.message);
         navigate("/dashboard/manage-tags");
       } else {
@@ -45,6 +47,12 @@ function UpdateTag() {
   useEffect(() => {
     getTags();
   }, []);
+  const handleBaselineChange = (newValue) => {
+    setTagData({
+      ...tagData,
+      baseline: !tagData.baseline,
+    });
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -60,14 +68,15 @@ function UpdateTag() {
       <form onSubmit={handleSubmit} className={style.updateTagMain}>
         <label className={style.inputContainer}>
           <input
-            type="number"
-            name="baseline"
+            type="text"
+            name="name"
             required
-            placeholder="1 or 0"
-            value={tagData.baseline}
+            placeholder="your new tag name"
+            value={id}
+            readOnly
             onChange={handleChange}
           />
-          <span>Baseline</span>
+          <span>ID</span>
         </label>
         <label className={style.inputContainer}>
           <input
@@ -75,11 +84,20 @@ function UpdateTag() {
             name="name"
             required
             placeholder="your new tag name"
-            value={tagData.name}
+            value={tagData?.name}
             onChange={handleChange}
           />
           <span>Tag Name</span>
         </label>
+        <div className={style.baselineCta}>
+          <p>Baseline?</p>
+          <Switch
+            checked={tagData?.baseline || false}
+            value={tagData.baseline}
+            onChange={handleBaselineChange}
+          />
+        </div>
+
         <div className={style.updateTagCta}>
           <Link to="/dashboard/manage-tags">Back</Link>
           <button type="submit">Update</button>

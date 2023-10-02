@@ -11,6 +11,7 @@ import {
   ManageTags,
   ManageVideos,
   UpdateTag,
+  TagDetails,
 } from "./backoffice/dashboard/pages/index";
 
 import "./App.css";
@@ -42,6 +43,7 @@ function App() {
             <Route path="update-tag/:id" element={<UpdateTag />} />
             <Route path="manage-tags" element={<ManageTags />} />
             <Route path="manage-videos" element={<ManageVideos />} />
+            <Route path="manage-tags/:name" element={<TagDetails />} />
           </Route>
         </Routes>
       </Router>

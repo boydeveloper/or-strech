@@ -19,13 +19,10 @@ function ManageTags() {
   });
 
   const tagColumns = [
-    { heading: "ID", value: "id" },
     { heading: "Tag Name", value: "name" },
     { heading: "created", value: "createdAt" },
-    { heading: "Baseline", value: "baseline" },
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
-    { heading: "Recently Updated", value: "updatedAt" },
   ];
 
   const getTags = async () => {
@@ -66,7 +63,6 @@ function ManageTags() {
       } else if (deletingTag?.message.sql) {
         throw new Error("Old tags, cant be deleted yet!");
       } else {
-        console.log("hiii");
         toast.error(deletingTag?.message);
       }
     } catch (error) {

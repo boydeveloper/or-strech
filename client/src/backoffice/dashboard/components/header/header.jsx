@@ -9,8 +9,9 @@ function Header() {
         <button>
           <ion-icon name="menu-outline"></ion-icon>
         </button>
-        <Link to={"overview"} className="logo">
-          <img src="/assets/svgs/mayo-clinic-logo.svg" alt="" />
+        <Link to={"overview"} className={style.logo}>
+          <img src="/assets/svgs/mayo-clinic-logo.svg" alt="logo" />
+          <h1>OR-Stretch</h1>
         </Link>
       </div>
       <div className={style.header__right}>

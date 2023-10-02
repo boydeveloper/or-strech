@@ -1,0 +1,46 @@
+.tagDetailsWrapper {
+  width: 100%;
+}
+.tagDetailsWrapper > header {
+  width: 100%;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #cccc;
+}
+.tagDetailsWrapper > header > h1 {
+  font-weight: 400;
+  font-size: 3.2rem;
+  padding-block: 20px;
+}
+
+.tagMain > a:link,
+.tagMain > a:visited {
+  color: #4dabf7;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+.tagMain {
+  background: #fff;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+  margin-bottom: 3rem;
+}
+.tagDetails {
+  display: flex;
+  align-items: center;
+  color: #212529;
+  gap: 20px;
+}
+.tagDetails > span {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.tagDetails > p {
+  font-size: 1.8rem;
+  font-weight: 600;
+}

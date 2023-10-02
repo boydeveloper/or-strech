@@ -6,5 +6,6 @@ export { default as ManageTags } from "./manageTags/manageTags";
 export { default as ManageVideos } from "./manageVideos/manageVideos";
 export { default as UpdateUser } from "./updateUser/updateUser";
 export { default as UpdateTag } from "./updateTag/updateTag";
-// export {default as} from ''
+
+export { default as TagDetails } from "./tagDetails/tagDetails";
 // export {default as} from ''
