@@ -11,6 +11,7 @@ function TagDetails() {
     const allTags = await getAllTags();
     console.log(name);
     const tagToBePreviewed = allTags?.tags.find((tag) => tag.name === name);
+    console.log(tagToBePreviewed);
     setTag(tagToBePreviewed);
     console.log(tag);
   };
@@ -42,9 +43,8 @@ function TagDetails() {
         </div>
         <div className={style.tagDetails}>
           <span>Last Update:</span>
-          <p>{formatDate(tag?.updatedAt)}</p>
+          <p>{tag?.updatedAt === null ? "" : formatDate(tag?.updatedAt)}</p>
         </div>
-        {/* <div>{tag?.baseline === false ? "False" : "True"}</div> */}
       </div>
     </div>
   );

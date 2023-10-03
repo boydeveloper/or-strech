@@ -4,5 +4,6 @@ export const formatDate = (dateString) => {
     undefined,
     dateOptions
   );
+  console.log(joinedDate);
   return `${joinedDate}`;
 };
