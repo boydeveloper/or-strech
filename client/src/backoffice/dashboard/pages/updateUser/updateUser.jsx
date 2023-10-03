@@ -120,15 +120,7 @@ function UpdateUser() {
             />
             <span>E-mail</span>
           </label>
-          <label className={style.inputContainer}>
-            <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleInputChange}
-            />
-            <span>First Name</span>
-          </label>
+
           <label className={style.inputContainer}>
             <input
               type="text"
@@ -136,16 +128,7 @@ function UpdateUser() {
               value={formData.name}
               onChange={handleInputChange}
             />
-            <span>Name</span>
-          </label>
-          <label className={style.inputContainer}>
-            <input
-              type="text"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleInputChange}
-            />
-            <span>Last Name</span>
+            <span>Full Name</span>
           </label>
           <label className={style.inputContainer}>
             <input
