@@ -1,0 +1,33 @@
+.quickActionsMenu {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  top: 100%;
+  right: 0;
+  padding: 14px;
+  border-radius: 8px;
+  background: #fff;
+
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  text-transform: none;
+}
+
+.quickActionsMenu > a:link,
+.quickActionsMenu > a:visited {
+  padding: 8px 10px;
+  color: #2b2b2b;
+  white-space: nowrap;
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 18px;
+}
+.quickActionsMenu > a:hover,
+.quickActionsMenu > a:active {
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+.quickActionsMenu > a:link:last-child,
+.quickActionsMenu > a:visited:last-child {
+  color: #e62c2c;
+}

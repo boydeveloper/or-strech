@@ -34,7 +34,7 @@
   content: "";
   background: rgba(0, 0, 0, 0.3);
   width: 100%;
-  height: 400px;
+  height: 100%;
   display: block;
   position: absolute;
   top: 0;
@@ -111,6 +111,11 @@
   right: -0.2em;
   z-index: -1;
 }
+.errorText {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #f03e3e;
+}
 .formbox > button {
   background-color: #00365a;
   border-color: #00365a;
@@ -121,4 +126,8 @@
   padding: 1rem 3rem;
   width: fit-content;
   border-radius: 6rem;
+}
+.formbox > button:disabled {
+  box-shadow: unset;
+  background: #ced4da;
 }

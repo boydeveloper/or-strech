@@ -1,55 +1,104 @@
+import axios from "axios";
+
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (token) => {
   try {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
+    const headers = {
+      Authorization: `Bearer ${token}`,
     };
-    const response = await fetch(
-      `${BASE_URL}/users/listAllUsers`,
-      requestOptions
-    );
-    const data = response.json();
-    return data;
+    const response = await axios.get(`${BASE_URL}/users/listAllUsers`, {
+      headers,
+    });
+
+    return response.data;
   } catch (error) {
     throw error;
   }
 };
-export const getUsers = async (page_no, no_of_users) => {
+export const getUsers = async (page_no, no_of_users, name, token) => {
   try {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
+    const headers = {
+      Authorization: `Bearer ${token}`,
     };
-    const response = await fetch(
-      `${BASE_URL}/users/listUsers/?page_no=${page_no}&no_of_users=${no_of_users}`,
-      requestOptions
+    const response = await axios.get(
+      `${BASE_URL}/users/listUsers/?page_no=${page_no}&no_of_users=${no_of_users}&search_param=${name}`,
+      {
+        headers,
+      }
     );
-    const data = response.json();
-    return data;
-  } catch (error) {}
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getUserDetails = async (mail, token) => {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.get(
+      `${BASE_URL}/users/userDetails?email=${mail}`,
+      {
+        headers,
+      }
+    );
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
-export const updateUser = async (payload, mail) => {
+export const getUserActivities = async (page_no, no_of_events, token) => {
   try {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify(payload);
-
-    const requestOptions = {
-      method: "PUT",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     };
-    const response = await fetch(
-      `${BASE_URL}/users/updateUser?email=${mail}`,
-      requestOptions
+
+    const response = await axios.get(
+      `${BASE_URL}/events/listEvents?page_no=${page_no}&no_of_events=${no_of_events}`,
+      {
+        headers,
+      }
     );
-    const data = response.json();
-    return data;
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createUser = async (payload, token) => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.post(`${BASE_URL}/users/createUser`, payload, {
+      headers,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const updateUser = async (payload, mail, token) => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.put(
+      `${BASE_URL}/users/updateUser?email=${mail}`,
+      payload,
+      {
+        headers,
+      }
+    );
+
+    return response.data;
   } catch (error) {
     throw error;
   }

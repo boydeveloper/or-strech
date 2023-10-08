@@ -3,6 +3,14 @@ import { formatDate } from "../../../utils/fomatDate";
 import style from "./table.module.css";
 
 const Table = ({ data, column, handleDelete, tag }) => {
+  function parseJsonSafely(jsonString) {
+    try {
+      return JSON.parse(jsonString);
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+      return [];
+    }
+  }
   return (
     <div className={style.tableWrapper}>
       <table className={style.table}>
@@ -19,7 +27,7 @@ const Table = ({ data, column, handleDelete, tag }) => {
             return (
               <tr key={index + "row"}>
                 {column?.map((columnItem, index) => {
-                  if (columnItem?.value === "delete") {
+                  if (columnItem.value === "delete") {
                     return (
                       <td key={index + "data"}>
                         <span
@@ -65,6 +73,18 @@ const Table = ({ data, column, handleDelete, tag }) => {
                         >
                           {row.baseline === true ? "True" : "False"}
                         </span>
+                      </td>
+                    );
+                  } else if (columnItem?.heading === "UserTags") {
+                    const parsedTags = row.tags_excel
+                      ? parseJsonSafely(row.tags_excel)
+                      : [];
+
+                    return (
+                      <td key={index + "data"}>
+                        {Array.isArray(parsedTags)
+                          ? parsedTags.join(", ")
+                          : parsedTags}
                       </td>
                     );
                   } else if (columnItem?.heading === "Tag Name") {

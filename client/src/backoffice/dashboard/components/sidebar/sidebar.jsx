@@ -16,7 +16,7 @@ function Sidebar() {
           <i className="simple-icon-social-youtube"></i>
           <p> Manage Videos</p>
         </Link>
-        <Link>
+        <Link to={"users-activities"}>
           <i className="simple-icon-layers"></i>
 
           <p> Users Activity</p>

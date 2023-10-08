@@ -102,6 +102,42 @@
   right: -0.2em;
   z-index: -1;
 }
+
+.customSelect {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.customSelect select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 1.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+.customSelect .selectArrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #555 transparent transparent transparent;
+  pointer-events: none;
+}
+.customSelect select option {
+  padding: 1rem;
+  font-size: 1.6rem;
+}
 .tagsWrapper {
   margin: 2rem 0;
 }

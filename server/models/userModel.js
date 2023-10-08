@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       password: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       salt: {
@@ -70,6 +70,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       baseline_survey: {
         type: DataTypes.INTEGER,
+      },
+      user_type: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     { freezeTableName: true, tableName: "user" }

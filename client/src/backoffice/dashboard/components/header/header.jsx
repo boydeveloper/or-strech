@@ -1,8 +1,11 @@
 import React from "react";
 import style from "./header.module.css";
 import { Link } from "react-router-dom";
+import Dropdown from "./component/dropdown";
+import { useAuth } from "../../../context/auth";
 
 function Header() {
+  const { user } = useAuth();
   return (
     <div className={style.dashboard__header}>
       <div className={style.header__left}>
@@ -15,8 +18,11 @@ function Header() {
         </Link>
       </div>
       <div className={style.header__right}>
-        <span>DUKE</span>
+        <span>{user?.email}</span>
         <img src="/assets/imgs/defaultdoc.jpg" alt="default profile img" />
+        <div className={style.dropdownM}>
+          <Dropdown />
+        </div>
       </div>
     </div>
   );

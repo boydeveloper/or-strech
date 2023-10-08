@@ -1,5 +1,8 @@
 const db = require("../models/model");
 const Tag = db.tags;
+const excelJs = require("exceljs");
+const moment = require("moment");
+const Op = require("sequelize").Op;
 
 const createTag = async (req, res) => {
   try {
@@ -23,10 +26,9 @@ const createTag = async (req, res) => {
       return res.status(200).json({ tag, isSuccess: true });
     }
   } catch (err) {
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: err, isSuccess: false });
   }
 };
-
 const listAllTags = async (req, res) => {
   try {
     const totalNoOfTags = await Tag.count();
@@ -38,12 +40,14 @@ const listAllTags = async (req, res) => {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
-
 const listTags = async (req, res) => {
   try {
     const page_no = Number(req.query.page_no);
-    const no_of_tags = Number(req.query.no_of_tags);
-    const offset = (page_no - 1) * no_of_tags;
+    const offset = (page_no - 1) * 20;
+    const searchParam = req.query.name;
+    let tags;
+    let maxPageNo;
+    let totalNoOfTagsThatMatchSpecifiedParams;
     const totalNoOfTags = await Tag.count();
 
     if (isNaN(page_no) || page_no <= 0) {
@@ -53,12 +57,44 @@ const listTags = async (req, res) => {
         isSuccess: false,
       });
     }
-    const tags = await Tag.findAll({
-      offset,
-      limit: no_of_tags,
-      order: [["createdAt", "DESC"]],
+
+    if (searchParam) {
+      let totalTagsThatMatchSpecifiedParams = await Tag.findAll({
+        where: {
+          name: {
+            [Op.substring]: searchParam,
+          },
+        },
+      });
+      let paginatedTags = await Tag.findAll({
+        where: {
+          name: {
+            [Op.substring]: searchParam,
+          },
+        },
+        offset,
+        limit: 20,
+        order: [["createdAt", "DESC"]],
+      });
+      tags = paginatedTags;
+      totalNoOfTagsThatMatchSpecifiedParams =
+        totalTagsThatMatchSpecifiedParams.length;
+      maxPageNo = Math.ceil(totalNoOfTagsThatMatchSpecifiedParams / 20);
+    } else {
+      tags = await Tag.findAll({
+        offset,
+        limit: 20,
+        order: [["createdAt", "DESC"]],
+      });
+      maxPageNo = Math.ceil(totalNoOfTags / 20);
+    }
+    return res.status(200).json({
+      tags,
+      totalNoOfTags,
+      totalNoOfTagsThatMatchSpecifiedParams,
+      maxPageNo,
+      isSuccess: true,
     });
-    return res.status(200).json({ tags, totalNoOfTags, isSuccess: true });
   } catch (err) {
     return res.status(500).json({ message: err, isSuccess: false });
   }
@@ -91,6 +127,25 @@ const deleteTag = async (req, res) => {
   }
 };
 
+const findTags = async (req, res) => {
+  try {
+    const nameQueryParam = req.query.name;
+    if (!nameQueryParam)
+      return res
+        .status(400)
+        .json({ message: "Invalid query parameters.", isSuccess: false });
+    const tags = await Tag.findAll({
+      where: {
+        name: {
+          [Op.substring]: nameQueryParam,
+        },
+      },
+    });
+    return res.status(200).json({ tags, isSuccess: true });
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
+};
 const updateTag = async (req, res) => {
   try {
     if (
@@ -138,11 +193,49 @@ const viewTagDetails = async (req, res) => {
   }
 };
 
+const exportTags = async (req, res) => {
+  try {
+    const tags = await Tag.findAll();
+    const workbook = new excelJs.Workbook();
+    const sheet = workbook.addWorksheet("tags");
+    sheet.columns = [
+      { header: "ID", key: "id" },
+      { header: "Name", key: "name" },
+      { header: "Date Created", key: "createdAt" },
+      { header: "Last Updated", key: "updatedAt" },
+      { header: "Baseline Survey", key: "baseline" },
+    ];
+    await tags.map((value) => {
+      sheet.addRow({
+        id: value.id,
+        name: value.name,
+        createdAt: moment(value.createdAt).format("YYYY-MM-DD HH:MM:SS"),
+        updatedAt: moment(value.createdAt).format("YYYY-MM-DD HH:MM:SS"),
+        baseline: value.baseline ? "Yes" : "No",
+      });
+    });
+
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+    res.setHeader(
+      "Content-Disposition",
+      "attachment;filename=" + "Or-Stretch-Tags.xlsx"
+    );
+    workbook.xlsx.write(res);
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
+};
 module.exports = {
   createTag,
+  listAllTags,
   listTags,
   deleteTag,
   updateTag,
-  listAllTags,
+  findTags,
+
   viewTagDetails,
+  exportTags,
 };

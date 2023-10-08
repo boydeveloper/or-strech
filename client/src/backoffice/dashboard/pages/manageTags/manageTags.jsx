@@ -4,18 +4,24 @@ import {
   createTag,
   getAllTags,
   deleteTag,
+  getTags,
 } from "../../../../Apis/tags/tagsService";
 import Table from "../../components/table/table";
 import toast from "react-hot-toast";
 import DeletePrompt from "../../components/deletePrompt/deletePrompt";
+import Loader from "../../../../components/Loader";
+import { useAuth } from "../../../context/auth";
 
 function ManageTags() {
+  const { user } = useAuth();
   const [tags, setTags] = useState(null);
   const [tagToBeDelelted, setTagToBeDeleted] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
   const [modal, setModal] = useState("");
   const [formData, setFormData] = useState({
     name: "",
-    baseline: 1,
+    baseline: 0,
   });
 
   const tagColumns = [
@@ -24,9 +30,11 @@ function ManageTags() {
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
   ];
-
-  const getTags = async () => {
-    const allTags = await getAllTags();
+  console.log(user);
+  const fetchTags = async () => {
+    setLoading(true);
+    const allTags = await getTags(1, searchInput, user?.token);
+    setLoading(false);
     const sortTagsByRecent = allTags.tags.sort(
       (a, b) => new Date(b?.createdAt) - new Date(a?.createdAt)
     );
@@ -35,8 +43,8 @@ function ManageTags() {
   };
 
   useEffect(() => {
-    getTags();
-  }, []);
+    fetchTags();
+  }, [searchInput, user]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -54,12 +62,12 @@ function ManageTags() {
   const handleDeleteTag = async () => {
     try {
       console.log(tagToBeDelelted);
-      const deletingTag = await deleteTag(tagToBeDelelted);
+      const deletingTag = await deleteTag(tagToBeDelelted, user?.token);
       console.log(deletingTag);
       setModal("");
       if (deletingTag?.isSuccess === true) {
         toast.success(deletingTag?.message);
-        getTags();
+        fetchTags();
       } else if (deletingTag?.message.sql) {
         throw new Error("Old tags, cant be deleted yet!");
       } else {
@@ -72,12 +80,11 @@ function ManageTags() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log(formData);
-      const tagCreating = await createTag(formData);
-      console.log(tagCreating);
-      getTags();
+
+      const tagCreating = await createTag(formData, user?.token);
       if (tagCreating.isSuccess === true) {
         toast.success(`${tagCreating.tag.name} Tag Created`);
+        fetchTags();
       } else {
         toast.error(tagCreating.message);
       }
@@ -87,6 +94,7 @@ function ManageTags() {
         baseline: 0,
       });
     } catch (error) {
+      toast.error(error.response.data.message);
       throw error;
     }
   };
@@ -110,24 +118,35 @@ function ManageTags() {
           />
           <button type="submit">Submit</button>
         </div>
-        <label htmlFor="baseline" className={style.baseline}>
-          <input
-            type="checkbox"
-            id="baseline"
-            name="baseline"
-            checked={formData.baseline === 1}
-            onChange={handleInputChange}
-          />
-          Baseline?
-        </label>
       </form>
       <div>
-        <Table
-          column={tagColumns}
-          data={tags && tags}
-          tag
-          handleDelete={handleTagToBeDelelted}
-        />
+        <div className={style.searchContainer}>
+          <div className={style.searchIcon}>
+            <ion-icon name="search"></ion-icon>
+          </div>
+          <input
+            type="text"
+            placeholder="Search tags"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+        </div>
+        {loading ? (
+          <div className={style.loaderContainer}>
+            <Loader />
+          </div>
+        ) : tags?.length === 0 ? (
+          <div className={style.notag}>
+            <h1>No Tag matches the search</h1>
+          </div>
+        ) : (
+          <Table
+            column={tagColumns}
+            data={tags && tags}
+            tag
+            handleDelete={handleTagToBeDelelted}
+          />
+        )}
       </div>
       {modal === "prompt" && (
         <DeletePrompt

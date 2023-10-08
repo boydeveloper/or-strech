@@ -1,75 +1,88 @@
-const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
-export const getAllTags = async () => {
-  try {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-    const response = await fetch(
-      `${BASE_URL}/tags/listAllTags`,
-      requestOptions
-    );
+import axios from "axios";
 
-    const data = await response.json();
-    return data;
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+
+const userString = sessionStorage.getItem("or_user");
+
+export const getAllTags = async (token) => {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.get(`${BASE_URL}/tags/listAllTags`, {
+      headers,
+    });
+
+    return response.data;
   } catch (error) {
     throw error;
   }
 };
-export const createTag = async (payload) => {
+export const getTags = async (page_no, searchTerm, token) => {
   try {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify(payload);
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
+    const headers = {
+      Authorization: `Bearer ${token}`,
     };
-    const response = await fetch(`${BASE_URL}/tags/createTag`, requestOptions);
-    const data = await response.json();
-    return data;
+    const response = await axios.get(
+      `${BASE_URL}/tags/listTags?page_no=${page_no}&name=${searchTerm}`,
+      {
+        headers,
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const createTag = async (payload, token) => {
+  const user = await JSON.parse(userString);
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    const response = await axios.post(`${BASE_URL}/tags/createTag`, payload, {
+      headers,
+    });
+
+    return response.data;
   } catch (error) {
     throw error;
   }
 };
 export const updateTag = async (payload, name) => {
+  const user = await JSON.parse(userString);
   try {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify(payload);
-
-    var requestOptions = {
-      method: "PUT",
-      headers: myHeaders,
-      body: raw,
+    const headers = {
+      Authorization: `Bearer ${user.account.token}`,
     };
-    const response = await fetch(
+    const response = await axios.put(
       `${BASE_URL}/tags/updateTag?name=${name}`,
-      requestOptions
+      payload,
+      {
+        headers,
+      }
     );
-    const data = response.json();
-    return data;
+
+    return response.data;
   } catch (error) {
     throw error;
   }
 };
 export const deleteTag = async (name) => {
+  const user = await JSON.parse(userString);
   try {
-    const requestOptions = {
-      method: "DELETE",
-      redirect: "follow",
+    const headers = {
+      Authorization: `Bearer ${user.account.token}`,
     };
-    const response = await fetch(
+    const response = await axios.delete(
       `${BASE_URL}/tags/deleteTag?name=${name}`,
-      requestOptions
+      {
+        headers,
+      }
     );
-    const data = await response.json();
-
-    return data;
+    return response.data;
   } catch (error) {
     throw error;
   }

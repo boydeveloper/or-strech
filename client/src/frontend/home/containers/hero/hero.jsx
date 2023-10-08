@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authenticateUser } from "../../../../Apis/auth/loginService";
-import Loader from "../../../../components/Loader";
 import { AgreementModal } from "../../../components/index";
-import "./hero.css";
+import style from "./hero.module.css";
 
 function Hero() {
   const [email, setEmail] = useState("");
-  const [pending, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [modal, setModal] = useState("");
   const navigate = useNavigate();
@@ -30,9 +29,15 @@ function Hero() {
     const emailValid = validateEmail(email);
     if (emailValid) {
       const loggedInUser = await authenticateUser(email);
+      console.log(loggedInUser);
       const username = email.split("@")[0];
       localStorage.setItem("username", username);
-      if (loggedInUser?.isNew === true) {
+      console.log(loggedInUser);
+
+      if (
+        loggedInUser.isSuccess === true &&
+        loggedInUser?.account?.isNew === true
+      ) {
         setModal("agreeModal");
         setLoading(false);
       } else {
@@ -47,42 +52,36 @@ function Hero() {
   };
 
   return (
-    <div>
-      <div className="hero__wrapper">
-        <div className="bg-overlay"></div>
-        <div className="hero__content--wrapper">
-          <div className="content__wrapper">
-            <div className="hero__textbox">
-              <h1 className="slide--headline">
-                Surgeon-Designed <br />
-                Intraoperative Stretches
-              </h1>
-              <p>
-                The stretches aim to counteract the effects of interoperative
-                strains on the surgeon's position and are performed without
-                breaking scrub
-              </p>
-            </div>
-            <form className="hero__formbox" onSubmit={(e) => handleSubmit(e)}>
-              <div className="inputContainer">
-                <h1>Enter email address Login</h1>
-                <input
-                  type="text"
-                  value={email}
-                  placeholder="email"
-                  onChange={handleInputEmailChange}
-                />
-              </div>
-              {error && <p className="error-message">{error}</p>}
-              <button type="submit" className="hero__btn">
-                {pending ? <Loader /> : "Start stretching"}
+    <>
+      <section className="container">
+        <div className={style.hero_wrapper}>
+          <div className={style.hero_wrapper_textbox}>
+            <h1>Surgeon Designed interoperative stretches</h1>
+            <p>
+              The stretches aim to counteract the effects of interoperative
+              strains on the surgeon's position and are performed without
+              breaking scrub
+            </p>
+            <form onSubmit={handleSubmit} className={style.hero_cta}>
+              <input
+                value={email}
+                onChange={handleInputEmailChange}
+                type="email"
+                placeholder="Enter your email"
+                required
+              />
+              <button type="submit" disabled={loading}>
+                {loading ? "Loading..." : "Start Stretching"}{" "}
               </button>
             </form>
           </div>
+          <div className={style.hero_wrapper_imgbox}>
+            <img src="/assets/imgs/hero.jpg" alt="hero img" />
+          </div>
         </div>
-      </div>
+      </section>
       {modal === "agreeModal" && <AgreementModal close={closeAgreementModal} />}
-    </div>
+    </>
   );
 }
 

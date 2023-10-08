@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import style from "./updatetag.module.css";
 import { Switch } from "../../components";
+import { useAuth } from "../../../context/auth";
 
 function UpdateTag() {
   const { id } = useParams();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [tagToBeUpdated, setTagToBeUpdated] = useState(null);
 
@@ -16,7 +18,7 @@ function UpdateTag() {
   });
 
   const getTags = async () => {
-    const allTags = await getAllTags();
+    const allTags = await getAllTags(user?.account?.token);
 
     const aboutToBeUpdatedTag = allTags?.tags.find(
       (tag) => tag.id === Number(id)
@@ -32,7 +34,11 @@ function UpdateTag() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const updatingTag = await updateTag(tagData, tagToBeUpdated.name);
+      const updatingTag = await updateTag(
+        tagData,
+        tagToBeUpdated.name,
+        user?.account?.token
+      );
       if (updatingTag.isSuccess === true) {
         toast.success(updatingTag.message);
         navigate("/dashboard/manage-tags");
@@ -46,7 +52,7 @@ function UpdateTag() {
 
   useEffect(() => {
     getTags();
-  }, []);
+  }, [user]);
   const handleBaselineChange = (newValue) => {
     setTagData({
       ...tagData,

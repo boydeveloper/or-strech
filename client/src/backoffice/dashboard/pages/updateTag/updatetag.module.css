@@ -38,11 +38,7 @@
   border-color: #d7d7d7;
   height: calc(2em + 0.8rem);
 }
-.baselineCta {
-  display: flex;
-  gap: 10px;
-  margin: 10px 0;
-}
+
 .inputContainer > span {
   position: absolute;
   cursor: text;
@@ -87,4 +83,9 @@
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
+}
+.baselineCta {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
 }

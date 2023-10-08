@@ -1,8 +1,90 @@
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import style from "./login.module.css";
+import { authenticateAdmin } from "../../../Apis/auth/loginService";
+import toast from "react-hot-toast";
+import {} from "../../../Apis/users/userService";
+import { createEvent } from "../../../Apis/event/eventService";
+import { useAuth } from "../../context/auth";
 
 function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
+  const initialFormData = {
+    email: "",
+    password: "",
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+  const [loading, setLoading] = useState(false);
+
+  const validateFormData = () => {
+    const errors = {};
+
+    if (!formData.email) {
+      errors.email = "Email is required";
+    }
+
+    if (!formData.password) {
+      errors.password = "Password is required";
+    }
+
+    return errors;
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const errors = validateFormData();
+      if (Object.keys(errors).length > 0) {
+        toast.error("Please fix the following errors:");
+        setErrors(errors);
+        setLoading(false);
+        return;
+      }
+
+      const loginAdmin = await authenticateAdmin(formData);
+      console.log(loginAdmin);
+      if (loginAdmin?.isSuccess === true) {
+        console.log(loginAdmin);
+        await login(loginAdmin.account);
+        await createEvent(
+          {
+            userId: loginAdmin?.account.id,
+            event_type: "LOGIN_ADMIN",
+            notes: "log in by admin",
+          },
+          loginAdmin.account.token
+        );
+        setLoading(false);
+        toast.success("Login successful");
+        navigate("/dashboard/overview");
+      } else {
+        toast.error("Invalid credentials");
+        setLoading(false);
+        throw Error("dammm");
+      }
+    } catch (error) {
+      toast.error(
+        error.response ? error.response.data.message : "An error occurred"
+      );
+      setLoading(false);
+      throw error;
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const [errors, setErrors] = useState({});
+
   return (
     <div className={style.auth__wrapper}>
       <div className={style.auth__card}>
@@ -13,21 +95,38 @@ function Login() {
             <p>Please use your credentials to login.</p>
           </div>
         </div>
-        <form className={style.formbox}>
+        <form className={style.formbox} onSubmit={handleLogin}>
           <h1>Login</h1>
           <div className={style.inputs}>
-            <label class={style.inputContainer}>
-              <input type="text" />
+            <label className={style.inputContainer}>
+              <input
+                type="text"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+              />
               <span>E-mail</span>
+              {errors.email && (
+                <p className={style.errorText}>{errors.email}</p>
+              )}
             </label>
-            <label class={style.inputContainer}>
-              <input type="text" />
+
+            <label className={style.inputContainer}>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
               <span>Password</span>
+              {errors.password && (
+                <p className={style.errorText}>{errors.password}</p>
+              )}
             </label>
           </div>
 
-          <button onClick={() => navigate("/backoffice/dashboard")}>
-            LOGIN
+          <button disabled={loading} type="submit">
+            {loading ? "Loading..." : "LOGIN"}
           </button>
         </form>
       </div>

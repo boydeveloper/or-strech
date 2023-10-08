@@ -1,4 +1,6 @@
 const Event = require("../models/model").events;
+const excelJs = require("exceljs");
+const moment = require("moment");
 
 function getCurrentTimestamp() {
   const now = new Date();
@@ -18,6 +20,8 @@ function getCurrentTimestamp() {
 
 const events = [
   "REGISTERED",
+  "LOGIN_ADMIN",
+  "LOGIN_NORMALUSER",
   "SUBMIT_BASELINE_SURVEY",
   "ENTERED_CSTRETCH",
   "PRESSED_START",
@@ -41,11 +45,25 @@ const events = [
   "DONE_STRETCHING_SEATED",
 ];
 
+const getPreviousLogins = async (req, res) => {
+  try {
+    const login_events = await Event.findAll({
+      where: { event_type: "LOGIN_ADMIN" || "LOGIN_NORMALUSER" },
+      limit: 20,
+    });
+
+    return res.status(200).json({ login_events, isSuccess: true });
+  } catch (err) {
+    return res.status(400).json({ message: err, isSuccess: false });
+  }
+};
+
 const createEvent = async (req, res) => {
+  const session_id = req.headers["authorization"].split(" ")[1];
   try {
     if (events.includes(req.body.event_type)) {
       const timestamp = getCurrentTimestamp();
-      let data = { ...req.body, timestamp };
+      let data = { ...req.body, session_id, timestamp };
 
       const event = await Event.create(data);
       return res.status(200).json({ event, isSuccess: true });
@@ -163,6 +181,45 @@ const getPossibleEvents = async (req, res) => {
   }
 };
 
+const exportEvents = async (req, res) => {
+  try {
+    const events = await Event.findAll();
+    const workbook = new excelJs.Workbook();
+    const sheet = workbook.addWorksheet("events");
+    sheet.columns = [
+      { header: "ID", key: "id" },
+      { header: "Timestamp", key: "timestamp" },
+      { header: "Event Type", key: "event_type" },
+      { header: "Value", key: "value" },
+      { header: "Date Created", key: "createdAt" },
+      { header: "Last Updated", key: "updatedAt" },
+      { header: "Notes", key: "notes" },
+    ];
+    await events.map((value) => {
+      sheet.addRow({
+        id: value.id,
+        timestamp: moment(value.timestamp).format("YYYY-MM-DD HH:MM:SS"),
+        event_type: value.event_type,
+        value: value.value,
+        createdAt: moment(value.createdAt).format("YYYY-MM-DD HH:MM:SS"),
+        updatedAt: moment(value.createdAt).format("YYYY-MM-DD HH:MM:SS"),
+        notes: value.notes,
+      });
+    });
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+    res.setHeader(
+      "Content-Disposition",
+      "attachment;filename=" + "Or-Stretch-Events.xlsx"
+    );
+    workbook.xlsx.write(res);
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
+};
+
 module.exports = {
   createEvent,
   deleteEvent,
@@ -170,4 +227,6 @@ module.exports = {
   listEvents,
   updateEvent,
   viewEventDetails,
+  getPreviousLogins,
+  exportEvents,
 };

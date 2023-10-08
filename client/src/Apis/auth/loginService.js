@@ -1,3 +1,4 @@
+import axios from "axios";
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
 export const authenticateUser = async (email) => {
@@ -20,4 +21,17 @@ export const authenticateUser = async (email) => {
     const data = response.json();
     return data;
   } catch (error) {}
+};
+
+export const authenticateAdmin = async (payload) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/accounts/loginAdminAccount`,
+      payload
+    );
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };

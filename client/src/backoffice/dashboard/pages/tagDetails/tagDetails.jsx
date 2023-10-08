@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import { getAllTags } from "../../../../Apis/tags/tagsService";
 import style from "./tagDetails.module.css";
 import { formatDate } from "../../../utils/fomatDate";
+import { useAuth } from "../../../context/auth";
 
 function TagDetails() {
+  const { user } = useAuth();
   const { name } = useParams();
   const [tag, setTag] = useState("");
   const getTag = async () => {
-    const allTags = await getAllTags();
-    console.log(name);
+    const allTags = await getAllTags(user?.token);
+
     const tagToBePreviewed = allTags?.tags.find((tag) => tag.name === name);
     console.log(tagToBePreviewed);
     setTag(tagToBePreviewed);
@@ -17,7 +19,7 @@ function TagDetails() {
   };
   useEffect(() => {
     getTag();
-  }, []);
+  }, [user]);
   return (
     <div className={style.tagDetailsWrapper}>
       <header>

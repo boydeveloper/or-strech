@@ -5,31 +5,31 @@ import { Switch } from "../../components/index";
 import { getAllTags } from "../../../../Apis/tags/tagsService";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useAuth } from "../../../context/auth";
 
 function UpdateUser() {
   const { id } = useParams();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [tags, setTags] = useState([]);
   const [userEmailToBeUpdated, setUserEmailToBeUpdated] = useState(null);
   const [formData, setFormData] = useState({
     email: "",
     name: "",
-    firstName: "",
     tags_excel: [],
-    lastName: "",
-    userType: "",
+    user_type: "strecher",
   });
 
   const [selectedTags, setSelectedTags] = useState({});
 
   const getTags = async () => {
-    const tags = await getAllTags();
+    const tags = await getAllTags(user?.token);
     setTags(tags?.tags);
     console.log(tags.tags);
   };
 
   const fetchUsers = async () => {
-    const users = await getAllUsers();
+    const users = await getAllUsers(user?.token);
     const userToBeUpdated = users.find((user) => user.id === Number(id));
     setUserEmailToBeUpdated(userToBeUpdated.email);
     console.log(userToBeUpdated);
@@ -37,9 +37,7 @@ function UpdateUser() {
       setFormData({
         email: userToBeUpdated.email,
         name: userToBeUpdated.name,
-        firstName: userToBeUpdated.firstName,
-        lastName: userToBeUpdated.lastName,
-        userType: userToBeUpdated.userType,
+        user_type: userToBeUpdated.user_type,
       });
       const tagsExcelArray = JSON.parse(userToBeUpdated.tags_excel || "[]");
       const initialSelectedTags = {};
@@ -53,7 +51,7 @@ function UpdateUser() {
   useEffect(() => {
     fetchUsers();
     getTags();
-  }, []);
+  }, [user]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -88,9 +86,11 @@ function UpdateUser() {
       console.log(updatedFormData);
       const updatingUser = await updateUser(
         updatedFormData,
-        userEmailToBeUpdated
+        userEmailToBeUpdated,
+        user?.token
       );
 
+      console.log(updatingUser);
       if (updatingUser.isSuccess === true) {
         toast.success(updatingUser.message);
         navigate("/dashboard/users");
@@ -131,12 +131,17 @@ function UpdateUser() {
             <span>Full Name</span>
           </label>
           <label className={style.inputContainer}>
-            <input
-              type="text"
-              name="userType"
-              value={formData.userType}
-              onChange={handleInputChange}
-            />
+            <div className={style.customSelect}>
+              <select
+                name="user_type"
+                value={formData.user_type}
+                onChange={handleInputChange}
+              >
+                <option value="stretcher">Stretcher</option>
+                <option value="admin">Admin</option>
+              </select>
+              <span className={style.selectArrow}></span>
+            </div>
             <span>User Type</span>
           </label>
 

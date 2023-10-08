@@ -12,6 +12,16 @@
 .tableWrapper {
   /* width: 100%; */
 }
+.nouser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50vh;
+}
+.nouser > h1 {
+  font-weight: 400;
+}
 .users__overview > header {
   width: 100%;
   border-bottom: 1px solid #cccc;
@@ -38,6 +48,32 @@
   border: none;
   color: #fff;
 }
+.searchContainer {
+  margin: 20px 0;
+  width: 50%;
+  position: relative;
+}
+.searchIcon {
+  position: absolute;
+  left: 1.2rem;
+  font-size: 1.5rem;
+  top: 1.2rem;
+  color: #333;
+}
+.searchContainer > input {
+  padding: 10px;
+  padding-left: 3rem;
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.searchContainer > input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #8fdff8;
+}
+
 .paginationButtons {
   display: flex;
   align-items: flex-end;

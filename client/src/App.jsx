@@ -12,12 +12,16 @@ import {
   ManageVideos,
   UpdateTag,
   TagDetails,
+  Profile,
+  UserActivities,
 } from "./backoffice/dashboard/pages/index";
 
 import "./App.css";
+import RequireAuth from "./backoffice/auth/utils/requireAuth";
+import { AuthProvider } from "./backoffice/context/auth";
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Router>
         <Toaster
           toastOptions={{
@@ -34,20 +38,23 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/backoffice/login" element={<Login />} />
           <Route path="/stretch" element={<Timer />} />
-
-          <Route path="dashboard" element={<Dashboard />}>
-            <Route path="users" element={<Users />} />
-            <Route path="overview" element={<Overview />} />
-            <Route path="add-users" element={<AddUsers />} />
-            <Route path="update-user/:id" element={<UpdateUser />} />
-            <Route path="update-tag/:id" element={<UpdateTag />} />
-            <Route path="manage-tags" element={<ManageTags />} />
-            <Route path="manage-videos" element={<ManageVideos />} />
-            <Route path="manage-tags/:name" element={<TagDetails />} />
+          <Route element={<RequireAuth />}>
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route path="users" element={<Users />} />
+              <Route path="users-activities" element={<UserActivities />} />
+              <Route path="overview" element={<Overview />} />
+              <Route path="add-users" element={<AddUsers />} />
+              <Route path="update-user/:id" element={<UpdateUser />} />
+              <Route path="update-tag/:id" element={<UpdateTag />} />
+              <Route path="manage-tags" element={<ManageTags />} />
+              <Route path="manage-videos" element={<ManageVideos />} />
+              <Route path="manage-tags/:name" element={<TagDetails />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
           </Route>
         </Routes>
       </Router>
-    </>
+    </AuthProvider>
   );
 }
 
