@@ -56,7 +56,8 @@
   border: #4d728c solid 0.5rem;
   border-radius: 50%;
 }
-.progress {
+.overiewCard__details > ion-icon {
+  font-size: 4.8rem;
 }
 
 .tableWrapper {

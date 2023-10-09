@@ -2,8 +2,6 @@ import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
-const userString = sessionStorage.getItem("or_user");
-
 export const getAllTags = async (token) => {
   try {
     const headers = {
@@ -36,7 +34,6 @@ export const getTags = async (page_no, searchTerm, token) => {
   }
 };
 export const createTag = async (payload, token) => {
-  const user = await JSON.parse(userString);
   try {
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -51,11 +48,10 @@ export const createTag = async (payload, token) => {
     throw error;
   }
 };
-export const updateTag = async (payload, name) => {
-  const user = await JSON.parse(userString);
+export const updateTag = async (payload, name, token) => {
   try {
     const headers = {
-      Authorization: `Bearer ${user.account.token}`,
+      Authorization: `Bearer ${token}`,
     };
     const response = await axios.put(
       `${BASE_URL}/tags/updateTag?name=${name}`,
@@ -70,11 +66,10 @@ export const updateTag = async (payload, name) => {
     throw error;
   }
 };
-export const deleteTag = async (name) => {
-  const user = await JSON.parse(userString);
+export const deleteTag = async (name, token) => {
   try {
     const headers = {
-      Authorization: `Bearer ${user.account.token}`,
+      Authorization: `Bearer ${token}`,
     };
     const response = await axios.delete(
       `${BASE_URL}/tags/deleteTag?name=${name}`,

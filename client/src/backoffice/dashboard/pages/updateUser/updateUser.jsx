@@ -162,7 +162,7 @@ function UpdateUser() {
             </div>
           </div>
           <div className={style.adduserCta}>
-            <button>Cancel</button>
+            <button onClick={() => navigate("/dashboard/users")}>Cancel</button>
             <button type="submit">Update User</button>
           </div>
         </form>

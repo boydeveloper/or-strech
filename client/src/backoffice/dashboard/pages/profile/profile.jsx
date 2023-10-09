@@ -65,9 +65,6 @@ function Profile() {
       </header>
       <form onSubmit={handleSubmit}>
         <div className={style.profileMain}>
-          <span className={style.joined}>
-            Joined {formatDate(user?.createdAt)}
-          </span>
           <label className={style.inputContainer}>
             <input
               type="text"
@@ -97,6 +94,16 @@ function Profile() {
               value={formdata.email}
             />
             <span>Email</span>
+          </label>
+          <label className={style.inputContainer}>
+            <input
+              type="text"
+              name="joined"
+              required
+              readOnly
+              value={formatDate(user?.createdAt)}
+            />
+            <span>Joined</span>
           </label>
 
           <div className={style.profileCta}>

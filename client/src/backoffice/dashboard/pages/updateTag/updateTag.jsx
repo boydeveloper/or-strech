@@ -18,7 +18,7 @@ function UpdateTag() {
   });
 
   const getTags = async () => {
-    const allTags = await getAllTags(user?.account?.token);
+    const allTags = await getAllTags(user?.token);
 
     const aboutToBeUpdatedTag = allTags?.tags.find(
       (tag) => tag.id === Number(id)
@@ -37,7 +37,7 @@ function UpdateTag() {
       const updatingTag = await updateTag(
         tagData,
         tagToBeUpdated.name,
-        user?.account?.token
+        user?.token
       );
       if (updatingTag.isSuccess === true) {
         toast.success(updatingTag.message);
@@ -46,7 +46,8 @@ function UpdateTag() {
         toast.error(updatingTag.message);
       }
     } catch (error) {
-      toast.error(message);
+      console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 
