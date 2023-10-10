@@ -12,8 +12,10 @@ import {
   ManageVideos,
   UpdateTag,
   TagDetails,
+  AddVideos,
   Profile,
   UserActivities,
+  UpdateVideos,
 } from "./backoffice/dashboard/pages/index";
 
 import "./App.css";
@@ -43,9 +45,14 @@ function App() {
               <Route path="users" element={<Users />} />
               <Route path="users-activities" element={<UserActivities />} />
               <Route path="overview" element={<Overview />} />
+              <Route path="add-videos" element={<AddVideos />} />
               <Route path="add-users" element={<AddUsers />} />
               <Route path="update-user/:id" element={<UpdateUser />} />
               <Route path="update-tag/:id" element={<UpdateTag />} />
+              <Route
+                path="manage-videos/:linkName"
+                element={<UpdateVideos />}
+              />
               <Route path="manage-tags" element={<ManageTags />} />
               <Route path="manage-videos" element={<ManageVideos />} />
               <Route path="manage-tags/:name" element={<TagDetails />} />

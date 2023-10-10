@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Table from "../../components/table/table";
-import { getUsers } from "../../../../Apis/users/userService";
+import { getExports, getUsers } from "../../../../Apis/users/userService";
 import Loader from "../../../../components/Loader";
 import style from "./users.module.css";
 import { deleteUser } from "../../../../Apis/auth/userService";
@@ -18,13 +18,14 @@ function Users() {
   const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(20);
+  const [usersPerPage] = useState(10);
   const [pageCount, setPageCount] = useState(0);
   const [emailToBeDeleted, setEmailToBeDeleted] = useState(null);
   const [modal, setModal] = useState("");
   const tableColumn = [
     { heading: "Name", value: "name" },
     { heading: "Email", value: "email" },
+    { heading: "User Type", value: "user_type" },
     { heading: "UserTags", value: "tags_excel" },
     { heading: "First Login", value: "createdAt" },
     { heading: "Last Login", value: "updatedAt" },
@@ -41,8 +42,8 @@ function Users() {
         searchInput,
         user?.token
       );
+
       setLoading(false);
-      console.log(stretchersData);
       const stretchers = stretchersData.users.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
@@ -62,6 +63,9 @@ function Users() {
   const handleEmailToBeDelelted = (email) => {
     setEmailToBeDeleted(email);
     setModal("prompt");
+  };
+  const handleExports = async () => {
+    await getExports("/users/exportUsers", user?.token);
   };
   const handleDeleteUser = async () => {
     try {
@@ -90,6 +94,8 @@ function Users() {
           <button onClick={() => navigate("/dashboard/add-users")}>
             ADD NEW USER
           </button>
+
+          <button onClick={handleExports}>export users</button>
         </div>
         <div className={style.searchContainer}>
           <div className={style.searchIcon}>

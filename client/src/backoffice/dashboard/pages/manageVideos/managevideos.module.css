@@ -3,7 +3,8 @@
   width: 100%;
   padding-right: 4rem;
   height: 100%;
-  overflow-y: auto;
+  margin-bottom: 2rem;
+  /* overflow-y: auto; */
 }
 .addVideoCta {
   display: flex;
@@ -28,21 +29,25 @@
   font-size: 3.2rem;
   padding-block: 20px;
 }
+.videosBox {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 .videoBox {
   display: flex;
   width: 100%;
   align-items: center;
   background: #fff;
-  border-radius: 0.1rem;
+
   box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+  border-radius: 1.3rem;
+  overflow: hidden;
 }
 .videoBox > img {
   height: 85px;
   width: 10%;
-  border-top-left-radius: 1.3rem;
-  border-bottom-left-radius: 1.3rem;
   object-fit: cover;
-  /* width: 100%; */
 }
 .videoBoxDetails {
   display: flex;
@@ -52,8 +57,10 @@
   width: 100%;
 }
 .videoBoxDetails > h1 {
-  font-weight: 300;
   font-size: 1.8rem;
+  font-weight: 600;
+  color: #212529;
+  text-transform: capitalize;
 }
 .videoBoxDetails > span {
   font-size: 11px;
@@ -66,4 +73,27 @@
   border-radius: 3rem;
   background-color: #00365a;
   color: #fff;
+}
+.videoBox .cta {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+.videoBox .cta > button,
+.videoBox .cta > a {
+  font-size: 2.2rem;
+  background: none;
+  border: none;
+  color: #00365a;
+  cursor: pointer;
+}
+.nouser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50vh;
+}
+.nouser > h1 {
+  font-weight: 400;
 }

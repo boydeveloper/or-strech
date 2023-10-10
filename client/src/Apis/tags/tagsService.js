@@ -82,3 +82,19 @@ export const deleteTag = async (name, token) => {
     throw error;
   }
 };
+export const getExportsTags = async (token) => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    const response = await axios.get(`${BASE_URL}/tags/exportTags`, {
+      headers,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

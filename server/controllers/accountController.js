@@ -1,6 +1,6 @@
 require("dotenv").config;
 const db = require("../models/model");
-const crypto = require("crypto");
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Account = db.accounts;
@@ -41,36 +41,9 @@ const loginAdminAccount = async (req, res) => {
       where: { email },
     });
     if (!existingUser) {
-      const hash = await hashPassword(password);
-      const salt = await extractSaltFromHash(hash);
-      const newAccount = await Account.create({ email, password });
-      const token = generateToken(newAccount.id);
-
-      const user = await User.create({
-        email: req.body.email,
-        password: hash,
-        salt: salt,
-        conf_timer: 45,
-        active: 1,
-        frequency: 1,
-        surveys_number: 10,
-        days_number: 5,
-        deleted: 0,
-        baseline_survey: 0,
-        main_user_id: newAccount.id,
-        user_type: "admin",
-      });
-      await User.update({ main_user_id: user.id }, { where: { email } });
-      return res.status(200).json({
-        account: {
-          id: newAccount.id,
-          email: newAccount.email,
-          createdAt: newAccount.createdAt,
-          user_type: "admin",
-          token,
-        },
-        isSuccess: true,
-      });
+      return res
+        .status(400)
+        .json({ message: "Invalid login credentials", isSuccess: false });
     }
     if (existingUser && existingUser.user_type === "admin") {
       const token = generateToken(existingUser.id);
@@ -92,27 +65,9 @@ const loginAdminAccount = async (req, res) => {
           .json({ message: "Invalid email or password", isSuccess: false });
       }
     } else if (existingUser && existingUser.user_type === "normal_user") {
-      const hash = await hashPassword(password);
-      const salt = await extractSaltFromHash(hash);
-      const token = generateToken(existingUser.id);
-      await User.update(
-        {
-          user_type: "admin",
-          password: hash,
-          salt,
-        },
-        { where: { email } }
-      );
-      return res.status(200).json({
-        account: {
-          id: existingUser.id,
-          email: existingUser.email,
-          createdAt: existingUser.createdAt,
-          user_type: "admin",
-          token,
-        },
-        isSuccess: true,
-      });
+      return res
+        .status(500)
+        .json({ message: "Invalid login credentials", isSuccess: false });
     }
   } catch (err) {
     return res.status(500).json({ message: err, isSuccess: false });

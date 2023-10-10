@@ -1,5 +1,6 @@
 .activitiesOverview {
   width: 100%;
+  padding-right: 4rem;
 }
 
 .userActivitiesHeader {
@@ -37,4 +38,19 @@
 }
 .paginationButtons > button:disabled {
   background: #4444;
+}
+.utilButton {
+  background-color: #184f90;
+  padding: 1.5rem 3.5rem;
+  border-radius: 5rem;
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  margin-left: auto;
+  margin-bottom: 2rem;
+  display: flex;
+  font-size: 1.6rem;
 }

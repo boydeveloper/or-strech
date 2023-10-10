@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import DeletePrompt from "../../components/deletePrompt/deletePrompt";
 import Loader from "../../../../components/Loader";
 import { useAuth } from "../../../context/auth";
+import { getExports } from "../../../../Apis/users/userService";
 
 function ManageTags() {
   const { user } = useAuth();
@@ -58,7 +59,9 @@ function ManageTags() {
     setTagToBeDeleted(name);
     setModal("prompt");
   };
-
+  const handleExports = async () => {
+    await getExports("/tags/exportTags", user?.token);
+  };
   const handleDeleteTag = async () => {
     try {
       console.log(tagToBeDelelted);
@@ -80,7 +83,6 @@ function ManageTags() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-
       const tagCreating = await createTag(formData, user?.token);
       if (tagCreating.isSuccess === true) {
         toast.success(`${tagCreating.tag.name} Tag Created`);
@@ -105,7 +107,13 @@ function ManageTags() {
       <header>
         <h1>OR-Stretch | Back Office | Manage Tags</h1>
       </header>
-
+      <button
+        className={style.utilButton}
+        type="button"
+        onClick={handleExports}
+      >
+        export tags
+      </button>
       <form onSubmit={handleSubmit}>
         <h1>Add New Tag</h1>
         <div>

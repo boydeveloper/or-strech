@@ -33,3 +33,19 @@ export const getRecentLogin = async (token) => {
     throw error;
   }
 };
+export const getExportsEvents = async (token) => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    const response = await axios.get(`${BASE_URL}/events/exportEvents`, {
+      headers,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

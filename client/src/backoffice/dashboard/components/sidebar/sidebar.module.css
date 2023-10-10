@@ -2,9 +2,9 @@
   background-color: #fff;
   width: 12rem;
   z-index: 1;
-  height: calc(100% - 100px);
+  height: 100%;
+  /* position: ; */
   position: fixed;
-  position: absolute;
   left: 0;
 }
 .sidebar__links {

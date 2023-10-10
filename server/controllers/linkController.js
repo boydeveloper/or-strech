@@ -8,6 +8,28 @@ const linksArray = [
   "standing",
 ];
 
+const listAllLinks = async (req, res) => {
+  try {
+    const allLinks = await Link.findAll();
+
+    if (allLinks.length === 0) {
+      return res.status(200).json({
+        message: "No links found in the database.",
+        isSuccess: true,
+        links: [],
+      });
+    }
+
+    return res.status(200).json({
+      message: "List of all links retrieved successfully.",
+      isSuccess: true,
+      links: allLinks,
+    });
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
+};
+
 const createLink = async (req, res) => {
   try {
     if (!req.body)
@@ -117,7 +139,6 @@ const linkDetails = async (req, res) => {
   }
 };
 
-
 const possibleLinks = async (req, res) => {
   return res.status(200).json({ linksArray, isSuccess: true });
 };
@@ -128,4 +149,5 @@ module.exports = {
   deleteLink,
   linkDetails,
   possibleLinks,
+  listAllLinks,
 };

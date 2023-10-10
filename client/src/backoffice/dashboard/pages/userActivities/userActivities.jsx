@@ -1,7 +1,10 @@
 import style from "./useractivities.module.css";
 import { Pagination, Table } from "../../components/index";
 import { useEffect, useState } from "react";
-import { getUserActivities } from "../../../../Apis/users/userService";
+import {
+  getExports,
+  getUserActivities,
+} from "../../../../Apis/users/userService";
 import Loader from "../../../../components/Loader";
 import { useAuth } from "../../../context/auth";
 
@@ -18,7 +21,6 @@ function UserActivities() {
     { heading: "session ID", value: "session_id" },
     { heading: "Occurred At", value: "createdAt" },
   ];
-  console.log(user);
   const getActivities = async () => {
     try {
       setLoading(true);
@@ -37,6 +39,9 @@ function UserActivities() {
       throw error;
     }
   };
+  const handleExports = async () => {
+    await getExports("/events/exportEvents", user?.token);
+  };
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -48,7 +53,13 @@ function UserActivities() {
       <header className={style.userActivitiesHeader}>
         <h1>OR-Stretch | Back Office | Users Activities</h1>
       </header>
-
+      <button
+        className={style.utilButton}
+        type="button"
+        onClick={handleExports}
+      >
+        export activities
+      </button>
       <div className={style.tableWrapper}>
         {loading ? (
           <div className={style.loaderContainer}>

@@ -1,28 +1,27 @@
-.addUsersWrapper {
+.updateVideosWrapper {
   padding: 2rem 0;
   width: 100%;
   padding-right: 4rem;
-  height: 100%;
-  overflow-y: auto;
 }
-.addUsersWrapper > header {
+.updateVideosWrapper > header {
   width: 100%;
   margin-bottom: 4rem;
   border-bottom: 1px solid #cccc;
 }
-.addUsersWrapper > header > h1 {
+.updateVideosWrapper > header > h1 {
   font-weight: 400;
   font-size: 3.2rem;
   padding-block: 20px;
 }
-
-.addUserMain {
+.updateVideoMain {
   background: #fff;
   border-radius: 1rem;
+
   padding: 2rem;
   box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
 }
-.addUserMain > h1 {
+
+.updateVideoMain > h1 {
   font-size: 2rem;
   font-weight: 400;
   margin-bottom: 3rem;
@@ -31,19 +30,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-.inputContainer:not(:last-child) {
-  margin-bottom: 2rem;
-}
-
-.inputContainer > label {
-  font-size: 1.4rem;
-}
-
-.adduserCta {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
 }
 .inputContainer {
   position: relative;
@@ -89,31 +75,8 @@
   right: -0.2em;
   z-index: -1;
 }
-.tagsWrapper {
-  margin: 2rem 0;
-}
-.tagsWrapper > h1 {
-  font-size: 2rem;
-  font-weight: 300;
-}
-.tagsWrapperBox {
-  margin-top: 3rem;
-  display: grid;
-  width: 100%;
-  gap: 30px;
-  font-size: 1.5rem;
-  font-weight: 300;
-  grid-template-columns: repeat(2, 1fr);
-}
-.tagBox {
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-}
-.customSelect {
-  position: relative;
-  display: inline-block;
-  width: 100%;
+.inputContainer:not(:last-child) {
+  margin-bottom: 2rem;
 }
 
 .customSelect select {
@@ -145,8 +108,12 @@
   padding: 1rem;
   font-size: 1.6rem;
 }
-
-.adduserCta > button {
+.addVideosCta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.addVideosCta > button {
   background-color: #00365a;
   padding: 1rem 3.5rem;
   border-radius: 1.8rem;

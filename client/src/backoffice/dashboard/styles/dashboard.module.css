@@ -1,17 +1,14 @@
 .dashboard__layout {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f8f8f8;
-  overflow-y: scroll;
-  /* overflow-x: scroll; */
-  /* overflow: hidden; */
+  background-color: #f8f8f8;
 }
 .dashboard__main {
   display: flex;
   justify-content: space-between;
   gap: 30px;
-
-  padding-right: 2rem;
   height: 100%;
   margin-left: 160px;
+  /* width: 100%; */
   margin-top: 100px;
 }

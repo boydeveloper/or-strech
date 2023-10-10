@@ -103,3 +103,22 @@ export const updateUser = async (payload, mail, token) => {
     throw error;
   }
 };
+
+export const getExports = async (url, token) => {
+  try {
+    const response = await axios.get(`${BASE_URL}${url}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      responseType: "blob",
+    });
+    const anchor = document.createElement("a");
+    anchor.href = window.URL.createObjectURL(new Blob([response.data]));
+    anchor.download = "exported-users.csv";
+    anchor.click();
+    window.URL.revokeObjectURL(anchor.href);
+  } catch (error) {
+    console.error("Error downloading file:", error);
+  }
+};

@@ -1,5 +1,6 @@
 const linkController = require("../controllers/linkController");
 const router = require("express").Router();
+router.get("/listLinks", linkController.listAllLinks);
 router.post("/createLink", linkController.createLink);
 router.put("/updateLink", linkController.updateLink);
 router.delete("/deleteLink", linkController.deleteLink);
