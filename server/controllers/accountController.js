@@ -6,16 +6,16 @@ const jwt = require("jsonwebtoken");
 const Account = db.accounts;
 const User = db.users;
 
-const hashPassword = async (password) => {
-  const hash = await bcrypt.hash(password, 10);
-  return hash;
-};
+// const hashPassword = async (password) => {
+//   const hash = await bcrypt.hash(password, 10);
+//   return hash;
+// };
 
-const extractSaltFromHash = (hash) => {
-  const components = hash.slice(1, 10);
-  const salt = components;
-  return salt;
-};
+// const extractSaltFromHash = (hash) => {
+//   const components = hash.slice(1, 10);
+//   const salt = components;
+//   return salt;
+// };
 
 const comparePasswords = async (plainTextPassword, hash) => {
   const result = await bcrypt.compare(plainTextPassword, hash);
@@ -47,8 +47,12 @@ const loginAdminAccount = async (req, res) => {
     }
     if (existingUser && existingUser.user_type === "admin") {
       const token = generateToken(existingUser.id);
-      const result = await comparePasswords(password, existingUser.password);
-      if (result) {
+      const isCorrectHashedPassword = await comparePasswords(
+        password,
+        existingUser.password
+      );
+      const isCorrectPassword = password === existingUser.password;
+      if (isCorrectHashedPassword || isCorrectPassword) {
         return res.status(200).json({
           account: {
             id: existingUser.id,

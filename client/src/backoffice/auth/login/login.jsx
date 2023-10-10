@@ -34,21 +34,20 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     try {
       const errors = validateFormData();
       if (Object.keys(errors).length > 0) {
         toast.error("Please fix the following errors:");
         setErrors(errors);
-        setLoading(false);
         return;
       }
+
+      setLoading(true);
 
       const loginAdmin = await authenticateAdmin(formData);
       console.log(loginAdmin);
       if (loginAdmin?.isSuccess === true) {
-        console.log(loginAdmin);
         await login(loginAdmin.account);
         await createEvent(
           {
@@ -58,20 +57,27 @@ function Login() {
           },
           loginAdmin.account.token
         );
+
         setLoading(false);
         toast.success("Login successful");
         navigate("/dashboard/overview");
       } else {
-        toast.error("Invalid credentials");
         setLoading(false);
-        throw Error("dammm");
+        toast.error("Invalid credentials");
       }
     } catch (error) {
+      console.log(error);
+      if (error.response.data.message.name === "SequelizeDatabaseError") {
+        toast.error("sequelize error");
+        setLoading(false);
+        throw new Error("sequelize error");
+      }
+
+      console.error("An error occurred:", error);
       toast.error(
         error.response ? error.response.data.message : "An error occurred"
       );
       setLoading(false);
-      throw error;
     }
   };
 
