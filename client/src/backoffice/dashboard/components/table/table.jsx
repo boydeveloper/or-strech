@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { formatDate } from "../../../utils/fomatDate";
+import { convertTo12, formatDate } from "../../../utils/fomatDate";
 import style from "./table.module.css";
 
 const Table = ({ data, column, handleDelete, tag }) => {
@@ -98,6 +98,10 @@ const Table = ({ data, column, handleDelete, tag }) => {
                         </Link>
                       </td>
                     );
+                  } else if (columnItem?.heading === "Event Date") {
+                    return (
+                      <td key={index + "data"}>{convertTo12(row.createdAt)}</td>
+                    );
                   } else if (
                     columnItem?.value === "createdAt" ||
                     columnItem?.value === "updatedAt"
@@ -123,3 +127,4 @@ const Table = ({ data, column, handleDelete, tag }) => {
 };
 
 export default Table;
+// convertTo12

@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       session_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       createdAt: {
         field: "create_timestamp",

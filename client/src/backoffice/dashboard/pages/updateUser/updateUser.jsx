@@ -17,7 +17,7 @@ function UpdateUser() {
     email: "",
     name: "",
     tags_excel: [],
-    user_type: "strecher",
+    user_type: "",
   });
 
   const [selectedTags, setSelectedTags] = useState({});

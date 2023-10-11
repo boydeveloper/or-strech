@@ -60,7 +60,7 @@ function ManageTags() {
     setModal("prompt");
   };
   const handleExports = async () => {
-    await getExports("/tags/exportTags", user?.token);
+    await getExports("/tags/exportTags", user?.token, "Tags");
   };
   const handleDeleteTag = async () => {
     try {

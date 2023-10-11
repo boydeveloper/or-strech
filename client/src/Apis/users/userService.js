@@ -104,7 +104,7 @@ export const updateUser = async (payload, mail, token) => {
   }
 };
 
-export const getExports = async (url, token) => {
+export const getExports = async (url, token, name) => {
   try {
     const response = await axios.get(`${BASE_URL}${url}`, {
       headers: {
@@ -115,7 +115,7 @@ export const getExports = async (url, token) => {
     });
     const anchor = document.createElement("a");
     anchor.href = window.URL.createObjectURL(new Blob([response.data]));
-    anchor.download = "exported-users.csv";
+    anchor.download = `OR-Stretch ${name}.csv`;
     anchor.click();
     window.URL.revokeObjectURL(anchor.href);
   } catch (error) {

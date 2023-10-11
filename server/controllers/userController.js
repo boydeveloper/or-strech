@@ -62,9 +62,15 @@ const addUser = async (req, res) => {
       name: req.body.name,
       user_type: req.body.user_type,
       email: req.body.email,
+      tags_excel: req.body.tags_excel,
     };
 
-    if (!req.body.name || !req.body.user_type || !req.body.email)
+    if (
+      !req.body.name ||
+      !req.body.user_type ||
+      !req.body.email ||
+      !req.body.tags_excel
+    )
       return res
         .status(400)
         .json({ message: "Invalid params.", isSuccess: false });

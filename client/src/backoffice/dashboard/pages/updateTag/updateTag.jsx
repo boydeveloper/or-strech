@@ -96,14 +96,6 @@ function UpdateTag() {
           />
           <span>Tag Name</span>
         </label>
-        <div className={style.baselineCta}>
-          <p>Baseline?</p>
-          <Switch
-            checked={tagData?.baseline || false}
-            value={tagData.baseline}
-            onChange={handleBaselineChange}
-          />
-        </div>
 
         <div className={style.updateTagCta}>
           <Link to="/dashboard/manage-tags">Back</Link>

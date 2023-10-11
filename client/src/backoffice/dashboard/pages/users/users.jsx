@@ -26,7 +26,7 @@ function Users() {
     { heading: "Name", value: "name" },
     { heading: "Email", value: "email" },
     { heading: "User Type", value: "user_type" },
-    { heading: "UserTags", value: "tags_excel" },
+    { heading: "User Tag(s)", value: "tags_excel" },
     { heading: "First Login", value: "createdAt" },
     { heading: "Last Login", value: "updatedAt" },
     { heading: "Update", value: "update" },
@@ -65,7 +65,7 @@ function Users() {
     setModal("prompt");
   };
   const handleExports = async () => {
-    await getExports("/users/exportUsers", user?.token);
+    await getExports("/users/exportUsers", user?.token, "Users");
   };
   const handleDeleteUser = async () => {
     try {

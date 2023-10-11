@@ -55,11 +55,11 @@ function UpdateVideos() {
   return (
     <div className={style.updateVideosWrapper}>
       <header>
-        <h1>OR-Stretch | Back Office | Update Video</h1>
+        <h1>OR-Stretch | Back Office | Update Media</h1>
       </header>
 
       <div className={style.updateVideoMain}>
-        <h1>Update Video</h1>
+        <h1>Update Media</h1>
         <form onSubmit={handleUpdate}>
           <label className={style.inputContainer}>
             <div className={style.customSelect}>
@@ -76,7 +76,7 @@ function UpdateVideos() {
               </select>
               <span className={style.selectArrow}></span>
             </div>
-            <span>Video type</span>
+            <span>Media Name</span>
           </label>
           <label className={style.inputContainer}>
             <input
@@ -85,7 +85,7 @@ function UpdateVideos() {
               value={formData.url}
               onChange={handleInputChange}
             />
-            <span>url</span>
+            <span>URL</span>
           </label>
           <div className={style.addVideosCta}>
             <button onClick={() => navigate("/dashboard/manage-videos")}>

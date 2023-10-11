@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./adduser.module.css";
 
 import toast from "react-hot-toast";
 import { createUser } from "../../../../Apis/users/userService";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/auth";
+import { Switch } from "../../components";
+import { getAllTags } from "../../../../Apis/tags/tagsService";
 
 function AddUser() {
   const { user } = useAuth();
   const navigate = useNavigate();
-
+  const [tags, setTags] = useState(null);
+  const [selectedTags, setSelectedTags] = useState({});
   const [formData, setFormData] = useState({
     email: "",
     name: "",
     user_type: "stretcher",
+    tags_excel: [],
   });
 
   const handleInputChange = (e) => {
@@ -24,11 +28,31 @@ function AddUser() {
     });
   };
 
+  const handleTagSelect = (tagName) => {
+    setSelectedTags((prevTags) => ({
+      ...prevTags,
+      [tagName]: !prevTags[tagName],
+    }));
+  };
+
+  const getTags = async () => {
+    const tags = await getAllTags(user?.token);
+    setTags(tags?.tags);
+    console.log(tags.tags);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const selectedTagNames = Object.keys(selectedTags).filter(
+      (tagName) => selectedTags[tagName]
+    );
+    const newFormdata = {
+      ...formData,
+      tags_excel: selectedTagNames,
+    };
     try {
-      console.log(formData);
-      const newUser = await createUser(formData, user?.token);
+      console.log(newFormdata);
+      const newUser = await createUser(newFormdata, user?.token);
       console.log(newUser);
       if (newUser?.isSuccess === true) {
         toast.success(newUser?.message);
@@ -40,6 +64,10 @@ function AddUser() {
       toast.error(error.response.data.message);
     }
   };
+
+  useEffect(() => {
+    getTags();
+  }, []);
   return (
     <div className={style.addUsersWrapper}>
       <header>
@@ -82,6 +110,22 @@ function AddUser() {
             </div>
             <span>User Type</span>
           </label>
+          <div className={style.tagsWrapper}>
+            <h1>Select User Tag(s)</h1>
+            <div className={style.tagsWrapperBox}>
+              {tags?.map((tag) => (
+                <div key={tag.id} className={style.tagBox}>
+                  <span>{tag.name}</span>
+                  <Switch
+                    key={tag.id}
+                    value={tag.name}
+                    onChange={() => handleTagSelect(tag.name)}
+                    checked={selectedTags[tag.name] || false}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
 
           <div className={style.adduserCta}>
             <button onClick={() => navigate("/dashboard/users")}>Cancel</button>

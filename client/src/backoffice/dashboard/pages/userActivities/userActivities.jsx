@@ -16,10 +16,9 @@ function UserActivities() {
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState(null);
   const tableColumn = [
-    { heading: "user ID", value: "userId" },
-    { heading: "Event Fired", value: "event_type" },
-    { heading: "session ID", value: "session_id" },
-    { heading: "Occurred At", value: "createdAt" },
+    { heading: "User ID", value: "userId" },
+    { heading: "Event Name", value: "event_type" },
+    { heading: "Event Date", value: "createdAt" },
   ];
   const getActivities = async () => {
     try {
@@ -40,7 +39,7 @@ function UserActivities() {
     }
   };
   const handleExports = async () => {
-    await getExports("/events/exportEvents", user?.token);
+    await getExports("/events/exportEvents", user?.token, "User Activities");
   };
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);

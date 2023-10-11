@@ -50,24 +50,14 @@ function AddVideos() {
         <h1>Add New Video</h1>
         <form onSubmit={handleSubmit}>
           <label className={style.inputContainer}>
-            <div className={style.customSelect}>
-              <select
-                name="name"
-                value={formData.name}
-                required
-                onChange={handleInputChange}
-              >
-                <option value="">Select Video Type</option>{" "}
-                <option value="standing">Standing</option>
-                <option value="seated">Seated</option>
-                <option value="in_depth_stretching">in depth Stretching</option>
-                <option value="faq">Faq</option>
-                <option value="privacy_policy">Privacy policy</option>
-              </select>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+            />
 
-              <span className={style.selectArrow}></span>
-            </div>
-            <span>Video type</span>
+            <span>Media Name</span>
           </label>
           <label className={style.inputContainer}>
             <input
@@ -76,7 +66,7 @@ function AddVideos() {
               value={formData.url}
               onChange={handleInputChange}
             />
-            <span>url</span>
+            <span>URL</span>
           </label>
           <div className={style.addVideosCta}>
             <button onClick={() => navigate("/dashboard/manage-videos")}>

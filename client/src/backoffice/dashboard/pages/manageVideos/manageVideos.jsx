@@ -44,7 +44,7 @@ function ManageVideos() {
   return (
     <div className={style.ManageVideosWrapper}>
       <header>
-        <h1> OR-Stretch | Back Office | Video Librarys</h1>
+        <h1> OR-Stretch | Back Office | Media Library</h1>
       </header>
 
       <div className={style.addVideoCta}>
@@ -55,12 +55,12 @@ function ManageVideos() {
       <div className={style.videosBox}>
         {links?.length === 0 ? (
           <div className={style.nouser}>
-            <h1>Currently, No videos at the moment</h1>
+            <h1>There are currently No videos at the moment</h1>
           </div>
         ) : (
           links?.map((link) => (
             <div className={style.videoBox} key={link.name}>
-              <img src="/assets/imgs/cake.jpg" alt="cake" />
+              <img src="/assets/imgs/videoimg.jpg" alt="cake" />
               <div className={style.videoBoxDetails}>
                 <h1>{link.name}</h1>
                 <div className={style.cta}>
