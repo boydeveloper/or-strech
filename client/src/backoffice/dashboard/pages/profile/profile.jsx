@@ -61,7 +61,7 @@ function Profile() {
   return (
     <div className={style.profileWrapper}>
       <header className={style.profileHeader}>
-        <h1>OR-Stretch | Back Office | profile</h1>
+        <h1>Back Office | Profile</h1>
       </header>
       <form onSubmit={handleSubmit}>
         <div className={style.profileMain}>

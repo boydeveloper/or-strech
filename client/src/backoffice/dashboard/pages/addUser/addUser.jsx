@@ -71,7 +71,7 @@ function AddUser() {
   return (
     <div className={style.addUsersWrapper}>
       <header>
-        <h1>OR-Stretch | Back Office | Users</h1>
+        <h1>Back Office | Users</h1>
       </header>
       <div className={style.addUserMain}>
         <h1>Add New User</h1>

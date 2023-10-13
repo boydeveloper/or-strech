@@ -2,7 +2,7 @@ require("dotenv").config();
 module.exports = {
   HOST: process.env.HOST,
   USER: process.env.USER,
-  PASSWORD: "",
+  PASSWORD: "Echala2501@NG",
   DB: process.env.DB,
   dialect: process.env.DIALECT,
 

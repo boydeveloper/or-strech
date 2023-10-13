@@ -50,7 +50,7 @@ function UserActivities() {
   return (
     <div className={style.activitiesOverview}>
       <header className={style.userActivitiesHeader}>
-        <h1>OR-Stretch | Back Office | Users Activities</h1>
+        <h1>Back Office | Users Activities</h1>
       </header>
       <button
         className={style.utilButton}

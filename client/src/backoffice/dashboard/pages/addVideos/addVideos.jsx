@@ -43,11 +43,11 @@ function AddVideos() {
   return (
     <div className={style.addVideosWrapper}>
       <header>
-        <h1>OR-Stretch | Back Office | Add New Video</h1>
+        <h1>Back Office | Add New Media</h1>
       </header>
 
       <div className={style.addVideoMain}>
-        <h1>Add New Video</h1>
+        <h1>Add New Media</h1>
         <form onSubmit={handleSubmit}>
           <label className={style.inputContainer}>
             <input

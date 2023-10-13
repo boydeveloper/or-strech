@@ -23,7 +23,7 @@ function TagDetails() {
   return (
     <div className={style.tagDetailsWrapper}>
       <header>
-        <h1>OR-Stretch | Back Office | Manage Tags | {tag?.name}</h1>
+        <h1>Back Office | Manage Tags | {tag?.name}</h1>
       </header>
 
       <div className={style.tagMain}>

@@ -105,7 +105,7 @@ function UpdateUser() {
   return (
     <div className={style.updateUserWrapper}>
       <header>
-        <h1>OR-Stretch | Back Office | Update User</h1>
+        <h1>Back Office | Update User</h1>
       </header>
       <div className={style.updateUserMain}>
         <h1>Update User</h1>

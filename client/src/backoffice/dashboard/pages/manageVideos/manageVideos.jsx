@@ -44,7 +44,7 @@ function ManageVideos() {
   return (
     <div className={style.ManageVideosWrapper}>
       <header>
-        <h1> OR-Stretch | Back Office | Media Library</h1>
+        <h1>Back Office | Media Library</h1>
       </header>
 
       <div className={style.addVideoCta}>

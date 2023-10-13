@@ -55,7 +55,7 @@ function UpdateVideos() {
   return (
     <div className={style.updateVideosWrapper}>
       <header>
-        <h1>OR-Stretch | Back Office | Update Media</h1>
+        <h1>Back Office | Update Media</h1>
       </header>
 
       <div className={style.updateVideoMain}>

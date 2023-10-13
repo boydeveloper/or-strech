@@ -105,7 +105,7 @@ function ManageTags() {
   return (
     <div className={style.manageTagsWrapper}>
       <header>
-        <h1>OR-Stretch | Back Office | Manage Tags</h1>
+        <h1>Back Office | Manage Tags</h1>
       </header>
       <button
         className={style.utilButton}

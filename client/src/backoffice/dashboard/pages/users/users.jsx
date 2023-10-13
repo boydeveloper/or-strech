@@ -87,7 +87,7 @@ function Users() {
     <>
       <div className={style.users__overview}>
         <header className={style.overviewHeader}>
-          <h1>OR-Stretch | Back Office | Users</h1>
+          <h1>Back Office | Users</h1>
         </header>
 
         <div className={style.buttonContainer}>
