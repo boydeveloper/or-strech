@@ -4,20 +4,26 @@
 }
 .navbar__links {
 }
+.navbar__wrapper {
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  position: fixed;
+  top: 0;
+
+  z-index: 10;
+
+  width: 100%;
+  top: 0;
+}
 .navbar {
   display: flex;
   align-items: center;
   padding: 20px 40px;
-
-  background: #fff;
-  position: fixed;
-  top: 0;
-  font-family: "Space Grotesk", sans-serif;
-  z-index: 10;
   justify-content: space-between;
-  width: 100%;
-  top: 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0 auto;
+  max-width: 130rem;
 }
 
 .navbar__links {
@@ -33,4 +39,5 @@
   font-size: 20px;
   color: #212529;
   font-size: 1.8rem;
+  letter-spacing: -0.9px;
 }

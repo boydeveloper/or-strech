@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 const accountRouter = require("./routes/accountRoutes");
 app.use("/api/accounts", accountRouter);
 
-app.use(verifyToken);
+// app.use(verifyToken);
 
 const userRouter = require("./routes/userRoutes");
 app.use("/api/users", userRouter);

@@ -1,0 +1,31 @@
+.overviews {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+}
+.overviews > h1 {
+  font-size: 3.2rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.sectionone__textbox {
+}
+
+.overiewI {
+}
+
+.overviewWrapper > div > img {
+  border-radius: 7px;
+}
+.overviewWrapper > div > h1 {
+  /* .overviewWrapper > div > h1 { */
+  font-size: 3.4rem;
+  margin-bottom: 2rem;
+}
+
+.overviewWrapper > div > p {
+  font-size: 1.8rem;
+  line-height: 1.5;
+  letter-spacing: -0.9px;
+}

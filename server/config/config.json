@@ -1,7 +1,6 @@
 {
   "development": {
     "username": "root",
-    "password": "Echala2501",
     "database": "mayocstretchdb",
     "host": "localhost",
     "dialect": "mysql"

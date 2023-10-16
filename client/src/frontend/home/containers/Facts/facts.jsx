@@ -1,21 +1,33 @@
 import style from "./facts.module.css";
 
 function Facts() {
+  const facts = [
+    {
+      number: "150+",
+      description: "Tailored stretches for surgical specialties",
+    },
+    {
+      number: "5M+",
+      description: "Surgeon hours spent using OR-Stretch",
+    },
+    {
+      number: "99.9%",
+      description: "Sterility compliance rate during stretches",
+    },
+    // Add more facts as needed
+  ];
+
   return (
-    <section className={style.facts}>
-      <div className={style.fact}>
-        <h1>110+</h1>
-        <p>Automation templates for creating your campaigns quickly</p>
-      </div>
-      <div className={style.fact}>
-        <h1>4M</h1>
-        <p>Automation templates for creating your campaigns quickly</p>
-      </div>
-      <div className={style.fact}>
-        <h1>99.99%</h1>
-        <p>Automation templates for creating your campaigns quickly</p>
-      </div>
-    </section>
+    <div className={style.factsWrapper}>
+      <section className={style.facts}>
+        {facts.map((fact, index) => (
+          <div className={style.fact} key={index}>
+            <h1>{fact.number}</h1>
+            <p>{fact.description}</p>
+          </div>
+        ))}
+      </section>
+    </div>
   );
 }
 

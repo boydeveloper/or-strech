@@ -1,5 +1,6 @@
 export { default as Hero } from "./hero/hero";
-export { default as SectionOne } from "./sectionOne/sectionOne";
+export { default as SectionOne } from "./overview/overview";
 export { default as SectionTwo } from "./sectionTwo/sectionTwo";
-export { default as SectionThree } from "./sectionThree/sectionThree";
-export { default as SectionFour } from "./sectionFour/sectionFour";
+export { default as Testimonials } from "./testimonials/testimonials";
+export { default as Facts } from "./Facts/facts";
+// export { default as Accordion } from ".";

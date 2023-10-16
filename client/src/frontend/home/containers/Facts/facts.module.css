@@ -1,0 +1,24 @@
+.factsWrapper {
+  background: #1864ab;
+}
+.facts {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.fact {
+  text-align: center;
+}
+
+.fact > h1 {
+  font-size: 3.6rem;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.fact > p {
+  font-size: 1.8rem;
+  letter-spacing: -0.9px;
+  max-width: 200px;
+}

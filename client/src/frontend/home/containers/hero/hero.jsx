@@ -56,7 +56,9 @@ function Hero() {
       <section className="container">
         <div className={style.hero_wrapper}>
           <div className={style.hero_wrapper_textbox}>
-            <h1>Surgeon Designed interoperative stretches</h1>
+            <h1>
+              Surgeon Designed interoperative <strong>Stretches</strong>
+            </h1>
             <p>
               The stretches aim to counteract the effects of interoperative
               strains on the surgeon's position and are performed without
@@ -76,7 +78,7 @@ function Hero() {
             </form>
           </div>
           <div className={style.hero_wrapper_imgbox}>
-            <img src="/assets/imgs/hero.jpg" alt="hero img" />
+            <img src="/assets/imgs/s.png" alt="hero img" />
           </div>
         </div>
       </section>

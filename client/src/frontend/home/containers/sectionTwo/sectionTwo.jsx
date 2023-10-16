@@ -21,7 +21,7 @@ function SectionTwo() {
           <div className="col-xs-12 col-sm-6 col-md-6 wow fadeInUp">
             <img
               className="img-responsive pull-right"
-              src="assets/imgs/sectiontwo.jpg"
+              src="assets/imgs/r.png"
               alt="device"
             />
           </div>

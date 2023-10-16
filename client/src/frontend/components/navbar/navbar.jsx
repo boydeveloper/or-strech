@@ -21,17 +21,19 @@ function Navbar() {
   }, []);
   return (
     <div className="container">
-      <nav className={navbarClass}>
-        <div className="logo">
-          <img src="/assets/svgs/mayo-clinic-logo.svg" alt="mayo logo" />
-        </div>
-        <div className="navbar__links">
-          <Link hrefLang="#about">Home</Link>
-          <Link hrefLang="#about">About</Link>
-          <Link hrefLang="#about">Testimonials</Link>
-          <Link hrefLang="#about">Faqs</Link>
-        </div>
-      </nav>
+      <div className="navbar__wrapper">
+        <nav className="navbar">
+          <div className="logo">
+            <img src="/assets/svgs/mayo-clinic-logo.svg" alt="mayo logo" />
+          </div>
+          <div className="navbar__links">
+            <Link hrefLang="#about">Home</Link>
+            <Link hrefLang="#about">About</Link>
+            <Link hrefLang="#about">Testimonials</Link>
+            <Link hrefLang="#about">Faqs</Link>
+          </div>
+        </nav>
+      </div>
     </div>
   );
 }

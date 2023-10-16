@@ -16,6 +16,9 @@ body {
   /* overflow-y: scroll; */
   background: #fff;
 }
+.home {
+  /* background-color: #d3eff8; */
+}
 .container {
   /* width: 80%; */
 }

@@ -3,19 +3,21 @@ import {
   Hero,
   SectionOne,
   SectionTwo,
-  SectionThree,
-  SectionFour,
+  Testimonials,
+  Facts,
 } from "./containers/index";
-import { Navbar, Footer } from "../components/index";
+import { Navbar, Footer, Accordion } from "../components/index";
 function Home() {
   return (
-    <div>
+    <div className="home">
       <Navbar />
       <Hero />
+      <Facts />
       <SectionOne />
-      <SectionTwo />
-      <SectionThree />
-      <SectionFour />
+      {/* <SectionTwo /> */}
+      {/* <SectionThree /> */}
+      <Testimonials />
+      <Accordion />
       <Footer />
     </div>
   );
