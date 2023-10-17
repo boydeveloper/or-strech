@@ -25,6 +25,7 @@ function UpdateVideos() {
   };
   const fetchVideoDetails = async () => {
     const details = await getLinkDetails(linkName, user?.token);
+    console.log(details);
     setFormData({
       name: details?.link?.name,
       url: details?.link?.url,
@@ -62,20 +63,12 @@ function UpdateVideos() {
         <h1>Update Media</h1>
         <form onSubmit={handleUpdate}>
           <label className={style.inputContainer}>
-            <div className={style.customSelect}>
-              <select
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-              >
-                <option value="standing">Standing</option>
-                <option value="seated">Seated</option>
-                <option value="in_depth_stretching">in depth Stretching</option>
-                <option value="faq">Faq</option>
-                <option value="privacy_policy">Privacy policy</option>
-              </select>
-              <span className={style.selectArrow}></span>
-            </div>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+            />
             <span>Media Name</span>
           </label>
           <label className={style.inputContainer}>

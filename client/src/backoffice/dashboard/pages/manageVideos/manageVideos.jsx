@@ -49,7 +49,7 @@ function ManageVideos() {
 
       <div className={style.addVideoCta}>
         <button onClick={() => navigate("/dashboard/add-videos")}>
-          ADD VIDEO
+          ADD MEDIA
         </button>
       </div>
       <div className={style.videosBox}>
