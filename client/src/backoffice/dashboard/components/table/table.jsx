@@ -11,6 +11,7 @@ const Table = ({ data, column, handleDelete, tag }) => {
       return [];
     }
   }
+  // console.log(data);
   return (
     <div className={style.tableWrapper}>
       <table className={style.table}>
@@ -75,7 +76,7 @@ const Table = ({ data, column, handleDelete, tag }) => {
                         </span>
                       </td>
                     );
-                  } else if (columnItem?.heading === "UserTags") {
+                  } else if (columnItem?.heading === "User Tag(s)") {
                     const parsedTags = row.tags_excel
                       ? parseJsonSafely(row.tags_excel)
                       : [];
