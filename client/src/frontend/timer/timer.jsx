@@ -1,16 +1,28 @@
 import { Link } from "react-router-dom";
 import style from "./timer.module.css";
+import { useState } from "react";
 function Timer() {
   const name = localStorage.getItem("username");
+  const [isActive, setIsActive] = useState(true);
+
+  const toggleActive = () => {
+    setIsActive(!isActive);
+  };
   return (
     <div className={style.timerOverview}>
       <div className={style.timer__wrapper}>
         <div className={style.timer_panel}>
-          <div>
+          <div
+            className={isActive ? style.active_position : ""}
+            onClick={toggleActive}
+          >
             <ion-icon name="man"></ion-icon>
             <p>Standing</p>
           </div>
-          <div>
+          <div
+            className={!isActive ? style.active_position : ""}
+            onClick={toggleActive}
+          >
             <span class="material-symbols-outlined">
               airline_seat_recline_normal
             </span>
@@ -41,7 +53,7 @@ function Timer() {
               <span>Seconds</span>
             </div>
           </div>
-          <button></button>
+          <button>START!</button>
         </div>
         <div className={style.go_box}>
           <div>
@@ -51,9 +63,11 @@ function Timer() {
             </h1>
           </div>
           <button>
-            <span></span>
+            <span>GO!</span>
           </button>
         </div>
+
+        <button className={style.pauseButton}>STOP/PAUSE</button>
       </div>
     </div>
   );
