@@ -94,10 +94,12 @@
 }
 .interval_value {
   position: absolute;
-  top: 20%;
-  left: 41.5%;
+  top: 0;
+  right: 0;
   color: #4070c6;
-  right: -4.45rem;
+}
+.reminder {
+  position: relative;
 }
 .reminder_buttons {
   position: absolute;
@@ -124,11 +126,23 @@
   background-image: url(../utils/imgs/transparent-s652f07523c.png);
   background-repeat: no-repeat;
   cursor: pointer;
+  z-index: 1;
+}
+.reminder_button_up:disabled {
+  background-position: 0 -1104px;
+  height: 40px;
+  width: 40px;
+}
+.reminder_button_down:disabled {
+  background-position: 0 -1024px;
+  height: 40px;
+  width: 40px;
 }
 .reminder_button_up {
   background-position: 0 -1064px;
   height: 40px;
   width: 40px;
+  display: block;
   margin-bottom: 1px;
   border: none;
   background-color: transparent;
