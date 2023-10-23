@@ -3,7 +3,20 @@ const User = db.users;
 const excelJs = require("exceljs");
 const Op = require("sequelize").Op;
 const moment = require("moment");
-
+const bcrypt = require("bcryptjs");
+const hashPassword = async (password) => {
+  const hash = await bcrypt.hash(password, 10);
+  return hash;
+};
+const extractSaltFromHash = (hash) => {
+  const components = hash.slice(1, 10);
+  const salt = components;
+  return salt;
+};
+const comparePasswords = async (plainTextPassword, hash) => {
+  const result = await bcrypt.compare(plainTextPassword, hash);
+  return result;
+};
 const listAllUsers = async (req, res) => {
   try {
     const users = await User.findAll();
@@ -14,7 +27,6 @@ const listAllUsers = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 const viewUserDetails = async (req, res) => {
   try {
     const email = req.query.email;
@@ -55,33 +67,23 @@ const viewUserDetails = async (req, res) => {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
-
 const addUser = async (req, res) => {
   try {
     const info = {
       name: req.body.name,
       user_type: req.body.user_type,
       email: req.body.email,
-      tags_excel: req.body.tags_excel,
     };
-
-    if (
-      !req.body.name ||
-      !req.body.user_type ||
-      !req.body.email ||
-      !req.body.tags_excel
-    )
+    if (!req.body.name || !req.body.user_type || !req.body.email)
       return res
         .status(400)
         .json({ message: "Invalid params.", isSuccess: false });
-
     const userExists = await User.findOne({ where: { email: req.body.email } });
     if (userExists)
       return res.status(400).json({
         message: `User with email ${req.body.email} already exists.`,
         isSuccess: false,
       });
-
     const main_user_id = (await User.count()) + 1;
     const user = await User.create({
       ...info,
@@ -96,12 +98,42 @@ const addUser = async (req, res) => {
       baseline_survey: 0,
       main_user_id,
     });
-
-    return res.status(200).json({
-      user,
-      message: `User with email ${req.body.email}created`,
-      isSuccess: true,
-    });
+    return res.status(200).json({ user, isSuccess: true });
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
+};
+const changeUserPassword = async (req, res) => {
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+    const new_password = req.body.new_password;
+    if (!email)
+      return res
+        .status(400)
+        .json({ message: "Invalid email parameters", isSuccess: false });
+    const user = await User.findOne({ where: { email: email } });
+    if (!user)
+      return res
+        .status(400)
+        .json({ message: "User does not exist.", isSuccess: false });
+    console.log({ hashed: user.password, password });
+    if (
+      user.password != password ||
+      comparePasswords(password, user.password) === false
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Invalid password.", isSuccess: false });
+    }
+    const hash = await hashPassword(new_password);
+    const salt = await extractSaltFromHash(hash);
+    if (user) {
+      await User.update({ password: hash, salt }, { where: { email } });
+      return res
+        .status(200)
+        .json({ message: "Password updated successfully", isSuccess: true });
+    }
   } catch (err) {
     return res.status(500).json({ message: err, isSuccess: false });
   }
@@ -111,7 +143,6 @@ const findUsers = async (req, res) => {
     const nameSubstring = req.query.name || "";
     const tagSubstring = req.query.tag || "";
     const emailSubstring = req.query.email || "";
-
     if (!nameSubstring && !tagSubstring && !emailSubstring)
       return res
         .status(400)
@@ -146,16 +177,86 @@ const findUsers = async (req, res) => {
   }
 };
 
+const searchUsers = async (req, res) => {
+  try {
+    const email = req.query.email;
+    const id = req.query.id;
+    const tags = req.query.tags;
+    const name = req.query.name;
+    const timer = req.query.timer;
+    const sortBy = req.query.sortBy ?? "createdAt";
+    const createdAt = req.query.createdAt;
+    const updatedAt = req.query.updatedAt;
+    const order = req.query.order ?? "DESC";
+
+    if (!email && !id && !tags && !name && !timer) {
+      return res.status(400).json({ message: "No search parameter specified" });
+    }
+    let totalNoOfUsersThatMatchSpecifiedParams = await User.findAll({
+      where: {
+        [Op.and]: [
+          id !== undefined && {
+            id: {
+              [Op.eq]: id,
+            },
+          },
+          email !== undefined && {
+            email: {
+              [Op.substring]: email,
+            },
+          },
+          name !== undefined && {
+            name: {
+              [Op.substring]: name,
+            },
+          },
+          timer !== undefined && {
+            conf_timer: {
+              [Op.eq]: timer,
+            },
+          },
+          tags !== undefined && {
+            tags_excel: {
+              [Op.substring]: tags,
+            },
+          },
+        ],
+      },
+      order: [[sortBy, order]],
+    });
+
+    return res
+      .status(200)
+      .json({ totalNoOfUsersThatMatchSpecifiedParams, isSuccess: true });
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
+};
+
 const listUsers = async (req, res) => {
   try {
     const page_no = Number(req.query.page_no);
+    const email = req.query.email;
+    const id = req.query.id;
+    const tags = req.query.tags;
+    const name = req.query.name;
+    const timer = req.query.timer;
+    const sortBy = req.query.sortBy ?? "createdAt";
+    const order = req.query.order ?? "DESC";
+    const createdAt = req.query.createdAt;
+    const updatedAt = req.query.updatedAt;
     const offset = (page_no - 1) * 20;
-    const totalNoOfUsers = await User.count();
+    let totalNoOfUsers;
     let users;
-    let totalNoOfUsersThatMatchSpecifiedParams;
     let maxPageNo;
-    const searchParam = req.query.search_param;
-
+    let possibleTags = [
+      "createdAt",
+      "updatedAt",
+      "tags_excel",
+      "name",
+      "conf_timer",
+      "email",
+    ];
     if (isNaN(page_no) || page_no <= 0) {
       return res.status(400).json({
         message:
@@ -164,68 +265,126 @@ const listUsers = async (req, res) => {
       });
     }
 
-    if (searchParam) {
+    if (sortBy && possibleTags.includes(sortBy) !== true)
+      return res.status(400).json({
+        message: `Sort By param is not correct. can only be one of the following: ${[
+          ...possibleTags,
+        ]}`,
+      });
+    if (email || id || tags || name || timer || createdAt || updatedAt) {
       let totalUsersThatMatchParams = await User.findAll({
         where: {
-          [Op.or]: [
-            {
-              email: {
-                [Op.substring]: searchParam,
+          [Op.and]: [
+            createdAt !== undefined &&
+              createdAt !== "" && {
+                createdAt: {
+                  [Op.substring]: createdAt,
+                },
               },
-            },
-            {
-              tags_excel: {
-                [Op.substring]: searchParam,
+            updatedAt !== undefined &&
+              updatedAt !== "" && {
+                updatedAt: {
+                  [Op.substring]: updatedAt,
+                },
               },
-            },
-            {
-              name: {
-                [Op.substring]: searchParam,
+            id !== undefined &&
+              id !== "" && {
+                id: {
+                  [Op.eq]: Number(id),
+                },
               },
-            },
+            email !== undefined &&
+              email !== "" && {
+                email: {
+                  [Op.substring]: email,
+                },
+              },
+            name !== undefined &&
+              name !== "" && {
+                name: {
+                  [Op.substring]: name,
+                },
+              },
+            timer !== undefined &&
+              timer !== "" && {
+                conf_timer: {
+                  [Op.eq]: Number(timer),
+                },
+              },
+            tags !== undefined &&
+              tags !== "" && {
+                tags_excel: {
+                  [Op.substring]: tags,
+                },
+              },
           ],
         },
       });
-      let paginatedUsers = await User.findAll({
+      totalNoOfUsers = totalUsersThatMatchParams.length;
+      maxPageNo = Math.ceil(totalUsersThatMatchParams.length / 20);
+      users = await User.findAll({
         where: {
-          [Op.or]: [
-            {
-              email: {
-                [Op.substring]: searchParam,
+          [Op.and]: [
+            createdAt !== undefined &&
+              createdAt !== "" && {
+                createdAt: {
+                  [Op.substring]: createdAt,
+                },
               },
-            },
-            {
-              tags_excel: {
-                [Op.substring]: searchParam,
+            updatedAt !== undefined &&
+              updatedAt !== "" && {
+                updatedAt: {
+                  [Op.substring]: updatedAt,
+                },
               },
-            },
-            {
-              name: {
-                [Op.substring]: searchParam,
+            id !== undefined &&
+              id !== "" && {
+                id: {
+                  [Op.eq]: Number(id),
+                },
               },
-            },
+            email !== undefined &&
+              email !== "" && {
+                email: {
+                  [Op.substring]: email,
+                },
+              },
+            name !== undefined &&
+              name !== "" && {
+                name: {
+                  [Op.substring]: name,
+                },
+              },
+            timer !== undefined &&
+              timer !== "" && {
+                conf_timer: {
+                  [Op.eq]: Number(timer),
+                },
+              },
+            tags !== undefined &&
+              tags !== "" && {
+                tags_excel: {
+                  [Op.substring]: tags,
+                },
+              },
           ],
         },
         offset,
         limit: 20,
-        order: [["createdAt", "DESC"]],
+        order: [[sortBy, order]],
       });
-      totalNoOfUsersThatMatchSpecifiedParams = totalUsersThatMatchParams.length;
-      maxPageNo = Math.ceil(totalNoOfUsersThatMatchSpecifiedParams / 20);
-      users = paginatedUsers;
     } else {
+      totalNoOfUsers = await User.count();
+      maxPageNo = Math.ceil(totalNoOfUsers / 20);
       users = await User.findAll({
         offset,
         limit: 20,
-        order: [["createdAt", "DESC"]],
+        order: [[sortBy, order]],
       });
-      maxPageNo = Math.ceil(totalNoOfUsers / 20);
     }
-
     return res.status(200).json({
       users,
       totalNoOfUsers,
-      totalNoOfUsersThatMatchSpecifiedParams,
       maxPageNo,
       isSuccess: true,
     });
@@ -233,7 +392,6 @@ const listUsers = async (req, res) => {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
-
 const deleteUser = async (req, res) => {
   try {
     const email = req.query.email;
@@ -255,20 +413,15 @@ const deleteUser = async (req, res) => {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
-
 const updateUser = async (req, res) => {
   try {
     const email = req.query.email;
-
     const user = await User.findOne({ where: { email } });
     if (user) {
       await User.update(req.body, { where: { email } });
-
-      return res.status(200).json({
-        user,
-        message: `User has been updated. `,
-        isSuccess: true,
-      });
+      return res
+        .status(200)
+        .json({ message: `User has been updated. `, isSuccess: true });
     } else {
       return res.status(400).json({
         message: `User with email ${email} does not exist`,
@@ -342,7 +495,9 @@ module.exports = {
   listAllUsers,
   updateUser,
   viewUserDetails,
-  findUsers,
-  exportUser,
   addUser,
+  changeUserPassword,
+  findUsers,
+  searchUsers,
+  exportUser,
 };

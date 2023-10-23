@@ -16,13 +16,24 @@ export const getAllUsers = async (token) => {
     throw error;
   }
 };
-export const getUsers = async (page_no, no_of_users, name, token) => {
+export const getUsers = async (
+  page_no,
+  no_of_users,
+  token,
+  name,
+  email,
+  tag,
+  order,
+  createdAt,
+  updatedAt,
+  id
+) => {
   try {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
     const response = await axios.get(
-      `${BASE_URL}/users/listUsers/?page_no=${page_no}&no_of_users=${no_of_users}&search_param=${name}`,
+      `${BASE_URL}/users/listUsers/?email=${email}&page_no=${page_no}&no_of_users=${no_of_users}id=${id}&tags=${tag}&name=${name}&order=DESC&sortBy=tags_excel&createdAt=${createdAt}&updatedAt=${updatedAt}`,
       {
         headers,
       }

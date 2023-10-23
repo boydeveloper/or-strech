@@ -43,6 +43,7 @@ function Hero() {
       } else {
         setLoading(false);
         setError("");
+        console.log(loggedInUser);
         navigate("/stretch");
       }
     } else {

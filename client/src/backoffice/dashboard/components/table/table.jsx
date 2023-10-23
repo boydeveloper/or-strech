@@ -2,23 +2,52 @@ import { Link } from "react-router-dom";
 import { convertTo12, formatDate } from "../../../utils/fomatDate";
 import style from "./table.module.css";
 
-const Table = ({ data, column, handleDelete, tag }) => {
+const Table = ({
+  data,
+  column,
+  handleDelete,
+  tag,
+  showFilter,
+  searchInput,
+  updateSearchInput,
+}) => {
   function parseJsonSafely(jsonString) {
     try {
-      return JSON.parse(jsonString);
+      return JSON?.parse(jsonString);
     } catch (error) {
-      console.error("Error parsing JSON:", error);
+      // console.error("Error parsing JSON:", error);
       return [];
     }
   }
-  // console.log(data);
+
   return (
     <div className={style.tableWrapper}>
       <table className={style.table}>
         <thead>
           <tr>
             {column?.map((item, index) => {
-              return <th key={index + "header"}>{item?.heading}</th>;
+              return (
+                <th key={index + "header"}>
+                  {showFilter && (
+                    <>
+                      {item?.heading}
+                      {item?.heading !== "Delete" &&
+                        item?.heading !== "Update" && (
+                          <div className={style.columnSearch}>
+                            <input
+                              type="text"
+                              name={item?.name}
+                              value={searchInput[item?.name] || ""}
+                              onChange={(e) => {
+                                updateSearchInput(item?.name, e.target.value);
+                              }}
+                            />
+                          </div>
+                        )}
+                    </>
+                  )}
+                </th>
+              );
             })}
           </tr>
         </thead>

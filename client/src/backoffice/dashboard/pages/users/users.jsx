@@ -15,7 +15,7 @@ function Users() {
   const { user } = useAuth();
   const [users, setUsers] = useState(null);
 
-  const [searchInput, setSearchInput] = useState("");
+  // const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
@@ -23,24 +23,67 @@ function Users() {
   const [emailToBeDeleted, setEmailToBeDeleted] = useState(null);
   const [modal, setModal] = useState("");
   const tableColumn = [
-    { heading: "Name", value: "name" },
-    { heading: "Email", value: "email" },
-    { heading: "User Type", value: "user_type" },
-    { heading: "User Tag(s)", value: "tags_excel" },
-    { heading: "First Login", value: "createdAt" },
-    { heading: "Last Login", value: "updatedAt" },
+    { heading: "Name", name: "name", value: "name" },
+    { heading: "Email", name: "email", value: "email" },
+    { heading: "User Type", name: "type", value: "user_type" },
+    { heading: "User Tag(s)", name: "tag", value: "tags_excel" },
+    { heading: "First Login", name: "createdAt", value: "createdAt" },
+    { heading: "Last Login", name: "updatedAt", value: "updatedAt" },
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
   ];
+  const [searchInput, setSearchInput] = useState({
+    tag: "",
+    email: "",
+    type: "",
+    name: "",
+    createdAt: "",
+    updatedAt: "",
+  });
+  console.log(searchInput);
+  const useDebounce = (value, delay) => {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(() => {
+      setLoading(true);
+      const debounceTimer = setTimeout(() => {
+        setDebouncedValue(value);
+        setLoading(false);
+      }, delay);
+
+      return () => {
+        clearTimeout(debounceTimer);
+      };
+    }, [value, delay]);
+
+    return debouncedValue;
+  };
+  const debouncingDelay = 3000;
+  console.log(searchInput);
+  const debouncedSearchInput = useDebounce(searchInput, debouncingDelay);
+  console.log(debouncedSearchInput);
+  const updateSearchInput = (name, value) => {
+    setSearchInput((prevInput) => ({
+      ...prevInput,
+      [name]: value,
+    }));
+  };
 
   const getStretchers = async () => {
     try {
       setLoading(true);
+      const { tag, name, createdAt, updatedAt, email } = debouncedSearchInput;
       const stretchersData = await getUsers(
         currentPage,
         usersPerPage,
-        searchInput,
-        user?.token
+        user?.token,
+        name,
+        email,
+        tag,
+        "",
+        createdAt,
+        updatedAt,
+        ""
       );
 
       setLoading(false);
@@ -48,15 +91,16 @@ function Users() {
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
       setUsers(stretchers);
-      console.log(stretchers);
+
       const totalUsers = stretchersData.totalNoOfUsers;
       const calculatedPageCount = Math.ceil(totalUsers / usersPerPage);
       setPageCount(calculatedPageCount);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
-  // console.log(users);
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -79,11 +123,14 @@ function Users() {
       console.error("Error deleting user:", error);
     }
   };
-
+  console.log(debouncedSearchInput);
   useEffect(() => {
     getStretchers();
-  }, [currentPage, searchInput, user]);
+  }, [currentPage, debouncedSearchInput, user]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedSearchInput]);
   return (
     <>
       <div className={style.users__overview}>
@@ -98,41 +145,34 @@ function Users() {
 
           <button onClick={handleExports}>export users</button>
         </div>
-        <div className={style.searchContainer}>
-          <div className={style.searchIcon}>
-            <ion-icon name="search"></ion-icon>
-          </div>
-          <input
-            type="text"
-            placeholder="Search.."
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-          />
-        </div>
+        {loading && <Loader />}
+        <div className={style.searchContainer}></div>
         <div className={style.tableWrapper}>
-          {loading ? (
-            <div className={style.loaderContainer}>
-              <Loader />
-            </div>
-          ) : users?.length === 0 ? (
+          {users?.length === 0 ? (
             <div className={style.nouser}>
               <h1>No user matches the search</h1>
             </div>
           ) : (
-            <>
+            <div>
               <Table
+                searchInput={searchInput}
+                updateSearchInput={updateSearchInput}
+                showFilter
                 column={tableColumn && tableColumn}
                 data={users}
                 handleDelete={handleEmailToBeDelelted}
               />
-              <div className={style.paginationButtons}>
-                <Pagination
-                  currentPage={currentPage}
-                  pageCount={pageCount}
-                  onPageChange={handlePageChange}
-                />
-              </div>
-            </>
+
+              {users?.length > usersPerPage && (
+                <div className={style.paginationButtons}>
+                  <Pagination
+                    currentPage={currentPage}
+                    pageCount={pageCount}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
+              )}
+            </div>
           )}
         </div>
 

@@ -66,7 +66,7 @@ function ManageTags() {
       "Tags"
     );
   };
-  // console.log(tags);
+
   const handleDeleteTag = async () => {
     try {
       console.log(tagToBeDelelted);
