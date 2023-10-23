@@ -56,7 +56,7 @@ function Users() {
       console.log(error);
     }
   };
-
+  // console.log(users);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -64,8 +64,9 @@ function Users() {
     setEmailToBeDeleted(email);
     setModal("prompt");
   };
+  const exportIds = users?.map((data) => data.id);
   const handleExports = async () => {
-    await getExports("/users/exportUsers", user?.token, "Users");
+    await getExports(`/users/export?ids=[${exportIds}]`, user?.token, "Users");
   };
   const handleDeleteUser = async () => {
     try {

@@ -31,7 +31,6 @@ function ManageTags() {
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
   ];
-  console.log(user);
   const fetchTags = async () => {
     setLoading(true);
     const allTags = await getTags(1, searchInput, user?.token);
@@ -59,9 +58,15 @@ function ManageTags() {
     setTagToBeDeleted(name);
     setModal("prompt");
   };
-  const handleExports = async () => {
-    await getExports("/tags/exportTags", user?.token, "Tags");
+  const availableExports = tags?.map((tag) => tag.id);
+  const handleExports = async (ids) => {
+    await getExports(
+      `/tags/export?ids=[${availableExports}]`,
+      user?.token,
+      "Tags"
+    );
   };
+  // console.log(tags);
   const handleDeleteTag = async () => {
     try {
       console.log(tagToBeDelelted);

@@ -282,7 +282,10 @@ const updateUser = async (req, res) => {
 
 const exportUser = async (req, res) => {
   try {
-    const users = await User.findAll();
+    const idArray = req.query.ids;
+    let ids;
+    if (idArray) ids = JSON.parse(idArray);
+    let users;
     const workbook = new excelJs.Workbook();
     const sheet = workbook.addWorksheet("users");
     sheet.columns = [
@@ -296,6 +299,17 @@ const exportUser = async (req, res) => {
       { header: "Last Updated", key: "updatedAt" },
       { header: "Tags", key: "tags_excel" },
     ];
+    if (ids) {
+      users = await User.findAll({
+        where: {
+          id: {
+            [Op.in]: ids,
+          },
+        },
+      });
+    } else {
+      users = await User.findAll();
+    }
     await users.map((value) => {
       sheet.addRow({
         id: value.id,
@@ -322,7 +336,6 @@ const exportUser = async (req, res) => {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
-
 module.exports = {
   listUsers,
   deleteUser,

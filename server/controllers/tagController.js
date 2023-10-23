@@ -195,9 +195,13 @@ const viewTagDetails = async (req, res) => {
 
 const exportTags = async (req, res) => {
   try {
-    const tags = await Tag.findAll();
+    const idArray = req.query.ids;
+    let ids;
+    if (idArray) ids = JSON.parse(idArray);
+    console.log({ ids });
     const workbook = new excelJs.Workbook();
     const sheet = workbook.addWorksheet("tags");
+    let tags;
     sheet.columns = [
       { header: "ID", key: "id" },
       { header: "Name", key: "name" },
@@ -205,6 +209,18 @@ const exportTags = async (req, res) => {
       { header: "Last Updated", key: "updatedAt" },
       { header: "Baseline Survey", key: "baseline" },
     ];
+    if (ids && ids.length > 0) {
+      tags = await Tag.findAll({
+        where: {
+          id: {
+            [Op.in]: ids,
+          },
+        },
+      });
+    } else {
+      tags = await Tag.findAll();
+    }
+    console.log(tags);
     await tags.map((value) => {
       sheet.addRow({
         id: value.id,
@@ -214,7 +230,6 @@ const exportTags = async (req, res) => {
         baseline: value.baseline ? "Yes" : "No",
       });
     });
-
     res.setHeader(
       "Content-Type",
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
@@ -235,7 +250,6 @@ module.exports = {
   deleteTag,
   updateTag,
   findTags,
-
   viewTagDetails,
   exportTags,
 };
