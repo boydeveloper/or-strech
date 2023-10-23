@@ -8,5 +8,6 @@ router.delete("/deleteEvent", eventController.deleteEvent);
 router.get("/getPossibleEvents", eventController.getPossibleEvents);
 router.get("/listEvents", eventController.listEvents);
 router.get("/eventDetails", eventController.viewEventDetails);
-router.get("/exportEvents", eventController.exportEvents);
+// router.get("/exportEvents", eventController.exportEvents);
+router.get("/export", eventController.exportEvents);
 module.exports = router;

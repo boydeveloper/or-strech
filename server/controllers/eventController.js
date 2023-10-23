@@ -183,7 +183,10 @@ const getPossibleEvents = async (req, res) => {
 
 const exportEvents = async (req, res) => {
   try {
-    const events = await Event.findAll();
+    const idArray = req.query.ids;
+    let ids;
+    if (idArray) ids = JSON.parse(idArray);
+    let events;
     const workbook = new excelJs.Workbook();
     const sheet = workbook.addWorksheet("events");
     sheet.columns = [
@@ -195,6 +198,18 @@ const exportEvents = async (req, res) => {
       { header: "Last Updated", key: "updatedAt" },
       { header: "Notes", key: "notes" },
     ];
+    if (ids) {
+      events = await Event.findAll({
+        where: {
+          id: {
+            [Op.in]: ids,
+          },
+        },
+      });
+    } else {
+      events = await Event.findAll();
+    }
+
     await events.map((value) => {
       sheet.addRow({
         id: value.id,

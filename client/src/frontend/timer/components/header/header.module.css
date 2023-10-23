@@ -1,0 +1,100 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 1.5rem 2.5rem;
+  width: 100%;
+  z-index: 12;
+  margin-bottom: 4rem;
+  border-bottom: solid 3px #00365a;
+}
+
+.logo:link,
+.logo:visited {
+  display: flex;
+  color: #00365a;
+  width: 100%;
+  gap: 2rem;
+  white-space: nowrap;
+
+  align-items: center;
+  text-decoration: none;
+}
+.logo:link,
+.logo:visited > img {
+  height: 5.5rem;
+  width: 5.5rem;
+}
+.logo:link,
+.logo:visited > h1 {
+  font-size: 1.2rem;
+}
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.header__right > img {
+  height: 50px;
+  width: 50px;
+  border: solid 2px #00365a;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.header__right > span {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.dropdown {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  /* gap: 1.4rem; */
+  top: 100%;
+  right: 0;
+  /* height: 70px; */
+  /* text-align: center; */
+  padding: 1.5rem;
+  /* width: 90px; */
+  justify-content: center;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  text-transform: none;
+  text-decoration: none;
+  padding-bottom: 2rem;
+  display: none;
+}
+.dropdown > a:link,
+.dropdown > a:visited {
+  text-decoration: none;
+  white-space: nowrap;
+  color: #2b2b2b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.6rem;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.dropdown span {
+  color: #e62c2c;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 1.6rem;
+}
+.dropdown span:hover,
+.dropdown > a:hover {
+  background-color: #fafafa;
+  cursor: pointer;
+}
+.header__right:hover .dropdown {
+  display: flex;
+}

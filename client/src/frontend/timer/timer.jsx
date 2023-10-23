@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./timer.module.css";
-
+import Header from "./components/header/header";
+// import {} from "./";
 function Timer() {
   const [isActive, setIsActive] = useState(true);
 
@@ -16,7 +17,7 @@ function Timer() {
   const activeClass = isTimerActive ? style.active : "";
   const [minutes, setMinutes] = useState(30);
   const [seconds, setSeconds] = useState(0);
-  const [interval, setInterval] = useState(30);
+  const [intervalTime, setIntervalTime] = useState(30);
   const [isRunning, setIsRunning] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
   const startTimer = () => {
@@ -29,14 +30,25 @@ function Timer() {
 
   const increaseTime = () => {
     if (minutes < 120) {
-      setMinutes(minutes + 15);
-      setInterval(minutes + 15);
+      if (!isRunning) {
+        setMinutes(minutes + 15);
+      }
+      console.log("hiii");
+      setIntervalTime(intervalTime + 15);
     }
+  };
+
+  const reset = () => {
+    setIsRunning(false);
+    setSeconds(0);
+    setMinutes(intervalTime);
   };
   const decreaseTime = () => {
     if (minutes > 30) {
-      setMinutes(minutes - 15);
-      setInterval(minutes - 15);
+      if (!isRunning) {
+        setMinutes(minutes - 15);
+      }
+      setIntervalTime(intervalTime - 15);
     }
   };
 
@@ -66,17 +78,18 @@ function Timer() {
 
   return (
     <div className={style.timer__overview}>
+      <Header />
       <div className={style.timer__wrapper}>
         <div className={style.timer}>
           <div className={style.reminder_interval}>
             <div className={style.reminder_buttons}>
               <button
-                disabled={minutes === 120}
+                disabled={minutes === 120 || intervalTime === 120}
                 className={style.reminder_button_up}
                 onClick={increaseTime}
               ></button>
               <button
-                disabled={minutes === 0}
+                disabled={minutes === 0 || intervalTime === 30}
                 onClick={decreaseTime}
                 className={style.reminder_button_down}
               ></button>
@@ -100,7 +113,7 @@ function Timer() {
             <div className={style.reminder_display}>
               <div className={style.reminder}>
                 888
-                <div className={style.interval_value}>{interval}</div>
+                <div className={style.interval_value}>{intervalTime}</div>
               </div>
             </div>
             <p className={style.interval_text}>Set reminder interval</p>
@@ -130,7 +143,7 @@ function Timer() {
               onClick={toggleActive}
             >
               <div className={style.counting_img}></div>
-              <button className={style.reset_button} onClick={stopTimer}>
+              <button className={style.reset_button} onClick={reset}>
                 Reset
               </button>
               <button
