@@ -61,7 +61,7 @@ function StretcherProfile() {
       <Header />
       <div className={style.StretcherProfileMain}>
         <form onSubmit={handleSave} className={style.profile_box}>
-          <h2 className={style.profile_title}>Stretcher Profile</h2>
+          <h2 className={style.profile_title}>Update Profile</h2>
           <label className={style.inputContainer}>
             <input
               type="text"

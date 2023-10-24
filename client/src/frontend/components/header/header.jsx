@@ -12,9 +12,9 @@ function Header() {
       </Link>
 
       <div className={style.header__right}>
-        <Link className={style.link} to={"/stretch"}>
+        {/* <Link className={style.link} to={"/stretch"}>
           Stretch
-        </Link>
+        </Link> */}
         <div className={style.profile}>
           <p>{user?.email}</p>
           <img src="/assets/imgs/default.jpg" alt="default profile img" />
