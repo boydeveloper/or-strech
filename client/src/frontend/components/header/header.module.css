@@ -1,14 +1,16 @@
 .header {
+  background: #fff;
   display: flex;
+  height: 100px;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
-  padding: 1.5rem 2.5rem;
+  padding: 1.5rem 0 1.5rem 0;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+  padding-inline: 4rem;
+
+  z-index: 2;
   width: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 12;
   margin-bottom: 4rem;
-  /* border-bottom: solid 3px #00365a; */
 }
 
 .logo:link,
