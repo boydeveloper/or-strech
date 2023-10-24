@@ -91,10 +91,10 @@
   border-radius: 3px;
   min-width: 320px;
   border: 1px solid #00365a;
+  box-shadow: 0 0 0 3px #0673bc;
   font-size: 16px;
   margin-top: 1.5rem;
 }
 .columnSearch > input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px #0673bc;
 }
