@@ -3,13 +3,14 @@ import Header from "../components/header/header";
 import style from "./stretcherprofile.module.css";
 import { getUserDetails, updateUser } from "../../Apis/users/userService";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function StretcherProfile() {
   const [profileData, setProfileData] = useState({
     name: "",
     email: "",
   });
-
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const userJSON = sessionStorage.getItem("strecher");
   const user = JSON.parse(userJSON);
@@ -44,6 +45,7 @@ function StretcherProfile() {
       if (update?.isSuccess === true) {
         setIsLoading(false);
         toast.success(update?.message);
+        navigate("/stretch");
       }
     } catch (error) {
       setIsLoading(false);
