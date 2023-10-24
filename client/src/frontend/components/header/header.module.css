@@ -5,10 +5,10 @@
   background: #fff;
   padding: 1.5rem 2.5rem;
   width: 100%;
-
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 12;
   margin-bottom: 4rem;
-  border-bottom: solid 3px #00365a;
+  /* border-bottom: solid 3px #00365a; */
 }
 
 .logo:link,
