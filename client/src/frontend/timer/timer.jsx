@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./timer.module.css";
-import Header from "./components/header/header";
+import Header from "../components/header/header";
 // import {} from "./";
 function Timer() {
   const [isActive, setIsActive] = useState(true);

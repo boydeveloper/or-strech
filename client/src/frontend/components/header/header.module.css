@@ -5,6 +5,7 @@
   background: #fff;
   padding: 1.5rem 2.5rem;
   width: 100%;
+
   z-index: 12;
   margin-bottom: 4rem;
   border-bottom: solid 3px #00365a;
@@ -17,7 +18,8 @@
   width: 100%;
   gap: 2rem;
   white-space: nowrap;
-
+  margin-right: auto;
+  width: 80%;
   align-items: center;
   text-decoration: none;
 }
@@ -32,11 +34,18 @@
 }
 .header__right {
   display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.profile {
+  position: relative;
+  font-weight: 600;
+  display: flex;
   align-items: center;
   gap: 10px;
-  position: relative;
 }
-.header__right > img {
+
+.profile > img {
   height: 50px;
   width: 50px;
   border: solid 2px #00365a;
@@ -44,21 +53,37 @@
   border-radius: 50%;
   cursor: pointer;
 }
-.header__right > span {
+.profile > span {
   font-weight: 700;
   font-size: 1.4rem;
+}
+
+.link:link,
+.link:visited {
+  margin-left: auto;
+  text-decoration: none;
+  font-size: 20px;
+  color: #212529;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-left: auto;
+  letter-spacing: -0.9px;
+  text-decoration: underline;
+  transition: all 0.3s;
+  border-right: solid 2px #000;
+  padding-right: 10px;
+}
+.link:active,
+.link:hover {
+  color: #00365a;
 }
 .dropdown {
   display: flex;
   position: absolute;
   flex-direction: column;
-  /* gap: 1.4rem; */
   top: 100%;
   right: 0;
-  /* height: 70px; */
-  /* text-align: center; */
   padding: 1.5rem;
-  /* width: 90px; */
   justify-content: center;
   border-radius: 8px;
   background: #fff;
@@ -95,6 +120,6 @@
   background-color: #fafafa;
   cursor: pointer;
 }
-.header__right:hover .dropdown {
+.profile:hover .dropdown {
   display: flex;
 }

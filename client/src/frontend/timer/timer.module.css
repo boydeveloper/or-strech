@@ -1,4 +1,5 @@
 .timer__overview {
+  min-height: 100vh;
   background: rgb(235, 239, 240);
 }
 .timer__wrapper {
@@ -6,7 +7,6 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
   max-width: 50rem;
   margin: 0 auto;
 }

@@ -30,16 +30,22 @@ function Hero() {
     if (emailValid) {
       const loggedInUser = await authenticateUser(email);
       console.log(loggedInUser);
-      const username = email.split("@")[0];
-      localStorage.setItem("username", username);
-      console.log(loggedInUser);
-
+      const token = loggedInUser?.account?.token;
+      const parse = JSON.stringify(loggedInUser?.account);
+      sessionStorage.setItem("strecher", parse);
+      sessionStorage.setItem("stretcher_token", token);
       if (
         loggedInUser.isSuccess === true &&
-        loggedInUser?.account?.isNew === true
+        loggedInUser?.account?.isNew === false
       ) {
         setModal("agreeModal");
         setLoading(false);
+      } else if (
+        loggedInUser.isSuccess === true &&
+        loggedInUser?.account?.isNew === false
+      ) {
+        setLoading(false);
+        navigate("/stretch");
       } else {
         setLoading(false);
         setError("");

@@ -21,6 +21,7 @@ import {
 import "./App.css";
 import RequireAuth from "./backoffice/auth/utils/requireAuth";
 import { AuthProvider } from "./backoffice/context/auth";
+import StretcherProfile from "./frontend/profile/StretcherProfile";
 function App() {
   return (
     <AuthProvider>
@@ -40,6 +41,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/backoffice/login" element={<Login />} />
           <Route path="/stretch" element={<Timer />} />
+          <Route path="/profile" element={<StretcherProfile />} />
           {/* <Route element={<RequireAuth />}> */}
           <Route path="dashboard" element={<Dashboard />}>
             <Route path="users" element={<Users />} />
