@@ -11,6 +11,7 @@ function Overview() {
   const { user } = useAuth();
   const [usersNum, setUsersNum] = useState(null);
   const [totalTags, setTotalTags] = useState(null);
+  const [totalLogins, setTotalLogins] = useState(null);
   const [logins, setLogins] = useState(null);
   const tableColumn = [
     { heading: "ID", value: "id" },
@@ -49,12 +50,27 @@ function Overview() {
       const tag = await getAllTags(user?.token);
       setTotalTags(tag?.totalNoOfTags);
       const loggedInActivities = await getRecentLogin(user?.token);
-      setLogins(loggedInActivities?.login_events);
+      const login = loggedInActivities?.login_events?.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+
+      setLogins(login);
       setUsersNum(dataUsers?.totalNoOfUsers);
+      const currentDate = new Date().toISOString().slice(0, 10);
+      const loginEventsToday = login?.filter((event) => {
+        const createdAtDate = new Date(event.createdAt)
+          .toISOString()
+          .slice(0, 10);
+        return createdAtDate === currentDate;
+      });
+
+      const loginCountToday = loginEventsToday?.length;
+      setTotalLogins(loginCountToday);
     } catch (error) {
       throw error;
     }
   };
+
   console.log(logins);
   useEffect(() => {
     fetchData();
@@ -69,10 +85,8 @@ function Overview() {
           <div className={style.overiewCard}>
             <div className={style.overiewCard__details}>
               <i className="iconsminds-clock mr-2 text-white align-text-bottom d-inline-block"></i>
-              <h1>Total Logins for Today</h1>
-              <p>
-                Total stretch time this <br /> month
-              </p>
+              <h1>Logins for Today ({totalLogins})</h1>
+              <p>Total number of logins today.</p>
             </div>
           </div>
           <div className={style.overiewCard}>
