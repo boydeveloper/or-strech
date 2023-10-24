@@ -21,7 +21,7 @@ function Hero() {
     return emailRegex.test(email);
   };
   const closeAgreementModal = () => {
-    setModal("'");
+    setModal("");
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,23 +34,18 @@ function Hero() {
       const parse = JSON.stringify(loggedInUser?.account);
       sessionStorage.setItem("strecher", parse);
       sessionStorage.setItem("stretcher_token", token);
-      if (
-        loggedInUser.isSuccess === true &&
-        loggedInUser?.account?.isNew === false
-      ) {
-        setModal("agreeModal");
+      if (loggedInUser?.isSuccess === true) {
         setLoading(false);
-      } else if (
-        loggedInUser.isSuccess === true &&
-        loggedInUser?.account?.isNew === false
-      ) {
-        setLoading(false);
-        navigate("/stretch");
+        if (loggedInUser?.account?.isNew === true) {
+          setLoading(false);
+          setModal("agreeModal");
+        } else {
+          setLoading(false);
+          navigate("/stretch");
+        }
       } else {
+        toast.error("error logging in");
         setLoading(false);
-        setError("");
-        console.log(loggedInUser);
-        navigate("/stretch");
       }
     } else {
       setError("Please enter a valid email address");
