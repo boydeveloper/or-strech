@@ -28,9 +28,9 @@ const Table = ({
             {column?.map((item, index) => {
               return (
                 <th key={index + "header"}>
+                  {item?.heading}
                   {showFilter && (
                     <>
-                      {item?.heading}
                       {item?.heading !== "Delete" &&
                         item?.heading !== "Update" && (
                           <div className={style.columnSearch}>
@@ -115,6 +115,12 @@ const Table = ({
                         {Array.isArray(parsedTags)
                           ? parsedTags.join(", ")
                           : parsedTags}
+                      </td>
+                    );
+                  } else if (columnItem?.value === "event_type") {
+                    return (
+                      <td key={index + "data"}>
+                        {row.event_type.replace("_", " ")}
                       </td>
                     );
                   } else if (columnItem?.heading === "Tag Name") {

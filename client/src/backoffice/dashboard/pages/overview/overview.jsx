@@ -15,7 +15,7 @@ function Overview() {
   const tableColumn = [
     { heading: "ID", value: "id" },
     { heading: "UserID", value: "userId" },
-    { heading: "Login type", value: "event_type" },
+    { heading: "Login Type", value: "event_type" },
     { heading: "Time", value: "createdAt" },
   ];
   const dayNames = [
@@ -33,7 +33,19 @@ function Overview() {
 
   const fetchData = async () => {
     try {
-      const dataUsers = await getUsers(1, 2, "hhh", user?.token);
+      const dataUsers = await getUsers(
+        1,
+        2,
+        user?.token,
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      );
+
       const tag = await getAllTags(user?.token);
       setTotalTags(tag?.totalNoOfTags);
       const loggedInActivities = await getRecentLogin(user?.token);
@@ -43,6 +55,7 @@ function Overview() {
       throw error;
     }
   };
+  console.log(logins);
   useEffect(() => {
     fetchData();
   }, [user]);

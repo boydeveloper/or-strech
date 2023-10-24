@@ -23,11 +23,11 @@ function Users() {
   const [emailToBeDeleted, setEmailToBeDeleted] = useState(null);
   const [modal, setModal] = useState("");
   const tableColumn = [
-    { heading: "Name", name: "name", value: "name" },
+    { heading: "Full Name", name: "name", value: "name" },
     { heading: "Email", name: "email", value: "email" },
-    { heading: "User Type", name: "type", value: "user_type" },
+
     { heading: "User Tag(s)", name: "tag", value: "tags_excel" },
-    { heading: "First Login", name: "createdAt", value: "createdAt" },
+
     { heading: "Last Login", name: "updatedAt", value: "updatedAt" },
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
