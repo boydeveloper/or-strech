@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { convertTo12, formatDate } from "../../../utils/fomatDate";
 import style from "./table.module.css";
+import { useState } from "react";
 
 const Table = ({
   data,
@@ -19,7 +20,38 @@ const Table = ({
       return [];
     }
   }
+  const [sort, setSort] = useState({ column: null, order: "asc" });
 
+  const handleSort = (columnName) => {
+    if (columnName === sort.column) {
+      setSort({ ...sort, order: sort.order === "asc" ? "desc" : "asc" });
+    } else {
+      setSort({ column: columnName, order: "asc" });
+    }
+  };
+
+  const isSortable = (columnName) =>
+    ["email", "name", "tags_excel", "updatedAt"].includes(columnName);
+
+  console.log(sort);
+  const sortData = (data) => {
+    if (sort.column && data) {
+      return [...data].sort((a, b) => {
+        const keyA = a[sort.column];
+        const keyB = b[sort.column];
+        console.log(keyA);
+        if (sort.order === "asc") {
+          return keyA?.localeCompare(keyB);
+        } else {
+          return keyB?.localeCompare(keyA);
+        }
+      });
+    }
+    return data;
+  };
+
+  const sortedData = sortData(data);
+  console.log(sortedData);
   return (
     <div className={style.tableWrapper}>
       <table className={style.table}>
@@ -27,7 +59,13 @@ const Table = ({
           <tr>
             {column?.map((item, index) => {
               return (
-                <th key={index + "header"}>
+                <th
+                  key={index + "header"}
+                  onClick={() => handleSort(item.name)}
+                  style={{
+                    cursor: isSortable(item.name) ? "pointer" : "auto",
+                  }}
+                >
                   {item?.heading}
                   {showFilter && (
                     <>
@@ -53,7 +91,7 @@ const Table = ({
         </thead>
 
         <tbody>
-          {data?.map((row, index) => {
+          {sortedData?.map((row, index) => {
             return (
               <tr key={index + "row"}>
                 {column?.map((columnItem, index) => {
@@ -156,6 +194,12 @@ const Table = ({
               </tr>
             );
           })}
+
+          {sortedData?.length === 0 && (
+            <div className={style.nouser}>
+              <h1>No user matches the search</h1>
+            </div>
+          )}
         </tbody>
       </table>
     </div>

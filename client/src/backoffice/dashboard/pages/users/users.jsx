@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Table from "../../components/table/table";
 import { getExports, getUsers } from "../../../../Apis/users/userService";
@@ -25,9 +25,7 @@ function Users() {
   const tableColumn = [
     { heading: "Full Name", name: "name", value: "name" },
     { heading: "Email", name: "email", value: "email" },
-
     { heading: "User Tag(s)", name: "tag", value: "tags_excel" },
-
     { heading: "Last Login", name: "updatedAt", value: "updatedAt" },
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
@@ -40,7 +38,7 @@ function Users() {
     createdAt: "",
     updatedAt: "",
   });
-  console.log(searchInput);
+
   const useDebounce = (value, delay) => {
     const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -59,9 +57,7 @@ function Users() {
     return debouncedValue;
   };
   const debouncingDelay = 3000;
-  console.log(searchInput);
   const debouncedSearchInput = useDebounce(searchInput, debouncingDelay);
-  console.log(debouncedSearchInput);
   const updateSearchInput = (name, value) => {
     setSearchInput((prevInput) => ({
       ...prevInput,
@@ -97,7 +93,6 @@ function Users() {
       setPageCount(calculatedPageCount);
     } catch (error) {
       setLoading(false);
-      console.log(error);
     }
   };
 
@@ -116,14 +111,14 @@ function Users() {
     try {
       const deletedUser = await deleteUser(emailToBeDeleted, user?.token);
       setModal("");
-      console.log(deletedUser);
+
       toast.success(deletedUser.message);
       getStretchers();
     } catch (error) {
       console.error("Error deleting user:", error);
     }
   };
-  console.log(debouncedSearchInput);
+
   useEffect(() => {
     getStretchers();
   }, [currentPage, debouncedSearchInput, user]);
@@ -148,32 +143,27 @@ function Users() {
         {loading && <Loader />}
         <div className={style.searchContainer}></div>
         <div className={style.tableWrapper}>
-          {users?.length === 0 ? (
-            <div className={style.nouser}>
-              <h1>No user matches the search</h1>
-            </div>
-          ) : (
-            <div>
-              <Table
-                searchInput={searchInput}
-                updateSearchInput={updateSearchInput}
-                showFilter
-                column={tableColumn && tableColumn}
-                data={users}
-                handleDelete={handleEmailToBeDelelted}
-              />
+          <div>
+            <Table
+              searchInput={searchInput}
+              updateSearchInput={updateSearchInput}
+              showFilter
+              users
+              column={tableColumn && tableColumn}
+              data={users}
+              handleDelete={handleEmailToBeDelelted}
+            />
 
-              {users?.length > usersPerPage && (
-                <div className={style.paginationButtons}>
-                  <Pagination
-                    currentPage={currentPage}
-                    pageCount={pageCount}
-                    onPageChange={handlePageChange}
-                  />
-                </div>
-              )}
-            </div>
-          )}
+            {users?.length > usersPerPage && (
+              <div className={style.paginationButtons}>
+                <Pagination
+                  currentPage={currentPage}
+                  pageCount={pageCount}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            )}
+          </div>
         </div>
 
         {modal === "prompt" && (

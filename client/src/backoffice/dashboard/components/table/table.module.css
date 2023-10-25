@@ -98,3 +98,21 @@
 .columnSearch > input:focus {
   outline: none;
 }
+.nouser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50vh;
+  text-align: center;
+  position: relative;
+}
+.nouser > h1 {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  font-weight: 400;
+  top: 50%;
+  left: 100%;
+}
