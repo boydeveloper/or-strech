@@ -18,7 +18,11 @@
   font-size: 1.4rem;
   text-align: left;
 }
-
+.SwapVert > svg {
+  height: 22px;
+  width: 22px;
+  margin-bottom: -4px;
+}
 .table td {
   padding: 2.4rem;
   font-size: 1.4rem;

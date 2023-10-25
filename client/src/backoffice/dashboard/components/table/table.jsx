@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { convertTo12, formatDate } from "../../../utils/fomatDate";
 import style from "./table.module.css";
 import { useState } from "react";
+import { SwapVert } from "../../../../frontend/utils/svg";
 
 const Table = ({
   data,
@@ -31,7 +32,7 @@ const Table = ({
   };
 
   const isSortable = (columnName) =>
-    ["email", "name", "tags_excel", "updatedAt"].includes(columnName);
+    ["email", "name", "tag", "updatedAt"].includes(columnName);
 
   console.log(sort);
   const sortData = (data) => {
@@ -66,6 +67,11 @@ const Table = ({
                     cursor: isSortable(item.name) ? "pointer" : "auto",
                   }}
                 >
+                  {isSortable(item.name) && (
+                    <span className={style.SwapVert}>
+                      <SwapVert />
+                    </span>
+                  )}
                   {item?.heading}
                   {showFilter && (
                     <>
