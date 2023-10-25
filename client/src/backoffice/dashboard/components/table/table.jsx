@@ -67,12 +67,12 @@ const Table = ({
                     cursor: isSortable(item.name) ? "pointer" : "auto",
                   }}
                 >
+                  {item?.heading}
                   {isSortable(item.name) && (
                     <span className={style.SwapVert}>
                       <SwapVert />
                     </span>
                   )}
-                  {item?.heading}
                   {showFilter && (
                     <>
                       {item?.heading !== "Delete" &&
