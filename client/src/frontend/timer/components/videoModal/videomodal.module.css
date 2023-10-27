@@ -1,0 +1,57 @@
+.VideoModalWrapper {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  padding: 20px;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 9;
+}
+.VideoModalWrapperOverlay {
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation-duration: 0.3s;
+  animation-timing-function: linear;
+  backdrop-filter: blur;
+  z-index: 10;
+}
+.modal {
+  height: 405px;
+  width: 100%;
+  background-color: #fff;
+  z-index: 12;
+  /* height: 740px; */
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  width: 580px;
+  padding: 2rem 1.2rem;
+  gap: 2.5rem;
+}
+
+.modal > button {
+  line-height: 22px;
+  background: #003da5;
+  border: 2px solid #003da5;
+  padding: 6px 0;
+  background-image: linear-gradient(
+    to bottom,
+    #1a51ae 50%,
+    #003da5 51%,
+    #003da5 51%
+  );
+  color: #fff;
+  margin: 0 !important;
+  font-size: 18px;
+  letter-spacing: -0.9px;
+  padding: 10px 96px;
+  cursor: pointer;
+}

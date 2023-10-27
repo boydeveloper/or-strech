@@ -12,14 +12,19 @@ import { useAuth } from "../../../context/auth";
 
 function Users() {
   const navigate = useNavigate();
+  const [entriesPerPage, setEntriesPerPage] = useState(10);
   const { user } = useAuth();
+  const [totalEntries, setTotalEntries] = useState(null);
   const [users, setUsers] = useState(null);
 
   // const [searchInput, setSearchInput] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
   const [pageCount, setPageCount] = useState(0);
+  // const [entriesPerPage, setEntriesPerPage] = useState(10); //
+  const [availableOptions, setAvailableOptions] = useState([]);
   const [emailToBeDeleted, setEmailToBeDeleted] = useState(null);
   const [modal, setModal] = useState("");
   const tableColumn = [
@@ -38,6 +43,16 @@ function Users() {
     createdAt: "",
     updatedAt: "",
   });
+
+  const getShowingEntriesMessage = () => {
+    if (users) {
+      const startIndex = (currentPage - 1) * usersPerPage + 1;
+      const endIndex = Math.min(currentPage * usersPerPage, totalEntries);
+      return `Showing ${startIndex} to ${endIndex} of ${totalEntries} entries`;
+    }
+
+    return "";
+  };
 
   const useDebounce = (value, delay) => {
     const [debouncedValue, setDebouncedValue] = useState(value);
@@ -64,6 +79,7 @@ function Users() {
       [name]: value,
     }));
   };
+  const [selectOptions, setSelectOptions] = useState([]);
 
   const getStretchers = async () => {
     try {
@@ -87,8 +103,10 @@ function Users() {
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
       setUsers(stretchers);
+      setTotalEntries(stretchersData.totalNoOfUsers);
 
       const totalUsers = stretchersData.totalNoOfUsers;
+
       const calculatedPageCount = Math.ceil(totalUsers / usersPerPage);
       setPageCount(calculatedPageCount);
     } catch (error) {
@@ -119,6 +137,10 @@ function Users() {
     }
   };
 
+  const handleEntriesPerPageChange = (e) => {
+    setEntriesPerPage(Number(e.target.value));
+    setCurrentPage(1);
+  };
   useEffect(() => {
     getStretchers();
   }, [currentPage, debouncedSearchInput, user]);
@@ -126,13 +148,35 @@ function Users() {
   useEffect(() => {
     setCurrentPage(1);
   }, [debouncedSearchInput]);
+  useEffect(() => {
+    if (users) {
+      const totalUsers = totalEntries;
+      const maxOptions = Math.min(totalUsers, 10);
+      const newOptions = Array.from(
+        { length: maxOptions },
+        (_, index) => (index + 1) * 10
+      );
+      setSelectOptions(newOptions);
+
+      setAvailableOptions(newOptions);
+    }
+  }, [users, entriesPerPage]);
   return (
     <>
       <div className={style.users__overview}>
         <header className={style.overviewHeader}>
           <h1>Back Office | Users</h1>
         </header>
-
+        <div>
+          <label>Show entries: </label>
+          <select value={entriesPerPage} onChange={handleEntriesPerPageChange}>
+            {selectOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className={style.buttonContainer}>
           <button onClick={() => navigate("/dashboard/add-users")}>
             ADD NEW USER
@@ -155,12 +199,17 @@ function Users() {
             />
 
             {users?.length > usersPerPage && (
-              <div className={style.paginationButtons}>
-                <Pagination
-                  currentPage={currentPage}
-                  pageCount={pageCount}
-                  onPageChange={handlePageChange}
-                />
+              <div className={style.usersFooter}>
+                <div className={style.paginationButtons}>
+                  <Pagination
+                    currentPage={currentPage}
+                    pageCount={pageCount}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
+                <div className={style.showingEntriesMessage}>
+                  {getShowingEntriesMessage()}
+                </div>
               </div>
             )}
           </div>

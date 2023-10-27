@@ -98,3 +98,10 @@
 .paginationButtons > button:disabled {
   background: #4444;
 }
+.usersFooter {
+  display: flex;
+  align-items: flex-end;
+
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import style from "./timer.module.css";
 import Header from "../components/header/header";
-// import {} from "./";
+import alarmSound from "./sounds/alarm_old_20171122.mp3";
+import VideoModal from "./components/videoModal/videoModal";
 function Timer() {
   const [isActive, setIsActive] = useState(true);
-
+  const [modal, setModal] = useState("");
   const toggleInterval = () => {
     setIsActive(!isActive);
   };
@@ -13,9 +14,10 @@ function Timer() {
   const toggleActive = () => {
     setIsTimerActive(!isTimerActive);
   };
+  const [isTimerExpired, setIsTimerExpired] = useState(false);
 
   const activeClass = isTimerActive ? style.active : "";
-  const [minutes, setMinutes] = useState(30);
+  const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(0);
   const [intervalTime, setIntervalTime] = useState(30);
   const [isRunning, setIsRunning] = useState(false);
@@ -51,7 +53,10 @@ function Timer() {
       setIntervalTime(intervalTime - 15);
     }
   };
-
+  const playTimerExpiredSound = () => {
+    const audio = new Audio(alarmSound);
+    audio.play();
+  };
   useEffect(() => {
     let interval;
     if (isRunning && (minutes > 0 || seconds > 0)) {
@@ -61,7 +66,11 @@ function Timer() {
             setMinutes(minutes - 1);
             setSeconds(59);
           } else {
+            setIsTimerExpired(true);
+
+            console.log("hiii");
             setIsRunning(false);
+            playTimerExpiredSound();
           }
         } else {
           setSeconds(seconds - 1);
@@ -69,6 +78,7 @@ function Timer() {
       }, 1000);
     } else if (minutes === 0 && seconds === 0) {
       setIsRunning(false);
+      playTimerExpiredSound();
     }
 
     return () => {
@@ -159,10 +169,24 @@ function Timer() {
             stretching <br />
             <span>Now!</span>
           </h1>
-          <button className={style.go_button}></button>
+          <button
+            className={style.go_button}
+            onClick={() => setModal("video")}
+          ></button>
         </div>
         <button className={style.stop_btn}>STOP/PAUSE</button>
       </div>
+
+      {modal === "video" && (
+        <VideoModal
+          url={
+            isActive
+              ? "https://player.vimeo.com/video/129791454?color=3967c1&portrait=0&title=0&autoplay=1&badge=0&byline=0&api=1&player_id=stretchvimeoplayer"
+              : "https://player.vimeo.com/video/129791455?color=3967c1&portrait=0&title=0&autoplay=1&badge=0&byline=0&api=1&player_id=stretchvimeoplayer"
+          }
+          cancel={() => setModal("")}
+        />
+      )}
     </div>
   );
 }
