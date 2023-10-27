@@ -31,7 +31,7 @@ function Users() {
     { heading: "Full Name", name: "name", value: "name" },
     { heading: "Email", name: "email", value: "email" },
     { heading: "User Tag(s)", name: "tag", value: "tags_excel" },
-    { heading: "Last Login", name: "updatedAt", value: "updatedAt" },
+    { heading: "Date Created", name: "createdAt", value: "createdAt" },
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
   ];
@@ -167,22 +167,29 @@ function Users() {
         <header className={style.overviewHeader}>
           <h1>Back Office | Users</h1>
         </header>
-        <div>
-          <label>Show entries: </label>
-          <select value={entriesPerPage} onChange={handleEntriesPerPageChange}>
-            {selectOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={style.buttonContainer}>
-          <button onClick={() => navigate("/dashboard/add-users")}>
-            ADD NEW USER
-          </button>
 
-          <button onClick={handleExports}>export users</button>
+        <div className={style.usersCTA}>
+          <div className={style.entriesBox}>
+            <label>Show entries: </label>
+            <select
+              value={entriesPerPage}
+              onChange={handleEntriesPerPageChange}
+            >
+              {selectOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={style.buttonContainer}>
+            <button onClick={() => navigate("/dashboard/add-users")}>
+              ADD NEW USER
+            </button>
+
+            <button onClick={handleExports}>export users</button>
+          </div>
         </div>
         {loading && <Loader />}
         <div className={style.searchContainer}></div>

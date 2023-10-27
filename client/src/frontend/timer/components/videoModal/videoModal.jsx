@@ -23,12 +23,7 @@ function VideoModal({ cancel, url }) {
         animate="visible"
         className={style.modal}
       >
-        <iframe
-          src={url}
-          frameborder="0"
-          width={"100%"}
-          height={"405"}
-        ></iframe>
+        <iframe src={url} frameborder="0" width={"800"} height={"705"}></iframe>
         <button onClick={cancel}> DONE STRETCHING</button>
       </motion.div>
     </div>

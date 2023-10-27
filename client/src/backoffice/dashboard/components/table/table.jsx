@@ -32,7 +32,7 @@ const Table = ({
   };
 
   const isSortable = (columnName) =>
-    ["email", "name", "tag", "updatedAt"].includes(columnName);
+    ["email", "name", "tag", "createdAt"].includes(columnName);
 
   console.log(sort);
   const sortData = (data) => {

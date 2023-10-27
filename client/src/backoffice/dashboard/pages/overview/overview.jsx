@@ -14,7 +14,6 @@ function Overview() {
   const [totalLogins, setTotalLogins] = useState(null);
   const [logins, setLogins] = useState(null);
   const tableColumn = [
-    { heading: "ID", value: "id" },
     { heading: "UserID", value: "userId" },
     { heading: "Login Type", value: "event_type" },
     { heading: "Time", value: "createdAt" },
@@ -85,7 +84,7 @@ function Overview() {
           <div className={style.overiewCard}>
             <div className={style.overiewCard__details}>
               <i className="iconsminds-clock mr-2 text-white align-text-bottom d-inline-block"></i>
-              <h1>Logins for Today ({totalLogins})</h1>
+              <h1>{totalLogins} Login(s) today</h1>
               <p>Total number of logins today.</p>
             </div>
           </div>
