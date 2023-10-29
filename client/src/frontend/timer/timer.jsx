@@ -17,7 +17,7 @@ function Timer() {
   };
   const [isTimerExpired, setIsTimerExpired] = useState(false);
   const activeClass = isTimerActive ? style.active : "";
-  const [minutes, setMinutes] = useState(1);
+  const [minutes, setMinutes] = useState(30);
   const [seconds, setSeconds] = useState(0);
   const [snoozeClicked, setSnoozeClicked] = useState(false);
   const [intervalTime, setIntervalTime] = useState(30);
