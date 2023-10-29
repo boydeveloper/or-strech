@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import style from "./timerstoppedmodal.module.css";
 function TimerStoppedModal({ cancel }) {
   const popAnimation = {
@@ -19,13 +20,33 @@ function TimerStoppedModal({ cancel }) {
         className={style.TimerStoppedModalWrapperOverlay}
         onClick={cancel}
       ></div>
-      <motion.div className={style.container}>
-        <header>TIMER STOPPED</header>
+      <motion.div
+        variants={popAnimation}
+        initial="hidden"
+        animate="visible"
+        className={style.container}
+      >
+        <header>
+          TIMER STOPPED
+          <button className={style.close_button} onClick={cancel}>
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </header>
         <p>Thank you for stretching with OR-Stretch</p>
-
-        <button></button>
-        <button></button>
-        <button></button>
+        <div className={style.cta}>
+          <button className={style.surgical_button}>
+            <span className={style.button_icon} onClick={cancel}></span>
+            Surgical <br /> case over
+          </button>
+          <button className={style.finished_button}>
+            <span className={style.finished_icon}></span>
+            Finished <br /> for today
+          </button>
+          <button className={style.return_button} onClick={cancel}>
+            <span className={style.return_icon}></span>
+            return
+          </button>
+        </div>
       </motion.div>
     </div>
   );

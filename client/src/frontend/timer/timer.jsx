@@ -3,6 +3,8 @@ import style from "./timer.module.css";
 import Header from "../components/header/header";
 import alarmSound from "./sounds/alarm_old_20171122.mp3";
 import VideoModal from "./components/videoModal/videoModal";
+import TimerStoppedModal from "./components/timerStoppedModal/TimerStoppedModal";
+
 function Timer() {
   const [isActive, setIsActive] = useState(true);
   const [modal, setModal] = useState("");
@@ -10,23 +12,29 @@ function Timer() {
     setIsActive(!isActive);
   };
   const [isTimerActive, setIsTimerActive] = useState(false);
-
   const toggleActive = () => {
     setIsTimerActive(!isTimerActive);
   };
   const [isTimerExpired, setIsTimerExpired] = useState(false);
-
   const activeClass = isTimerActive ? style.active : "";
-  const [minutes, setMinutes] = useState(30);
+  const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(0);
+  const [snoozeClicked, setSnoozeClicked] = useState(false);
   const [intervalTime, setIntervalTime] = useState(30);
   const [isRunning, setIsRunning] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
+
   const startTimer = () => {
     setIsRunning(true);
+    setIsTimerActive(true);
   };
 
   const stopTimer = () => {
+    setIsRunning(false);
+  };
+
+  const handlePause = () => {
+    setModal("pause/stop");
     setIsRunning(false);
   };
 
@@ -42,9 +50,18 @@ function Timer() {
 
   const reset = () => {
     setIsRunning(false);
+    setIsTimerActive(false);
     setSeconds(0);
     setMinutes(intervalTime);
   };
+
+  const [toggleClass, setToggleClass] = useState(true);
+
+  const reminders = [5, 10, 15, 20, 25, 30, 35, 40, 45];
+
+  const [selectedReminder, setSelectedReminder] = useState(reminders[0]);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
   const decreaseTime = () => {
     if (minutes > 30) {
       if (!isRunning) {
@@ -53,9 +70,16 @@ function Timer() {
       setIntervalTime(intervalTime - 15);
     }
   };
+
+  let audio;
+
   const playTimerExpiredSound = () => {
-    const audio = new Audio(alarmSound);
-    audio.play();
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    } else {
+      audio = new Audio(alarmSound);
+    }
   };
   useEffect(() => {
     let interval;
@@ -80,12 +104,34 @@ function Timer() {
       setIsRunning(false);
       playTimerExpiredSound();
     }
-
+    if (!isRunning && minutes === 0 && seconds === 0) {
+      setInterval(() => {
+        setToggleClass((prevToggleClass) => !prevToggleClass);
+      }, 100);
+    }
     return () => {
       clearInterval(interval);
     };
   }, [isRunning, minutes, seconds]);
 
+  const selectReminder = (time) => {
+    setSelectedReminder(time);
+    setDropdownVisible(false);
+  };
+
+  const handleSnooze = () => {
+    setIsRunning(false);
+    setIsTimerActive(false);
+    setMinutes(selectedReminder);
+    console.log(selectedReminder);
+    setToggleClass(!toggleClass);
+    setSeconds(0);
+    setSnoozeClicked(true);
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  };
   return (
     <div className={style.timer__overview}>
       <Header />
@@ -133,7 +179,15 @@ function Timer() {
               <div className={style.time}>
                 <div className={style.minutes}>
                   888
-                  <div className={style.min}>
+                  <div
+                    className={
+                      snoozeClicked
+                        ? style.min
+                        : toggleClass
+                        ? style.min
+                        : `${style.alarm} ${style.min}`
+                    }
+                  >
                     {minutes < 10 ? `0${minutes}` : minutes}
                   </div>
                   <span>Minutes</span>
@@ -141,21 +195,64 @@ function Timer() {
                 <div className={style.dots}>:</div>
                 <div className={style.seconds}>
                   88
-                  <div className={style.sec}>
+                  <div
+                    className={
+                      snoozeClicked
+                        ? style.sec
+                        : toggleClass
+                        ? style.sec
+                        : `${style.alarm} ${style.sec}`
+                    }
+                  >
                     {seconds < 10 ? `0${seconds}` : seconds}
                   </div>
                   <span>Seconds</span>
                 </div>
               </div>
             </div>
-            <div
-              className={`${style.timer_options} ${activeClass}`}
-              onClick={toggleActive}
-            >
-              <div className={style.counting_img}></div>
-              <button className={style.reset_button} onClick={reset}>
-                Reset
-              </button>
+            <div className={`${style.timer_options} ${activeClass}`}>
+              {isRunning && (
+                <>
+                  <div className={style.counting_img}></div>
+                  <button className={style.reset_button} onClick={reset}>
+                    Reset
+                  </button>
+                </>
+              )}
+              {!isRunning && minutes === 0 && seconds === 0 && (
+                <>
+                  <div>
+                    <h1 className={style.remind_me_in}>Remind Me in</h1>
+                  </div>
+                  <div className={style.selectricWrapper}>
+                    <div
+                      className={style.selectric}
+                      onClick={() => setDropdownVisible((prev) => !prev)}
+                    >
+                      <div className={style.data}>{selectedReminder} Min</div>
+                      <button className={style.selectric_button}>▾</button>
+                    </div>
+                    {dropdownVisible && (
+                      <div className={style.selectricItems}>
+                        {reminders.map((reminder) => (
+                          <div
+                            key={reminder}
+                            onClick={() => selectReminder(reminder)}
+                          >
+                            {reminder} Min
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <button
+                      className={style.reset_button}
+                      onClick={handleSnooze}
+                    >
+                      SNOOZE
+                    </button>
+                  </div>
+                </>
+              )}
               <button
                 className={style.start_button}
                 onClick={startTimer}
@@ -174,9 +271,10 @@ function Timer() {
             onClick={() => setModal("video")}
           ></button>
         </div>
-        <button className={style.stop_btn}>STOP/PAUSE</button>
+        <button onClick={handlePause} className={style.stop_btn}>
+          STOP/PAUSE
+        </button>
       </div>
-
       {modal === "video" && (
         <VideoModal
           url={
@@ -185,6 +283,14 @@ function Timer() {
               : "https://player.vimeo.com/video/129791455?color=3967c1&portrait=0&title=0&autoplay=1&badge=0&byline=0&api=1&player_id=stretchvimeoplayer"
           }
           cancel={() => setModal("")}
+        />
+      )}
+      {modal === "pause/stop" && (
+        <TimerStoppedModal
+          cancel={() => {
+            setModal("");
+            setIsRunning(true);
+          }}
         />
       )}
     </div>
