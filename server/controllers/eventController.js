@@ -144,14 +144,15 @@ const updateEvent = async (req, res) => {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
-
 const listEvents = async (req, res) => {
   try {
     const page_no = Number(req.query.page_no);
-    const no_of_events = Number(req.query.no_of_events);
+    let no_of_events = 10;
+    if (req.query.no_of_events) {
+      no_of_events = Number(req.query.no_of_events) ?? 10;
+    }
     const offset = (page_no - 1) * no_of_events;
     const totalNoOfEvents = await Event.count();
-
     if (isNaN(page_no) || page_no <= 0) {
       return res.status(400).json({
         message:
@@ -164,13 +165,11 @@ const listEvents = async (req, res) => {
       limit: no_of_events,
       order: [["createdAt", "DESC"]],
     });
-
     return res.status(200).json({ events, totalNoOfEvents, isSuccess: true });
   } catch (err) {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
-
 const getPossibleEvents = async (req, res) => {
   try {
     return res.status(200).json({ events, isSuccess: true });

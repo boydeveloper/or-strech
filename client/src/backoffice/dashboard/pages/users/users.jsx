@@ -52,7 +52,7 @@ function Users() {
     if (users) {
       const startIndex = (currentPage - 1) * usersPerPage + 1;
       const endIndex = Math.min(currentPage * usersPerPage, totalEntries);
-      return `Showing ${startIndex} to ${endIndex} of ${totalEntries} entries`;
+      return `Showing ${startIndex} to ${entriesPerPage} of ${totalEntries} entries`;
     }
 
     return "";
@@ -101,7 +101,8 @@ function Users() {
         "",
         createdAt,
         updatedAt,
-        ""
+        "",
+        entriesPerPage
       );
 
       setLoading(false);
@@ -110,7 +111,7 @@ function Users() {
       );
       setUsers(stretchers);
       setTotalEntries(stretchersData.totalNoOfUsers);
-
+      console.log(stretchers);
       const totalUsers = stretchersData.totalNoOfUsers;
 
       const calculatedPageCount = Math.ceil(totalUsers / usersPerPage);
@@ -145,11 +146,11 @@ function Users() {
 
   const handleEntriesPerPageChange = (e) => {
     setEntriesPerPage(Number(e.target.value));
-    setCurrentPage(1);
+    // setCurrentPage(1);
   };
   useEffect(() => {
     getStretchers();
-  }, [currentPage, debouncedSearchInput, user, location.pathname]);
+  }, [currentPage, debouncedSearchInput, user, entriesPerPage]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -211,7 +212,7 @@ function Users() {
               handleDelete={handleEmailToBeDelelted}
             />
 
-            {users?.length > usersPerPage && (
+            {users?.length > usersPerPage - 1 && (
               <div className={style.usersFooter}>
                 <div className={style.paginationButtons}>
                   <Pagination

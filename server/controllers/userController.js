@@ -236,6 +236,10 @@ const searchUsers = async (req, res) => {
 const listUsers = async (req, res) => {
   try {
     const page_no = Number(req.query.page_no);
+    let no_of_users = 10;
+    if (req.query.userNo) {
+      no_of_users = Number(req.query.userNo) ?? 10;
+    }
     const email = req.query.email;
     const id = req.query.id;
     const tags = req.query.tags;
@@ -264,7 +268,6 @@ const listUsers = async (req, res) => {
         isSuccess: false,
       });
     }
-
     if (sortBy && possibleTags.includes(sortBy) !== true)
       return res.status(400).json({
         message: `Sort By param is not correct. can only be one of the following: ${[
@@ -272,19 +275,22 @@ const listUsers = async (req, res) => {
         ]}`,
       });
     if (email || id || tags || name || timer || createdAt || updatedAt) {
+      const startDate = createdAt ? new Date(createdAt) : "";
+      const endDate = updatedAt ? new Date(updatedAt) : "";
+      console.log({ startDate, endDate });
       let totalUsersThatMatchParams = await User.findAll({
         where: {
           [Op.and]: [
-            createdAt !== undefined &&
-              createdAt !== "" && {
+            startDate !== undefined &&
+              startDate !== "" && {
                 createdAt: {
-                  [Op.substring]: createdAt,
+                  [Op.gte]: startDate,
                 },
               },
-            updatedAt !== undefined &&
-              updatedAt !== "" && {
+            endDate !== undefined &&
+              endDate !== "" && {
                 updatedAt: {
-                  [Op.substring]: updatedAt,
+                  [Op.lte]: endDate,
                 },
               },
             id !== undefined &&
@@ -321,20 +327,20 @@ const listUsers = async (req, res) => {
         },
       });
       totalNoOfUsers = totalUsersThatMatchParams.length;
-      maxPageNo = Math.ceil(totalUsersThatMatchParams.length / 20);
+      maxPageNo = Math.ceil(totalUsersThatMatchParams.length / no_of_users);
       users = await User.findAll({
         where: {
           [Op.and]: [
-            createdAt !== undefined &&
-              createdAt !== "" && {
+            startDate !== undefined &&
+              startDate !== "" && {
                 createdAt: {
-                  [Op.substring]: createdAt,
+                  [Op.gte]: startDate,
                 },
               },
-            updatedAt !== undefined &&
-              updatedAt !== "" && {
+            endDate !== undefined &&
+              endDate !== "" && {
                 updatedAt: {
-                  [Op.substring]: updatedAt,
+                  [Op.lte]: endDate,
                 },
               },
             id !== undefined &&
@@ -370,15 +376,16 @@ const listUsers = async (req, res) => {
           ],
         },
         offset,
-        limit: 20,
+        limit: no_of_users,
         order: [[sortBy, order]],
       });
     } else {
       totalNoOfUsers = await User.count();
-      maxPageNo = Math.ceil(totalNoOfUsers / 20);
+      maxPageNo = Math.ceil(totalNoOfUsers / no_of_users);
       users = await User.findAll({
         offset,
-        limit: 20,
+        limit: no_of_users,
+
         order: [[sortBy, order]],
       });
     }

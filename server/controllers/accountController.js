@@ -86,7 +86,7 @@ const loginAccount = async (req, res) => {
           id: account.id,
           email: account.email,
           createdAt: account.createdAt,
-          isNew: true,
+          isNew: false,
           token,
         },
         isSuccess: true,

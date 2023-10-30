@@ -26,14 +26,15 @@ export const getUsers = async (
   order,
   createdAt,
   updatedAt,
-  id
+  id,
+  ent_page
 ) => {
   try {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
     const response = await axios.get(
-      `${BASE_URL}/users/listUsers/?email=${email}&page_no=${page_no}&no_of_users=${no_of_users}id=${id}&tags=${tag}&name=${name}&order=DESC&sortBy=tags_excel&createdAt=${createdAt}&updatedAt=${updatedAt}`,
+      `${BASE_URL}/users/listUsers/?email=${email}&page_no=${page_no}&no_of_users=${no_of_users}id=${id}&tags=${tag}&name=${name}&order=DESC&sortBy=tags_excel&createdAt=${createdAt}&updatedAt=${updatedAt}&userNo=${ent_page}`,
       {
         headers,
       }

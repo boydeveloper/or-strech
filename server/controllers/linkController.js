@@ -36,7 +36,17 @@ const createLink = async (req, res) => {
       return res
         .status(400)
         .json({ message: "Body not specified", isSuccess: false });
-    const link = await Link.create(req.body);
+
+    if (Number(req.body.media_type) > 2 || Number(req.body.media_type) < 1)
+      return res.status(400).json({
+        message: "Media type should either be 1 or 2.",
+        isSuccess: false,
+      });
+    const link = await Link.create({
+      name: req.body.name,
+      url: req.body.url,
+      type: Number(req.body.media_type) === 1 ? "video" : "name",
+    });
     return res.status(200).json({ link, isSuccess: true });
   } catch (err) {
     return res.status(500).json({ message: err, isSuccess: false });

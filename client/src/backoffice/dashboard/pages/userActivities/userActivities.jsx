@@ -11,7 +11,7 @@ import { useAuth } from "../../../context/auth";
 function UserActivities() {
   const { user } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(20);
+  const [usersPerPage] = useState(10);
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState(null);
