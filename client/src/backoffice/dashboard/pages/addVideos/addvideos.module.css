@@ -79,6 +79,11 @@
 .inputContainer:not(:last-child) {
   margin-bottom: 2rem;
 }
+.customSelect {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
 
 .customSelect select {
   appearance: none;

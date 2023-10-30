@@ -15,7 +15,9 @@ function UpdateVideos() {
   const [formData, setFormData] = useState({
     name: "",
     url: "",
+    media_type: "2", // Default to "2" (Link)
   });
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -23,14 +25,17 @@ function UpdateVideos() {
       [name]: value,
     });
   };
+
   const fetchVideoDetails = async () => {
     const details = await getLinkDetails(linkName, user?.token);
     console.log(details);
     setFormData({
       name: details?.link?.name,
       url: details?.link?.url,
+      media_type: details?.link?.type === "video" ? "1" : "2",
     });
   };
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -40,7 +45,7 @@ function UpdateVideos() {
         user?.token
       );
       if (updateVideo?.isSuccess === true) {
-        toast.success(`video name with ${linkName} updated`);
+        toast.success(`Video with name ${linkName} updated`);
         navigate("/dashboard/manage-videos");
       } else {
         toast.error(updateVideo?.message);
@@ -53,6 +58,7 @@ function UpdateVideos() {
   useEffect(() => {
     fetchVideoDetails();
   }, [user]);
+
   return (
     <div className={style.updateVideosWrapper}>
       <header>
@@ -79,6 +85,20 @@ function UpdateVideos() {
               onChange={handleInputChange}
             />
             <span>URL</span>
+          </label>
+          <label className={style.inputContainer}>
+            <span>Media Type</span>
+            <div className={style.customSelect}>
+              <select
+                name="media_type"
+                value={formData.media_type}
+                onChange={handleInputChange}
+              >
+                <option value="2">Link</option>
+                <option value="1">Video</option>
+              </select>
+              <span className={style.selectArrow}></span>
+            </div>
           </label>
           <div className={style.addVideosCta}>
             <button onClick={() => navigate("/dashboard/manage-videos")}>

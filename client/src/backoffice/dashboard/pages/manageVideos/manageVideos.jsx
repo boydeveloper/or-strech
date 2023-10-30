@@ -18,10 +18,14 @@ function ManageVideos() {
 
   const getLinks = async () => {
     const links = await getVideoLinks(user?.token);
+    console.log(links);
     if (links?.isSuccess === true) {
       setLinks(links?.links);
     }
   };
+  const videoLinks = links?.filter((link) => link.type === "video");
+  const urlLinks = links?.filter((link) => link.type === "link");
+  console.log(links);
   const handleDeleteVideo = async () => {
     try {
       const deleteV = await deleteVideoLink(selectedVideo, user?.token);
@@ -55,30 +59,64 @@ function ManageVideos() {
       <div className={style.videosBox}>
         {links?.length === 0 ? (
           <div className={style.nouser}>
-            <h1>There are currently No videos at the moment</h1>
+            <h1>There are currently no videos or links at the moment</h1>
           </div>
         ) : (
-          links?.map((link) => (
-            <div className={style.videoBox} key={link.name}>
-              <img src="/assets/imgs/videoimg.jpg" alt="cake" />
-              <div className={style.videoBoxDetails}>
-                <h1>{link.name}</h1>
-                <div className={style.cta}>
-                  <Link to={`/dashboard/manage-videos/${link.name}`}>
-                    <ion-icon name="create"></ion-icon>
-                  </Link>
-                  <button
-                    onClick={() => {
-                      setModal("prompt");
-                      setSelectedVideo(link.name);
-                    }}
-                  >
-                    <ion-icon name="trash-outline"></ion-icon>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))
+          <>
+            {videoLinks?.length > 0 && (
+              <>
+                <h1>Videos</h1>
+                {videoLinks?.map((link) => (
+                  <div className={style.videoBox} key={link.name}>
+                    <img src="/assets/imgs/videoimg.jpg" alt="video" />
+                    <div className={style.videoBoxDetails}>
+                      <h1>{link.name}</h1>
+                      <div className={style.cta}>
+                        <Link to={`/dashboard/manage-videos/${link.name}`}>
+                          <ion-icon name="create"></ion-icon>
+                        </Link>
+                        <button
+                          onClick={() => {
+                            setModal("prompt");
+                            setSelectedVideo(link.name);
+                          }}
+                        >
+                          <ion-icon name="trash-outline"></ion-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+
+            {urlLinks?.length > 0 && (
+              <>
+                <h1>Links</h1>
+                {urlLinks?.map((link) => (
+                  <div className={style.videoBox} key={link.name}>
+                    <img src="/assets/imgs/videoimg.jpg" alt="link" />
+                    <div className={style.videoBoxDetails}>
+                      <h1>{link.name}</h1>
+                      <div className={style.cta}>
+                        <Link to={`/dashboard/manage-videos/${link.name}`}>
+                          <ion-icon name="create"></ion-icon>
+                        </Link>
+                        <button
+                          onClick={() => {
+                            setModal("prompt");
+                            setSelectedVideo(link.name);
+                          }}
+                        >
+                          <ion-icon name="trash-outline"></ion-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+          </>
         )}
       </div>
 

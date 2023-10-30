@@ -11,6 +11,7 @@ function AddVideos() {
   const [formData, setFormData] = useState({
     name: "",
     url: "",
+    media_type: "1",
   });
 
   const handleInputChange = (e) => {
@@ -21,11 +22,20 @@ function AddVideos() {
     });
   };
 
+  const handleUserTypeChange = (e) => {
+    const userTypeValue = e.target.value;
+
+    const mediaTypeValue = userTypeValue === "admin" ? "1" : "2";
+    setFormData({
+      ...formData,
+      media_type: mediaTypeValue,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log(formData);
-      console.log(user.token);
       const addVideo = await addVideoLink(formData, user?.token);
       console.log(addVideo);
       if (addVideo?.isSuccess === true) {
@@ -53,21 +63,37 @@ function AddVideos() {
             <input
               type="text"
               name="name"
+              required
               value={formData.name}
               onChange={handleInputChange}
             />
-
             <span>Media Name</span>
           </label>
           <label className={style.inputContainer}>
             <input
               type="text"
+              required
               name="url"
               value={formData.url}
               onChange={handleInputChange}
             />
             <span>URL</span>
           </label>
+          <label className={style.inputContainer}>
+            <span>User Type</span>
+            <div className={style.customSelect}>
+              <select
+                name="user_type"
+                value={formData.user_type}
+                onChange={handleUserTypeChange}
+              >
+                <option value="2">Video</option>
+                <option value="1">Link</option>
+              </select>
+              <span className={style.selectArrow}></span>
+            </div>
+          </label>
+
           <div className={style.addVideosCta}>
             <button onClick={() => navigate("/dashboard/manage-videos")}>
               Cancel
