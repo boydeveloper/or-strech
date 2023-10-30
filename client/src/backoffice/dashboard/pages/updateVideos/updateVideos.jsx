@@ -15,7 +15,7 @@ function UpdateVideos() {
   const [formData, setFormData] = useState({
     name: "",
     url: "",
-    media_type: "2", // Default to "2" (Link)
+    media_type: "2",
   });
 
   const handleInputChange = (e) => {
