@@ -3,7 +3,7 @@
   align-items: center;
   gap: 30px;
   width: 100%;
-  justify-content: center;
+  justify-content: right;
 }
 .pag__button {
   border-radius: 8px;

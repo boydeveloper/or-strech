@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  unstable_HistoryRouter,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import Table from "../../components/table/table";
 import { getExports, getUsers } from "../../../../Apis/users/userService";
 import Loader from "../../../../components/Loader";
@@ -80,6 +84,8 @@ function Users() {
     }));
   };
   const [selectOptions, setSelectOptions] = useState([]);
+  // const history = useHis();
+  const location = useLocation();
 
   const getStretchers = async () => {
     try {
@@ -143,7 +149,7 @@ function Users() {
   };
   useEffect(() => {
     getStretchers();
-  }, [currentPage, debouncedSearchInput, user]);
+  }, [currentPage, debouncedSearchInput, user, location.pathname]);
 
   useEffect(() => {
     setCurrentPage(1);
