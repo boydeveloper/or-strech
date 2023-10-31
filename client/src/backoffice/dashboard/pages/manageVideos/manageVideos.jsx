@@ -23,8 +23,8 @@ function ManageVideos() {
       setLinks(links?.links);
     }
   };
-  const videoLinks = links?.filter((link) => link.type === "video");
-  const urlLinks = links?.filter((link) => link.type === "link");
+  const videoLinks = links?.filter((link) => link?.type === "video");
+  const urlLinks = links?.filter((link) => link?.type === "link");
   console.log(links);
   const handleDeleteVideo = async () => {
     try {
@@ -67,10 +67,10 @@ function ManageVideos() {
               <>
                 <h1>Videos</h1>
                 {videoLinks?.map((link) => (
-                  <div className={style.videoBox} key={link.name}>
+                  <div className={style.videoBox} key={link?.name}>
                     <img src="/assets/imgs/videoimg.jpg" alt="video" />
                     <div className={style.videoBoxDetails}>
-                      <h1>{link.name}</h1>
+                      <h1>{link?.name}</h1>
                       <div className={style.cta}>
                         <Link to={`/dashboard/manage-videos/${link.name}`}>
                           <ion-icon name="create"></ion-icon>

@@ -4,6 +4,7 @@ import Header from "../components/header/header";
 import alarmSound from "./sounds/alarm_old_20171122.mp3";
 import VideoModal from "./components/videoModal/videoModal";
 import TimerStoppedModal from "./components/timerStoppedModal/TimerStoppedModal";
+import { createEvent } from "../../Apis/event/eventService";
 
 function Timer() {
   const [isActive, setIsActive] = useState(true);
@@ -23,14 +24,29 @@ function Timer() {
   const [intervalTime, setIntervalTime] = useState(30);
   const [isRunning, setIsRunning] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
-
-  const startTimer = () => {
+  const token = sessionStorage.getItem("stretcher_token");
+  const userJSON = sessionStorage.getItem("strecher");
+  const user = JSON.parse(userJSON);
+  const startTimer = async () => {
+    await createEvent(
+      {
+        userId: user?.id,
+        event_type: "PRESSED_START",
+        notes: "i hit the start button",
+      },
+      token
+    );
     setIsRunning(true);
     setIsTimerActive(true);
   };
 
-  const stopTimer = () => {
+  const stopTimer = async () => {
     setIsRunning(false);
+    await createEvent({
+      userId: user?.id,
+      event_type: "PRESSED_STOP",
+      notes: "i hit the stop button",
+    });
   };
 
   const handlePause = () => {
@@ -48,11 +64,16 @@ function Timer() {
     }
   };
 
-  const reset = () => {
+  const reset = async () => {
     setIsRunning(false);
     setIsTimerActive(false);
     setSeconds(0);
     setMinutes(intervalTime);
+    await createEvent({
+      userId: user?.id,
+      event_type: "RESET",
+      notes: "i hit the reset button",
+    });
   };
 
   const [toggleClass, setToggleClass] = useState(true);
@@ -73,13 +94,29 @@ function Timer() {
 
   let audio;
 
-  const playTimerExpiredSound = () => {
+  const playTimerExpiredSound = async () => {
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
     } else {
       audio = new Audio(alarmSound);
+      await createEvent({
+        userId: user?.id,
+        event_type: "FIRED_ALARM",
+        notes: "fired alarm",
+      });
     }
+  };
+  const handleGO = async () => {
+    await createEvent(
+      {
+        userId: user?.id,
+        event_type: "PRESSED_GO",
+        notes: " i pressed the go button",
+      },
+      token
+    );
+    setModal("video");
   };
   useEffect(() => {
     let interval;
@@ -92,7 +129,6 @@ function Timer() {
           } else {
             setIsTimerExpired(true);
 
-            console.log("hiii");
             setIsRunning(false);
             playTimerExpiredSound();
           }
@@ -119,7 +155,7 @@ function Timer() {
     setDropdownVisible(false);
   };
 
-  const handleSnooze = () => {
+  const handleSnooze = async () => {
     setIsRunning(false);
     setIsTimerActive(false);
     setMinutes(selectedReminder);
@@ -127,6 +163,11 @@ function Timer() {
     setToggleClass(!toggleClass);
     setSeconds(0);
     setSnoozeClicked(true);
+    await createEvent({
+      userId: user?.id,
+      event_type: "SNOOZE",
+      notes: "i hit the snooze button",
+    });
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
@@ -266,10 +307,7 @@ function Timer() {
             stretching <br />
             <span>Now!</span>
           </h1>
-          <button
-            className={style.go_button}
-            onClick={() => setModal("video")}
-          ></button>
+          <button className={style.go_button} onClick={handleGO}></button>
         </div>
         <button onClick={handlePause} className={style.stop_btn}>
           STOP/PAUSE
@@ -282,11 +320,23 @@ function Timer() {
               ? "https://player.vimeo.com/video/129791454?color=3967c1&portrait=0&title=0&autoplay=1&badge=0&byline=0&api=1&player_id=stretchvimeoplayer"
               : "https://player.vimeo.com/video/129791455?color=3967c1&portrait=0&title=0&autoplay=1&badge=0&byline=0&api=1&player_id=stretchvimeoplayer"
           }
-          cancel={() => setModal("")}
+          cancel={async () => {
+            setModal("");
+
+            await createEvent(
+              {
+                userId: loggedInUser?.account.id,
+                event_type: "DONE_STRETCHING",
+                notes: "done stretching",
+              },
+              token
+            );
+          }}
         />
       )}
       {modal === "pause/stop" && (
         <TimerStoppedModal
+          stopTimer={stopTimer}
           cancel={() => {
             setModal("");
             setIsRunning(true);

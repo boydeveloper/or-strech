@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import style from "./timerstoppedmodal.module.css";
-function TimerStoppedModal({ cancel }) {
+function TimerStoppedModal({ cancel, stopTimer, resume }) {
   const popAnimation = {
     hidden: {
       scale: 0.7,
@@ -34,7 +34,7 @@ function TimerStoppedModal({ cancel }) {
         </header>
         <p>Thank you for stretching with OR-Stretch</p>
         <div className={style.cta}>
-          <button className={style.surgical_button}>
+          <button className={style.surgical_button} onClick={stopTimer}>
             <span className={style.button_icon} onClick={cancel}></span>
             Surgical <br /> case over
           </button>

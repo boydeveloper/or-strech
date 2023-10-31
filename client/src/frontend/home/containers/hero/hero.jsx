@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { authenticateUser } from "../../../../Apis/auth/loginService";
 import { AgreementModal } from "../../../components/index";
 import style from "./hero.module.css";
+import { createEvent } from "../../../../Apis/event/eventService";
 
 function Hero() {
   const [email, setEmail] = useState("");
@@ -35,6 +36,14 @@ function Hero() {
       sessionStorage.setItem("strecher", parse);
       sessionStorage.setItem("stretcher_token", token);
       if (loggedInUser?.isSuccess === true) {
+        await createEvent(
+          {
+            userId: loggedInUser?.account.id,
+            event_type: "ENTERED_CSTRETCH",
+            notes: "entered cstretch",
+          },
+          token
+        );
         setLoading(false);
         if (loggedInUser?.account?.isNew === true) {
           setLoading(false);
