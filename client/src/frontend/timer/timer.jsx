@@ -325,7 +325,7 @@ function Timer() {
 
             await createEvent(
               {
-                userId: loggedInUser?.account.id,
+                userId: user.id,
                 event_type: "DONE_STRETCHING",
                 notes: "done stretching",
               },
