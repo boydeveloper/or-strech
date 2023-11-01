@@ -65,7 +65,7 @@ function ManageVideos() {
           <>
             {videoLinks?.length > 0 && (
               <>
-                <h1>Videos</h1>
+                <h1 className={style.mediaHeader}>Videos</h1>
                 {videoLinks?.map((link) => (
                   <div className={style.videoBox} key={link?.name}>
                     <img src="/assets/imgs/videoimg.jpg" alt="video" />
@@ -92,7 +92,7 @@ function ManageVideos() {
 
             {urlLinks?.length > 0 && (
               <>
-                <h1>Links</h1>
+                <h1 className={style.mediaHeader}>Links</h1>
                 {urlLinks?.map((link) => (
                   <div className={style.videoBox} key={link.name}>
                     <img src="/assets/imgs/videoimg.jpg" alt="link" />

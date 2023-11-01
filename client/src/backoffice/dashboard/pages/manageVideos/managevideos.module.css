@@ -62,9 +62,11 @@
   color: #212529;
   text-transform: capitalize;
 }
-.ManageVideosWrapper h1 {
+.mediaHeader {
   font-size: 2.5rem;
   font-weight: 500;
+  color: #00365a;
+  text-transform: uppercase;
   text-align: capitalize;
 }
 .videoBoxDetails > span {

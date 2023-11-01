@@ -49,7 +49,9 @@ const getPreviousLogins = async (req, res) => {
   try {
     const login_events = await Event.findAll({
       where: { event_type: "LOGIN_ADMIN" || "LOGIN_NORMALUSER" },
-      limit: 20,
+      order: [["createdAt", "DESC"]],
+
+      limit: 10,
     });
 
     return res.status(200).json({ login_events, isSuccess: true });

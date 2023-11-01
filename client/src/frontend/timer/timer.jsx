@@ -5,6 +5,7 @@ import alarmSound from "./sounds/alarm_old_20171122.mp3";
 import VideoModal from "./components/videoModal/videoModal";
 import TimerStoppedModal from "./components/timerStoppedModal/TimerStoppedModal";
 import { createEvent } from "../../Apis/event/eventService";
+import { getVideoLinks } from "../../Apis/video/videoService";
 
 function Timer() {
   const [isActive, setIsActive] = useState(true);
@@ -24,6 +25,7 @@ function Timer() {
   const [intervalTime, setIntervalTime] = useState(30);
   const [isRunning, setIsRunning] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
+  const [links, setLinks] = useState(null);
   const token = sessionStorage.getItem("stretcher_token");
   const userJSON = sessionStorage.getItem("strecher");
   const user = JSON.parse(userJSON);
@@ -107,6 +109,20 @@ function Timer() {
       });
     }
   };
+  const getLinks = async () => {
+    const links = await getVideoLinks(user?.token);
+    console.log(links);
+    if (links?.isSuccess === true) {
+      setLinks(links?.links);
+    }
+  };
+  const seatedVideo = links?.find(
+    (video) => video?.name?.toLowerCase() === "seated"
+  );
+  const standingVideo = links?.find(
+    (video) => video?.name?.toLowerCase() === "standing"
+  );
+
   const handleGO = async () => {
     await createEvent(
       {
@@ -118,7 +134,9 @@ function Timer() {
     );
     setModal("video");
   };
+  console.log(links);
   useEffect(() => {
+    getLinks();
     let interval;
     if (isRunning && (minutes > 0 || seconds > 0)) {
       interval = setInterval(() => {
@@ -315,11 +333,7 @@ function Timer() {
       </div>
       {modal === "video" && (
         <VideoModal
-          url={
-            isActive
-              ? "https://player.vimeo.com/video/129791454?color=3967c1&portrait=0&title=0&autoplay=1&badge=0&byline=0&api=1&player_id=stretchvimeoplayer"
-              : "https://player.vimeo.com/video/129791455?color=3967c1&portrait=0&title=0&autoplay=1&badge=0&byline=0&api=1&player_id=stretchvimeoplayer"
-          }
+          url={!isActive ? standingVideo.url : seatedVideo.url}
           cancel={async () => {
             setModal("");
 

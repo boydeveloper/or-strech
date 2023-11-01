@@ -98,7 +98,7 @@ function AddVideos() {
             <button onClick={() => navigate("/dashboard/manage-videos")}>
               Cancel
             </button>
-            <button type="submit">Add user</button>
+            <button type="submit">Add Media</button>
           </div>
         </form>
       </div>

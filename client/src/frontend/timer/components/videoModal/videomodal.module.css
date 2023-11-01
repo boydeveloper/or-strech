@@ -23,7 +23,7 @@
   z-index: 10;
 }
 .modal {
-  height: 705px;
+  height: 565px;
   width: 100%;
   background-color: #fff;
   z-index: 12;
@@ -34,9 +34,13 @@
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  width: 880px;
+  width: 730px;
   padding: 2rem 1.2rem;
   gap: 2.5rem;
+  border: 3px solid #003da5;
+}
+.modal::-webkit-scrollbar {
+  display: none;
 }
 
 .modal > button {

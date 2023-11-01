@@ -43,12 +43,15 @@ function Overview() {
         "",
         "",
         "",
-        ""
+        "",
+        "",
+        10
       );
 
       const tag = await getAllTags(user?.token);
       setTotalTags(tag?.totalNoOfTags);
       const loggedInActivities = await getRecentLogin(user?.token);
+      console.log(loggedInActivities);
       const login = loggedInActivities?.login_events?.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
@@ -105,7 +108,12 @@ function Overview() {
         </div>
         <div className={style.tableWrapper}>
           <h1>Recent User Sign-Ins</h1>
-          <Table column={tableColumn} data={logins} />
+          <Table
+            column={tableColumn}
+            data={logins?.sort(
+              (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            )}
+          />
         </div>
       </main>
     </div>

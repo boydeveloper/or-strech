@@ -49,7 +49,7 @@ function Login() {
       console.log(loginAdmin);
       if (loginAdmin?.isSuccess === true) {
         await login(loginAdmin.account);
-        await createEvent(
+        const event = await createEvent(
           {
             userId: loginAdmin?.account.id,
             event_type: "LOGIN_ADMIN",
@@ -57,7 +57,7 @@ function Login() {
           },
           loginAdmin.account.token
         );
-
+        console.log(event);
         setLoading(false);
         toast.success("Login successful");
         navigate("/dashboard/overview");

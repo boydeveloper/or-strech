@@ -66,7 +66,12 @@ function UserActivities() {
           </div>
         ) : (
           <>
-            <Table column={tableColumn && tableColumn} data={events} />
+            <Table
+              column={tableColumn && tableColumn}
+              data={events?.sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+              )}
+            />
           </>
         )}
         <div className={style.paginationButtons}>
