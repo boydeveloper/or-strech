@@ -6,13 +6,18 @@ import VideoModal from "./components/videoModal/videoModal";
 import TimerStoppedModal from "./components/timerStoppedModal/TimerStoppedModal";
 import { createEvent } from "../../Apis/event/eventService";
 import { getVideoLinks } from "../../Apis/video/videoService";
-
+import { useLocation } from "react-router-dom";
 function Timer() {
   const [isActive, setIsActive] = useState(true);
   const [modal, setModal] = useState("");
   const toggleInterval = () => {
     setIsActive(!isActive);
   };
+  const location = useLocation();
+  // const history = useHistory();
+
+  const queryParams = new URLSearchParams(location.search);
+  const includeShortCircuit = queryParams.get("include-short-circuit");
   const [isTimerActive, setIsTimerActive] = useState(false);
   const toggleActive = () => {
     setIsTimerActive(!isTimerActive);
@@ -24,11 +29,14 @@ function Timer() {
   const [snoozeClicked, setSnoozeClicked] = useState(false);
   const [intervalTime, setIntervalTime] = useState(30);
   const [isRunning, setIsRunning] = useState(false);
-  const [disableButton, setDisableButton] = useState(false);
+
   const [links, setLinks] = useState(null);
   const token = sessionStorage.getItem("stretcher_token");
   const userJSON = sessionStorage.getItem("strecher");
+  const [demo, setDemo] = useState(false);
+
   const user = JSON.parse(userJSON);
+
   const startTimer = async () => {
     await createEvent(
       {
@@ -102,6 +110,7 @@ function Timer() {
       audio.currentTime = 0;
     } else {
       audio = new Audio(alarmSound);
+      await audio.play();
       await createEvent({
         userId: user?.id,
         event_type: "FIRED_ALARM",
@@ -134,7 +143,7 @@ function Timer() {
     );
     setModal("video");
   };
-  console.log(links);
+
   useEffect(() => {
     getLinks();
     let interval;
@@ -172,6 +181,12 @@ function Timer() {
     setSelectedReminder(time);
     setDropdownVisible(false);
   };
+  const handleDemoTimerClick = () => {
+    if (isRunning) {
+      setMinutes(0);
+      setSeconds(5);
+    }
+  };
 
   const handleSnooze = async () => {
     setIsRunning(false);
@@ -187,10 +202,28 @@ function Timer() {
       notes: "i hit the snooze button",
     });
     if (audio) {
+      console.log("Pausing audio");
       audio.pause();
       audio.currentTime = 0;
+    } else {
+      console.log("Audio is not defined");
     }
   };
+  useEffect(() => {
+    if (includeShortCircuit === "true") {
+      setDemo(true);
+    } else {
+      setDemo(false);
+    }
+  }, [includeShortCircuit]);
+  useEffect(() => {
+    if (!audio) {
+      audio = new Audio(alarmSound);
+      audio.addEventListener("ended", () => {
+        audio.currentTime = 0; // Reset the audio to the beginning when it ends
+      });
+    }
+  }, []);
   return (
     <div className={style.timer__overview}>
       <Header />
@@ -268,6 +301,14 @@ function Timer() {
                   <span>Seconds</span>
                 </div>
               </div>
+              {demo && (
+                <button
+                  onClick={handleDemoTimerClick}
+                  className={style.demoButton}
+                >
+                  5 sec
+                </button>
+              )}
             </div>
             <div className={`${style.timer_options} ${activeClass}`}>
               {isRunning && (
