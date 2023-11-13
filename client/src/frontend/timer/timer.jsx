@@ -7,6 +7,7 @@ import TimerStoppedModal from "./components/timerStoppedModal/TimerStoppedModal"
 import { createEvent } from "../../Apis/event/eventService";
 import { getVideoLinks } from "../../Apis/video/videoService";
 import { useLocation } from "react-router-dom";
+import { Navbar } from "../components";
 function Timer() {
   const [isActive, setIsActive] = useState(true);
   const [modal, setModal] = useState("");
@@ -38,25 +39,25 @@ function Timer() {
   const user = JSON.parse(userJSON);
 
   const startTimer = async () => {
-    await createEvent(
-      {
-        userId: user?.id,
-        event_type: "PRESSED_START",
-        notes: "i hit the start button",
-      },
-      token
-    );
+    // await createEvent(
+    //   {
+    //     userId: user?.id,
+    //     event_type: "PRESSED_START",
+    //     notes: "i hit the start button",
+    //   },
+    //   token
+    // );
     setIsRunning(true);
     setIsTimerActive(true);
   };
 
   const stopTimer = async () => {
     setIsRunning(false);
-    await createEvent({
-      userId: user?.id,
-      event_type: "PRESSED_STOP",
-      notes: "i hit the stop button",
-    });
+    // await createEvent({
+    //   userId: user?.id,
+    //   event_type: "PRESSED_STOP",
+    //   notes: "i hit the stop button",
+    // });
   };
 
   const handlePause = () => {
@@ -79,11 +80,11 @@ function Timer() {
     setIsTimerActive(false);
     setSeconds(0);
     setMinutes(intervalTime);
-    await createEvent({
-      userId: user?.id,
-      event_type: "RESET",
-      notes: "i hit the reset button",
-    });
+    // await createEvent({
+    //   userId: user?.id,
+    //   event_type: "RESET",
+    //   notes: "i hit the reset button",
+    // });
   };
 
   const [toggleClass, setToggleClass] = useState(true);
@@ -111,11 +112,11 @@ function Timer() {
     } else {
       audio = new Audio(alarmSound);
       await audio.play();
-      await createEvent({
-        userId: user?.id,
-        event_type: "FIRED_ALARM",
-        notes: "fired alarm",
-      });
+      // await createEvent({
+      //   userId: user?.id,
+      //   event_type: "FIRED_ALARM",
+      //   notes: "fired alarm",
+      // });
     }
   };
   const getLinks = async () => {
@@ -133,14 +134,14 @@ function Timer() {
   );
 
   const handleGO = async () => {
-    await createEvent(
-      {
-        userId: user?.id,
-        event_type: "PRESSED_GO",
-        notes: " i pressed the go button",
-      },
-      token
-    );
+    // await createEvent(
+    //   {
+    //     userId: user?.id,
+    //     event_type: "PRESSED_GO",
+    //     notes: " i pressed the go button",
+    //   },
+    //   token
+    // );
     setModal("video");
   };
 
@@ -226,7 +227,8 @@ function Timer() {
   }, []);
   return (
     <div className={style.timer__overview}>
-      <Header />
+      <Navbar />
+      {/* <Header /> */}
       <div className={style.timer__wrapper}>
         <div className={style.timer}>
           <div className={style.reminder_interval}>

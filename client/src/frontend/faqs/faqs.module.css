@@ -1,0 +1,133 @@
+.faqsWrapper {
+  padding: 6rem 0;
+}
+
+.faqsWrapper > header {
+  text-align: center;
+  margin-bottom: 20px;
+  /* margin-bottom: 64px; */
+}
+
+.faqsDropdown {
+  /* padding: 0 2rem; */
+  margin-top: 2rem;
+  border: 0.1rem solid #0b5cd5;
+  color: #0b5cd5;
+  font-size: 1.6rem;
+  font-weight: 500;
+  position: relative;
+  line-height: 26px;
+  border-radius: 4px;
+  max-width: 215px;
+  margin: 0 auto;
+}
+.currentFaq {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  justify-content: center;
+}
+.currentFaq > button {
+  color: #0b5cd5;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+}
+.dropdown {
+  background: #fff;
+  border: 0.1rem solid #0b5cd5;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  left: 0%;
+  border-radius: 4px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  top: 101%;
+  margin: 0 auto;
+  font-size: 1.4rem;
+  text-align: center;
+  flex-direction: column;
+}
+.dropdown > span {
+  font-size: 1.4rem;
+  letter-spacing: -0.9px;
+  cursor: pointer;
+}
+.dropdown > span:not(:last-child) {
+  border-bottom: solid 0.1rem #0b5cd5;
+}
+.dropdown > span:hover {
+  background: #0b5cd5;
+  color: #fff;
+}
+.faqsWrapper {
+}
+.faqsWrapper > header > h1 {
+  color: #0b5cd5;
+  text-align: center;
+  font-size: 4.2rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 54px;
+  letter-spacing: -0.4px;
+}
+.faqsWrapper > header > p {
+  max-width: 652px;
+  color: #0b5cd5;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+}
+.faqs {
+  display: flex;
+  max-width: 94rem;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 64px;
+  /* height: 100vh; */
+  gap: 64px;
+}
+.faqs > div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.2rem;
+  border-bottom: 0.1rem solid #0b5cd5;
+}
+
+.question > h1 {
+  color: #0b5cd5;
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+}
+.question > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.answer {
+  color: #0b5cd5;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.expanded .answer {
+  max-height: 100%;
+  padding: 16px 0;
+}

@@ -1,10 +1,74 @@
+import {
+  BellIcon,
+  CustomStrechesIcon,
+  Offfline,
+  Print,
+  Rise,
+  SwapVert,
+} from "../../../utils/svg";
 import style from "./overview.module.css";
 
 function Overview() {
   return (
-    <section className={style.overviews}>
-      <h1> Explore the Benefits of OR-Stretch</h1>
-      <div className={`flex__container ${style.overviewWrapper}`}>
+    <section className={style.features__wrapper}>
+      <header>
+        <span>FULL CONTROL</span>
+        <h1>Packed with Innovative Features</h1>
+      </header>
+      <div className={style.features}>
+        <div className={style.feature}>
+          <div className={style.feature_header}>
+            <div>
+              <CustomStrechesIcon />
+            </div>
+            <h1>Customized Stretches</h1>
+          </div>
+          <p>
+            Tailor the stretches to individual surgeon's needs, allowing for
+            personalized routines that address specific strain points.
+          </p>
+        </div>
+        <div className={style.feature}>
+          <div className={style.feature_header}>
+            <div>
+              <Rise />
+            </div>
+            <h1>Progress Tracking</h1>
+          </div>
+          <p>
+            Monitor your stretching progress over time with built-in tracking
+            features, helping you maintain a healthy routine and improve your
+            well-being.
+          </p>
+        </div>
+        <div className={style.feature}>
+          <div className={style.feature_header}>
+            <div>
+              <BellIcon />
+            </div>
+            <h1>Reminder Notifications</h1>
+          </div>
+          <p>
+            Receive timely reminders to perform your interoperative stretches,
+            ensuring you don't miss any sessions and maintain your posture
+            during surgeries.
+          </p>
+        </div>
+        <div className={style.feature}>
+          <div className={style.feature_header}>
+            <div>
+              <Offfline />
+            </div>
+            <h1>Offline Access</h1>
+          </div>
+          <p>
+            Access your stretches even without an internet connection, making it
+            convenient for use in operating rooms where connectivity might be
+            limited.
+          </p>
+        </div>
+      </div>
+      {/* <div className={`flex__container ${style.overviewWrapper}`}>
         <div>
           <img
             className="img-responsive"
@@ -57,7 +121,7 @@ function Overview() {
             stretches. Your patients and your body will thank you.
           </p>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

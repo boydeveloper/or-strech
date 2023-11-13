@@ -1,0 +1,145 @@
+.instructionsWrapper {
+  /* height: 100vh; */
+  padding: 4rem 3.2rem;
+}
+
+.instructionsWrapper > header {
+}
+.instructionsWrapper > header > span {
+  text-transform: uppercase;
+}
+.section_one {
+  margin-bottom: 2.5rem;
+}
+.section_one > header > span {
+  text-transform: uppercase;
+  color: #0b5cd5;
+  /* text-align: center; */
+  font-size: 16px;
+  font-weight: 600;
+}
+.section_one > header > h1 {
+  color: #0b5cd5;
+  font-size: 4.2rem;
+  text-decoration: underline;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.4px;
+}
+
+.section_one > p {
+  color: #0b5cd5;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.7px;
+}
+
+.section_two {
+  margin-bottom: 2.5rem;
+}
+
+.section_two > h1 {
+  color: #0b5cd5;
+  text-transform: capitalize;
+  font-size: 2.8rem;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+.section_two > p {
+  color: #0b5cd5;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.7px;
+  margin-bottom: 1.5rem;
+}
+.section_two__steps > h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0b5cd5;
+}
+
+.section_two__steps .steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 1rem;
+}
+.section_two__steps .steps > li {
+  font-size: 14px;
+  color: #0b5cd5;
+  letter-spacing: -0.9px;
+}
+.section_three {
+  margin-bottom: 2.5rem;
+}
+.section_three > h1 {
+  color: #0b5cd5;
+  text-transform: capitalize;
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  /* text-transform: uppercase; */
+}
+
+.section_three > p {
+  color: #0b5cd5;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.7px;
+}
+.section_three > p:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.section_four {
+  margin-bottom: 2.5rem;
+}
+.section_four > h1 {
+  color: #0b5cd5;
+  text-transform: capitalize;
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  /* text-transform: uppercase; */
+}
+
+.section_four > p {
+  color: #0b5cd5;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.7px;
+}
+.section_four > p:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+.section_five > h1 {
+  color: #0b5cd5;
+  text-transform: capitalize;
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+
+.section_five > p {
+  color: #0b5cd5;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.7px;
+}
+.section_five > p:not(:last-child) {
+  margin-bottom: 1.5rem;
+}

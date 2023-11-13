@@ -4,6 +4,7 @@ import { authenticateUser } from "../../../../Apis/auth/loginService";
 import { AgreementModal } from "../../../components/index";
 import style from "./hero.module.css";
 import { createEvent } from "../../../../Apis/event/eventService";
+import LoginModal from "./components/loginModal";
 
 function Hero() {
   const [email, setEmail] = useState("");
@@ -21,9 +22,12 @@ function Hero() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-  const closeAgreementModal = () => {
+  const closeModal = () => {
     setModal("");
   };
+  const userJSON = sessionStorage?.getItem("strecher");
+  const user = JSON?.parse(userJSON);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -36,20 +40,21 @@ function Hero() {
       sessionStorage.setItem("strecher", parse);
       sessionStorage.setItem("stretcher_token", token);
       if (loggedInUser?.isSuccess === true) {
-        await createEvent(
-          {
-            userId: loggedInUser?.account.id,
-            event_type: "ENTERED_CSTRETCH",
-            notes: "entered cstretch",
-          },
-          token
-        );
+        // await createEvent(
+        //   {
+        //     userId: loggedInUser?.account?.id,
+        //     event_type: "ENTERED_CSTRETCH",
+        //     notes: "entered cstretch",
+        //   },
+        //   token
+        // );
         setLoading(false);
         if (loggedInUser?.account?.isNew === true) {
           setLoading(false);
           setModal("agreeModal");
-        } else {
+        } else if (loggedInUser?.account?.isNew === false) {
           setLoading(false);
+          console.log("/hjffffff");
           navigate("/stretch");
         }
       } else {
@@ -66,7 +71,21 @@ function Hero() {
     <>
       <section className="container">
         <div className={style.hero_wrapper}>
-          <div className={style.hero_wrapper_textbox}>
+          <h1>
+            {" "}
+            Surgeon.Designed. <br /> Interoperative Stretches.
+          </h1>
+          <p>
+            The stretches aim to counteract the effects of interoperative
+            strains on the surgeon's position and are performed without breaking
+            a scrub💪🏾
+          </p>
+          <button
+            onClick={() => (user ? navigate("/stretch") : setModal("login"))}
+          >
+            Start Stretching
+          </button>
+          {/* <div className={style.hero_wrapper_textbox}>
             <h1>
               Surgeon Designed interoperative <strong>Stretches</strong>
             </h1>
@@ -90,10 +109,20 @@ function Hero() {
           </div>
           <div className={style.hero_wrapper_imgbox}>
             <img src="/assets/imgs/s.png" alt="hero img" />
-          </div>
+          </div> */}
         </div>
       </section>
-      {modal === "agreeModal" && <AgreementModal close={closeAgreementModal} />}
+      {modal === "login" && (
+        <LoginModal
+          loading={loading}
+          close={closeModal}
+          submit={handleSubmit}
+          value={email}
+          emailChange={handleInputEmailChange}
+        />
+      )}
+
+      {modal === "agreeModal" && <AgreementModal close={closeModal} />}
     </>
   );
 }

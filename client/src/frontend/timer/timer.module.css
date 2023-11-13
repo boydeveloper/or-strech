@@ -1,5 +1,5 @@
 .timer__overview {
-  min-height: 100vh;
+  height: 100%;
   background: rgb(235, 239, 240);
 }
 .timer__wrapper {
@@ -9,6 +9,8 @@
   width: 100%;
   max-width: 50rem;
   margin: 0 auto;
+  height: 100vh;
+  margin-top: 2rem;
 }
 .timer {
   background-color: #3461b4;

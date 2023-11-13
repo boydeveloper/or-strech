@@ -18,7 +18,7 @@ function ManageTags() {
   const [tags, setTags] = useState(null);
   const [tagToBeDelelted, setTagToBeDeleted] = useState("");
   const [loading, setLoading] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState(" ");
   const [modal, setModal] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -31,9 +31,11 @@ function ManageTags() {
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
   ];
+  console.log(user);
   const fetchTags = async () => {
     setLoading(true);
     const allTags = await getTags(1, searchInput, user?.token);
+    console.log(allTags);
     setLoading(false);
     const sortTagsByRecent = allTags.tags.sort(
       (a, b) => new Date(b?.createdAt) - new Date(a?.createdAt)
@@ -106,6 +108,7 @@ function ManageTags() {
       throw error;
     }
   };
+  console.log(tags);
 
   return (
     <div className={style.manageTagsWrapper}>

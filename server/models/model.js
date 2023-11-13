@@ -23,9 +23,12 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.accounts = require("./accountModel.js")(sequelize, DataTypes);
-db.users = require("./userModel.js")(sequelize, DataTypes);
-db.tags = require("./tagModel.js")(sequelize, DataTypes);
-db.events = require("./eventModel.js")(sequelize, DataTypes);
-db.links = require("./linkModel.js")(sequelize, DataTypes);
+db.accounts = require("./account.js")(sequelize, DataTypes);
+db.users = require("./user.js")(sequelize, DataTypes);
+db.tags = require("./tag.js")(sequelize, DataTypes);
+db.events = require("./event.js")(sequelize, DataTypes);
+db.links = require("./link.js")(sequelize, DataTypes);
+db.baseline_survey = require("./baseline_survey.js")(sequelize, DataTypes);
+db.endofday_survey = require("./endofday_survey.js")(sequelize, DataTypes);
+db.user_tags = require("./user_tags.js")(sequelize, DataTypes);
 module.exports = db;

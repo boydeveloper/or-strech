@@ -1,0 +1,77 @@
+.listOfStrechesWrapper {
+  padding: 3.2rem;
+}
+.listOfStrechesWrapper > header {
+  padding-top: 4.8rem;
+}
+.listOfStrechesWrapper > header > h1 {
+  font-size: 4.2rem;
+  /* text-align: center; */
+  color: #0b5cd5;
+}
+
+.listSummary {
+  /* text-align: center; */
+  font-size: 18px;
+  color: #0b5cd5;
+  letter-spacing: -0.9px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.excercises {
+  padding-top: 4.8rem;
+  display: flex;
+  flex-direction: column;
+  padding: 4.8rem 0;
+  /* gap: 4.8rem; */
+}
+
+.excercise {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 3.4rem;
+  /* align-items: center; */
+}
+.excercise:not(:last-child) {
+  margin-bottom: 10rem;
+}
+.excercise .textbox {
+  position: sticky;
+  width: 50%;
+  top: 0;
+  padding-top: 15rem;
+  height: 100%;
+}
+.excercise .textbox > h1 {
+  color: #0b5cd5;
+  font-size: 3.2rem;
+  margin-bottom: 2.5rem;
+}
+.excercise .textbox .procedures {
+  font-size: 1.6rem;
+  color: #0b5cd5;
+  letter-spacing: -0.9px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.excercise .textbox .procedures > li > a {
+  color: #000;
+  display: inline-block;
+  line-height: 28px;
+  font-size: 1.4rem;
+}
+.img_box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+}
+.img_box > div {
+  background: #dee2e6;
+  height: 250px;
+  width: 100%;
+}

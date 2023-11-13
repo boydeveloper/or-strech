@@ -1,0 +1,125 @@
+.naviagtion_Wrapper {
+  border-bottom: 0.1rem solid #094bac;
+  padding: 1rem 3.2rem;
+  background: #fff;
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.naviagtion_links {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+  padding: 2.3rem 0;
+}
+.naviagtion_links > a:link,
+.naviagtion_links > a:visited {
+  text-decoration: none;
+  color: #094bac;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 24px;
+}
+.navigation > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.profile {
+  position: relative;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile > img {
+  height: 50px;
+  width: 50px;
+  border: solid 2px #00365a;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.profile > span {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.profile > p {
+  color: #094bac;
+}
+
+.link:link,
+.link:visited {
+  margin-left: auto;
+  text-decoration: none;
+  font-size: 20px;
+  color: #212529;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-left: auto;
+  letter-spacing: -0.9px;
+  text-decoration: underline;
+  transition: all 0.3s;
+  border-right: solid 2px #094bac;
+  padding-right: 10px;
+}
+.link:active,
+.link:hover {
+  color: #00365a;
+}
+.dropdown {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  padding: 1.5rem;
+  justify-content: center;
+  border-radius: 8px;
+  border: 0.1rem solid #094bac;
+  background: #fff;
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15); */
+  text-transform: none;
+  text-decoration: none;
+  padding-bottom: 2rem;
+  display: none;
+}
+.dropdown > a:link,
+.dropdown > a:visited {
+  text-decoration: none;
+  white-space: nowrap;
+  color: #094bac;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;
+  letter-spacing: -0.9px;
+  font-size: 1.6rem;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.dropdown span {
+  color: #e62c2c;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 8px;
+  font-weight: 400;
+  letter-spacing: -0.9px;
+  padding: 0.5rem;
+  font-size: 1.6rem;
+}
+.dropdown span:hover,
+.dropdown > a:hover {
+  background-color: #fafafa;
+  cursor: pointer;
+}
+.profile:hover .dropdown {
+  display: flex;
+}

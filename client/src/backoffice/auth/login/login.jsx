@@ -49,15 +49,15 @@ function Login() {
       console.log(loginAdmin);
       if (loginAdmin?.isSuccess === true) {
         await login(loginAdmin.account);
-        const event = await createEvent(
-          {
-            userId: loginAdmin?.account.id,
-            event_type: "LOGIN_ADMIN",
-            notes: "log in by admin",
-          },
-          loginAdmin.account.token
-        );
-        console.log(event);
+        // const event = await createEvent(
+        //   {
+        //     userId: loginAdmin?.account.id,
+        //     event_type: "LOGIN_ADMIN",
+        //     notes: "log in by admin",
+        //   },
+        //   loginAdmin.account.token
+        // );
+        // console.log(event);
         setLoading(false);
         toast.success("Login successful");
         navigate("/dashboard/overview");
@@ -66,18 +66,19 @@ function Login() {
         toast.error("Invalid credentials");
       }
     } catch (error) {
-      console.log(error);
-      if (error.response.data.message.name === "SequelizeDatabaseError") {
-        toast.error("sequelize error");
-        setLoading(false);
-        throw new Error("sequelize error");
-      }
-
-      console.error("An error occurred:", error);
-      toast.error(
-        error.response ? error.response.data.message : "An error occurred"
-      );
       setLoading(false);
+      console.log(error);
+
+      // if (error.response.data.message.name === "SequelizeDatabaseError") {
+      //   toast.error("sequelize error");
+      //   setLoading(false);
+      //   throw new Error("sequelize error");
+      // }
+
+      // console.error("An error occurred:", error);
+      // toast.error(
+      //   error.response ? error.response.data.message : "An error occurred"
+      // );
     }
   };
 

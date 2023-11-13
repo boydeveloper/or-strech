@@ -17,11 +17,15 @@ import {
   UserActivities,
   UpdateVideos,
 } from "./backoffice/dashboard/pages/index";
+import { AboutPage } from "./frontend/index";
 
 import "./App.css";
 import RequireAuth from "./backoffice/auth/utils/requireAuth";
 import { AuthProvider } from "./backoffice/context/auth";
 import StretcherProfile from "./frontend/profile/StretcherProfile";
+import HowToStretch from "./frontend/instructions/HowToStretch";
+import Stretches from "./frontend/stretches/Stretches";
+import Faqs from "./frontend/faqs/Faqs";
 function App() {
   return (
     <AuthProvider>
@@ -41,8 +45,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/backoffice/login" element={<Login />} />
           <Route path="/stretch" element={<Timer />} />
+          {/* <Route path="/about" element={<AboutPage />} /> */}
           <Route path="/profile" element={<StretcherProfile />} />
+          <Route path="/how-to-stretch" element={<Stretches />} />
+          <Route path="/faqs" element={<Faqs />} />
           {/* <Route element={<RequireAuth />}> */}
+          <Route path="/about" element={<HowToStretch />} />
           <Route path="dashboard" element={<Dashboard />}>
             <Route path="users" element={<Users />} />
             <Route path="users-activities" element={<UserActivities />} />
@@ -56,6 +64,7 @@ function App() {
             <Route path="manage-videos" element={<ManageVideos />} />
             <Route path="manage-tags/:name" element={<TagDetails />} />
             <Route path="profile" element={<Profile />} />
+            {/* <Route path="profile" element={<Profile />} /> */}
           </Route>
           {/* </Route> */}
         </Routes>

@@ -30,6 +30,7 @@ export const getTags = async (page_no, searchTerm, token) => {
 
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

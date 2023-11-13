@@ -1,5 +1,7 @@
 .footerWrapper {
-  border-top: solid 1px #ccc;
+  /* background: #0B5CD5; */
+  border-top: solid 1px #0b5cd5;
+  background: #e6f0ff;
   /* border-top: solid 1px #ccc; */
 }
 .footer {
@@ -24,7 +26,8 @@
 .footerMainLinks > a:visited {
   text-decoration: none;
   font-size: 1.6rem;
-  color: #212529;
+  color: #0b5cd5;
+  /* color: #212529; */
   letter-spacing: -0.9px;
 }
 .footerMainLinks > a:hover,
@@ -52,7 +55,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
+  color: #0b5cd5;
   height: 45px;
   width: 45px;
   font-size: 2rem;
@@ -61,13 +64,14 @@
 .footer__socials > a:hover,
 .footer__socials > a:active {
   background: #60afef;
+  color: #fff;
 }
 
 .legalLinks > a:link,
 .legalLinks > a:visited {
   text-decoration: none;
   font-size: 1.6rem;
-  color: #212529;
+  color: #0b5cd5;
 
   transition: 0.3s ease;
   letter-spacing: -0.9px;

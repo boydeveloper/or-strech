@@ -95,7 +95,7 @@ function ManageVideos() {
                 <h1 className={style.mediaHeader}>Links</h1>
                 {urlLinks?.map((link) => (
                   <div className={style.videoBox} key={link.name}>
-                    <img src="/assets/imgs/videoimg.jpg" alt="link" />
+                    <img src="/assets/imgs/link.png" alt="link" />
                     <div className={style.videoBoxDetails}>
                       <h1>{link.name}</h1>
                       <div className={style.cta}>

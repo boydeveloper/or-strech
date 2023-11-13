@@ -1,74 +1,49 @@
 .hero_wrapper {
-  display: flex;
-  height: 100%;
-  gap: 40px;
-  margin-top: 70px;
-  align-items: center;
-  margin-inline: auto;
-  max-width: 130rem;
-  margin-bottom: 10rem;
+  text-align: center;
+  height: 70vh;
 }
 
-.hero_wrapper_textbox {
-  width: 50%;
+.hero_wrapper > h1 {
+  color: #0b5cd5;
+  font-size: 64px;
+  /* text-transform: uppercase; */
+  font-style: normal;
+  font-weight: 600;
+  line-height: 74px;
+  letter-spacing: -2px;
+  margin-bottom: 2rem;
 }
-.hero_wrapper_textbox > h1 {
-  font-size: 50px;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.4px;
-}
+.hero_wrapper > p {
+  color: #212529;
+  /* text-align: right; */
 
-.hero_wrapper_textbox > h1 > strong {
-  font-family: "Inter";
-}
-
-.hero_wrapper_textbox > p {
-  color: var(--Black, #12141d);
-  font-family: "Inter";
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 32px;
-  letter-spacing: -0.6px;
-}
-.hero_cta {
-  display: flex;
-  width: 100%;
-  margin-top: 20px;
-}
-.hero_cta > input {
-  padding: 20px;
-  border-radius: 10px;
-  width: 70%;
-  border: 1px solid #ccc;
-  border-bottom-right-radius: 0px;
-  border-top-right-radius: 0px;
-  font-size: 18px;
-}
-.hero_cta > button {
-  border: none;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 10px 20px;
-  color: #fff;
-  background: #1864ab;
-  white-space: nowrap;
-  border-radius: 10px;
-  font-family: "Space Grotesk", sans-serif;
-  border-bottom-left-radius: 0px;
-  border-top-left-radius: 0px;
-}
-.hero_cta > input:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px #8fdff8;
-}
-.hero_wrapper_imgbox {
-  width: 50%;
+  max-width: 600px;
+  margin: 0 auto;
+  letter-spacing: -0.9px;
+  line-height: 26px; /* 162.5% */
+  margin-bottom: 2rem;
 }
 
-.hero_wrapper_imgbox > img {
-  height: 450px;
-  object-fit: cover;
-  border-radius: 7px;
+.hero_wrapper > button {
+  border-radius: 3.9rem;
+  background: #094bac;
+  padding: 1.2rem 2.4rem;
+  cursor: pointer;
+  font-size: 2rem;
+  border: none;
+  color: #fff;
+  line-height: 3.4rem;
+}
+
+.hero_wrapper > button:hover {
+  animation: pulse 0.3s;
+  box-shadow: 0 0 0 2em transparent;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #0b5cd5;
+  }
 }

@@ -4,6 +4,7 @@ import style from "./stretcherprofile.module.css";
 import { getUserDetails, updateUser } from "../../Apis/users/userService";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/navbar/navbar";
 
 function StretcherProfile() {
   const [profileData, setProfileData] = useState({
@@ -60,7 +61,7 @@ function StretcherProfile() {
 
   return (
     <div className={style.StretcherProfileWrapper}>
-      <Header />
+      <Navbar />
       <div className={style.StretcherProfileMain}>
         <form onSubmit={handleSave} className={style.profile_box}>
           <h2 className={style.profile_title}>Update Profile</h2>
