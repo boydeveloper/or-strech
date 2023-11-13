@@ -6,7 +6,23 @@ const jwt = require("jsonwebtoken");
 
 const Account = db.accounts;
 const User = db.users;
+const Event = db.events;
 
+function getCurrentTimestamp() {
+  const now = new Date();
+
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+  const day = String(now.getDate()).padStart(2, "0");
+
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+
+  const timestamp = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+  return timestamp;
+}
 
 const comparePasswords = async (plainTextPassword, hash) => {
   const result = await bcrypt.compare(plainTextPassword, hash);
@@ -44,7 +60,13 @@ const loginAdminAccount = async (req, res) => {
       );
       const isCorrectPassword = password === existingUser.password;
       if (isCorrectHashedPassword || isCorrectPassword) {
-
+        Event.create({
+          userid: existingUser.id,
+          event_type: "LOGIN_ADMIN",
+          value: 0,
+          notes: "",
+          timestamp: getCurrentTimestamp(),
+        });
         return res.status(200).json({
           account: {
             id: existingUser.id,
@@ -81,7 +103,14 @@ const loginAccount = async (req, res) => {
 
     if (user) {
       const token = generateToken(user.id);
-
+      console.log(user.id);
+      Event.create({
+        userid: user.id,
+        event_type: "LOGIN_NORMALUSER",
+        value: 0,
+        notes: "",
+        timestamp: getCurrentTimestamp(),
+      });
       return res.status(200).json({
         account: {
           id: user.id,
@@ -113,8 +142,13 @@ const loginAccount = async (req, res) => {
         { main_user_id: user.id },
         { where: { email: req.body.email } }
       );
-
-
+      Event.create({
+        userid: user.id,
+        event_type: "LOGIN_NORMALUSER",
+        value: 0,
+        notes: "",
+        timestamp: getCurrentTimestamp(),
+      });
       return res.status(200).json({
         account: {
           id: account.id,

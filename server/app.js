@@ -25,5 +25,8 @@ app.use("/api/tags", tagRouter);
 const linkRouter = require("./routes/link.route");
 app.use("/api/links", linkRouter);
 
+const baselineSurveyRouter = require("./routes/baselinesurvey.route");
+app.use("/api/baselinesurvey", baselineSurveyRouter);
+
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
