@@ -18,7 +18,7 @@ function ManageTags() {
   const [tags, setTags] = useState(null);
   const [tagToBeDelelted, setTagToBeDeleted] = useState("");
   const [loading, setLoading] = useState(false);
-  const [searchInput, setSearchInput] = useState(" ");
+  const [searchInput, setSearchInput] = useState("");
   const [modal, setModal] = useState("");
   const [formData, setFormData] = useState({
     name: "",

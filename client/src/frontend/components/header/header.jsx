@@ -7,7 +7,7 @@ function Header() {
   const navigate = useNavigate();
   const handleLogout = async () => {
     await createEvent({
-      userId: user?.id,
+      userid: user?.id,
       event_type: "PRESSED_LOGOUT",
       note: "i pressed logout",
     });

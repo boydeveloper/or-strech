@@ -39,25 +39,25 @@ function Timer() {
   const user = JSON.parse(userJSON);
 
   const startTimer = async () => {
-    // await createEvent(
-    //   {
-    //     userId: user?.id,
-    //     event_type: "PRESSED_START",
-    //     notes: "i hit the start button",
-    //   },
-    //   token
-    // );
+    await createEvent(
+      {
+        userid: user?.id,
+        event_type: "PRESSED_START",
+        notes: "i hit the start button",
+      },
+      token
+    );
     setIsRunning(true);
     setIsTimerActive(true);
   };
 
   const stopTimer = async () => {
     setIsRunning(false);
-    // await createEvent({
-    //   userId: user?.id,
-    //   event_type: "PRESSED_STOP",
-    //   notes: "i hit the stop button",
-    // });
+    await createEvent({
+      userid: user?.id,
+      event_type: "PRESSED_STOP",
+      notes: "i hit the stop button",
+    });
   };
 
   const handlePause = () => {
@@ -80,11 +80,11 @@ function Timer() {
     setIsTimerActive(false);
     setSeconds(0);
     setMinutes(intervalTime);
-    // await createEvent({
-    //   userId: user?.id,
-    //   event_type: "RESET",
-    //   notes: "i hit the reset button",
-    // });
+    await createEvent({
+      userid: user?.id,
+      event_type: "RESET",
+      notes: "i hit the reset button",
+    });
   };
 
   const [toggleClass, setToggleClass] = useState(true);
@@ -112,11 +112,11 @@ function Timer() {
     } else {
       audio = new Audio(alarmSound);
       await audio.play();
-      // await createEvent({
-      //   userId: user?.id,
-      //   event_type: "FIRED_ALARM",
-      //   notes: "fired alarm",
-      // });
+      await createEvent({
+        userid: user?.id,
+        event_type: "FIRED_ALARM",
+        notes: "fired alarm",
+      });
     }
   };
   const getLinks = async () => {
@@ -134,14 +134,14 @@ function Timer() {
   );
 
   const handleGO = async () => {
-    // await createEvent(
-    //   {
-    //     userId: user?.id,
-    //     event_type: "PRESSED_GO",
-    //     notes: " i pressed the go button",
-    //   },
-    //   token
-    // );
+    await createEvent(
+      {
+        userid: user?.id,
+        event_type: "PRESSED_GO",
+        notes: " i pressed the go button",
+      },
+      token
+    );
     setModal("video");
   };
 
@@ -183,9 +183,11 @@ function Timer() {
     setDropdownVisible(false);
   };
   const handleDemoTimerClick = () => {
-    if (isRunning) {
+    console.log("hiii");
+    if (!isRunning) {
       setMinutes(0);
       setSeconds(5);
+      stopTimer();
     }
   };
 
@@ -198,7 +200,7 @@ function Timer() {
     setSeconds(0);
     setSnoozeClicked(true);
     await createEvent({
-      userId: user?.id,
+      userid: user?.id,
       event_type: "SNOOZE",
       notes: "i hit the snooze button",
     });
@@ -221,7 +223,7 @@ function Timer() {
     if (!audio) {
       audio = new Audio(alarmSound);
       audio.addEventListener("ended", () => {
-        audio.currentTime = 0; // Reset the audio to the beginning when it ends
+        audio.currentTime = 0;
       });
     }
   }, []);
