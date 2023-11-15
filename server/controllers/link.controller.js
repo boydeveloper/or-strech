@@ -32,7 +32,7 @@ const createLink = async (req, res) => {
     const link = await Link.create({
       name: req.body.name,
       url: req.body.url,
-      type: Number(req.body.media_type) === 1 ? "video" : "name",
+      type: Number(req.body.media_type) === 1 ? "video" : "link",
     });
     return res.status(200).json({ link, isSuccess: true });
   } catch (err) {

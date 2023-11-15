@@ -66,13 +66,15 @@ body {
   font-family: "Inter", sans-serif;
   color: #212529;
   /* overflow-y: scroll; */
+  overflow-x: hidden;
   background: #fff;
 }
 .home {
   /* background-color: #d3eff8; */
 }
 .container {
-  /* width: 80%; */
+  max-width: 140rem;
+  margin: 0 auto;
 }
 .flex__container {
   display: flex;

@@ -6,11 +6,11 @@ function Header() {
   const user = JSON?.parse(userJSON);
   const navigate = useNavigate();
   const handleLogout = async () => {
-    await createEvent({
-      userid: user?.id,
-      event_type: "PRESSED_LOGOUT",
-      note: "i pressed logout",
-    });
+    // await createEvent({
+    //   userid: user?.id,
+    //   event_type: "PRESSED_LOGOUT",
+    //   note: "i pressed logout",
+    // });
     sessionStorage.clear("");
     navigate("/");
   };

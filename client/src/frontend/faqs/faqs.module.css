@@ -1,18 +1,16 @@
 .faqsWrapper {
-  padding: 6rem 0;
+  padding: 8rem 0;
 }
 
 .faqsWrapper > header {
   text-align: center;
   margin-bottom: 20px;
-  /* margin-bottom: 64px; */
 }
 
 .faqsDropdown {
-  /* padding: 0 2rem; */
   margin-top: 2rem;
-  border: 0.1rem solid #0b5cd5;
-  color: #0b5cd5;
+  border: 0.2rem solid #0b5cd5;
+  color: #212529;
   font-size: 1.6rem;
   font-weight: 500;
   position: relative;
@@ -37,7 +35,7 @@
 }
 .dropdown {
   background: #fff;
-  border: 0.1rem solid #0b5cd5;
+  border: 0.2rem solid #0b5cd5;
   width: 100%;
   position: absolute;
   display: flex;
@@ -65,22 +63,52 @@
 }
 .faqsWrapper {
 }
-.faqsWrapper > header > h1 {
+
+.faqsWrapper > header {
+  position: relative;
+  width: 100%;
+}
+.faqsWrapper > header > i {
+  position: absolute;
   color: #0b5cd5;
+  font-size: 3.2rem;
+  top: 0;
+  left: 0;
+}
+.faqsWrapper > header > i:first-child {
+  top: 8%;
+  right: -47%;
+}
+.faqsWrapper > header > i:nth-child(2) {
+  right: 0%;
+  transform: rotate(25deg);
+  top: -40%;
+}
+.faqsWrapper > header > i:nth-child(3) {
+  right: 10%;
+  transform: rotate(25deg);
+  top: -40%;
+}
+.faqsWrapper > header > i:nth-child(4) {
+  top: 8%;
+  left: 25%;
+}
+
+.faqsWrapper > header > h1 {
+  color: #000;
   text-align: center;
-  font-size: 4.2rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 54px;
-  letter-spacing: -0.4px;
+  font-size: 4rem;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
 }
 .faqsWrapper > header > p {
   max-width: 652px;
-  color: #0b5cd5;
+  color: #212529;
   text-align: center;
   margin: 0 auto;
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 20px;
+
+  letter-spacing: -0.9px;
   line-height: 30px;
 }
 .faqs {
@@ -107,10 +135,10 @@
 }
 
 .question > h1 {
+  color: #212529;
+  font-size: 1.8rem;
   color: #0b5cd5;
-
-  font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 26px;
 }
 .question > button {
@@ -119,8 +147,9 @@
   cursor: pointer;
 }
 .answer {
-  color: #0b5cd5;
-  font-size: 14px;
+  color: #212529;
+  font-size: 1.6rem;
+  letter-spacing: -0.9px;
   font-weight: 400;
   line-height: 22px;
   overflow: hidden;

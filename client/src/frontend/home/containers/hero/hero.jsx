@@ -41,14 +41,14 @@ function Hero() {
       sessionStorage.setItem("stretcher_token", token);
       if (loggedInUser?.isSuccess === true) {
         // console.log()
-        const event = await createEvent(
-          {
-            userid: loggedInUser?.account?.id,
-            event_type: "ENTERED_CSTRETCH",
-            notes: "entered cstretch",
-          },
-          token
-        );
+        // const event = await createEvent(
+        //   {
+        //     userid: loggedInUser?.account?.id,
+        //     event_type: "ENTERED_CSTRETCH",
+        //     notes: "entered cstretch",
+        //   },
+        //   token
+        // );
         console.log(event);
         setLoading(false);
         if (loggedInUser?.account?.isNew === true) {

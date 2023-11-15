@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import style from "./navbar.module.css";
-import { Hamburger, Print } from "../../utils/svg";
+import { Hamburger, Print, Profile } from "../../utils/svg";
 import { createEvent } from "../../../Apis/event/eventService";
 
 function Navbar() {
@@ -8,11 +8,11 @@ function Navbar() {
   const user = JSON?.parse(userJSON);
   const navigate = useNavigate();
   const handleLogout = async () => {
-    await createEvent({
-      userid: user?.id,
-      event_type: "PRESSED_LOGOUT",
-      note: "i pressed logout",
-    });
+    // await createEvent({
+    //   userid: user?.id,
+    //   event_type: "PRESSED_LOGOUT",
+    //   note: "i pressed logout",
+    // });
     sessionStorage.clear("");
     navigate("/");
   };
@@ -33,8 +33,9 @@ function Navbar() {
         <button>
           {user ? (
             <div className={style.profile}>
+              <Profile />
               <p>{user?.email}</p>
-              <img src="/assets/imgs/default.jpg" alt="default profile img" />
+
               <div className={style.dropdown}>
                 <Link to={"/profile"}>
                   <ion-icon name="person-circle-outline"></ion-icon>Profile
@@ -46,6 +47,8 @@ function Navbar() {
             </div>
           ) : (
             <Hamburger />
+
+            // <button>stretch</button>
           )}
         </button>
       </div>

@@ -8,138 +8,102 @@
 .instructionsWrapper > header > span {
   text-transform: uppercase;
 }
-.section_one {
-  margin-bottom: 2.5rem;
+.section_one .text_box > h1 {
+  font-size: 3.2rem;
+  text-transform: capitalize;
+  color: #212529;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.section_one > header > span {
-  text-transform: uppercase;
-  color: #0b5cd5;
-  /* text-align: center; */
-  font-size: 16px;
-  font-weight: 600;
+.section_one .text_box > h1 > svg {
+  height: 40px;
+  width: 40px;
 }
-.section_one > header > h1 {
-  color: #0b5cd5;
-  font-size: 4.2rem;
-  /* text-decoration: underline; */
-  font-weight: 600;
-  margin-bottom: 2.5rem;
-  letter-spacing: -0.4px;
+.section_one .text_box > p {
+  color: #2b2b2b;
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  line-height: 36px;
+  margin-bottom: 4rem;
 }
-
-.section_one > p {
-  color: #0b5cd5;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: -0.7px;
+.section_one .text_box {
+  margin-bottom: 30px;
 }
 
 .section_two {
-  margin-bottom: 2.5rem;
+  margin: 10rem 0;
 }
-
-.section_two > h1 {
-  color: #0b5cd5;
-  text-transform: capitalize;
-  font-size: 2.8rem;
-  font-weight: 600;
-  letter-spacing: -0.4px;
-}
-.section_two > p {
-  color: #0b5cd5;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: -0.7px;
-  margin-bottom: 1.5rem;
-}
-.section_two__steps > h2 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #0b5cd5;
-}
-
-.section_two__steps .steps {
-  list-style: none;
+.section_two {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-top: 1rem;
+  align-items: center;
+  gap: 30px;
 }
-.section_two__steps .steps > li {
-  font-size: 14px;
+.section_two > div {
+  width: 50%;
+}
+.img_box > img {
+  border-radius: 4px;
+}
+.section_two .text_box > h1 {
+  font-size: 4rem;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+}
+
+.section_two .text_box > h1 > span {
   color: #0b5cd5;
-  letter-spacing: -0.9px;
+  text-decoration: underline;
+}
+.section_two .text_box > p {
+  color: #2b2b2b;
+  font-size: 18px;
+  letter-spacing: -0.8px;
+  line-height: 30px;
 }
 .section_three {
-  margin-bottom: 2.5rem;
+  display: flex;
+  gap: 30px;
+  align-items: center;
 }
-.section_three > h1 {
-  color: #0b5cd5;
+.section_three > div {
+  width: 50%;
+}
+.section_three .text_box > h1 {
+  font-size: 4rem;
   text-transform: capitalize;
-  font-size: 2.8rem;
   margin-bottom: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.4px;
-  /* text-transform: uppercase; */
 }
-
-.section_three > p {
+.section_three .text_box > h1 > span {
   color: #0b5cd5;
+  font-style: italic;
+}
+.section_three .text_box > p {
+  color: #2b2b2b;
   font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
+  letter-spacing: -0.8px;
   line-height: 30px;
-  letter-spacing: -0.7px;
 }
-.section_three > p:not(:last-child) {
-  margin-bottom: 1.5rem;
-}
-
 .section_four {
-  margin-bottom: 2.5rem;
+  text-align: center;
+  margin: 10rem 0;
 }
 .section_four > h1 {
-  color: #0b5cd5;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-transform: capitalize;
-  font-size: 2.8rem;
   margin-bottom: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.4px;
-  /* text-transform: uppercase; */
 }
-
+.section_four > h1 svg {
+  height: 40px;
+  width: 40px;
+}
 .section_four > p {
-  color: #0b5cd5;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: -0.7px;
-}
-.section_four > p:not(:last-child) {
-  margin-bottom: 1.5rem;
-}
-.section_five > h1 {
-  color: #0b5cd5;
-  text-transform: capitalize;
-  font-size: 2.8rem;
-  margin-bottom: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.4px;
-}
-
-.section_five > p {
-  color: #0b5cd5;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: -0.7px;
-}
-.section_five > p:not(:last-child) {
-  margin-bottom: 1.5rem;
+  color: #2b2b2b;
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  line-height: 36px;
+  margin-bottom: 4rem;
 }

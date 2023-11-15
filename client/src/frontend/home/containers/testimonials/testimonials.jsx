@@ -18,14 +18,6 @@ function Testimonials() {
     <section>
       <header className={style.testimonialsHeader}>
         <h1>What Surgeons are saying?</h1>
-        {/* <div className={style.testimonialCta}>
-          <button>
-            <LeftIcon />
-          </button>
-          <button>
-            <RightIcon />
-          </button>
-        </div> */}
       </header>
       <div className={style.testimonials}>
         {testimonials.map((testimonial, index) => (

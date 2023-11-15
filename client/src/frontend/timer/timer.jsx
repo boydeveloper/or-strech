@@ -39,25 +39,25 @@ function Timer() {
   const user = JSON.parse(userJSON);
 
   const startTimer = async () => {
-    await createEvent(
-      {
-        userid: user?.id,
-        event_type: "PRESSED_START",
-        notes: "i hit the start button",
-      },
-      token
-    );
+    // await createEvent(
+    //   {
+    //     userid: user?.id,
+    //     event_type: "PRESSED_START",
+    //     notes: "i hit the start button",
+    //   },
+    //   token
+    // );
     setIsRunning(true);
     setIsTimerActive(true);
   };
 
   const stopTimer = async () => {
     setIsRunning(false);
-    await createEvent({
-      userid: user?.id,
-      event_type: "PRESSED_STOP",
-      notes: "i hit the stop button",
-    });
+    // await createEvent({
+    //   userid: user?.id,
+    //   event_type: "PRESSED_STOP",
+    //   notes: "i hit the stop button",
+    // });
   };
 
   const handlePause = () => {
@@ -80,11 +80,11 @@ function Timer() {
     setIsTimerActive(false);
     setSeconds(0);
     setMinutes(intervalTime);
-    await createEvent({
-      userid: user?.id,
-      event_type: "RESET",
-      notes: "i hit the reset button",
-    });
+    // await createEvent({
+    //   userid: user?.id,
+    //   event_type: "RESET",
+    //   notes: "i hit the reset button",
+    // });
   };
 
   const [toggleClass, setToggleClass] = useState(true);
@@ -112,11 +112,11 @@ function Timer() {
     } else {
       audio = new Audio(alarmSound);
       await audio.play();
-      await createEvent({
-        userid: user?.id,
-        event_type: "FIRED_ALARM",
-        notes: "fired alarm",
-      });
+      // await createEvent({
+      //   userid: user?.id,
+      //   event_type: "FIRED_ALARM",
+      //   notes: "fired alarm",
+      // });
     }
   };
   const getLinks = async () => {
@@ -134,14 +134,14 @@ function Timer() {
   );
 
   const handleGO = async () => {
-    await createEvent(
-      {
-        userid: user?.id,
-        event_type: "PRESSED_GO",
-        notes: " i pressed the go button",
-      },
-      token
-    );
+    // await createEvent(
+    //   {
+    //     userid: user?.id,
+    //     event_type: "PRESSED_GO",
+    //     notes: " i pressed the go button",
+    //   },
+    //   token
+    // );
     setModal("video");
   };
 
@@ -199,11 +199,11 @@ function Timer() {
     setToggleClass(!toggleClass);
     setSeconds(0);
     setSnoozeClicked(true);
-    await createEvent({
-      userid: user?.id,
-      event_type: "SNOOZE",
-      notes: "i hit the snooze button",
-    });
+    // await createEvent({
+    //   userid: user?.id,
+    //   event_type: "SNOOZE",
+    //   notes: "i hit the snooze button",
+    // });
     if (audio) {
       console.log("Pausing audio");
       audio.pause();
@@ -382,14 +382,14 @@ function Timer() {
           cancel={async () => {
             setModal("");
 
-            await createEvent(
-              {
-                userId: user.id,
-                event_type: "DONE_STRETCHING",
-                notes: "done stretching",
-              },
-              token
-            );
+            // await createEvent(
+            //   {
+            //     userId: user.id,
+            //     event_type: "DONE_STRETCHING",
+            //     notes: "done stretching",
+            //   },
+            //   token
+            // );
           }}
         />
       )}

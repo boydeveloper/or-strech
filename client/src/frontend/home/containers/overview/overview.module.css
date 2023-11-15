@@ -13,13 +13,14 @@
 }
 .features__wrapper > header > h1 {
   color: #0b5cd5;
-  font-size: 4.2rem;
+  font-size: 30px;
   font-weight: 600;
   letter-spacing: -0.4px;
 }
 .features {
   display: flex;
   width: 80%;
+  text-align: center;
   display: grid;
   width: 100%;
   padding: 0 60px;
@@ -32,6 +33,7 @@
 .feature_header {
   display: flex;
   align-items: center;
+  flex-direction: column;
   gap: 2rem;
   margin-bottom: 1.2rem;
 }
@@ -44,16 +46,16 @@
 }
 .feature_header > div {
   border-radius: 100px;
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #e6f0ff;
 }
 .feature_header > div > svg {
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
 }
 .feature > p {
   color: #212529;

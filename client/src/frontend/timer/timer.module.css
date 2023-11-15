@@ -1,6 +1,6 @@
 .timer__overview {
   height: 100%;
-  background: rgb(235, 239, 240);
+  /* background: rgb(235, 239, 240); */
 }
 .timer__wrapper {
   display: flex;
@@ -9,7 +9,8 @@
   width: 100%;
   max-width: 50rem;
   margin: 0 auto;
-  height: 100vh;
+  height: 70vh;
+  overflow: hidden;
   margin-top: 2rem;
 }
 .timer {

@@ -1,4 +1,5 @@
 import { Footer, Navbar } from "../components";
+import { Bulb, QuestionMark } from "../utils/svg";
 import style from "./howtostretch.module.css";
 function HowToStretch() {
   return (
@@ -7,103 +8,95 @@ function HowToStretch() {
       <div className="container">
         <div className={style.instructionsWrapper}>
           <div className={style.section_one}>
-            <header>
-              <span>support</span>
-              <h1>INSTRUCTIONS ?</h1>
-            </header>
-            <p>
-              surgeons are routinely subject to mental and physical stress
-              throughout the course of their work in the operating room.
-              Consistent mental and physical fatigue can shorten a surgeon's
-              career and affect patient safety and personal relationships.
-              Simple stretching, with OR-Stretch, can be a practical, effective
-              means to reduce pain, enhance performance and increase mental
-              focus without extending operative time. A recent study of
-              attending surgeons from four medical centers volunteering to
-              incorporate microbreaks with exercises into their surgical day
-              reported improvement or no change in their mental focus and
-              physical performance. Discomfort in the shoulders was
-              significantly reduced, while distractions and flow impact were
-              minimal. When surveyed, most of the surgeons wanted to incorporate
-              the microbreaks with exercises into their OR routine.
-              Intraoperative microbreaks, using OR-Stretch, with exercises is an
-              easy way to mitigate work-related musculoskeletal fatigue, pain
-              and injury.
-            </p>
+            <div className={style.text_box}>
+              <h1>
+                About OR-Stretch <Bulb />
+              </h1>
+              <p>
+                The web app designed to alleviate the physical discomfort of
+                surgery and reduce the risk of musculoskeletal issues in
+                surgeons. This convenient tool guides practitioners through
+                on-the-spot exercises, complete with timely reminders. Simply
+                log in with your email—no password required. After the initial
+                login, a brief demographic survey enhances the app's
+                effectiveness. Your feedback, gathered through periodic emails,
+                helps us continuously improve OR-Stretch, revolutionizing
+                surgical practices and promoting long, healthy careers for
+                medical professionals.
+              </p>
+            </div>
+            <div className={style.img_box}>
+              <img src="/assets/imgs/aboutimgI.jpg" alt="about image" />
+            </div>
           </div>
+
           <div className={style.section_two}>
-            <h1>How to stretch</h1>
-            <p>
-              When surgeons have a break during or between surgeries, stretches
-              can aid recovery from the effects of long procedures. The routines
-              can be performed using the instructional PDF and video links found
-              on this page, or using the online app.
-            </p>
-            <div className={style.section_two__steps}>
-              <h2>For safe and effective stretches:</h2>
-              <div className={style.steps}>
-                <li>
-                  Perform the activities slowly, avoiding rapid or forceful
-                  movements.
-                </li>
-                <li>Keep breathing relaxed throughout all activities.</li>
-                <li>
-                  If any activity causes discomfort, stop performing the
-                  activity.
-                </li>
-              </div>
+            <div className={style.text_box}>
+              <h1>
+                Intraoperative <span>Stretches</span>
+              </h1>
+              <p>
+                The Intraoperative OR-Stretch helps alleviate any fatigue and
+                discomfort associated with the surgeon and surgical team's
+                postures assumed when performing surgery. A video guide to these
+                stretches is available in a web app that includes a timer to
+                remind the surgical team to perform these stretches at certain
+                time intervals.
+              </p>
+              <p>
+                Also available are two poster PDFs showing seated and standing
+                exercises plus a video that offers tips to get more out of the
+                intraoperative stretches. For example, pinch your shoulder
+                blades together when pulling hands back to chest.
+              </p>
+            </div>
+            <div className={style.img_box}>
+              <img src="/assets/imgs/aboutimgII.jpg" alt="about image" />
             </div>
           </div>
           <div className={style.section_three}>
-            <h1>Intraoperative stretches</h1>
-            <p>
-              The Intraoperative OR-Stretch helps alleviate any fatigue and
-              discomfort associated with the surgeon and surgical team's
-              postures assumed when performing surgery. A video guide to these
-              stretches is available in a web app that includes a timer to
-              remind the surgical team to perform these stretches at certain
-              time intervals.
-            </p>
-            <p>
-              Also available are two poster PDFs showing seated and standing
-              exercises plus a video that offers tips to get more out of the
-              intraoperative stretches. For example, pinch your shoulder blades
-              together when pulling hands back to chest.
-            </p>
+            <div className={style.img_box}>
+              <img src="/assets/imgs/aboutimgIII.jpg" alt="about image" />
+            </div>
+            <div className={style.text_box}>
+              <h1>
+                Between
+                {"  "}
+                <span>surgery</span>
+                {"  "}
+                stretches
+              </h1>
+              <p>
+                OR-Stretch offers quick, unobtrusive stretches to alleviate
+                post-surgery fatigue. These can be done between cases or at the
+                end of the day, taking less than five minutes. Choose between a
+                printable Between Surgery Stretches PDF or a guided video for
+                surgical staff. Additionally, our web app provides on-the-spot
+                guidance, with no password required. Complete a brief
+                demographic survey on your first login, and periodic emails help
+                Mayo Clinic enhance the OR-Stretch experience, reducing the risk
+                of musculoskeletal issues for surgeons.
+              </p>
+            </div>
           </div>
           <div className={style.section_four}>
-            <h1>Between surgery stretches</h1>
+            <h1>
+              Our Mission <QuestionMark />
+            </h1>
             <p>
-              The between-surgery OR-Stretch helps alleviate any fatigue and
-              discomfort that may persist after performing surgery. These can be
-              performed outside the operating room in between cases or after the
-              final case of the day. These stretches have been designed to be
-              unobtrusive and take less than five minutes to perform.
+              OR-Stretch is on a mission to alleviate the mental and physical
+              stress surgeons face in the operating room. By incorporating
+              simple stretches, our goal is to enhance performance, reduce pain,
+              and improve mental focus without prolonging operative time. Recent
+              studies show positive results, with attending surgeons
+              experiencing reduced shoulder discomfort and minimal impact on
+              workflow by incorporating microbreaks with OR-Stretch exercises.
+              Surgeons express a keen interest in integrating these breaks into
+              their routine, demonstrating OR-Stretch as an effective solution
+              for mitigating work-related musculoskeletal fatigue and promoting
+              surgeons' overall well-being.
             </p>
-            <p>
-              An OR-Stretch — Between Surgery Stretches (PDF) is available for
-              printout. Or this OR-Stretch Between Surgery Stretches Video
-              guides surgical staff through a short series of stretches to
-              counteract the most frequent postures during surgery and can be
-              done in the break room between surgical cases.
-            </p>
-          </div>
-          <div className={style.section_five}>
-            <h1>OR-Stretch App</h1>
-            <p>
-              To alleviate the physical discomfort surgery imposes, try out our
-              convenient OR-Stretch web app. Following this protocol can help
-              reduce the risk of developing musculoskeletal issues that can
-              shorten surgeons' careers.
-            </p>
-            <p>
-              The OR-Stretch app guides surgeons through exercises on the spot
-              and includes a reminder for stretching. To use OR-Stretch, simply
-              log in to the web app using an email address; a password is not
-              required. You will be asked to complete a brief demographic survey
-              after logging in for the first time. You will be sent periodic
-              emails to help Mayo Clinic improve OR-Stretch.
-            </p>
+            <img src="/assets/imgs/surg.jpg" alt="" />
           </div>
         </div>
       </div>

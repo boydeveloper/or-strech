@@ -45,11 +45,14 @@
   overflow: hidden;
 }
 .videoBox > img {
-  height: 85px;
+  height: 70px;
+  object-fit: contain;
   width: 10%;
+  background: #c9c9c9;
+  /* background: red; */
   /* border-right: solid #00365a 0.2rem; */
   /* padding-right: 1px; */
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 .videoBoxDetails {
   display: flex;

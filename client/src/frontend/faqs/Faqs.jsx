@@ -13,8 +13,8 @@ function Faqs() {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    setActiveIndex(null); // Reset active index when changing category
-    setDropdownVisible(false); // Hide the dropdown when a category is selected
+    setActiveIndex(null);
+    setDropdownVisible(false);
   };
 
   const splitQuestions = (questions) => {
@@ -55,77 +55,85 @@ function Faqs() {
   return (
     <>
       <Navbar />
-      <div className={style.faqsWrapper}>
-        <header>
-          <h1>Frequently asked</h1>
+      <div className="container">
+        <div className={style.faqsWrapper}>
+          <header>
+            <i className="fa-solid fa-lightbulb"></i>
+            <i className="fa-solid fa-question"></i>
+            <i className="fa-solid fa-question"></i>
+            <i className="fa-solid fa-brain"></i>
 
-          <p>
-            Unlock the insights you seek. Our comprehensive FAQs provide precise
-            answers to your inquiries.
-          </p>
-        </header>
-        <div className={style.faqsDropdown} ref={dropdownRef}>
-          <div className={style.currentFaq} onClick={toggleDropdown}>
-            {selectedCategory.toUpperCase()}
-            <button>
-              <ion-icon name="chevron-down"></ion-icon>
-            </button>
+            <h1>Frequently asked Questions</h1>
+
+            <p>
+              Explore the precise answers to your inquiries through our
+              comprehensive FAQs, guiding you towards optimal surgical
+              well-being with OR-Stretch
+            </p>
+          </header>
+          <div className={style.faqsDropdown} ref={dropdownRef}>
+            <div className={style.currentFaq} onClick={toggleDropdown}>
+              {selectedCategory.toUpperCase()}
+              <button>
+                <ion-icon name="chevron-down"></ion-icon>
+              </button>
+            </div>
+            {dropdownVisible && (
+              <div className={style.dropdown}>
+                {faqsData.map((categoryData) => (
+                  <span
+                    key={categoryData.category}
+                    onClick={() => handleCategoryChange(categoryData.category)}
+                  >
+                    {categoryData.category.toUpperCase()}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-          {dropdownVisible && (
-            <div className={style.dropdown}>
-              {faqsData.map((categoryData) => (
-                <span
-                  key={categoryData.category}
-                  onClick={() => handleCategoryChange(categoryData.category)}
+          <div className={style.faqs}>
+            <div className={style.faqs_left}>
+              {leftColumnQuestions.map((faq, index) => (
+                <div
+                  className={`${style.question_box} ${
+                    index === activeIndex ? style.expanded : ""
+                  }`}
+                  key={index}
                 >
-                  {categoryData.category.toUpperCase()}
-                </span>
+                  <div className={style.question}>
+                    <h1>{faq.question}</h1>
+                    <button onClick={() => toggleAccordion(index)}>
+                      {index == activeIndex ? <MinusSign /> : <PlusSign />}
+                    </button>
+                  </div>
+                  <div className={`${style.answer}`}>{faq.answer}</div>
+                </div>
               ))}
             </div>
-          )}
-        </div>
-        <div className={style.faqs}>
-          <div className={style.faqs_left}>
-            {leftColumnQuestions.map((faq, index) => (
-              <div
-                className={`${style.question_box} ${
-                  index === activeIndex ? style.expanded : ""
-                }`}
-                key={index}
-              >
-                <div className={style.question}>
-                  <h1>{faq.question}</h1>
-                  <button onClick={() => toggleAccordion(index)}>
-                    {index == activeIndex ? <MinusSign /> : <PlusSign />}
-                  </button>
+            <div className={style.faqs_right}>
+              {rightColumnQuestions.map((faq, index) => (
+                <div
+                  className={`${style.question_box} ${
+                    index + leftColumnQuestions.length === activeIndex
+                      ? style.expanded
+                      : ""
+                  }`}
+                  key={index + leftColumnQuestions.length}
+                >
+                  <div className={style.question}>
+                    <h1>{faq.question}</h1>
+                    <button
+                      onClick={() =>
+                        toggleAccordion(index + leftColumnQuestions.length)
+                      }
+                    >
+                      {index == activeIndex ? <MinusSign /> : <PlusSign />}
+                    </button>
+                  </div>
+                  <div className={`${style.answer}`}>{faq.answer}</div>
                 </div>
-                <div className={`${style.answer}`}>{faq.answer}</div>
-              </div>
-            ))}
-          </div>
-          <div className={style.faqs_right}>
-            {rightColumnQuestions.map((faq, index) => (
-              <div
-                className={`${style.question_box} ${
-                  index + leftColumnQuestions.length === activeIndex
-                    ? style.expanded
-                    : ""
-                }`}
-                key={index + leftColumnQuestions.length}
-              >
-                <div className={style.question}>
-                  <h1>{faq.question}</h1>
-                  <button
-                    onClick={() =>
-                      toggleAccordion(index + leftColumnQuestions.length)
-                    }
-                  >
-                    {index == activeIndex ? <MinusSign /> : <PlusSign />}
-                  </button>
-                </div>
-                <div className={`${style.answer}`}>{faq.answer}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
