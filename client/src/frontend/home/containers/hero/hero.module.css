@@ -1,12 +1,32 @@
 .hero_wrapper {
   text-align: center;
-  height: 70vh;
+  height: 600px;
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: cover;
+  background-position: top center;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url(../../../utils/imgs/bghome.jpg);
 }
-
+.overlay {
+  content: "";
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.34);
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
 .hero_wrapper > h1 {
-  color: #0b5cd5;
+  color: #fff;
   font-size: 64px;
-  /* text-transform: uppercase; */
+  z-index: 2;
   font-style: normal;
   font-weight: 600;
   line-height: 74px;
@@ -14,9 +34,9 @@
   margin-bottom: 2rem;
 }
 .hero_wrapper > p {
-  color: #212529;
+  color: #fff;
   /* text-align: right; */
-
+  z-index: 2;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -28,6 +48,7 @@
 }
 
 .hero_wrapper > button {
+  z-index: 2;
   border-radius: 3.9rem;
   background: #094bac;
   padding: 1.2rem 2.4rem;

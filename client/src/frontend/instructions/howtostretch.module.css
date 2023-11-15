@@ -21,7 +21,7 @@
 .section_one > header > h1 {
   color: #0b5cd5;
   font-size: 4.2rem;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   font-weight: 600;
   margin-bottom: 2.5rem;
   letter-spacing: -0.4px;

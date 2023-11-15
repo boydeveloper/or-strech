@@ -1,7 +1,7 @@
 .naviagtion_Wrapper {
-  border-bottom: 0.1rem solid #094bac;
   padding: 1rem 3.2rem;
   background: #fff;
+  box-shadow: 0px 0px 3px 3px rgb(236, 234, 234);
 }
 .navigation {
   display: flex;
@@ -17,10 +17,14 @@
 .naviagtion_links > a:link,
 .naviagtion_links > a:visited {
   text-decoration: none;
-  color: #094bac;
+  color: #212529;
   font-size: 1.4rem;
   font-weight: 600;
   line-height: 24px;
+}
+.naviagtion_links > a:active,
+.naviagtion_links > a:hover {
+  color: #094bac;
 }
 .navigation > button {
   background: none;

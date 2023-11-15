@@ -71,49 +71,21 @@ function Hero() {
 
   return (
     <>
-      <section className="container">
-        <div className={style.hero_wrapper}>
-          <h1>
-            {" "}
-            Surgeon.Designed. <br /> Interoperative Stretches.
-          </h1>
-          <p>
-            The stretches aim to counteract the effects of interoperative
-            strains on the surgeon's position and are performed without breaking
-            a scrub💪🏾
-          </p>
-          <button
-            onClick={() => (user ? navigate("/stretch") : setModal("login"))}
-          >
-            Start Stretching
-          </button>
-          {/* <div className={style.hero_wrapper_textbox}>
-            <h1>
-              Surgeon Designed interoperative <strong>Stretches</strong>
-            </h1>
-            <p>
-              The stretches aim to counteract the effects of interoperative
-              strains on the surgeon's position and are performed without
-              breaking scrub
-            </p>
-            <form onSubmit={handleSubmit} className={style.hero_cta}>
-              <input
-                value={email}
-                onChange={handleInputEmailChange}
-                type="email"
-                placeholder="Enter your email"
-                required
-              />
-              <button type="submit" disabled={loading}>
-                {loading ? "Loading..." : "Start Stretching"}{" "}
-              </button>
-            </form>
-          </div>
-          <div className={style.hero_wrapper_imgbox}>
-            <img src="/assets/imgs/s.png" alt="hero img" />
-          </div> */}
-        </div>
-      </section>
+      <div className={style.hero_wrapper}>
+        <div className={style.overlay}></div>
+        <h1>
+          Surgeon.Designed. <br /> Interoperative Stretches.
+        </h1>
+        <p>
+          The stretches aim to counteract the effects of interoperative strains
+          on the surgeon's position and are performed without breaking a scrub💪🏾
+        </p>
+        <button
+          onClick={() => (user ? navigate("/stretch") : setModal("login"))}
+        >
+          Start Stretching
+        </button>
+      </div>
       {modal === "login" && (
         <LoginModal
           loading={loading}

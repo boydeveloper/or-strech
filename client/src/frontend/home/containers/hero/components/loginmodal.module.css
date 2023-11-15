@@ -32,7 +32,7 @@
 
 .modal > h1 {
   color: #0b5cd5;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   line-height: 54px;
   letter-spacing: -0.4px;
@@ -54,7 +54,7 @@
 }
 
 .input_container > label {
-  color: #0b5cd5;
+  color: #212529;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.9px;
@@ -96,11 +96,11 @@
 }
 .cta > button:first-child:hover {
   animation: pulse 0.3s;
-  box-shadow: 0 0 0 1em transparent;
+  box-shadow: 0 0 0 0.5em transparent;
 }
 .cta > button:last-child:hover {
   animation: pulse 0.3s;
-  box-shadow: 0 0 0 1em transparent;
+  box-shadow: 0 0 0 0.5em transparent;
 }
 @keyframes pulse {
   0% {
