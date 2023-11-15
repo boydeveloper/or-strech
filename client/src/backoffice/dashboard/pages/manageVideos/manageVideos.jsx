@@ -68,7 +68,9 @@ function ManageVideos() {
                 <h1 className={style.mediaHeader}>Videos</h1>
                 {videoLinks?.map((link) => (
                   <div className={style.videoBox} key={link?.name}>
-                    <img src="/assets/imgs/videoimg.jpg" alt="video" />
+                    <div className={style.img_box}>
+                      <img src="/assets/imgs/videoimg.jpg" alt="video" />
+                    </div>
                     <div className={style.videoBoxDetails}>
                       <h1>{link?.name}</h1>
                       <div className={style.cta}>
@@ -95,7 +97,9 @@ function ManageVideos() {
                 <h1 className={style.mediaHeader}>Links</h1>
                 {urlLinks?.map((link) => (
                   <div className={style.videoBox} key={link.name}>
-                    <img src="/assets/imgs/linkk.png" alt="link" />
+                    <div className={style.img_box}>
+                      <img src="/assets/imgs/linkk.png" alt="link" />
+                    </div>
                     <div className={style.videoBoxDetails}>
                       <h1>{link.name}</h1>
                       <div className={style.cta}>
