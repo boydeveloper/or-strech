@@ -19,7 +19,8 @@ function LoginModal({ value, emailChange, submit, close, loading }) {
   return (
     <div className={style.modalWrapper}>
       <div className={style.modalOverlay} onClick={close}></div>
-      <motion.div
+      <motion.form
+        onSubmit={submit}
         className={style.modal}
         variants={popAnimation}
         initial="hidden"
@@ -35,11 +36,9 @@ function LoginModal({ value, emailChange, submit, close, loading }) {
         </div>
         <div className={style.cta}>
           <button onClick={close}>Cancel</button>
-          <button disabled={loading} onClick={submit}>
-            {loading ? "loading..." : "Login"}
-          </button>
+          <button disabled={loading}>{loading ? "loading..." : "Login"}</button>
         </div>
-      </motion.div>
+      </motion.form>
     </div>
   );
 }

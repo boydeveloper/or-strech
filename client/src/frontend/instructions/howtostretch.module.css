@@ -31,6 +31,10 @@
   margin-bottom: 30px;
 }
 
+.section_one .img_box > img {
+  height: 400px;
+  object-fit: cover;
+}
 .section_two {
   margin: 10rem 0;
 }
@@ -106,4 +110,9 @@
   letter-spacing: -0.8px;
   line-height: 36px;
   margin-bottom: 4rem;
+}
+
+.section_four > img {
+  height: 500px;
+  object-fit: cover;
 }

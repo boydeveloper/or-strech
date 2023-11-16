@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import style from "./agreementModal.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CancelIcon } from "../../utils/svg";
 function AgreementModal({ close }) {
   const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate("");
@@ -38,7 +39,7 @@ function AgreementModal({ close }) {
         animate="visible"
       >
         <button onClick={close} className={style.closeBtn}>
-          <ion-icon name="close-outline"></ion-icon>
+          <CancelIcon />
         </button>
         <h1>Data Usage Agreement</h1>
         <label className={style.checkbox}>

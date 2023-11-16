@@ -23,7 +23,7 @@
 .agreementModalContainer {
   background: #fff;
   text-align: center;
-  padding: 4rem 3rem;
+  padding: 4rem 2rem;
   border-radius: 0.5rem;
   z-index: 13;
   color: #333;
@@ -32,19 +32,23 @@
 }
 .closeBtn {
   position: absolute;
-  top: 0;
-  font-size: 2.5rem;
-  right: 0;
+  top: 2px;
+  right: 2px;
   background: none;
-  border: #343a40 solid 3px;
+
   border: none;
   cursor: pointer;
   color: #343a40;
 }
+.closeBtn > svg {
+  height: 20px;
+  width: 20px;
+}
 .agreementModalContainer > h1 {
   font-size: 2.8rem;
   font-weight: 700;
-  color: #111;
+  color: #0b5cd5;
+  letter-spacing: -0.9px;
   margin-bottom: 2rem;
 }
 .agreementModalContainer span {
@@ -85,18 +89,18 @@
   opacity: 0.9;
 }
 .agreeMentCta > button:last-child:disabled {
-  background: #bababa;
+  background: #b7cef0;
   border: none;
 }
 .agreeMentCta > button:last-child:not(:disabled):hover {
-  background-color: #23aeda;
+  background-color: #0b5cd5;
   border: none;
   color: #fff;
 }
 .privacyPolicy:link,
 .privacyPolicy:visited {
   margin-left: 0.4rem;
-  color: #23aeda;
+  color: #0b5cd5;
 }
 
 .checkbox {
@@ -104,8 +108,9 @@
   align-items: center;
   cursor: pointer;
   user-select: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
+  letter-spacing: -0.9px;
 }
 
 .checkbox + .checkbox {
@@ -118,7 +123,7 @@
   appearance: none;
   margin: 0;
   font: inherit;
-  color: #23aeda;
+  color: #0b5cd5;
   width: 1.15em;
   height: 1.15em;
   border: 0.15em solid currentColor;
@@ -126,7 +131,8 @@
   transform: translateY(-0.075em);
   display: grid;
   place-content: center;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
 }
 
 .inputCheckbox::before {
