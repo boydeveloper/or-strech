@@ -17,8 +17,9 @@
 }
 .footer > p {
   font-weight: 600;
-
-  color: #094bac;
+  font-size: 1.8rem;
+  color: #625d5d;
+  letter-spacing: -0.9px;
 }
 .footer > span {
   display: flex;
