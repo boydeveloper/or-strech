@@ -5,6 +5,7 @@
   left: 0;
   z-index: 11;
   overflow-y: hidden;
+  padding: 0 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +28,7 @@
   border-radius: 0.5rem;
   z-index: 13;
   color: #333;
-  max-width: 60rem;
+  width: 60rem;
   position: relative;
 }
 .closeBtn {
@@ -41,8 +42,8 @@
   color: #343a40;
 }
 .closeBtn > svg {
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
 }
 .agreementModalContainer > h1 {
   font-size: 2.8rem;
@@ -109,6 +110,8 @@
   cursor: pointer;
   user-select: none;
   font-size: 1.2rem;
+  justify-content: center;
+  align-items: flex-start;
   font-weight: 600;
   letter-spacing: -0.9px;
 }
@@ -161,4 +164,38 @@
 .inputCheckbox:focus {
   outline: max(2px, 0.1px) solid currentColor;
   outline-offset: max(2px, 0.15em);
+}
+@media screen and (max-width: 420px) {
+  .closeBtn > svg {
+    height: 18px;
+    width: 18px;
+  }
+
+  .agreementModalContainer {
+    padding: 2.5rem 2rem;
+  }
+  .agreementModalContainer > h1 {
+    font-size: 2.2rem;
+  }
+  .checkbox {
+    width: 100%;
+    gap: 2px;
+    align-items: flex-start;
+  }
+  .checkbox > p {
+    width: 100%;
+  }
+  .inputCheckbox {
+    margin-right: 0px;
+  }
+  .privacyPolicy:link,
+  .privacyPolicy:visited {
+    margin-left: 0;
+  }
+  .agreeMentCta {
+    gap: 10px;
+  }
+  .agreeMentCta > button {
+    padding-block: 0.8rem;
+  }
 }

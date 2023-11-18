@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  max-width: 50rem;
+  max-width: 55rem;
   margin: 0 auto;
   height: 100vh;
   overflow: hidden;
@@ -107,7 +107,7 @@
 .reminder_buttons {
   position: absolute;
   top: 9%;
-  right: 8%;
+  right: 16%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,8 +121,7 @@
   width: 100%;
   position: absolute;
   bottom: 5%;
-  /* top: 9%; */
-  left: 60%;
+  left: 55%;
 }
 .reminder_button_up,
 .reminder_button_down {
@@ -202,7 +201,7 @@
   color: #fff;
   position: absolute;
   bottom: 20%;
-  right: 55%;
+  right: 58%;
   font-family: "helvetica_neue_regular";
 }
 .seconds {
@@ -214,7 +213,7 @@
   position: absolute;
   color: #4070c6;
   bottom: 17%;
-  right: 42%;
+  right: 45%;
 }
 .minutes > span {
   font-size: 18px;

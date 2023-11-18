@@ -4,6 +4,7 @@
   top: 0;
   left: 0;
   z-index: 11;
+  padding: 0 2rem;
   overflow-y: hidden;
   display: flex;
   justify-content: center;
@@ -67,8 +68,10 @@
 }
 .cta > button {
   width: 50%;
+  font-size: 16px;
   padding: 9px;
   cursor: pointer;
+  /* font-weight: 600; */
 }
 
 .cta > button:first-child {
@@ -77,8 +80,7 @@
   border: #0b5cd5 0.2rem solid;
   color: #0b5cd5;
   text-align: center;
-  font-size: 16px;
-  font-weight: 600;
+
   letter-spacing: -0.4px;
   line-height: 28px;
 }
@@ -88,10 +90,7 @@
   background: #0b5cd5;
   color: #fff;
   text-align: center;
-  font-size: 16px;
   border: none;
-  padding: 9px;
-  font-weight: 600;
   letter-spacing: -0.4px;
 }
 .cta > button:first-child:hover {
@@ -109,8 +108,39 @@
 }
 .modal > button {
   position: absolute;
-  right: 3px;
-  top: 3px;
+  right: 6px;
+  top: 6px;
   background: none;
+  cursor: pointer;
   border: none;
+}
+.modal > button > svg {
+  height: 25px;
+  width: 25px;
+}
+
+@media screen and (max-width: 420px) {
+  .modal > button > svg {
+    height: 20px;
+    width: 20px;
+  }
+
+  .modal {
+    padding: 24px 20px;
+    /* width: 100%; */
+  }
+  .modal > h1 {
+    font-size: 2.4rem;
+    line-height: 34px;
+  }
+  .input_container > label {
+    font-size: 12px;
+  }
+  .cta {
+    gap: 10px;
+  }
+  .cta > button {
+    padding: 4px;
+    font-size: 14px;
+  }
 }

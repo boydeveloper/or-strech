@@ -50,15 +50,18 @@ function AgreementModal({ close }) {
             checked={isChecked}
             onChange={toggleCheckbox}
           />
-          I agree to the usage of my information per the terms set forth in the
-          {"   "}
-          <a
-            target="__blank"
-            href="https://www.mayo.edu/research/labs/human-factors-engineering/or-stretch/or-stretch-privacy-policy"
-            className={style.privacyPolicy}
-          >
-            Privacy Policy.
-          </a>
+          <p>
+            I agree to the usage of my information per the terms set forth in
+            the
+            {"   "}
+            <a
+              target="__blank"
+              href="https://www.mayo.edu/research/labs/human-factors-engineering/or-stretch/or-stretch-privacy-policy"
+              className={style.privacyPolicy}
+            >
+              Privacy Policy.
+            </a>
+          </p>
         </label>
 
         <div className={style.agreeMentCta}>

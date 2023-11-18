@@ -314,7 +314,7 @@ export const Profile = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill="#000"
+      fill="#094bac"
       className="w-6 h-6"
     >
       <path

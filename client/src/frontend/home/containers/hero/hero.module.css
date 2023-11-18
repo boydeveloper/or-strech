@@ -43,7 +43,7 @@
   max-width: 600px;
   margin: 0 auto;
   letter-spacing: -0.9px;
-  line-height: 26px; /* 162.5% */
+  line-height: 30px; /* 162.5% */
   margin-bottom: 2rem;
 }
 
@@ -66,5 +66,31 @@
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 #0b5cd5;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .hero_wrapper > h1 {
+    font-size: 55px;
+    line-height: 1.2;
+  }
+}
+@media screen and (max-width: 650px) {
+  .hero_wrapper > h1 {
+    font-size: 38px;
+
+    padding-inline: 20px;
+  }
+  .hero_wrapper > p {
+    padding-inline: 20px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .hero_wrapper > h1 {
+    font-size: 30px;
+    padding-inline: 15px;
+  }
+  .hero_wrapper > button {
+    padding: 1rem 2rem;
   }
 }

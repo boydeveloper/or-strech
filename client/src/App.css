@@ -167,29 +167,8 @@ img {
     font-size: 55%;
   }
 }
-@media screen and (max-width: 1054px) {
-  .flex__container {
-    flex-direction: column;
-  }
+@media screen and (max-width: 1024px) {
   section {
-    padding: 40px 20px;
-  }
-  .flex__container > div {
-    width: 100%;
-  }
-  .section__textbox > h1 {
-    font-size: 2.2rem;
-    line-height: 1.5;
-  }
-}
-@media screen and (max-width: 580px) {
-  .section__header > h1 {
-    font-size: 2.5rem;
-  }
-  .section__textbox > h1 {
-    font-size: 1.8rem;
-  }
-  .section__textbox > p {
-    font-size: 1.5rem;
+    padding: 30px 20px;
   }
 }

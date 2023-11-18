@@ -17,7 +17,8 @@
 }
 .footer > p {
   font-weight: 600;
-  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-size: 1.6rem;
   color: #625d5d;
   letter-spacing: -0.9px;
 }
@@ -31,4 +32,23 @@
   width: 20px;
   transition: all 0.1s;
   border-radius: 50%;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    padding-inline: 2rem;
+  }
+  .footer > span {
+    gap: 5px;
+  }
+  .footer > p {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .time_dot {
+    height: 15px;
+    width: 15px;
+  }
 }

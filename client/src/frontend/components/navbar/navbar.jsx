@@ -19,10 +19,14 @@ function Navbar() {
   return (
     <div className={style.naviagtion_Wrapper}>
       <div className={style.navigation}>
-        <Link to={"/"}>
+        <Link to={"/"} className={style.logo}>
           <img src="/assets/svgs/mayo-clinic-logo.svg" alt="" />
+          <span>OR-stretch</span>
         </Link>
         <div className={style.naviagtion_links}>
+          <Link to={"/"} className={style.navLogo}>
+            <img src="/assets/svgs/mayo-clinic-logo.svg" alt="" />
+          </Link>
           <Link to={"/"}>Home</Link>
           <Link to="/about">About</Link>
           <Link to={"/how-to-stretch"}>How to stretch?</Link>
@@ -36,6 +40,7 @@ function Navbar() {
               <Profile />
               <p>{user?.email}</p>
 
+              {/* <Hamburger /> */}
               <div className={style.dropdown}>
                 <Link to={"/profile"}>
                   <ion-icon name="person-circle-outline"></ion-icon>Profile
@@ -47,7 +52,6 @@ function Navbar() {
             </div>
           ) : (
             <Hamburger />
-
             // <button>stretch</button>
           )}
         </button>
