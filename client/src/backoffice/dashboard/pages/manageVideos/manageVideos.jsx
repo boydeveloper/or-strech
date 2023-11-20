@@ -25,7 +25,7 @@ function ManageVideos() {
       setLinks(links?.links);
     }
   };
-  const videoLinks = links.filter((link) => link?.type === "video");
+  const videoLinks = links?.filter((link) => link?.type === "video");
   const urlLinks = links?.filter((link) => link?.type === "link");
 
   const handleDeleteVideo = async () => {
