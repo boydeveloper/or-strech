@@ -383,7 +383,7 @@ function Timer() {
       {modal === "video" && (
         <VideoModal
           type={!isActive}
-          url={!isActive ? standingVideo.url : seatedVideo.url}
+          url={isActive ? standingVideo.url : seatedVideo.url}
           cancel={async () => {
             setModal("");
 
