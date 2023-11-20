@@ -10,14 +10,15 @@
   border-bottom: 1px solid #cccc;
 }
 .overviewHeader > h1 {
-  font-weight: 400;
   font-size: 3.2rem;
+  font-weight: 400;
   padding-block: 20px;
   color: #3a3a3a;
 }
 .overiewCards {
   display: grid;
   gap: 2rem;
+  margin-top: 4rem;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
 }
 
@@ -30,7 +31,6 @@
   justify-content: space-between;
   padding: 3.5rem 2rem;
   border-radius: 0.8rem;
-  margin-top: 4rem;
 }
 .overiewCard__details > i {
   font-size: 4.5rem;
@@ -68,4 +68,18 @@
   font-size: 2.8rem;
   font-weight: 400;
   margin-bottom: 2rem;
+}
+@media screen and (max-width: 1024px) {
+  .overviewWrapper {
+    padding: 0rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .overviewHeader > h1 {
+    font-size: 2.5rem;
+  }
+  .tableWrapper > h1 {
+    font-size: 2rem;
+  }
 }

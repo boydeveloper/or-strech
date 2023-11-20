@@ -15,8 +15,8 @@
   margin: 0 auto;
 }
 .naviagtion_links {
-  /* padding: 2rem 0; */
   display: flex;
+  margin-left: -10%;
   gap: 4rem;
   align-items: center;
   justify-content: space-between;
@@ -29,9 +29,9 @@
   width: 16%;
   font-weight: 700;
   gap: 5px;
+  letter-spacing: -1px;
   font-size: 1.8rem;
   color: #000;
-  letter-spacing: -1px;
 }
 
 .logo > img {
@@ -106,6 +106,7 @@
   top: 100%;
   right: 0;
   width: 100%;
+  min-width: 130px;
   padding: 1.5rem;
   justify-content: center;
   border-radius: 8px;
@@ -184,6 +185,7 @@
   }
   .logo {
     width: 50%;
+    font-size: 1.4rem;
   }
   .profile > p {
     display: none;

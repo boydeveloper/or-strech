@@ -9,8 +9,8 @@
   border-bottom: 1px solid #cccc;
 }
 .userActivitiesHeader > h1 {
-  font-weight: 400;
   font-size: 3.2rem;
+  font-weight: 400;
   padding-block: 20px;
 }
 
@@ -39,18 +39,15 @@
 .paginationButtons > button:disabled {
   background: #4444;
 }
-.utilButton {
-  background-color: #184f90;
-  padding: 1.5rem 3.5rem;
-  border-radius: 5rem;
-  border: none;
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  margin-left: auto;
-  margin-bottom: 2rem;
-  display: flex;
-  font-size: 1.6rem;
+
+@media screen and (max-width: 1024px) {
+  .activitiesOverview {
+    padding: 0rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .userActivitiesHeader > h1 {
+    font-size: 2.2rem;
+  }
 }

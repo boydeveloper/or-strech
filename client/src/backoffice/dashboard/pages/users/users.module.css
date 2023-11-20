@@ -43,10 +43,12 @@
   width: 100%;
   align-items: flex-end;
   gap: 2rem;
-
   margin-top: 2rem;
   margin-left: auto;
   justify-content: right;
+}
+.buttonContainer > button {
+  margin-left: unset;
 }
 
 .searchContainer {
@@ -63,7 +65,8 @@
 }
 .usersCTA {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   padding: 2rem 0;
 }
@@ -82,18 +85,6 @@
   border-radius: 3px;
 }
 
-.usersCTA div > button,
-.usersCTA > div > a {
-  background-color: #184f90;
-  padding: 1.5rem 3.5rem;
-  border-radius: 5rem;
-  border: none;
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-}
 .paginationButtons {
   display: flex;
   align-items: flex-end;
@@ -118,4 +109,25 @@
 
   flex-direction: row-reverse;
   justify-content: space-between;
+}
+@media screen and (max-width: 1024px) {
+  .users__overview {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .users__overview > header > h1 {
+    font-weight: 400;
+    font-size: 2.2rem;
+  }
+  .usersCTA {
+    flex-direction: column;
+    gap: 2rem;
+    padding-block: 2.5rem;
+    align-items: flex-start;
+  }
+  .buttonContainer {
+    justify-content: unset;
+  }
 }

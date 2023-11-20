@@ -57,18 +57,18 @@ const updateLink = async (req, res) => {
         .status(400)
         .json({ message: "Name parameter not specified.", isSuccess: false });
     const link = await Link.findOne({ where: { name } });
-    if (req.body.name) {
-      anotherLinkExistsWithTheNameForUpdate = await Link.findOne({
-        where: { name: req.body.name },
-      });
-      if (anotherLinkExistsWithTheNameForUpdate) {
-        return res.status(400).json({
-          message:
-            "Link with the same name already exists. Update to a new name.",
-          isSuccess: false,
-        });
-      }
-    }
+    // if (req.body.name) {
+    //   anotherLinkExistsWithTheNameForUpdate = await Link.findOne({
+    //     where: { name: req.body.name },
+    //   });
+    //   if (anotherLinkExistsWithTheNameForUpdate) {
+    //     return res.status(400).json({
+    //       message:
+    //         "Link with the same name already exists. Update to a new name.",
+    //       isSuccess: false,
+    //     });
+    //   }
+    // }
     if (link) {
       await Link.update(req.body, { where: { name } });
       const updatedLink = await Link.findOne({

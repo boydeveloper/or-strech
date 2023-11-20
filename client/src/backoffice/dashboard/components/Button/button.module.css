@@ -1,0 +1,22 @@
+.button {
+  background-color: #184f90;
+  padding: 1.5rem 3.5rem;
+  border-radius: 5rem;
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  margin-left: auto;
+  margin-bottom: 2rem;
+  display: flex;
+  font-size: 1.6rem;
+}
+@media screen and (max-width: 1024px) {
+  .button {
+    white-space: nowrap;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+}

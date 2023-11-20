@@ -59,15 +59,14 @@
 }
 html {
   font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 body {
   font-size: 1.6rem;
   font-weight: 400;
   font-family: "Inter", sans-serif;
   color: #212529;
-  /* overflow-y: scroll; */
-  overflow-x: hidden;
-  background: #fff;
 }
 .home {
   /* background-color: #d3eff8; */
@@ -162,11 +161,7 @@ img {
   left: 0;
   background-color: white;
 }
-@media screen and (max-width: 1200px) {
-  html {
-    font-size: 55%;
-  }
-}
+
 @media screen and (max-width: 1024px) {
   section {
     padding: 30px 20px;

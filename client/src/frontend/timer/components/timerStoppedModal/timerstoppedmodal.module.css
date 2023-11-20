@@ -43,6 +43,7 @@
 }
 
 .container > header {
+  font-size: 34px;
   padding: 10px 20px;
   position: relative;
   width: 100%;
@@ -53,7 +54,6 @@
   text-align: center;
 
   font-family: "helvetica_neue_regular", Helvetica, Arial, sans-serif;
-  font-size: 34px;
   text-transform: uppercase;
 }
 .close_button {
@@ -84,14 +84,16 @@
   font-family: "helvetica_neue_regular", Helvetica, Arial, sans-serif;
 }
 .cta {
-  display: flex;
+  display: grid;
   width: 100%;
   justify-content: space-between;
+  /* place-items: center; */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
 }
 .surgical_button {
   cursor: pointer;
-  width: 33.3%;
+  /* width: 33.3%; */
   background-color: #f0690f;
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMDM3MjI2IiB5MT0iLTAuMDMyMzYiIHgyPSIwLjk2Mjc3NCIgeTI9IjEuMDMyMzYiPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjZjA2OTBmIi8+PHN0b3Agb2Zmc2V0PSI1MC4xJSIgc3RvcC1jb2xvcj0iI2YxNzgyOSIvPjxzdG9wIG9mZnNldD0iNTAuMSUiIHN0b3AtY29sb3I9IiNmMTc4MjkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=);
   background-size: 100%;
@@ -140,7 +142,7 @@
   background-repeat: no-repeat;
 }
 .finished_button {
-  width: 33.3%;
+  /* width: 33.3%; */
   border: none;
   cursor: pointer;
   text-align: center;
@@ -204,7 +206,7 @@
     #3967c1 50.1%,
     #3967c1 50.1%
   );
-  width: 33.3%;
+  /* width: 33.3%; */
   border: none;
   font-size: 2.5rem;
   color: #fff;
@@ -214,4 +216,18 @@
   align-items: center;
   justify-content: center;
   font-family: "helvetica_neue_regular", Helvetica, Arial, sans-serif;
+}
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 100%;
+  }
+  .container > header {
+    font-size: 24px;
+  }
+  .cta {
+    /* flex-wrap: wrap; */
+  }
+  .cta > div {
+    /* width: fit-content; */
+  }
 }

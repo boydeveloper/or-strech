@@ -2,7 +2,7 @@
   position: relative;
 }
 .auth__wrapper {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,4 +130,27 @@
 .formbox > button:disabled {
   box-shadow: unset;
   background: #ced4da;
+}
+@media screen and (max-width: 1024px) {
+  .auth__wrapper {
+    padding: 2rem;
+  }
+  .auth__card {
+    flex-direction: column;
+  }
+  .img__box,
+  .formbox {
+    width: 100%;
+    height: 100%;
+  }
+  .formbox,
+  .img__box {
+    padding: 4.5rem 2rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .login__textbox > h1 {
+    font-size: 3rem;
+  }
 }

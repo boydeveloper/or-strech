@@ -4,3 +4,4 @@ export { default as Switch } from "./switch/switch";
 export { default as SearchInput } from "./searchInput/searchInput";
 export { default as Table } from "./table/table";
 export { default as Pagination } from "./pagination/pagination";
+export { default as Button } from "./Button/Button";

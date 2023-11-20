@@ -3,11 +3,26 @@
 }
 .listOfStrechesWrapper > header {
   padding-top: 4.8rem;
+  text-align: center;
+  border-bottom: solid 1px #0b5cd5;
+  padding: 2rem 0;
 }
 .listOfStrechesWrapper > header > h1 {
-  font-size: 4.2rem;
-  /* color: ; */
+  font-size: 4rem;
+  letter-spacing: -0.9px;
   color: #0b5cd5;
+  margin-bottom: 2rem;
+}
+.listOfStrechesWrapper > header > h1 > i {
+  color: #000;
+}
+.listOfStrechesWrapper > header > p {
+  font-size: 1.8rem;
+  line-height: 35px;
+  letter-spacing: -0.6px;
+  max-width: 90rem;
+  color: #212529;
+  margin: 0 auto;
 }
 
 .listSummary {
@@ -119,12 +134,18 @@
   .excercise .textbox > h1 {
     font-size: 2.4rem;
   }
+  .listOfStrechesWrapper > header > p {
+    font-size: 1.6rem;
+    line-height: 28px;
+    max-width: unset;
+  }
 }
 
 @media screen and (max-width: 420px) {
   .listOfStrechesWrapper > header > h1 {
-    font-size: 2.8rem;
+    font-size: 3rem;
   }
+
   .excercise .textbox > h1 {
     font-size: 2.5rem;
   }

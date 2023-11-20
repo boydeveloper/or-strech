@@ -7,25 +7,15 @@ function Stretches() {
       <div className="container">
         <div className={style.listOfStrechesWrapper}>
           <header>
-            <h1>OR-Stretch - Between Surgery Stretches</h1>
-            <div className={style.listSummary}>
-              <p>
-                • These activities are intended to be performed slowly with no
-                rapid or forceful movements.
-              </p>
-              <p>• Keep your breathing relaxed throughout all activities.</p>
-              <p>
-                • If any activity causes discomfort, stop performing the
-                activity.
-              </p>
-              <p>
-                • An instructional video leading the between surgery stretches
-                can be found at{" "}
-                <a href="https://youtu.be/bLAeVbBjZV0" target="__blank">
-                  https://youtu.be/bLAeVbBjZV0
-                </a>
-              </p>
-            </div>
+            <h1>
+              Stretching Exercises <i className="fa-solid fa-person"></i>
+            </h1>
+            <p>
+              These stretching exercises slowly and without forceful movements
+              to enhance muscle flexibility. Listen to your body, stop if any
+              discomfort arises, and prioritize controlled motions for a safe
+              and effective routine.
+            </p>
           </header>
           <div className={style.excercises}>
             <div className={style.excercise}>

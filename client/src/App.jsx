@@ -17,7 +17,7 @@ import {
   UserActivities,
   UpdateVideos,
 } from "./backoffice/dashboard/pages/index";
-import { AboutPage } from "./frontend/index";
+import ScrollToTop from "./frontend/utils/functions/scrollToTop";
 
 import "./App.css";
 import RequireAuth from "./backoffice/auth/utils/requireAuth";
@@ -41,33 +41,38 @@ function App() {
             },
           }}
         />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/backoffice/login" element={<Login />} />
-          <Route path="/stretch" element={<Timer />} />
-          {/* <Route path="/about" element={<AboutPage />} /> */}
-          <Route path="/profile" element={<StretcherProfile />} />
-          <Route path="/how-to-stretch" element={<Stretches />} />
-          <Route path="/faqs" element={<Faqs />} />
-          {/* <Route element={<RequireAuth />}> */}
-          <Route path="/about" element={<HowToStretch />} />
-          <Route path="dashboard" element={<Dashboard />}>
-            <Route path="users" element={<Users />} />
-            <Route path="users-activities" element={<UserActivities />} />
-            <Route path="overview" element={<Overview />} />
-            <Route path="add-videos" element={<AddVideos />} />
-            <Route path="add-users" element={<AddUsers />} />
-            <Route path="update-user/:id" element={<UpdateUser />} />
-            <Route path="update-tag/:id" element={<UpdateTag />} />
-            <Route path="manage-videos/:linkName" element={<UpdateVideos />} />
-            <Route path="manage-tags" element={<ManageTags />} />
-            <Route path="manage-videos" element={<ManageVideos />} />
-            <Route path="manage-tags/:name" element={<TagDetails />} />
-            <Route path="profile" element={<Profile />} />
-            {/* <Route path="profile" element={<Profile />} /> */}
-          </Route>
-          {/* </Route> */}
-        </Routes>
+        <ScrollToTop>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/backoffice/login" element={<Login />} />
+            <Route path="/stretch" element={<Timer />} />
+            {/* <Route path="/about" element={<AboutPage />} /> */}
+            <Route path="/profile" element={<StretcherProfile />} />
+            <Route path="/how-to-stretch" element={<Stretches />} />
+            <Route path="/faqs" element={<Faqs />} />
+            {/* <Route element={<RequireAuth />}> */}
+            <Route path="/about" element={<HowToStretch />} />
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route path="users" element={<Users />} />
+              <Route path="users-activities" element={<UserActivities />} />
+              <Route path="overview" element={<Overview />} />
+              <Route path="add-videos" element={<AddVideos />} />
+              <Route path="add-users" element={<AddUsers />} />
+              <Route path="update-user/:id" element={<UpdateUser />} />
+              <Route path="update-tag/:id" element={<UpdateTag />} />
+              <Route
+                path="manage-videos/:linkName"
+                element={<UpdateVideos />}
+              />
+              <Route path="manage-tags" element={<ManageTags />} />
+              <Route path="manage-videos" element={<ManageVideos />} />
+              <Route path="manage-tags/:name" element={<TagDetails />} />
+              <Route path="profile" element={<Profile />} />
+              {/* <Route path="profile" element={<Profile />} /> */}
+            </Route>
+            {/* </Route> */}
+          </Routes>
+        </ScrollToTop>
       </Router>
     </AuthProvider>
   );

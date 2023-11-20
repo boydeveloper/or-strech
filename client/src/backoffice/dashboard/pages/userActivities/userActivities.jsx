@@ -1,5 +1,5 @@
 import style from "./useractivities.module.css";
-import { Pagination, Table } from "../../components/index";
+import { Button, Pagination, Table } from "../../components/index";
 import { useEffect, useState } from "react";
 import {
   getExports,
@@ -52,13 +52,8 @@ function UserActivities() {
       <header className={style.userActivitiesHeader}>
         <h1>Back Office | Users Activities</h1>
       </header>
-      <button
-        className={style.utilButton}
-        type="button"
-        onClick={handleExports}
-      >
-        export activities
-      </button>
+
+      <Button click={handleExports} textContent={"export activities"} />
       <div className={style.tableWrapper}>
         {loading ? (
           <div className={style.loaderContainer}>

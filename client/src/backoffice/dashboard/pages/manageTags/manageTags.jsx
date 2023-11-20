@@ -12,6 +12,7 @@ import DeletePrompt from "../../components/deletePrompt/deletePrompt";
 import Loader from "../../../../components/Loader";
 import { useAuth } from "../../../context/auth";
 import { getExports } from "../../../../Apis/users/userService";
+import { Button } from "../../components";
 
 function ManageTags() {
   const { user } = useAuth();
@@ -115,13 +116,8 @@ function ManageTags() {
       <header>
         <h1>Back Office | Manage Tags</h1>
       </header>
-      <button
-        className={style.utilButton}
-        type="button"
-        onClick={handleExports}
-      >
-        export tags
-      </button>
+
+      <Button textContent={"export tags"} click={handleExports} />
       <form onSubmit={handleSubmit}>
         <h1>Add New Tag</h1>
         <div>

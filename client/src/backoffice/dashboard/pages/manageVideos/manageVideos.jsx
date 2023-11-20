@@ -8,6 +8,8 @@ import {
 import style from "./managevideos.module.css";
 import DeletePrompt from "../../components/deletePrompt/deletePrompt";
 import toast from "react-hot-toast";
+import { Button } from "../../components";
+import { LinkIcon, VideoIcon } from "../../../../frontend/utils/svg";
 
 function ManageVideos() {
   const navigate = useNavigate();
@@ -18,14 +20,14 @@ function ManageVideos() {
 
   const getLinks = async () => {
     const links = await getVideoLinks(user?.token);
-    console.log(links);
+
     if (links?.isSuccess === true) {
       setLinks(links?.links);
     }
   };
-  const videoLinks = links?.filter((link) => link?.type === "video");
+  const videoLinks = links;
   const urlLinks = links?.filter((link) => link?.type === "link");
-  console.log(links);
+
   const handleDeleteVideo = async () => {
     try {
       const deleteV = await deleteVideoLink(selectedVideo, user?.token);
@@ -52,9 +54,10 @@ function ManageVideos() {
       </header>
 
       <div className={style.addVideoCta}>
-        <button onClick={() => navigate("/dashboard/add-videos")}>
-          ADD MEDIA
-        </button>
+        <Button
+          textContent={"ADD MEDIA"}
+          click={() => navigate("/dashboard/add-videos")}
+        />
       </div>
       <div className={style.videosBox}>
         {links?.length === 0 ? (
@@ -69,7 +72,7 @@ function ManageVideos() {
                 {videoLinks?.map((link) => (
                   <div className={style.videoBox} key={link?.name}>
                     <div className={style.img_box}>
-                      <img src="/assets/imgs/videoimg.jpg" alt="video" />
+                      <VideoIcon />
                     </div>
                     <div className={style.videoBoxDetails}>
                       <h1>{link?.name}</h1>
@@ -98,7 +101,7 @@ function ManageVideos() {
                 {urlLinks?.map((link) => (
                   <div className={style.videoBox} key={link.name}>
                     <div className={style.img_box}>
-                      <img src="/assets/imgs/linkk.png" alt="link" />
+                      <LinkIcon />
                     </div>
                     <div className={style.videoBoxDetails}>
                       <h1>{link.name}</h1>

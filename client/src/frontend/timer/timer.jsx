@@ -93,7 +93,7 @@ function Timer() {
 
   const [selectedReminder, setSelectedReminder] = useState(reminders[0]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
+  const [isDemoTimerActive, setIsDemoTimerActive] = useState(false);
   const decreaseTime = () => {
     if (minutes > 30) {
       if (!isRunning) {
@@ -121,7 +121,7 @@ function Timer() {
   };
   const getLinks = async () => {
     const links = await getVideoLinks(user?.token);
-    console.log(links);
+
     if (links?.isSuccess === true) {
       setLinks(links?.links);
     }
@@ -144,9 +144,10 @@ function Timer() {
     // );
     setModal("video");
   };
-
   useEffect(() => {
     getLinks();
+  }, []);
+  useEffect(() => {
     let interval;
     if (isRunning && (minutes > 0 || seconds > 0)) {
       interval = setInterval(() => {
@@ -186,6 +187,7 @@ function Timer() {
     console.log("hiii");
     if (!isRunning) {
       setMinutes(0);
+      setIsDemoTimerActive(true);
       setSeconds(5);
       stopTimer();
     }
@@ -199,6 +201,7 @@ function Timer() {
     setToggleClass(!toggleClass);
     setSeconds(0);
     setSnoozeClicked(true);
+    setIsDemoTimerActive(false);
     // await createEvent({
     //   userid: user?.id,
     //   event_type: "SNOOZE",
@@ -307,6 +310,7 @@ function Timer() {
               </div>
               {demo && (
                 <button
+                  disabled={isDemoTimerActive}
                   onClick={handleDemoTimerClick}
                   className={style.demoButton}
                 >
@@ -378,6 +382,7 @@ function Timer() {
       </div>
       {modal === "video" && (
         <VideoModal
+          type={!isActive}
           url={!isActive ? standingVideo.url : seatedVideo.url}
           cancel={async () => {
             setModal("");

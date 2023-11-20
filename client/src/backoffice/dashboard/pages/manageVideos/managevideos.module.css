@@ -25,8 +25,8 @@
   border-bottom: 1px solid #cccc;
 }
 .ManageVideosWrapper > header > h1 {
-  font-weight: 400;
   font-size: 3.2rem;
+  font-weight: 400;
   padding-block: 20px;
 }
 .videosBox {
@@ -45,9 +45,17 @@
   overflow: hidden;
 }
 .img_box {
-  width: 10%;
+  padding-inline: 30px;
+  display: block;
   height: 100%;
-  /* height: 60px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #8ec2e5;
+}
+.img_box > svg {
+  height: 40px;
+  width: 40px;
 }
 .videoBox .img_box > img {
   object-fit: contain;
@@ -110,4 +118,18 @@
 }
 .nouser > h1 {
   font-weight: 400;
+}
+@media screen and (max-width: 1024px) {
+  .ManageVideosWrapper {
+    padding: 0rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .ManageVideosWrapper > header {
+    margin-bottom: 2rem;
+  }
+  .ManageVideosWrapper > header > h1 {
+    font-size: 2.2rem;
+  }
 }

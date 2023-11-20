@@ -3,9 +3,11 @@ import style from "./header.module.css";
 import { Link } from "react-router-dom";
 import Dropdown from "./component/dropdown";
 import { useAuth } from "../../../context/auth";
+import { Profile } from "../../../../frontend/utils/svg";
 
 function Header() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+
   return (
     <div className={style.dashboard__header}>
       <div className={style.header__left}>
@@ -19,9 +21,20 @@ function Header() {
       </div>
       <div className={style.header__right}>
         <span>{user?.email}</span>
-        <img src="/assets/imgs/defaultdoc.jpg" alt="default profile img" />
-        <div className={style.dropdownM}>
-          <Dropdown />
+        <Profile fill={"#00365a"} />
+
+        <div className={style.quickActionsMenu}>
+          <Link to={`/dashboard/profile`}>
+            <ion-icon name="person-circle-outline"></ion-icon> Your profile
+          </Link>
+          <Link
+            onClick={logout}
+            className={style.logout}
+            to="/backoffice/login"
+          >
+            <ion-icon name="log-out-outline"></ion-icon>
+            LOGOUT
+          </Link>
         </div>
       </div>
     </div>

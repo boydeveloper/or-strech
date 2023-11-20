@@ -3,7 +3,6 @@
   width: 12rem;
   z-index: 1;
   height: 100%;
-  /* position: ; */
   position: fixed;
   left: 0;
 }
@@ -28,4 +27,9 @@
 .sidebar__links > a:link:not(:last-child),
 .sidebar__links > a:visited:not(:last-child) {
   border-bottom: 1px solid #ccc;
+}
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
 }

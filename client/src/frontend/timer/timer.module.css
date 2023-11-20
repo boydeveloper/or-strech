@@ -1,17 +1,23 @@
 .timer__overview {
-  height: 100%;
-  background: rgb(235, 239, 240);
+  height: 100vh;
+  /* background: rgb(235, 239, 240); */
 }
 .timer__wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  max-width: 55rem;
+  width: 55rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   margin: 0 auto;
-  height: 100vh;
+
+  /* height: 50.5rem; */
+  min-height: 100vh;
   overflow: hidden;
-  margin-top: 2rem;
+  margin-top: 8rem;
 }
 .timer {
   background-color: #3461b4;
@@ -262,14 +268,14 @@
   display: none;
 }
 .start_button {
+  height: 135px;
+  width: 135px;
   cursor: pointer;
   background-position: -1px -1349.99px;
-  height: 135px;
   background-repeat: no-repeat;
   border-radius: 50%;
   border: none;
   background-color: transparent;
-  width: 135px;
   background-image: url(../utils/imgs/transparent-s652f07523c.png);
 }
 .start_button:hover {
@@ -279,7 +285,7 @@
   color: white;
   border: none;
   padding: 10px;
-  min-width: 90px;
+  width: 100%;
   font-size: 35px !important;
   text-transform: uppercase;
   line-height: 22px;
@@ -408,7 +414,7 @@
   border: 2px solid #8ca6d6;
   padding: 0;
   font-size: 13px !important;
-  min-width: 54px;
+  width: 54px;
   text-decoration: none;
 }
 .start_watching {
@@ -503,4 +509,9 @@
   font-size: 38px;
   font-family: "helvetica_neue_regular";
   margin: 0;
+}
+@media screen and (max-width: 600px) {
+  .timer__wrapper {
+    zoom: 50%;
+  }
 }

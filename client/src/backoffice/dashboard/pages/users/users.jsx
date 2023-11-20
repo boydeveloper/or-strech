@@ -13,6 +13,7 @@ import Pagination from "../../components/pagination/pagination";
 import toast from "react-hot-toast";
 import DeletePrompt from "../../components/deletePrompt/deletePrompt";
 import { useAuth } from "../../../context/auth";
+import { Button } from "../../components";
 
 function Users() {
   const navigate = useNavigate();
@@ -191,15 +192,15 @@ function Users() {
           </div>
 
           <div className={style.buttonContainer}>
-            <button onClick={() => navigate("/dashboard/add-users")}>
-              ADD NEW USER
-            </button>
-
-            <button onClick={handleExports}>export users</button>
+            <Button
+              textContent={"ADD NEW USER"}
+              click={() => navigate("/dashboard/add-users")}
+            />
+            <Button click={handleExports} textContent={"export users"} />
           </div>
         </div>
         {loading && <Loader />}
-        <div className={style.searchContainer}></div>
+
         <div className={style.tableWrapper}>
           <div>
             <Table

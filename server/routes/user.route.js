@@ -2,6 +2,7 @@ const userController = require("../controllers/user.controller");
 
 const router = require("express").Router();
 router.get("/listUsers", userController.listUsers);
+router.get("/listAllUsers", userController.listAllUsers);
 router.delete("/deleteUser", userController.deleteUser);
 router.put("/updateUser", userController.updateUser);
 router.get("/userDetails", userController.viewUserDetails);

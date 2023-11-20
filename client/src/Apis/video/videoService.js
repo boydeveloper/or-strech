@@ -44,6 +44,7 @@ export const updateVideoLink = async (payload, name, token) => {
         headers,
       }
     );
+    console.log(response);
     return response.data;
   } catch (error) {
     throw error;

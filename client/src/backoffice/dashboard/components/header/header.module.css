@@ -24,24 +24,26 @@
   align-items: center;
   text-decoration: none;
 }
-.logo:link,
+.logo:link > img,
 .logo:visited > img {
   height: 5.5rem;
   width: 5.5rem;
 }
-.logo:link,
+.logo:link > h1,
 .logo:visited > h1 {
-  font-size: 1.2rem;
+  letter-spacing: -1px;
+  font-size: 2.5rem;
+  color: #000;
 }
 .header__left {
   display: flex;
   align-items: center;
   width: 50%;
-  gap: 90px;
+  gap: 70px;
 }
 .header__left > button {
+  font-size: 4.5rem;
   background: none;
-  font-size: 3rem;
   border: none;
 }
 .header__right {
@@ -50,12 +52,10 @@
   gap: 10px;
   position: relative;
 }
-.header__right > img {
-  height: 50px;
-  width: 50px;
-  border: solid 2px #00365a;
-  padding: 5px;
-  border-radius: 50%;
+
+.header__right > svg {
+  height: 40px;
+  width: 40px;
   cursor: pointer;
 }
 .header__right > span {
@@ -63,13 +63,84 @@
   font-size: 1.4rem;
 }
 
-.dropdownM {
-  display: none;
-}
-.header__right > img:hover + .dropdownM {
+.header__right > svg:hover + .quickActionsMenu {
   display: flex;
 }
 
-.dropdownM:hover {
+.quickActionsMenu {
+  display: none;
+  width: 100%;
+  position: absolute;
+  flex-direction: column;
+  top: 100%;
+  right: 0;
+  padding: 14px;
+  min-width: 150px;
+  border-radius: 8px;
+  background: #fff;
+  border: #00365a solid 1px;
+  text-transform: none;
+}
+.quickActionsMenu:hover {
   display: flex;
+}
+
+.quickActionsMenu > a:link,
+.quickActionsMenu > a:visited {
+  padding: 8px 10px;
+  color: #2b2b2b;
+  white-space: nowrap;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 18px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.quickActionsMenu > a:link > ion-icon {
+  font-size: 16px;
+}
+.quickActionsMenu > a:hover,
+.quickActionsMenu > a:active {
+  border-radius: 8px;
+
+  background-color: #fafafa;
+}
+.quickActionsMenu > a:link:last-child,
+.quickActionsMenu > a:visited:last-child {
+  color: #e62c2c;
+}
+
+@media screen and (max-width: 1024px) {
+  .dashboard__header {
+    padding-inline: 2rem;
+  }
+  .header__left {
+    gap: 0px;
+  }
+  .logo:link,
+  .logo:visited {
+    gap: 1rem;
+    margin-left: 1rem;
+  }
+}
+@media screen and (max-width: 650px) {
+  .header__right > span {
+    display: none;
+  }
+
+  .header__left > button {
+    font-size: 3.5rem;
+  }
+  .logo:link > img,
+  .logo:visited > img {
+    height: 4.5rem;
+    width: 4.5rem;
+  }
+
+  .logo:link > h1,
+  .logo:visited > h1 {
+    font-size: 2rem;
+  }
 }

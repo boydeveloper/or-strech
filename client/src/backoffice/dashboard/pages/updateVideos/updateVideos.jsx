@@ -44,6 +44,7 @@ function UpdateVideos() {
         linkName,
         user?.token
       );
+      console.log(updateVideo);
       if (updateVideo?.isSuccess === true) {
         toast.success(`Video with name ${linkName} updated`);
         navigate("/dashboard/manage-videos");
