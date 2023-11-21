@@ -56,7 +56,7 @@ function Hero() {
       if (emailValid) {
         const users = await getAllUsers();
         const userExists = users?.find((user) => user?.email === email);
-        console.log(userExists);
+
         if (userExists) {
           const loggedInUser = await authenticateUser(email);
           if (loggedInUser?.isSuccess === true) {
@@ -71,7 +71,6 @@ function Hero() {
             toast.error("Error logging in");
           }
         } else {
-          console.log("hiii");
           setLoading(false);
           setModal("agreeModal");
         }
