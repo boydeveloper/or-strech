@@ -16,7 +16,7 @@
 }
 .naviagtion_links {
   display: flex;
-  margin-left: -10%;
+
   gap: 4rem;
   align-items: center;
   justify-content: space-between;
