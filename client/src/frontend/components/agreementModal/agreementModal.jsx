@@ -3,17 +3,13 @@ import style from "./agreementModal.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CancelIcon } from "../../utils/svg";
-function AgreementModal({ close }) {
+function AgreementModal({ close, loading, submit }) {
   const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate("");
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
   };
-  const agreed = () => {
-    if (isChecked) {
-      navigate("/stretch");
-    }
-  };
+
   const svgVariant = {
     hidden: {
       scale: 0.7,
@@ -31,7 +27,8 @@ function AgreementModal({ close }) {
   return (
     <div className={style.modalContainer}>
       <div className={style.agreementModalOverlay}></div>
-      <motion.div
+      <motion.form
+        onSubmit={submit}
         id="success"
         className={style.agreementModalContainer}
         variants={svgVariant}
@@ -66,11 +63,11 @@ function AgreementModal({ close }) {
 
         <div className={style.agreeMentCta}>
           <button onClick={close}>Cancel</button>
-          <button onClick={agreed} disabled={!isChecked}>
-            Continue
+          <button type="submit" disabled={!isChecked}>
+            {loading ? "Loading.." : "Continue"}
           </button>
         </div>
-      </motion.div>
+      </motion.form>
     </div>
   );
 }

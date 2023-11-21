@@ -10,7 +10,6 @@ export const getAllUsers = async (token) => {
     const response = await axios.get(`${BASE_URL}/users/listAllUsers`, {
       headers,
     });
-
     return response.data;
   } catch (error) {
     throw error;

@@ -5,6 +5,8 @@ import { AgreementModal } from "../../../components/index";
 import style from "./hero.module.css";
 import { createEvent } from "../../../../Apis/event/eventService";
 import LoginModal from "./components/loginModal";
+import { getAllUsers } from "../../../../Apis/users/userService";
+import toast from "react-hot-toast";
 
 function Hero() {
   const [email, setEmail] = useState("");
@@ -22,50 +24,63 @@ function Hero() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-  const closeModal = () => {
-    setModal("");
+  const handleIsNewModal = async (event) => {
+    event.preventDefault();
+    try {
+      setLoading(true);
+      const loggedInUser = await authenticateUser(email);
+      if (loggedInUser?.isSuccess === true) {
+        const token = loggedInUser?.account?.token;
+        const parse = JSON.stringify(loggedInUser?.account);
+        sessionStorage.setItem("strecher", parse);
+        sessionStorage.setItem("stretcher_token", token);
+        setLoading(false);
+        navigate("/stretch");
+      } else {
+        setLoading(false);
+        toast.error(error.response.data.message);
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.response.data.message);
+    }
   };
   const userJSON = sessionStorage?.getItem("strecher");
   const user = JSON?.parse(userJSON);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-    const emailValid = validateEmail(email);
-    if (emailValid) {
-      const loggedInUser = await authenticateUser(email);
-      console.log(loggedInUser);
-      const token = loggedInUser?.account?.token;
-      const parse = JSON.stringify(loggedInUser?.account);
-      sessionStorage.setItem("strecher", parse);
-      sessionStorage.setItem("stretcher_token", token);
-      if (loggedInUser?.isSuccess === true) {
-        // console.log()
-        // const event = await createEvent(
-        //   {
-        //     userid: loggedInUser?.account?.id,
-        //     event_type: "ENTERED_CSTRETCH",
-        //     notes: "entered cstretch",
-        //   },
-        //   token
-        // );
-        console.log(event);
-        setLoading(false);
-        if (loggedInUser?.account?.isNew === true) {
+    try {
+      event.preventDefault();
+      setLoading(true);
+      const emailValid = validateEmail(email);
+      if (emailValid) {
+        const users = await getAllUsers();
+        const userExists = users?.find((user) => user?.email === email);
+        console.log(userExists);
+        if (userExists) {
+          const loggedInUser = await authenticateUser(email);
+          if (loggedInUser?.isSuccess === true) {
+            const token = loggedInUser?.account?.token;
+            const parse = JSON.stringify(loggedInUser?.account);
+            sessionStorage.setItem("strecher", parse);
+            sessionStorage.setItem("stretcher_token", token);
+            setLoading(false);
+            navigate("/stretch");
+          } else {
+            setLoading(false);
+            toast.error("Error logging in");
+          }
+        } else {
+          console.log("hiii");
           setLoading(false);
           setModal("agreeModal");
-        } else if (loggedInUser?.account?.isNew === false) {
-          setLoading(false);
-          console.log("/hjffffff");
-          navigate("/stretch");
         }
       } else {
-        toast.error("error logging in");
+        setError("Please enter a valid email address");
         setLoading(false);
       }
-    } else {
-      setError("Please enter a valid email address");
-      setLoading(false);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
     }
   };
 
@@ -89,14 +104,20 @@ function Hero() {
       {modal === "login" && (
         <LoginModal
           loading={loading}
-          close={closeModal}
+          close={() => setModal("")}
           submit={handleSubmit}
           value={email}
           emailChange={handleInputEmailChange}
         />
       )}
 
-      {modal === "agreeModal" && <AgreementModal close={closeModal} />}
+      {modal === "agreeModal" && (
+        <AgreementModal
+          close={() => setModal("")}
+          loading={loading}
+          submit={handleIsNewModal}
+        />
+      )}
     </>
   );
 }

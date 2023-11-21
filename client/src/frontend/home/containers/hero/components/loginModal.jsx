@@ -36,7 +36,9 @@ function LoginModal({ value, emailChange, submit, close, loading }) {
         </div>
         <div className={style.cta}>
           <button onClick={close}>Cancel</button>
-          <button disabled={loading}>{loading ? "loading..." : "Login"}</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "loading..." : "Login"}
+          </button>
         </div>
       </motion.form>
     </div>
