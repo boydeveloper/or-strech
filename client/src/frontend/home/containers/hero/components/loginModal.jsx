@@ -29,7 +29,7 @@ function LoginModal({ value, emailChange, submit, close, loading }) {
         <button onClick={close}>
           <CancelIcon />
         </button>
-        <h1>Login</h1>
+        <h1>Get Access</h1>
         <div className={style.input_container}>
           <label htmlFor="email">Email</label>
           <input type="text" id="email" value={value} onChange={emailChange} />
