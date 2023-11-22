@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import style from "./agreementModal.module.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CancelIcon } from "../../utils/svg";
 function AgreementModal({ close, loading, submit }) {
   const [isChecked, setIsChecked] = useState(false);
@@ -52,8 +52,9 @@ function AgreementModal({ close, loading, submit }) {
             the
             {"   "}
             <a
-              target="__blank"
-              href="https://www.mayo.edu/research/labs/human-factors-engineering/or-stretch/or-stretch-privacy-policy"
+              href="/privacy-policy"
+              rel="noopener noreferrer"
+              target="_blank"
               className={style.privacyPolicy}
             >
               Privacy Policy.

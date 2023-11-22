@@ -51,7 +51,8 @@ function Navbar() {
               </div>
             </div>
           ) : (
-            <Hamburger />
+            <button>Start Stretching</button>
+            // <Hamburger />
             // <button>stretch</button>
           )}
         </button>

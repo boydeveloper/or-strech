@@ -26,6 +26,7 @@ import StretcherProfile from "./frontend/profile/StretcherProfile";
 import HowToStretch from "./frontend/instructions/HowToStretch";
 import Stretches from "./frontend/stretches/Stretches";
 import Faqs from "./frontend/faqs/Faqs";
+import PrivacyPolicy from "./frontend/privacypolicy/PrivacyPolicy";
 function App() {
   return (
     <AuthProvider>
@@ -47,6 +48,7 @@ function App() {
             <Route path="/backoffice/login" element={<Login />} />
             <Route path="/stretch" element={<Timer />} />
             {/* <Route path="/about" element={<AboutPage />} /> */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/profile" element={<StretcherProfile />} />
             <Route path="/how-to-stretch" element={<Stretches />} />
             <Route path="/faqs" element={<Faqs />} />
