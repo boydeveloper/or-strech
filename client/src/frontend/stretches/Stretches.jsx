@@ -60,16 +60,16 @@ function Stretches() {
                 </div>
               </div>
               <div className={style.img_box}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img src="/assets/imgs/base.png" alt="sitting position" />
+                <img src="/assets/imgs/base2.png" alt="sitting position" />
+                <img src="/assets/imgs/base3.png" alt="sitting position" />
               </div>
             </div>
             <div className={style.excercise}>
               <div className={style.img_box}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img src="/assets/imgs/base4.png" alt="sitting position" />
+                <img src="/assets/imgs/base4.png" alt="sitting position" />
+                <img src="/assets/imgs/base3.png" alt="sitting position" />
               </div>
               <div className={style.textbox}>
                 <h1>Exercise 2: Seated Trunk Extension and Flexion</h1>
@@ -156,16 +156,17 @@ function Stretches() {
                 </div>
               </div>
               <div className={style.img_box}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img src="/assets/imgs/base6.png" alt="sitting position" />
+                <img src="/assets/imgs/base7.png" alt="sitting position" />
+                <img src="/assets/imgs/base8.png" alt="sitting position" />
               </div>
             </div>
             <div className={style.excercise}>
               <div className={style.img_box}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img src="/assets/imgs/base9.png" alt="sitting position" />
+                <img src="/assets/imgs/base10.png" alt="sitting position" />
+                <img src="/assets/imgs/base11.png" alt="sitting position" />
+                <img src="/assets/imgs/base12.png" alt="sitting position" />
               </div>
               <div className={style.textbox}>
                 <h1>Exercise 4: Neck Extension and Flexion</h1>
@@ -262,16 +263,14 @@ function Stretches() {
                 </div>
               </div>
               <div className={style.img_box}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img src="/assets/imgs/base13.png" alt="sitting position" />
+                <img src="/assets/imgs/base14.png" alt="sitting position" />
               </div>
             </div>
             <div className={style.excercise}>
               <div className={style.img_box}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img src="/assets/imgs/base15.png" alt="sitting position" />
+                <img src="/assets/imgs/base16.png" alt="sitting position" />
               </div>
               <div className={style.textbox}>
                 <h1>Exercise 6: Trunk Rotation with a Hip Stretch</h1>
@@ -379,16 +378,17 @@ function Stretches() {
                 </div>
               </div>
               <div className={style.img_box}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img src="/assets/imgs/base17.png" alt="sitting position" />
+                <img src="/assets/imgs/base18.png" alt="sitting position" />
+                <img src="/assets/imgs/base19.png" alt="sitting position" />
               </div>
             </div>
             <div className={style.excercise}>
               <div className={style.img_box}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img src="/assets/imgs/base20.png" alt="sitting position" />
+                <img src="/assets/imgs/base21.png" alt="sitting position" />
+                <img src="/assets/imgs/base22.png" alt="sitting position" />
+                <img src="/assets/imgs/base23.png" alt="sitting position" />
               </div>
               <div className={style.textbox}>
                 <h1>Exercise 8: Shoulder Extension with Neural Tension</h1>
@@ -465,9 +465,9 @@ function Stretches() {
                 </div>
               </div>
               <div className={style.img_box}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img src="/assets/imgs/base24.png" alt="sitting position" />
+                <img src="/assets/imgs/base25.png" alt="sitting position" />
+                <img src="/assets/imgs/base26.png" alt="sitting position" />
               </div>
             </div>
           </div>

@@ -23,7 +23,7 @@
 .section_one .text_box > p {
   color: #2b2b2b;
   font-size: 20px;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.9px;
   line-height: 36px;
   margin-bottom: 4rem;
 }
@@ -62,7 +62,7 @@
 .section_two .text_box > p {
   color: #2b2b2b;
   font-size: 18px;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.9px;
   line-height: 30px;
 }
 .section_three {
@@ -85,7 +85,7 @@
 .section_three .text_box > p {
   color: #2b2b2b;
   font-size: 18px;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.9px;
   line-height: 30px;
 }
 .section_four {
@@ -108,8 +108,8 @@
   /* text-align: justify; */
   color: #2b2b2b;
   font-size: 18px;
-  letter-spacing: -0.8px;
-  line-height: 36px;
+  letter-spacing: -0.9px;
+  line-height: 30px;
   margin-bottom: 4rem;
 }
 
