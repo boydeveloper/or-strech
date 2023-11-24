@@ -7,7 +7,6 @@ const linksArray = [
   "seated",
   "standing",
 ];
-
 const createLink = async (req, res) => {
   try {
     if (!req.body)
@@ -20,25 +19,30 @@ const createLink = async (req, res) => {
         message: "Media type should either be 1 or 2.",
         isSuccess: false,
       });
+
     const existingLink = await Link.findOne({
       where: { name: req.body.name },
     });
+
     if (existingLink) {
       return res.status(400).json({
-        message: "Link with the following name already exists",
+        message: `Media with the same name already exists.`,
         isSuccess: false,
       });
     }
+
     const link = await Link.create({
       name: req.body.name,
       url: req.body.url,
       type: Number(req.body.media_type) === 1 ? "video" : "link",
     });
+
     return res.status(200).json({ link, isSuccess: true });
   } catch (err) {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
+
 const getLinks = async (req, res) => {
   try {
     const links = await Link.findAll();
@@ -51,36 +55,44 @@ const getLinks = async (req, res) => {
 const updateLink = async (req, res) => {
   try {
     const name = req.query.name;
-    let anotherLinkExistsWithTheNameForUpdate;
+
     if (!name)
       return res
         .status(400)
         .json({ message: "Name parameter not specified.", isSuccess: false });
+
     const link = await Link.findOne({ where: { name } });
-    // if (req.body.name) {
-    //   anotherLinkExistsWithTheNameForUpdate = await Link.findOne({
-    //     where: { name: req.body.name },
-    //   });
-    //   if (anotherLinkExistsWithTheNameForUpdate) {
-    //     return res.status(400).json({
-    //       message:
-    //         "Link with the same name already exists. Update to a new name.",
-    //       isSuccess: false,
-    //     });
-    //   }
-    // }
-    if (link) {
-      await Link.update(req.body, { where: { name } });
-      const updatedLink = await Link.findOne({
-        where: { name: req.body.name ?? req.query.name },
-      });
-      return res.status(200).json({ updatedLink, isSuccess: true });
-    } else {
+
+    if (!link) {
       return res.status(400).json({
         message: `Link with name ${name} does not exist.`,
         isSuccess: false,
       });
     }
+
+    const updatedLinkName = req.body.name ?? req.query.name;
+    const updatedLinkType = req.body.media_type === 1 ? "video" : "link";
+
+    const anotherLinkExistsWithTheNameForUpdate = await Link.findOne({
+      where: { name: updatedLinkName, type: updatedLinkType },
+    });
+
+    if (anotherLinkExistsWithTheNameForUpdate) {
+      return res.status(400).json({
+        message: `${
+          req.body.media_type === 1 ? "Video" : "Link"
+        } with the same name already exists. Update to a new name.`,
+        isSuccess: false,
+      });
+    }
+
+    await Link.update(req.body, { where: { name } });
+
+    const updatedLink = await Link.findOne({
+      where: { name: updatedLinkName },
+    });
+
+    return res.status(200).json({ updatedLink, isSuccess: true });
   } catch (err) {
     return res.status(500).json({ message: err, isSuccess: false });
   }
@@ -89,20 +101,23 @@ const updateLink = async (req, res) => {
 const deleteLink = async (req, res) => {
   try {
     const name = req.query.name;
+
     if (!name)
       return res
         .status(400)
         .json({ message: "Name parameter not specified", isSuccess: false });
+
     const link = await Link.findOne({ where: { name } });
+
     if (link) {
       await Link.destroy({ where: { name } });
       return res.status(200).json({
-        message: `Link with name ${name} has been deleted.`,
+        message: `Media with name ${name} has been deleted.`,
         isSuccess: true,
       });
     } else {
       return res.status(400).json({
-        message: `Link with name ${name} does not exist.`,
+        message: `Media with name ${name} does not exist.`,
         isSuccess: false,
       });
     }
@@ -114,11 +129,14 @@ const deleteLink = async (req, res) => {
 const linkDetails = async (req, res) => {
   try {
     const name = req.query.name;
+
     if (!name)
       return res
         .status(400)
         .json({ message: "Name parameter not specified", isSuccess: false });
+
     const link = await Link.findOne({ where: { name } });
+
     if (link) {
       return res.status(200).json({
         link,
@@ -126,7 +144,7 @@ const linkDetails = async (req, res) => {
       });
     } else {
       return res.status(400).json({
-        message: `Link with name ${name} does not exist.`,
+        message: `Media with name ${name} does not exist.`,
         isSuccess: false,
       });
     }
