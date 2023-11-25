@@ -119,7 +119,8 @@
 }
 @media screen and (max-width: 1024px) {
   .instructionsWrapper {
-    padding-inline: 2rem;
+    padding: 2rem;
+    padding-top: 4rem;
   }
   .section_two,
   .section_four {
@@ -139,7 +140,7 @@
   .section_one .text_box > h1,
   .section_two .text_box > h1,
   .section_three .text_box > h1 {
-    font-size: 3.2rem;
+    font-size: 2.8rem;
   }
   .section_one .text_box > p,
   .section_two .text_box > p,

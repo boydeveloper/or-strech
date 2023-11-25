@@ -2,8 +2,10 @@
   background-color: #fff;
   width: 12rem;
   z-index: 1;
-  height: 100%;
+  height: 100vh;
+
   position: fixed;
+  overflow-y: auto;
   left: 0;
 }
 .sidebar__links {
@@ -23,6 +25,11 @@
   font-size: 3.5rem;
   line-height: 4.2rem;
   color: #555;
+}
+.sidebar__links > a:link > svg,
+.sidebar__links > a:visited > svg {
+  height: 50px;
+  width: 50px;
 }
 .sidebar__links > a:link:not(:last-child),
 .sidebar__links > a:visited:not(:last-child) {

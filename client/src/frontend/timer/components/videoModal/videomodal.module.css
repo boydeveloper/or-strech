@@ -83,3 +83,14 @@
     width: 100%;
   }
 }
+@media screen and (max-width: 650px) {
+  .modal > h1 {
+    font-size: 20px;
+  }
+  .modal > button {
+    padding: 10px 20px;
+    font-size: 16px;
+    line-height: 10px;
+    width: 100%;
+  }
+}

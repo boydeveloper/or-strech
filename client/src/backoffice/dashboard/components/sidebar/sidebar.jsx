@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import style from "./sidebar.module.css";
+import { Piechart } from "../../../../frontend/utils/svg";
 function Sidebar() {
   return (
     <div className={style.sidebar}>
@@ -20,6 +21,10 @@ function Sidebar() {
           <i className="simple-icon-layers"></i>
 
           <p> Users Activity</p>
+        </Link>
+        <Link to={"survey-data"}>
+          <Piechart />
+          <p> Survey Data</p>
         </Link>
       </div>
     </div>

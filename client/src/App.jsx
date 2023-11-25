@@ -27,6 +27,7 @@ import HowToStretch from "./frontend/instructions/HowToStretch";
 import Stretches from "./frontend/stretches/Stretches";
 import Faqs from "./frontend/faqs/Faqs";
 import PrivacyPolicy from "./frontend/privacypolicy/PrivacyPolicy";
+import SurveyData from "./backoffice/dashboard/pages/surveyData/SurveyData";
 function App() {
   return (
     <AuthProvider>
@@ -56,6 +57,7 @@ function App() {
             <Route path="/about" element={<HowToStretch />} />
             <Route path="dashboard" element={<Dashboard />}>
               <Route path="users" element={<Users />} />
+              <Route path="survey-data" element={<SurveyData />} />
               <Route path="users-activities" element={<UserActivities />} />
               <Route path="overview" element={<Overview />} />
               <Route path="add-videos" element={<AddVideos />} />

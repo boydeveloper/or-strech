@@ -1,0 +1,89 @@
+.surveyDataWrapper {
+  width: 100%;
+  padding-right: 4rem;
+}
+
+.surveyDataWrapper > header {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #cccc;
+}
+.surveyDataWrapper > header > h1 {
+  font-size: 3.2rem;
+  font-weight: 400;
+  letter-spacing: -0.9px;
+  padding-block: 20px;
+}
+.surveyDataWrapper > header > p {
+  font-size: 1.8rem;
+  letter-spacing: -0.9px;
+  line-height: 30px;
+}
+.selectDataType {
+  /* .selectDataType { */
+  max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
+  justify-content: center;
+}
+.selectDataType > header {
+  margin-bottom: 2rem;
+}
+.selectDataType > header > h1 {
+  font-size: 3.4rem;
+  margin-bottom: 10px;
+  letter-spacing: -0.9px;
+}
+.selectDataType > header > p {
+  font-size: 1.8rem;
+  letter-spacing: -0.9px;
+}
+.surveyType {
+  display: flex;
+  width: 100%;
+  margin-bottom: 2rem;
+
+  gap: 2rem;
+}
+
+.typeBox {
+  border-radius: 7px;
+  width: 50%;
+  padding: 5rem 4rem;
+  cursor: pointer;
+  margin: 0 auto;
+  border: solid 0.1rem #ccc;
+}
+
+.typeBox > p {
+  font-size: 2.8rem;
+  font-weight: 500;
+  letter-spacing: -0.9px;
+}
+.typeBox > svg {
+  height: 60px;
+  width: 60px;
+}
+.typeBox > span {
+  font-size: 1.7rem;
+  letter-spacing: -0.9px;
+  text-transform: capitalize;
+}
+.proceedButton {
+  background-color: #ccc;
+  width: fit-content;
+  font-size: 2rem;
+  padding: 2rem 8rem;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  margin: 0 auto;
+  letter-spacing: -0.9px;
+  color: #fff;
+}

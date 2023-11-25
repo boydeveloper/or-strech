@@ -29,7 +29,7 @@ function LoginModal({ value, emailChange, submit, close, loading }) {
         <button onClick={close}>
           <CancelIcon />
         </button>
-        <h1>Get Access</h1>
+        <h1>Stretch Now</h1>
         <div className={style.input_container}>
           <label htmlFor="email">Email</label>
           <input type="text" id="email" value={value} onChange={emailChange} />
@@ -37,7 +37,7 @@ function LoginModal({ value, emailChange, submit, close, loading }) {
         <div className={style.cta}>
           <button onClick={close}>Cancel</button>
           <button type="submit" disabled={loading}>
-            {loading ? "loading..." : "Login"}
+            {loading ? "loading..." : "Go"}
           </button>
         </div>
       </motion.form>
