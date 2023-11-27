@@ -32,7 +32,13 @@ function LoginModal({ value, emailChange, submit, close, loading }) {
         <h1>Stretch Now</h1>
         <div className={style.input_container}>
           <label htmlFor="email">Email</label>
-          <input type="text" id="email" value={value} onChange={emailChange} />
+          <input
+            type="text"
+            id="email"
+            required
+            value={value}
+            onChange={emailChange}
+          />
         </div>
         <div className={style.cta}>
           <button onClick={close}>Cancel</button>
