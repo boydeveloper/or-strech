@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import style from "./timerstoppedmodal.module.css";
+import { trigEodSurvey } from "../../../../Apis/surveys/surveyService";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 function TimerStoppedModal({ cancel, stopTimer, resume }) {
   const popAnimation = {
     hidden: {
@@ -13,6 +16,21 @@ function TimerStoppedModal({ cancel, stopTimer, resume }) {
         stiffness: 150,
       },
     },
+  };
+  const navigate = useNavigate();
+  const userJSON = sessionStorage.getItem("strecher");
+  const user = JSON.parse(userJSON);
+  const handleEndofDay = async () => {
+    try {
+      const trig = await trigEodSurvey(user?.email);
+      console.log(trig);
+      if (trig?.isSuccess === true) {
+        toast.success("End of day triggered");
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
   return (
     <div className={style.TimerStoppedModalWrapper}>
@@ -38,7 +56,7 @@ function TimerStoppedModal({ cancel, stopTimer, resume }) {
             <span className={style.button_icon} onClick={cancel}></span>
             Surgical <br /> case over
           </button>
-          <button className={style.finished_button}>
+          <button onClick={handleEndofDay} className={style.finished_button}>
             <span className={style.finished_icon}></span>
             Finished <br /> for today
           </button>

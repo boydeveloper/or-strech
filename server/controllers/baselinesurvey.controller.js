@@ -3,6 +3,7 @@ const BaselineSurvey = require("../models/model").baseline_survey;
 const Users = require("../models/model").users;
 const moment = require("moment");
 const excelJs = require("exceljs");
+const axios = require("axios");
 const nodeMailer = require("nodemailer");
 const Client = require("ssh2-sftp-client");
 const fs = require("fs");
@@ -40,14 +41,22 @@ const sendEmail = async (req, res) => {
 };
 
 const triggerBaselineSurveyJSONWorkflow = async (req, res) => {
-  await fetch(`${process.env.QUALTRICS_BASELINE_TRIGGER}`, {
-    method: "POST",
-    body: req.body,
-  }).then((response) => {
-    return res.json(response);
-  });
-};
+  try {
+    const response = await axios.post(
+      `https://iad1.qualtrics.com/inbound-event/v1/events/json/triggers?urlTokenId=${process.env.QUALTRICS_BASELINE_URLTOKENID}&force_isolation=true`,
+      { data: req.body }
+    );
 
+    if (response.data.meta.httpStatus) {
+      return res.status(200).json({
+        status: response.data.meta.httpStatus,
+        isSuccess: true,
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
+};
 const getSurveyResponses = async (req, res) => {
   const sftp = new Client();
   const config = {
@@ -105,8 +114,8 @@ const getBaselineSurveys = async (req, res) => {
     return res.status(200).json({
       baselineSurveys,
       totalNoOfSurveys,
-      totalNoOfSurveys,
       isSuccess: true,
+      maxPageCount,
     });
   } catch (err) {
     return res.status(500).json({ message: err, isSuccess: false });

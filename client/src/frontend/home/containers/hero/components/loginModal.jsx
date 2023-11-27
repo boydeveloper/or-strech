@@ -35,7 +35,7 @@ function LoginModal({
         initial="hidden"
         animate="visible"
       >
-        <button onClick={close}>
+        <button type="button" onClick={onClose}>
           <CancelIcon />
         </button>
         <h1>Stretch Now</h1>

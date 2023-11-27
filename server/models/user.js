@@ -75,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
       main_user_id: {
         type: DataTypes.INTEGER,
       },
-      baseline_survey: {
+      baseline_survey_id: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },

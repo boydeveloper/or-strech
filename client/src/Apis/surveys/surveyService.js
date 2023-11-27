@@ -27,3 +27,31 @@ export const getBaselineSurveys = async (page_no, no_of_baseline) => {
     throw error;
   }
 };
+
+export const trigBaselineSurvey = async (email) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/baselinesurvey/triggerBaselineSurveyWorkflow`,
+      {
+        email,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const trigEodSurvey = async (email) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/endofdaysurvey/triggerEndOfDaySurveyWorkflow`,
+      {
+        email,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

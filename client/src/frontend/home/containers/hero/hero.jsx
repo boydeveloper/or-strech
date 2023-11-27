@@ -7,6 +7,7 @@ import { createEvent } from "../../../../Apis/event/eventService";
 import LoginModal from "./components/loginModal";
 import { getAllUsers } from "../../../../Apis/users/userService";
 import toast from "react-hot-toast";
+import { trigBaselineSurvey } from "../../../../Apis/surveys/surveyService";
 
 function Hero() {
   const [email, setEmail] = useState("");
@@ -42,6 +43,8 @@ function Hero() {
       setLoading(true);
       const loggedInUser = await authenticateUser(email);
       if (loggedInUser?.isSuccess === true) {
+        const trig = await trigBaselineSurvey(email);
+        console.log(trig);
         const token = loggedInUser?.account?.token;
         const parse = JSON.stringify(loggedInUser?.account);
         sessionStorage.setItem("strecher", parse);
@@ -68,12 +71,13 @@ function Hero() {
       if (emailValid) {
         const users = await getAllUsers();
         const userExists = users?.find((user) => user?.email === email);
-
         if (userExists) {
           const loggedInUser = await authenticateUser(email);
           if (loggedInUser?.isSuccess === true) {
             const token = loggedInUser?.account?.token;
             const parse = JSON.stringify(loggedInUser?.account);
+            const trig = await trigBaselineSurvey(email);
+            console.log(trig);
             sessionStorage.setItem("strecher", parse);
             sessionStorage.setItem("stretcher_token", token);
             setLoading(false);
@@ -91,6 +95,7 @@ function Hero() {
         setLoading(false);
       }
     } catch (error) {
+      console.log(error);
       toast.error(error?.response?.data?.message);
     }
   };
