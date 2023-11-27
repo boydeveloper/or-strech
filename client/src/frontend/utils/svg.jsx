@@ -171,6 +171,24 @@ export const PlusSign = () => {
     </svg>
   );
 };
+export const BackIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+      />
+    </svg>
+  );
+};
 export const MinusSign = () => {
   return (
     <svg
@@ -413,6 +431,7 @@ export const Monitoring = () => {
       height="24"
       viewBox="0 -960 960 960"
       width="24"
+      // fill="#184f90"
     >
       <path d="M120-120v-80l80-80v160h-80Zm160 0v-240l80-80v320h-80Zm160 0v-320l80 81v239h-80Zm160 0v-239l80-80v319h-80Zm160 0v-400l80-80v480h-80ZM120-327v-113l280-280 160 160 280-280v113L560-447 400-607 120-327Z" />
     </svg>
@@ -423,6 +442,7 @@ export const QueryStat = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="24"
+      // fill="#184f90"
       viewBox="0 -960 960 960"
       width="24"
     >

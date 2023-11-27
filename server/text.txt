@@ -1,0 +1,54 @@
+{
+    "countries": [
+      {
+        "name": "United States",
+        "capital": "Washington, D.C.",
+        "population": 331002651
+      },
+      {
+        "name": "China",
+        "capital": "Beijing",
+        "population": 1444216107
+      },
+      {
+        "name": "India",
+        "capital": "New Delhi",
+        "population": 1380004385
+      },
+      {
+        "name": "Brazil",
+        "capital": "Bras�lia",
+        "population": 212559417
+      },
+      {
+        "name": "United Kingdom",
+        "capital": "London",
+        "population": 67886011
+      },
+      {
+        "name": "France",
+        "capital": "Paris",
+        "population": 65273511
+      },
+      {
+        "name": "Germany",
+        "capital": "Berlin",
+        "population": 83783942
+      },
+      {
+        "name": "Russia",
+        "capital": "Moscow",
+        "population": 145912025
+      },
+      {
+        "name": "Japan",
+        "capital": "Tokyo",
+        "population": 126476461
+      },
+      {
+        "name": "South Africa",
+        "capital": "Pretoria",
+        "population": 59308690
+      }
+    ]
+  }

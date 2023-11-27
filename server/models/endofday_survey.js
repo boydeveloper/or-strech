@@ -59,17 +59,20 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      create_timestamp: {
+      createdAt: {
         type: DataTypes.DATE,
         allowNull: true,
+        field: "create_timestamp",
       },
-      update_timestamp: {
+      updatedAt: {
         type: DataTypes.DATE,
         allowNull: true,
+        field: "update_timestamp",
       },
     },
     {
       freezeTableName: true,
+      tableName: "endofday_survey",
     }
   );
 

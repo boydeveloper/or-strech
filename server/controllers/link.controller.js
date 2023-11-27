@@ -69,7 +69,12 @@ const updateLink = async (req, res) => {
         isSuccess: false,
       });
     }
-
+    if (req.body.name && req.body.name !== name) {
+      return res.status(400).json({
+        message: "Updating the 'name' field is not allowed.",
+        isSuccess: false,
+      });
+    }
     const updatedLinkName = req.body.name ?? req.query.name;
     const updatedLinkType = req.body.media_type === 1 ? "video" : "link";
 

@@ -5,6 +5,7 @@ import { LeftDir, RightDir } from "../../../../frontend/utils/svg";
 function Pagination({ currentPage, pageCount, onPageChange }) {
   console.log(currentPage);
   console.log(pageCount);
+
   const renderPageNumbers = () => {
     const pageNumbers = [];
 
@@ -46,7 +47,6 @@ function Pagination({ currentPage, pageCount, onPageChange }) {
         </button>
       )}
       {renderPageNumbers()}
-
       {currentPage < pageCount && (
         <button
           className={style.pag__button}

@@ -24,16 +24,19 @@
   /* .selectDataType { */
   max-width: 80rem;
   width: 100%;
+
   margin: 0 auto;
   display: flex;
+  align-items: center;
   height: 100%;
   flex-direction: column;
   text-align: center;
   margin: 0 auto;
-  justify-content: center;
+  margin-top: 2rem;
 }
 .selectDataType > header {
   margin-bottom: 2rem;
+  /* padding-top: 2rem; */
 }
 .selectDataType > header > h1 {
   font-size: 3.4rem;
@@ -51,7 +54,29 @@
 
   gap: 2rem;
 }
-
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  width: 100%;
+}
+.back {
+  background: none;
+  border: none;
+  display: flex;
+  color: #184f90;
+  cursor: pointer;
+  font-size: 1.4rem;
+  letter-spacing: -0.9px;
+  align-items: center;
+  margin-top: 2rem;
+  text-decoration: underline;
+}
+.back > svg {
+  height: 15px;
+  width: 15px;
+}
 .typeBox {
   border-radius: 7px;
   width: 50%;
@@ -59,11 +84,23 @@
   cursor: pointer;
   margin: 0 auto;
   border: solid 0.1rem #ccc;
+  background: rgba(172, 185, 202, 0.02);
+  transition: color 0.3s;
 }
-
+.typeBox:hover {
+  background: #184f90;
+  box-shadow: 0px 0px 5px 3px rgba(214, 210, 210, 0.75);
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(214, 210, 210, 0.75);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(214, 210, 210, 0.75);
+  color: #fff;
+}
+.typeBox:hover > svg {
+  fill: #fff;
+}
 .typeBox > p {
   font-size: 2.8rem;
   font-weight: 500;
+  fill: #184f90;
   letter-spacing: -0.9px;
 }
 .typeBox > svg {
@@ -86,4 +123,11 @@
   margin: 0 auto;
   letter-spacing: -0.9px;
   color: #fff;
+}
+.paginationButtons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
+  margin-top: 20px;
+  gap: 30px;
 }
