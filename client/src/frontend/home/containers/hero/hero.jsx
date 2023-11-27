@@ -14,16 +14,28 @@ function Hero() {
   const [error, setError] = useState("");
   const [modal, setModal] = useState("");
   const navigate = useNavigate();
-  const handleInputEmailChange = (event) => {
-    const newEmail = event.target.value;
-    setError("");
-    setEmail(newEmail);
-  };
+
+  const [emailError, setEmailError] = useState("");
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+
+  const handleInputEmailChange = (event) => {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+
+    // Email validation
+    setEmailError(
+      newEmail.trim() === ""
+        ? "Email address cannot be empty"
+        : validateEmail(newEmail)
+        ? ""
+        : "Please enter a valid email address"
+    );
+  };
+
   const handleIsNewModal = async (event) => {
     event.preventDefault();
     try {
@@ -102,11 +114,12 @@ function Hero() {
       </div>
       {modal === "login" && (
         <LoginModal
-          loading={loading}
-          close={() => setModal("")}
-          submit={handleSubmit}
           value={email}
-          emailChange={handleInputEmailChange}
+          onChange={handleInputEmailChange}
+          onSubmit={handleSubmit}
+          onClose={() => setModal("")}
+          loading={loading}
+          emailError={emailError}
         />
       )}
 

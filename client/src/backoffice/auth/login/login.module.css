@@ -114,6 +114,7 @@
 .errorText {
   font-size: 1.2rem;
   margin-top: 0.5rem;
+  letter-spacing: -0.9px;
   color: #f03e3e;
 }
 .formbox > button {

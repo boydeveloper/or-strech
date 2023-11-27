@@ -11,6 +11,12 @@
   align-items: center;
   height: 100vh;
 }
+.errorText {
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+  letter-spacing: -0.9px;
+  color: #f03e3e;
+}
 .modalOverlay {
   display: block;
   position: fixed;

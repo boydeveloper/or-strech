@@ -1,8 +1,16 @@
+import { useState } from "react";
 import { CancelIcon } from "../../../../utils/svg";
 import style from "./loginmodal.module.css";
 import { motion } from "framer-motion";
 
-function LoginModal({ value, emailChange, submit, close, loading }) {
+function LoginModal({
+  value,
+  onChange,
+  onSubmit,
+  onClose,
+  loading,
+  emailError,
+}) {
   const popAnimation = {
     hidden: {
       scale: 0.7,
@@ -16,11 +24,12 @@ function LoginModal({ value, emailChange, submit, close, loading }) {
       },
     },
   };
+
   return (
     <div className={style.modalWrapper}>
       <div className={style.modalOverlay} onClick={close}></div>
       <motion.form
-        onSubmit={submit}
+        onSubmit={onSubmit}
         className={style.modal}
         variants={popAnimation}
         initial="hidden"
@@ -37,11 +46,13 @@ function LoginModal({ value, emailChange, submit, close, loading }) {
             id="email"
             required
             value={value}
-            onChange={emailChange}
+            onChange={onChange}
           />
+
+          {emailError && <p className={style.errorText}>{emailError}</p>}
         </div>
         <div className={style.cta}>
-          <button onClick={close}>Cancel</button>
+          <button onClick={onClose}>Cancel</button>
           <button type="submit" disabled={loading}>
             {loading ? "loading..." : "Go"}
           </button>
