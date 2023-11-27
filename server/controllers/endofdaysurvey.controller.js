@@ -66,7 +66,24 @@ const exportEndOfDaySurveys = async (req, res) => {
     const sheet = workbook.addWorksheet("endOfDaySurveys");
     sheet.columns = [
       { header: "ID", key: "id" },
-
+      { header: "User ID", key: "userid" },
+      { header: "Comment", key: "comment" },
+      { header: "Complex Surgeries", key: "complex_surgeries" },
+      { header: "Difficult Surgeries", key: "difficult_surgeries" },
+      { header: "Distracting", key: "distracting" },
+      { header: "Flow Impact", key: "flow_impact" },
+      { header: "Impact Fatigue", key: "impact_fatigue" },
+      { header: "Impact Mental", key: "impact_mental" },
+      { header: "Impact Pain", key: "impact_pain" },
+      { header: "Impact Physical", key: "impact_physical" },
+      {
+        header: "Mentally Demanding Surgeries",
+        key: "mentally_demanding_surgeries",
+      },
+      {
+        header: "Physically Demanding Surgeries",
+        key: "physically_demanding_surgeries",
+      },
       { header: "Date Created", key: "createdAt" },
       { header: "Last Updated", key: "updatedAt" },
     ];
@@ -84,7 +101,18 @@ const exportEndOfDaySurveys = async (req, res) => {
     await surveys.map((value) => {
       sheet.addRow({
         id: value.id,
-
+        userid: value.userid,
+        comment: value.comment,
+        complex_surgeries: value.complex_surgeries,
+        difficult_surgeries: value.difficult_surgeries,
+        distracting: value.distracting,
+        flow_impact: value.flow_impact,
+        impact_fatigue: value.impact_fatigue,
+        impact_mental: value.impact_mental,
+        impact_pain: value.impact_pain,
+        impact_physical: value.impact_physical,
+        mentally_demanding_surgeries: value.mentally_demanding_surgeries,
+        physically_demanding_surgeries: value.physically_demanding_surgeries,
         createdAt: moment(value.createdAt).format("YYYY-MM-DD HH:MM:SS"),
         updatedAt: moment(value.createdAt).format("YYYY-MM-DD HH:MM:SS"),
       });

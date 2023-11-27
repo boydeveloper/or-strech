@@ -9,5 +9,6 @@ router.post(
   baselineSurveyController.triggerBaselineSurveyJSONWorkflow
 );
 router.get("/getSurveyResponses", baselineSurveyController.getSurveyResponses);
+router.get("/export", baselineSurveyController.exportBaselineSurveys);
 router.get("/getBaselineSurveys", baselineSurveyController.getBaselineSurveys);
 module.exports = router;

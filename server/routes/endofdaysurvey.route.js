@@ -21,4 +21,5 @@ router.post(
   endofDaySurveyController.triggerEndOfDaySurveyJSONWorkflow
 );
 router.get("/getEndOfDaySurveys", endofDaySurveyController.getEndOfDaySurveys);
+router.get("/export", endofDaySurveyController.exportEndOfDaySurveys);
 module.exports = router;
