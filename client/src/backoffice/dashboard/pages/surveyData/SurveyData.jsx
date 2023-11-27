@@ -58,7 +58,7 @@ function SurveyData() {
       setLoading(false);
       console.log(eodSurveys);
       setEodSurveys(eodSurveys?.endOfDaySurveys);
-      const totalEods = activities?.totalNoOfSurveys;
+      const totalEods = eodSurveys?.totalNoOfSurveys;
       const calculatedPageCount = Math.ceil(totalEods / usersPerPage);
       setPageCount(calculatedPageCount);
     } catch (error) {

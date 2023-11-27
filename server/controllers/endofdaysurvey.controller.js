@@ -1,12 +1,22 @@
+const excelJs = require("exceljs");
+const Op = require("sequelize").Op;
+const moment = require("moment");
+const fetch = require("node-fetch");
 require("dotenv").config({ path: "../.env" });
+
 const EndOfDaySurvey = require("../models/model").endofday_survey;
+
 const triggerEndOfDaySurveyJSONWorkflow = async (req, res) => {
-  await fetch(`${process.env.QUALTRICS_ENDODFDAY_TRIGGER}`, {
-    method: "POST",
-    body: req.body,
-  }).then((response) => {
-    return res.json(response.statusText);
-  });
+  try {
+    await fetch(`${process.env.QUALTRICS_ENDODFDAY_TRIGGER}`, {
+      method: "POST",
+      body: req.body,
+    }).then((response) => {
+      return res.json(response.statusText);
+    });
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
 };
 
 const getEndOfDaySurveys = async (req, res) => {
@@ -35,14 +45,59 @@ const getEndOfDaySurveys = async (req, res) => {
       order: [["createdAt", "DESC"]],
     });
     const maxPageCount = Math.ceil(totalNoOfSurveys / no_of_surveys);
-    return res
-      .status(200)
-      .json({
-        endOfDaySurveys,
-        totalNoOfSurveys,
-        maxPageCount,
-        isSuccess: true,
+    return res.status(200).json({
+      endOfDaySurveys,
+      totalNoOfSurveys,
+      maxPageCount,
+      isSuccess: true,
+    });
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
+};
+
+const exportEndOfDaySurveys = async (req, res) => {
+  try {
+    const idArray = req.query.ids;
+    let ids;
+    if (idArray) ids = JSON.parse(idArray);
+    let surveys;
+    const workbook = new excelJs.Workbook();
+    const sheet = workbook.addWorksheet("endOfDaySurveys");
+    sheet.columns = [
+      { header: "ID", key: "id" },
+
+      { header: "Date Created", key: "createdAt" },
+      { header: "Last Updated", key: "updatedAt" },
+    ];
+    if (ids) {
+      surveys = await EndOfDaySurvey.findAll({
+        where: {
+          id: {
+            [Op.in]: ids,
+          },
+        },
       });
+    } else {
+      surveys = await EndOfDaySurvey.findAll();
+    }
+    await surveys.map((value) => {
+      sheet.addRow({
+        id: value.id,
+
+        createdAt: moment(value.createdAt).format("YYYY-MM-DD HH:MM:SS"),
+        updatedAt: moment(value.createdAt).format("YYYY-MM-DD HH:MM:SS"),
+      });
+    });
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+    res.setHeader(
+      "Content-Disposition",
+      "attachment;filename=" + "End-Of-Day-Surveys.xlsx"
+    );
+    workbook.xlsx.write(res);
   } catch (err) {
     return res.status(500).json({ message: err, isSuccess: false });
   }
@@ -51,4 +106,5 @@ const getEndOfDaySurveys = async (req, res) => {
 module.exports = {
   triggerEndOfDaySurveyJSONWorkflow,
   getEndOfDaySurveys,
+  exportEndOfDaySurveys,
 };
