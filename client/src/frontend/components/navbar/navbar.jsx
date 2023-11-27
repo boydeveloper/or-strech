@@ -10,8 +10,6 @@ import { authenticateUser } from "../../../Apis/auth/loginService";
 import { getAllUsers } from "../../../Apis/users/userService";
 
 function Navbar() {
-  const userJSON = sessionStorage?.getItem("strecher");
-  const user = JSON?.parse(userJSON);
   const [modal, setModal] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [email, setEmail] = useState("");
@@ -19,6 +17,14 @@ function Navbar() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
+  const [emailError, setEmailError] = useState("");
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleLogout = async () => {
     // await createEvent({
     //   userid: user?.id,
@@ -29,21 +35,26 @@ function Navbar() {
     navigate("/");
   };
 
-  const handleInputEmailChange = (event) => {
-    const newEmail = event.target.value;
-    setError("");
-    setEmail(newEmail);
-  };
   const handleOpenNav = () => {
     setIsNavOpen(true);
   };
   const handleCloseNav = () => {
     setIsNavOpen(false);
   };
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  const handleInputEmailChange = (event) => {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+
+    // Email validation
+    setEmailError(
+      newEmail.trim() === ""
+        ? "Email address cannot be empty"
+        : validateEmail(newEmail)
+        ? ""
+        : "Please enter a valid email address"
+    );
   };
+
   const handleIsNewModal = async (event) => {
     event.preventDefault();
     try {
@@ -65,6 +76,8 @@ function Navbar() {
       toast.error(error.response.data.message);
     }
   };
+  const userJSON = sessionStorage?.getItem("strecher");
+  const user = JSON?.parse(userJSON);
 
   const handleSubmit = async (event) => {
     try {
@@ -93,11 +106,10 @@ function Navbar() {
           setModal("agreeModal");
         }
       } else {
-        setLoading(false);
         setError("Please enter a valid email address");
+        setLoading(false);
       }
     } catch (error) {
-      setLoading(false);
       toast.error(error?.response?.data?.message);
     }
   };
@@ -161,11 +173,12 @@ function Navbar() {
       </div>
       {modal === "login" && (
         <LoginModal
-          loading={loading}
-          close={() => setModal("")}
-          submit={handleSubmit}
           value={email}
-          emailChange={handleInputEmailChange}
+          onChange={handleInputEmailChange}
+          onSubmit={handleSubmit}
+          onClose={() => setModal("")}
+          loading={loading}
+          emailError={emailError}
         />
       )}
 
