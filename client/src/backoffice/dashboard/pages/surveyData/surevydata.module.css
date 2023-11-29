@@ -131,3 +131,10 @@
   margin-top: 20px;
   gap: 30px;
 }
+.surveyFooter {
+  display: flex;
+  align-items: flex-end;
+
+  /* flex-direction: row-reverse; */
+  justify-content: space-between;
+}

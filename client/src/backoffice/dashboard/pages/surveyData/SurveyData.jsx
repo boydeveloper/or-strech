@@ -449,7 +449,8 @@ function SurveyData() {
             </div>
           </div>
         )}
-        {loading && <Loader />}
+
+        {loading && !showSurveyTypeSelection && <Loader />}
         {!showSurveyTypeSelection && (
           // <div className={style.loaderContainer}>
           // </div>
@@ -470,12 +471,17 @@ function SurveyData() {
         )}
 
         {!showSurveyTypeSelection && (
-          <div className={style.paginationButtons}>
-            <Pagination
-              currentPage={currentPage}
-              pageCount={pageCount}
-              onPageChange={handlePageChange}
-            />
+          <div className={style.surveyFooter}>
+            <div className={style.showingEntriesMessage}>
+              {getShowingEntriesMessage()}
+            </div>
+            <div className={style.paginationButtons}>
+              <Pagination
+                currentPage={currentPage}
+                pageCount={pageCount}
+                onPageChange={handlePageChange}
+              />
+            </div>
           </div>
         )}
       </main>
