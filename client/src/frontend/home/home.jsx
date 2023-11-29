@@ -9,7 +9,7 @@ import {
 import { Navbar, Footer, Accordion } from "../components/index";
 function Home() {
   return (
-    <div className="home">
+    <>
       <Navbar />
       <Hero />
       {/* <Facts /> */}
@@ -19,7 +19,7 @@ function Home() {
       <Testimonials />
       {/* <Accordion /> */}
       <Footer />
-    </div>
+    </>
   );
 }
 

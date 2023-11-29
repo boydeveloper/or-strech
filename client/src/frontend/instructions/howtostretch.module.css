@@ -147,7 +147,7 @@
   .section_three .text_box > p,
   .section_four > p {
     font-size: 1.6rem;
-    line-height: 25px;
+    line-height: 31px;
   }
   .section_four > p {
     text-align: justify;
@@ -167,5 +167,8 @@
   .section_three .text_box > h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+  }
+  .section_four > p {
+    text-align: center;
   }
 }

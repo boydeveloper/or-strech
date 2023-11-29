@@ -190,6 +190,7 @@
 }
 .overlay {
   display: none;
+  /* z-index: 4; */
 }
 @media screen and (max-width: 1024px) {
   .naviagtion_Wrapper {
@@ -209,7 +210,6 @@
     min-height: 100vh;
     opacity: 0;
     pointer-events: none;
-
     flex-direction: column;
     background: #fff;
     width: 50%;
@@ -221,17 +221,17 @@
     padding: 30px;
     justify-content: unset;
     align-items: flex-start;
-    z-index: 10;
+    z-index: 11;
     transition: all 0.3s;
   }
   .overlay {
-    display: block;
-    content: "";
     min-height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 9;
+    z-index: 3;
+    display: block;
+
     width: 100%;
     background: rgba(0, 0, 0, 0.6);
   }
@@ -239,7 +239,9 @@
     left: 0%;
     opacity: 1;
     transition: left 0.3s;
+    pointer-events: all;
     visibility: visible;
+    z-index: 11;
   }
   .naviagtion_links > a:link,
   .naviagtion_links > a:visited {

@@ -128,6 +128,9 @@ function Navbar() {
               <span>OR-stretch</span>
             </Link>
           </div>
+          {isNavOpen && (
+            <div onClick={handleCloseNav} className={style.overlay}></div>
+          )}
           <div className={style.naviagtion_links}>
             <Link to={"/"} className={style.navLogo}>
               <MayoLogo />
@@ -138,9 +141,6 @@ function Navbar() {
             {/* <Link>Stretch</Link> */}
             <Link to={"/faqs"}>Faqs</Link>
           </div>
-          {isNavOpen && (
-            <div onClick={handleCloseNav} className={style.overlay}></div>
-          )}
 
           <div>
             {user ? (
@@ -171,6 +171,7 @@ function Navbar() {
           </div>
         </div>
       </div>
+
       {modal === "login" && (
         <LoginModal
           value={email}

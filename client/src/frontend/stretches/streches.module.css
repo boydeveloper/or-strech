@@ -73,6 +73,7 @@
 
   gap: 1rem;
 }
+
 .excercise .textbox .procedures > li > a {
   color: #0b5cd5;
   display: inline-block;
@@ -143,10 +144,14 @@
 
 @media screen and (max-width: 420px) {
   .listOfStrechesWrapper > header > h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
+  }
+  .excercise .textbox .procedures > li {
+    font-size: 1.6rem;
+    line-height: 28px;
   }
 
   .excercise .textbox > h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 }

@@ -452,15 +452,10 @@ function SurveyData() {
 
         {loading && !showSurveyTypeSelection && <Loader />}
         {!showSurveyTypeSelection && (
-          // <div className={style.loaderContainer}>
-          // </div>
-
           <Table
-            // searchInput
             showFilter
             searchInput={searchInput}
             updateSearchInput={updateSearchInput}
-            // showFilter={}
             column={
               selectedSurveyType === "baseline" ? baselineColumn : eodColumn
             }
