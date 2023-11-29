@@ -17,7 +17,7 @@ const router = require("express").Router();
 
 router.post(
   "/triggerEndOfDaySurveyWorkflow",
-  // requestLimiter,
+
   endofDaySurveyController.triggerEndOfDaySurveyJSONWorkflow
 );
 router.get("/getEndOfDaySurveys", endofDaySurveyController.getEndOfDaySurveys);
