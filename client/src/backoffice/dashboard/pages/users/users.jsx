@@ -58,7 +58,6 @@ function Users() {
 
     return "";
   };
-
   const useDebounce = (value, delay) => {
     const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -209,7 +208,8 @@ function Users() {
               showFilter
               users
               column={tableColumn && tableColumn}
-              data={users}
+              // data={users}
+              data={users || []}
               handleDelete={handleEmailToBeDelelted}
             />
 

@@ -63,9 +63,11 @@ function UserActivities() {
           <>
             <Table
               column={tableColumn && tableColumn}
-              data={events?.sort(
-                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-              )}
+              data={
+                events?.sort(
+                  (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                ) || []
+              }
             />
           </>
         )}

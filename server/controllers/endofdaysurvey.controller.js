@@ -98,19 +98,11 @@ const exportEndOfDaySurveys = async (req, res) => {
 };
 const getEndOfDaySurveys = async (req, res) => {
   try {
-    let page_no = 1;
-    let no_of_surveys = 10;
-    let order = req.query.order ?? "DESC";
-    let sortBy = req.query.sortBy ?? "createdAt";
-    const offset = (page_no - 1) * no_of_surveys;
+    let page_no = Number(req.query.page_no) || 1;
+    let no_of_surveys = Number(req.query.no_of_surveys) || 10;
+    let order = req.query.order || "DESC";
+    let sortBy = req.query.sortBy || "createdAt";
 
-    if (isNaN(page_no) || page_no <= 0) {
-      return res.status(400).json({
-        message:
-          "Invalid page number parameter. It should be a number and shouldn't be less than one.",
-        isSuccess: false,
-      });
-    }
     let day = req.query.day;
     let mentaly_demanding_surgeries = req.query.mentaly_demanding_surgeries;
     let physically_demanding_surgeries =
@@ -127,99 +119,123 @@ const getEndOfDaySurveys = async (req, res) => {
     let createdAt = req.query.createdAt;
     let updatedAt = req.query.updatedAt;
 
-    if (req.query.page_no) {
-      page_no = Number(req.query.page_no) ?? 1;
-    }
-
-    if (req.query.no_of_surveys) {
-      no_of_surveys = Number(req.query.no_of_surveys) ?? 10;
-    }
+    // Add new parameters
+    let userid = req.query.userid;
+    let id = req.query.id;
 
     const totalNoOfSurveys = await EndOfDaySurvey.count({
       where: {
         [Op.and]: [
-          day !== undefined && { day: { [Op.eq]: day } },
-          mentaly_demanding_surgeries !== undefined && {
-            mentaly_demanding_surgeries: {
-              [Op.eq]: mentaly_demanding_surgeries,
+          day !== undefined && day !== "" && { day: { [Op.eq]: day } },
+          mentaly_demanding_surgeries !== undefined &&
+            mentaly_demanding_surgeries !== "" && {
+              mentaly_demanding_surgeries: {
+                [Op.eq]: mentaly_demanding_surgeries,
+              },
             },
-          },
-          physically_demanding_surgeries !== undefined && {
-            physically_demanding_surgeries: {
-              [Op.eq]: physically_demanding_surgeries,
+          physically_demanding_surgeries !== undefined &&
+            physically_demanding_surgeries !== "" && {
+              physically_demanding_surgeries: {
+                [Op.eq]: physically_demanding_surgeries,
+              },
             },
-          },
-          complex_surgeries !== undefined && {
-            complex_surgeries: { [Op.eq]: complex_surgeries },
-          },
-          difficult_surgeries !== undefined && {
-            difficult_surgeries: { [Op.eq]: difficult_surgeries },
-          },
-          impact_physical !== undefined && {
-            impact_physical: { [Op.eq]: impact_physical },
-          },
-          impact_mental !== undefined && {
-            impact_mental: { [Op.eq]: impact_mental },
-          },
-          impact_pain !== undefined && {
-            impact_pain: { [Op.eq]: impact_pain },
-          },
-          impact_fatigue !== undefined && {
-            impact_fatigue: { [Op.eq]: impact_fatigue },
-          },
-          distracting !== undefined && {
-            distracting: { [Op.eq]: distracting },
-          },
-          flow_impact !== undefined && {
-            flow_impact: { [Op.eq]: flow_impact },
-          },
-          comment !== undefined && { comment: { [Op.eq]: comment } },
+          complex_surgeries !== undefined &&
+            complex_surgeries !== "" && {
+              complex_surgeries: { [Op.eq]: complex_surgeries },
+            },
+          difficult_surgeries !== undefined &&
+            difficult_surgeries !== "" && {
+              difficult_surgeries: { [Op.eq]: difficult_surgeries },
+            },
+          impact_physical !== undefined &&
+            impact_physical !== "" && {
+              impact_physical: { [Op.eq]: impact_physical },
+            },
+          impact_mental !== undefined &&
+            impact_mental !== "" && {
+              impact_mental: { [Op.eq]: impact_mental },
+            },
+          impact_pain !== undefined &&
+            impact_pain !== "" && {
+              impact_pain: { [Op.eq]: impact_pain },
+            },
+          impact_fatigue !== undefined &&
+            impact_fatigue !== "" && {
+              impact_fatigue: { [Op.eq]: impact_fatigue },
+            },
+          distracting !== undefined &&
+            distracting !== "" && {
+              distracting: { [Op.eq]: distracting },
+            },
+          flow_impact !== undefined &&
+            flow_impact !== "" && {
+              flow_impact: { [Op.eq]: flow_impact },
+            },
+          comment !== undefined &&
+            comment !== "" && { comment: { [Op.eq]: comment } },
+          userid !== undefined &&
+            userid !== "" && { userid: { [Op.eq]: userid } },
+          id !== undefined && id !== "" && { id: { [Op.eq]: id } },
         ],
       },
     });
 
     const endOfDaySurveys = await EndOfDaySurvey.findAll({
-      offset,
+      offset: (page_no - 1) * no_of_surveys,
       limit: no_of_surveys,
       order: [[sortBy, order]],
       where: {
         [Op.and]: [
-          day !== undefined && { day: { [Op.eq]: day } },
-          mentaly_demanding_surgeries !== undefined && {
-            mentaly_demanding_surgeries: {
-              [Op.eq]: mentaly_demanding_surgeries,
+          day !== undefined && day !== "" && { day: { [Op.eq]: day } },
+          mentaly_demanding_surgeries !== undefined &&
+            mentaly_demanding_surgeries !== "" && {
+              mentaly_demanding_surgeries: {
+                [Op.eq]: mentaly_demanding_surgeries,
+              },
             },
-          },
-          physically_demanding_surgeries !== undefined && {
-            physically_demanding_surgeries: {
-              [Op.eq]: physically_demanding_surgeries,
+          physically_demanding_surgeries !== undefined &&
+            physically_demanding_surgeries !== "" && {
+              physically_demanding_surgeries: {
+                [Op.eq]: physically_demanding_surgeries,
+              },
             },
-          },
-          complex_surgeries !== undefined && {
-            complex_surgeries: { [Op.eq]: complex_surgeries },
-          },
-          difficult_surgeries !== undefined && {
-            difficult_surgeries: { [Op.eq]: difficult_surgeries },
-          },
-          impact_physical !== undefined && {
-            impact_physical: { [Op.eq]: impact_physical },
-          },
-          impact_mental !== undefined && {
-            impact_mental: { [Op.eq]: impact_mental },
-          },
-          impact_pain !== undefined && {
-            impact_pain: { [Op.eq]: impact_pain },
-          },
-          impact_fatigue !== undefined && {
-            impact_fatigue: { [Op.eq]: impact_fatigue },
-          },
-          distracting !== undefined && {
-            distracting: { [Op.eq]: distracting },
-          },
-          flow_impact !== undefined && {
-            flow_impact: { [Op.eq]: flow_impact },
-          },
-          comment !== undefined && { comment: { [Op.eq]: comment } },
+          complex_surgeries !== undefined &&
+            complex_surgeries !== "" && {
+              complex_surgeries: { [Op.eq]: complex_surgeries },
+            },
+          difficult_surgeries !== undefined &&
+            difficult_surgeries !== "" && {
+              difficult_surgeries: { [Op.eq]: difficult_surgeries },
+            },
+          impact_physical !== undefined &&
+            impact_physical !== "" && {
+              impact_physical: { [Op.eq]: impact_physical },
+            },
+          impact_mental !== undefined &&
+            impact_mental !== "" && {
+              impact_mental: { [Op.eq]: impact_mental },
+            },
+          impact_pain !== undefined &&
+            impact_pain !== "" && {
+              impact_pain: { [Op.eq]: impact_pain },
+            },
+          impact_fatigue !== undefined &&
+            impact_fatigue !== "" && {
+              impact_fatigue: { [Op.eq]: impact_fatigue },
+            },
+          distracting !== undefined &&
+            distracting !== "" && {
+              distracting: { [Op.eq]: distracting },
+            },
+          flow_impact !== undefined &&
+            flow_impact !== "" && {
+              flow_impact: { [Op.eq]: flow_impact },
+            },
+          comment !== undefined &&
+            comment !== "" && { comment: { [Op.eq]: comment } },
+          userid !== undefined &&
+            userid !== "" && { userid: { [Op.eq]: userid } },
+          id !== undefined && id !== "" && { id: { [Op.eq]: id } },
         ],
       },
     });

@@ -134,6 +134,7 @@ function SurveyData() {
       name: "impact_fatigue",
       value: "impact_fatigue",
     },
+    { heading: "Comment", name: "comment", value: "comment" },
     { heading: "Impact Mental", name: "impact_mental", value: "impact_mental" },
     { heading: "Impact Pain", name: "impact_pain", value: "impact_pain" },
     {
@@ -168,6 +169,8 @@ function SurveyData() {
       ? initialBaselineSearchInput
       : initialEodSearchInput
   );
+  console.log(selectedSurveyType, initialBaselineSearchInput);
+  // console.log(searchInput, selectedSurveyType, initialBaselineSearchInput);
   const getShowingEntriesMessage = () => {
     if (selectedSurveyType === "baseline" ? baselineSurveys : eodSurveys) {
       const startIndex = (currentPage - 1) * entriesPerPage + 1;
@@ -226,62 +229,63 @@ function SurveyData() {
       }`
     );
   };
+  // console.log()
   const fetchBaselineSurveys = async () => {
     try {
       setLoading(true);
-      const {
-        days_per_week,
-        age,
-        pain_open_surgery,
-        pain_laparoscopic_surgery,
-        pain_robotic_surgery,
-        pain_past_six_months,
-        pain_interfered_relations,
-        pain_interfered_sleep,
-        height,
-        gender,
-        handness,
-        glove_size,
-        userid,
-        surgical_procedures_day,
-        exercise,
-        primary_speciality,
-        years_open_surgery,
-        years_laparoscopic_surgery,
-        years_robotic_surgery,
-        most_common_procedures_a,
-        most_common_procedures_b,
-        most_common_procedures_c,
-        createdAt,
-        updatedAt,
-      } = debouncedSearchInput;
+      // const {
+      //   days_per_week,
+      //   age,
+      //   pain_open_surgery,
+      //   pain_laparoscopic_surgery,
+      //   pain_robotic_surgery,
+      //   pain_past_six_months,
+      //   pain_interfered_relations,
+      //   pain_interfered_sleep,
+      //   height,
+      //   gender,
+      //   handness,
+      //   glove_size,
+      //   userid,
+      //   surgical_procedures_day,
+      //   exercise,
+      //   primary_speciality,
+      //   years_open_surgery,
+      //   years_laparoscopic_surgery,
+      //   years_robotic_surgery,
+      //   most_common_procedures_a,
+      //   most_common_procedures_b,
+      //   most_common_procedures_c,
+      //   createdAt,
+      //   updatedAt,
+      // } = debouncedSearchInput;
+
       const baselineSurveys = await getBaselineSurveys(
         currentPage,
         entriesPerPage,
-        days_per_week,
-        age,
-        pain_open_surgery,
-        pain_laparoscopic_surgery,
-        pain_robotic_surgery,
-        pain_past_six_months,
-        pain_interfered_relations,
-        pain_interfered_sleep,
-        height,
-        gender,
-        handness,
-        glove_size,
-        userid,
-        surgical_procedures_day,
-        exercise,
-        primary_speciality,
-        years_open_surgery,
-        years_laparoscopic_surgery,
-        years_robotic_surgery,
-        most_common_procedures_a,
-        most_common_procedures_b,
-        most_common_procedures_c,
-        createdAt,
-        updatedAt
+        debouncedSearchInput?.days_per_week || "",
+        debouncedSearchInput?.age || "",
+        debouncedSearchInput?.pain_open_surgery || "",
+        debouncedSearchInput?.pain_laparoscopic_surgery || "",
+        debouncedSearchInput?.pain_robotic_surgery || "",
+        debouncedSearchInput?.pain_past_six_months || "",
+        debouncedSearchInput?.pain_interfered_relations || "",
+        debouncedSearchInput?.pain_interfered_sleep || "",
+        debouncedSearchInput?.height || "",
+        debouncedSearchInput?.gender || "",
+        debouncedSearchInput?.handness || "",
+        debouncedSearchInput?.glove_size || "",
+        debouncedSearchInput?.surgical_procedures_day || "" || "",
+        debouncedSearchInput?.exercise || "",
+        debouncedSearchInput?.primary_speciality || "",
+        debouncedSearchInput?.years_open_surgery || "",
+        debouncedSearchInput?.years_laparoscopic_surgery || "",
+        debouncedSearchInput?.years_robotic_surgery || "",
+        debouncedSearchInput?.most_common_procedures_a || "",
+        debouncedSearchInput?.most_common_procedures_b || "",
+        debouncedSearchInput?.most_common_procedures_c || "",
+        debouncedSearchInput?.createdAt || "",
+        debouncedSearchInput?.updatedAt || ""
       );
       setLoading(false);
       console.log(baselineSurveys);
@@ -335,6 +339,7 @@ function SurveyData() {
         physically_demanding_surgeries,
         updatedAt
       );
+      // console.log(userid);
       setLoading(false);
       // console.log(eodSurveys);
       setEodSurveys(eodSurveys?.endOfDaySurveys);
@@ -363,11 +368,11 @@ function SurveyData() {
 
   useEffect(() => {
     fetchEodSurveys();
-    fetchBaselineSurveys();
-  }, [currentPage, entriesPerPage]);
+  }, [currentPage, entriesPerPage, debouncedSearchInput]);
+
   useEffect(() => {
-    fetchEodSurveys();
-  }, []);
+    fetchBaselineSurveys();
+  }, [debouncedSearchInput, entriesPerPage]);
   useEffect(() => {
     setCurrentPage(1);
   }, [debouncedSearchInput]);

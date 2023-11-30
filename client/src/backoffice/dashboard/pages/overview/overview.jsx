@@ -110,9 +110,11 @@ function Overview() {
           <h1>Recent User Sign-Ins</h1>
           <Table
             column={tableColumn}
-            data={logins?.sort(
-              (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-            )}
+            data={
+              logins?.sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+              ) || []
+            }
           />
         </div>
       </main>

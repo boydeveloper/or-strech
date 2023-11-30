@@ -155,7 +155,7 @@ function ManageTags() {
         ) : (
           <Table
             column={tagColumns}
-            data={tags && tags}
+            data={tags || []}
             tag
             handleDelete={handleTagToBeDelelted}
           />
