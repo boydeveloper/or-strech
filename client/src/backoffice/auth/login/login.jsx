@@ -21,43 +21,33 @@ function Login() {
   const validateFormData = () => {
     const errors = {};
 
-    if (!formData.email) {
+    if (!formData.email.trim()) {
       errors.email = "Email is required";
     }
 
-    if (!formData.password) {
+    if (!formData.password.trim()) {
       errors.password = "Password is required";
     }
 
-    return errors;
+    return Object.keys(errors).length === 0 ? null : errors;
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    const errors = validateFormData();
+    if (errors) {
+      setErrors(errors);
+      return false;
+    } else {
+      setErrors({});
+    }
+
     try {
-      const errors = validateFormData();
-      if (Object.keys(errors).length > 0) {
-        toast.error("Please fix the following errors:");
-        setErrors(errors);
-        return;
-      }
-
       setLoading(true);
-
       const loginAdmin = await authenticateAdmin(formData);
-      console.log(loginAdmin);
       if (loginAdmin?.isSuccess === true) {
         await login(loginAdmin.account);
-        // const event = await createEvent(
-        //   {
-        //     userid: loginAdmin?.account.id,
-        //     event_type: "LOGIN_ADMIN",
-        //     notes: "log in by admin",
-        //   },
-        //   loginAdmin.account.token
-        // );
-        // console.log(event);
         setLoading(false);
         toast.success("Login successful");
         navigate("/dashboard/overview");
@@ -66,19 +56,11 @@ function Login() {
         toast.error("Invalid credentials");
       }
     } catch (error) {
+      toast.error(error.response.data.message);
       setLoading(false);
       console.log(error);
-
-      // if (error.response.data.message.name === "SequelizeDatabaseError") {
-      //   toast.error("sequelize error");
-      //   setLoading(false);
-      //   throw new Error("sequelize error");
-      // }
-
-      // console.error("An error occurred:", error);
-      // toast.error(
-      //   error.response ? error.response.data.message : "An error occurred"
-      // );
+    } finally {
+      setLoading(false);
     }
   };
 

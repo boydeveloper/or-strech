@@ -50,7 +50,7 @@
 .surveyType {
   display: flex;
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   gap: 2rem;
 }
@@ -134,7 +134,40 @@
 .surveyFooter {
   display: flex;
   align-items: flex-end;
-
+  margin-top: 2rem;
   /* flex-direction: row-reverse; */
   justify-content: space-between;
+}
+.surveyTableWrapper {
+  margin-top: 3rem;
+}
+@media screen and (max-width: 1024px) {
+  .surveyDataWrapper {
+    padding: 0;
+  }
+  .selectDataType > header > h1 {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .surveyType {
+    flex-direction: column;
+  }
+  .typeBox {
+    width: 100%;
+    padding: 3.8rem;
+  }
+  .selectDataType > header > h1 {
+    font-size: 2.4rem;
+  }
+  .surveyDataWrapper > header > h1 {
+    font-size: 2.6rem;
+  }
+  .typeBox > span {
+    font-size: 1.5rem;
+  }
+  .surveyFooter {
+    flex-wrap: wrap;
+  }
 }

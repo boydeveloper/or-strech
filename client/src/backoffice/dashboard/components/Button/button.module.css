@@ -10,14 +10,14 @@
   text-transform: uppercase;
   margin-left: auto;
   cursor: pointer;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   display: flex;
   font-size: 1.6rem;
 }
 @media screen and (max-width: 1024px) {
   .button {
     white-space: nowrap;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2.2rem;
     font-size: 1.2rem;
   }
 }

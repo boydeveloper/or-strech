@@ -16,7 +16,7 @@ function AddUser() {
   const [formData, setFormData] = useState({
     email: "",
     name: "",
-    user_type: "stretcher",
+    user_type: "normal_user",
     tags_excel: [],
   });
 
@@ -103,7 +103,7 @@ function AddUser() {
                 value={formData.user_type}
                 onChange={handleInputChange}
               >
-                <option value="stretcher">Stretcher</option>
+                <option value="normal_user">Stretcher</option>
                 <option value="admin">Admin</option>
               </select>
               <span className={style.selectArrow}></span>

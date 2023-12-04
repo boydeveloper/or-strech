@@ -115,6 +115,7 @@ function UpdateUser() {
               type="email"
               name="email"
               required
+              readOnly
               value={formData.email}
               onChange={handleInputChange}
             />

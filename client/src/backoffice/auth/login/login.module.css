@@ -124,6 +124,7 @@
   font-size: 1.6rem;
   color: #fff;
   border: none;
+  cursor: pointer;
   padding: 1rem 3rem;
   width: fit-content;
   border-radius: 6rem;
@@ -144,9 +145,13 @@
     width: 100%;
     height: 100%;
   }
+
   .formbox,
   .img__box {
     padding: 4.5rem 2rem;
+  }
+  .img__box {
+    padding: 6rem 2rem;
   }
 }
 

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import style from "./sidebar.module.css";
 import { Piechart } from "../../../../frontend/utils/svg";
-function Sidebar() {
+function Sidebar({ openSidebar }) {
   return (
-    <div className={style.sidebar}>
+    <div className={`${openSidebar && style.openSidebar} ${style.sidebar}`}>
       <div className={style.sidebar__links}>
         <Link to={"users"}>
           <i className="glyph-icon simple-icon-people"></i>

@@ -1,9 +1,10 @@
 .naviagtion_Wrapper {
   padding: 2rem 3.2rem;
   background: #fff;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 9;
+  width: 100%;
   box-shadow: 0px 0px 1px 1px #e6e2e2;
 }
 .navigation {
@@ -256,6 +257,7 @@
   .logo {
     width: 50%;
     font-size: 1.4rem;
+    white-space: nowrap;
   }
   .profile > p {
     display: none;

@@ -13,6 +13,9 @@
   font-weight: 400;
   padding-block: 20px;
 }
+.tableWrapper {
+  margin-top: 3rem;
+}
 
 .loaderContainer {
   display: flex;

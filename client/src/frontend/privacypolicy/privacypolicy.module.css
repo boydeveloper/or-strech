@@ -1,7 +1,8 @@
 .PrivacyPolicyWrapper {
   padding: 3.2rem;
-  margin-top: 4.8rem;
+  margin-top: 10rem;
 }
+
 .PrivacyPolicyWrapper a {
   color: #1b6de7;
   margin-left: 1rem;
@@ -12,14 +13,27 @@ strong {
   font-size: 18px;
   line-height: 30px;
   letter-spacing: -0.9px;
+  list-style-type: none;
   color: #2b2b2b;
 }
+.PrivacyPolicyWrapper li {
+  display: flex;
+  align-items: flex-start;
+}
+
+.PrivacyPolicyWrapper li::before {
+  content: "\2022";
+  color: #000;
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
 .PrivacyPolicyWrapper strong {
   color: #2b2b2b;
 }
 .PrivacyPolicyWrapper > header > h1 {
   font-size: 3.8rem;
-  color: #1b6de7;
+  margin-bottom: 1rem;
 }
 .PrivacyPolicyWrapper > header {
   margin-bottom: 20px;
@@ -32,9 +46,8 @@ strong {
 .content_four > h1,
 .content_five > h1,
 .content_six > h1 {
-  color: #1b6de7;
-  margin-bottom: 0.5rem;
   font-size: 2.2rem;
+  margin-bottom: 0.5rem;
 }
 .content_one > div {
   margin-left: 2rem;
@@ -69,9 +82,14 @@ strong {
 .note {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
 }
 .note > strong {
   font-weight: 700;
+}
+.note > p {
+  text-decoration: underline;
 }
 .contact {
   display: flex;
@@ -84,7 +102,61 @@ strong {
 .contact > div {
   display: flex;
   font-size: 15px;
+  flex-wrap: wrap;
   letter-spacing: -0.9px;
-  flex-direction: column;
-  gap: 1rem;
+  /* flex-direction: column; */
+  gap: 0.5rem;
+}
+@media screen and (max-width: 1024px) {
+  .PrivacyPolicyWrapper {
+    padding-inline: 1.8rem;
+  }
+  .PrivacyPolicyWrapper > header > h1 {
+    font-size: 3.5rem;
+  }
+  .content_one > div,
+  .content_six .list > .rights {
+    margin-left: 0.5rem;
+  }
+
+  .content_one > h2,
+  .content_three > h3,
+  .content_four > h1,
+  .content_five > h1,
+  .content_six > h1 {
+    font-size: 2rem;
+  }
+  .content_two,
+  .content_three,
+  .content_four,
+  .content_five,
+  .content_six {
+    margin-bottom: 1.5rem;
+  }
+  .PrivacyPolicyWrapper p,
+  li,
+  strong {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 650px) {
+  .PrivacyPolicyWrapper > header > h1 {
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width: 420px) {
+  .PrivacyPolicyWrapper > header > h1 {
+    font-size: 2.5rem;
+  }
+  .note > p {
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+  .content_one > h2,
+  .content_three > h3,
+  .content_four > h1,
+  .content_five > h1,
+  .content_six > h1 {
+    font-size: 1.8rem;
+  }
 }

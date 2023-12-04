@@ -63,12 +63,13 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   font-size: 1.6rem;
   font-weight: 400;
   font-family: "Inter", sans-serif;
   color: #212529;
 }
+
 .home {
   /* background-color: #d3eff8; */
 }

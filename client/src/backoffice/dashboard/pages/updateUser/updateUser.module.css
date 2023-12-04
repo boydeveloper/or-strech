@@ -150,6 +150,7 @@
   padding: 1rem 3.5rem;
   border-radius: 1.8rem;
   border: none;
+  cursor: pointer;
   font-weight: 600;
   border-color: #00365a;
   color: #fff;

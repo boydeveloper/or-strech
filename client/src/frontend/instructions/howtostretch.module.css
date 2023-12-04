@@ -1,6 +1,7 @@
 .instructionsWrapper {
   /* height: 100vh; */
   padding: 4rem 3.2rem;
+  margin-top: 10rem;
 }
 
 .instructionsWrapper > header {

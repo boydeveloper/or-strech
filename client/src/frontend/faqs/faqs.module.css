@@ -1,5 +1,7 @@
 .faqsWrapper {
   padding: 8rem 2rem;
+  margin-top: 10rem;
+  min-height: 100vh;
 }
 
 .faqsWrapper > header {

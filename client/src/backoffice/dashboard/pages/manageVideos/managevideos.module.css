@@ -12,13 +12,7 @@
   justify-content: right;
   margin-bottom: 2rem;
 }
-.addVideoCta > button {
-  background-color: #184f90;
-  padding: 1.5rem 5rem;
-  border-radius: 5rem;
-  border: none;
-  color: #fff;
-}
+
 .ManageVideosWrapper > header {
   width: 100%;
   margin-bottom: 4rem;
@@ -123,6 +117,17 @@
   .ManageVideosWrapper {
     padding: 0rem;
   }
+  .img_box {
+    padding-inline: 1.5rem;
+    padding-right: 2rem;
+  }
+
+  .videoBoxDetails {
+    padding-inline: 2rem;
+  }
+  .videoBox .cta {
+    gap: 1rem;
+  }
 }
 
 @media screen and (max-width: 650px) {
@@ -130,6 +135,16 @@
     margin-bottom: 2rem;
   }
   .ManageVideosWrapper > header > h1 {
+    font-size: 2.8rem;
+  }
+  .mediaHeader {
     font-size: 2.2rem;
+  }
+  .videoBoxDetails > h1 {
+    font-size: 1.65rem;
+  }
+  .img_box > svg {
+    height: 35px;
+    width: 35px;
   }
 }

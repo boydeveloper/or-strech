@@ -9,7 +9,7 @@ function PrivacyPolicy() {
       <div className="container">
         <div className={style.PrivacyPolicyWrapper}>
           <header>
-            <h1>PRIVACY POLICY</h1>
+            <h1>Privacy Policy.</h1>
             <p>
               This privacy policy applies to data processed by Mayo Clinic's
               OR-Stretch web application (OR-Stretch). The changes made to this
@@ -105,28 +105,34 @@ function PrivacyPolicy() {
             </p>
             <div className={style.list}>
               <li>
-                <strong>
-                  Purposes of processing and legal basis for processing.{" "}
-                </strong>
-                Your personal data is processed to provide and optimize
-                OR-Stretch with your consent, and you have the right to withdraw
-                consent at any time.
+                <div>
+                  <strong>
+                    Purposes of processing and legal basis for processing.{" "}
+                  </strong>
+                  Your personal data is processed to provide and optimize
+                  OR-Stretch with your consent, and you have the right to
+                  withdraw consent at any time.
+                </div>
               </li>
               <li>
-                <strong>Transfers</strong>
-                {"   "} Personal data collected may be transferred to, and
-                stored and processed in, the United States or any other country
-                in which we or our affiliates or processors maintain facilities.
-                We ensure that transfers of personal data to a third country or
-                an international organization are subject to appropriate
-                safeguards.
+                <div>
+                  <strong>Transfers</strong>
+                  {"   "} Personal data collected may be transferred to, and
+                  stored and processed in, the United States or any other
+                  country in which we or our affiliates or processors maintain
+                  facilities. We ensure that transfers of personal data to a
+                  third country or an international organization are subject to
+                  appropriate safeguards.
+                </div>
               </li>
               <li>
-                <strong>Individual rights;</strong>
-                <p>
-                  If you are a resident of the EEA or Switzerland, you are
-                  entitled to the following rights:
-                </p>
+                <div>
+                  <strong>Individual rights;</strong>
+                  <p>
+                    If you are a resident of the EEA or Switzerland, you are
+                    entitled to the following rights:
+                  </p>
+                </div>
               </li>
               <div className={style.rights}>
                 <li>
@@ -175,10 +181,10 @@ function PrivacyPolicy() {
           <div className={style.contact}>
             <h1>Contact</h1>
             <div>
-              <span>Mayo Privacy Officer</span>
+              <span>Mayo Privacy Officer:</span>
               <span>Mayo Clinic</span>
-              <span>200 First St. SW</span>
-              <span>Rochester, MN 55905</span>
+              <span>,200 First St. SW</span>
+              <span>,Rochester, MN 55905</span>
               <span>Phone: 507-266-6286</span>
               <span>
                 Email:

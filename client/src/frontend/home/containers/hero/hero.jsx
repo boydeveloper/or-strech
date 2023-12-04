@@ -49,6 +49,7 @@ function Hero() {
         const parse = JSON.stringify(loggedInUser?.account);
         sessionStorage.setItem("strecher", parse);
         sessionStorage.setItem("stretcher_token", token);
+
         setLoading(false);
         navigate("/stretch");
       } else {
@@ -76,8 +77,7 @@ function Hero() {
           if (loggedInUser?.isSuccess === true) {
             const token = loggedInUser?.account?.token;
             const parse = JSON.stringify(loggedInUser?.account);
-            const trig = await trigBaselineSurvey(email);
-            console.log(trig);
+
             sessionStorage.setItem("strecher", parse);
             sessionStorage.setItem("stretcher_token", token);
             setLoading(false);

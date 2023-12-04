@@ -207,6 +207,7 @@ function Users() {
               updateSearchInput={updateSearchInput}
               showFilter
               users
+              loading={loading}
               column={tableColumn && tableColumn}
               // data={users}
               data={users || []}

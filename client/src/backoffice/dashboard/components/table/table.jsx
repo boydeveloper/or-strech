@@ -11,6 +11,7 @@ const Table = ({
   tag,
   showFilter,
   searchInput,
+  loading,
   updateSearchInput,
 }) => {
   const [sortConfig, setSortConfig] = useState(null);
@@ -51,6 +52,7 @@ const Table = ({
       return 0;
     });
   }
+  console.log(sortedData);
 
   return (
     <div className={style.tableWrapper}>
@@ -195,17 +197,15 @@ const Table = ({
               })}
             </tr>
           ))}
-          {/* </tr>
-          ))} */}
         </tbody>
+        <div>
+          {showFilter && !loading && sortedData?.length === 0 && (
+            <div className={style.nouser}>
+              <h1>No column matches the search ''</h1>
+            </div>
+          )}
+        </div>
       </table>
-      <div>
-        {showFilter && sortedData?.length === 0 && (
-          <div className={style.nouser}>
-            <h1>No column matches the search</h1>
-          </div>
-        )}
-      </div>
     </div>
   );
 };

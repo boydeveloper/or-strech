@@ -157,6 +157,7 @@ function ManageTags() {
             column={tagColumns}
             data={tags || []}
             tag
+            loading={loading}
             handleDelete={handleTagToBeDelelted}
           />
         )}

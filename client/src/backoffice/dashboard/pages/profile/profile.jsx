@@ -12,7 +12,7 @@ function Profile() {
     id: "",
     name: "",
     email: "",
-    user_type: "",
+    // user_type: "",
   });
 
   const handleInputChange = (e) => {

@@ -454,36 +454,38 @@ function SurveyData() {
             </div>
           </div>
         )}
+        <div className={style.surveyTableWrapper}>
+          {loading && !showSurveyTypeSelection && <Loader />}
+          {!showSurveyTypeSelection && (
+            <Table
+              showFilter
+              loading={loading}
+              searchInput={searchInput}
+              updateSearchInput={updateSearchInput}
+              column={
+                selectedSurveyType === "baseline" ? baselineColumn : eodColumn
+              }
+              data={
+                selectedSurveyType === "baseline" ? baselineSurveys : eodSurveys
+              }
+            />
+          )}
 
-        {loading && !showSurveyTypeSelection && <Loader />}
-        {!showSurveyTypeSelection && (
-          <Table
-            showFilter
-            searchInput={searchInput}
-            updateSearchInput={updateSearchInput}
-            column={
-              selectedSurveyType === "baseline" ? baselineColumn : eodColumn
-            }
-            data={
-              selectedSurveyType === "baseline" ? baselineSurveys : eodSurveys
-            }
-          />
-        )}
-
-        {!showSurveyTypeSelection && (
-          <div className={style.surveyFooter}>
-            <div className={style.showingEntriesMessage}>
-              {getShowingEntriesMessage()}
+          {!showSurveyTypeSelection && (
+            <div className={style.surveyFooter}>
+              <div className={style.showingEntriesMessage}>
+                {getShowingEntriesMessage()}
+              </div>
+              <div className={style.paginationButtons}>
+                <Pagination
+                  currentPage={currentPage}
+                  pageCount={pageCount}
+                  onPageChange={handlePageChange}
+                />
+              </div>
             </div>
-            <div className={style.paginationButtons}>
-              <Pagination
-                currentPage={currentPage}
-                pageCount={pageCount}
-                onPageChange={handlePageChange}
-              />
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </main>
     </div>
   );

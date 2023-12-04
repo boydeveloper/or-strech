@@ -5,13 +5,13 @@ import Dropdown from "./component/dropdown";
 import { useAuth } from "../../../context/auth";
 import { Profile } from "../../../../frontend/utils/svg";
 
-function Header() {
+function Header({ handleSidebarToggle }) {
   const { user, logout } = useAuth();
 
   return (
     <div className={style.dashboard__header}>
       <div className={style.header__left}>
-        <button>
+        <button onClick={handleSidebarToggle}>
           <ion-icon name="menu-outline"></ion-icon>
         </button>
         <Link to={"overview"} className={style.logo}>
