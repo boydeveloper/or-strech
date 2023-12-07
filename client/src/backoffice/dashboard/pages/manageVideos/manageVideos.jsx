@@ -9,7 +9,12 @@ import style from "./managevideos.module.css";
 import DeletePrompt from "../../components/deletePrompt/deletePrompt";
 import toast from "react-hot-toast";
 import { Button } from "../../components";
-import { LinkIcon, VideoIcon } from "../../../../frontend/utils/svg";
+import {
+  Create,
+  LinkIcon,
+  TrashIcon,
+  VideoIcon,
+} from "../../../../frontend/utils/svg";
 
 function ManageVideos() {
   const navigate = useNavigate();
@@ -78,7 +83,7 @@ function ManageVideos() {
                       <h1>{link?.name}</h1>
                       <div className={style.cta}>
                         <Link to={`/dashboard/manage-videos/${link.name}`}>
-                          <ion-icon name="create"></ion-icon>
+                          <Create />
                         </Link>
                         <button
                           onClick={() => {
@@ -86,7 +91,7 @@ function ManageVideos() {
                             setSelectedVideo(link.name);
                           }}
                         >
-                          <ion-icon name="trash-outline"></ion-icon>
+                          <TrashIcon />
                         </button>
                       </div>
                     </div>
@@ -107,7 +112,7 @@ function ManageVideos() {
                       <h1>{link.name}</h1>
                       <div className={style.cta}>
                         <Link to={`/dashboard/manage-videos/${link.name}`}>
-                          <ion-icon name="create"></ion-icon>
+                          <Create />
                         </Link>
                         <button
                           onClick={() => {
@@ -115,7 +120,7 @@ function ManageVideos() {
                             setSelectedVideo(link.name);
                           }}
                         >
-                          <ion-icon name="trash-outline"></ion-icon>
+                          <TrashIcon />
                         </button>
                       </div>
                     </div>

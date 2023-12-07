@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { convertTo12, formatDate } from "../../../utils/fomatDate";
 import style from "./table.module.css";
 import { useState } from "react";
-import { SwapVert } from "../../../../frontend/utils/svg";
+import { Create, SwapVert, TrashIcon } from "../../../../frontend/utils/svg";
 
 const Table = ({
   data,
@@ -108,7 +108,7 @@ const Table = ({
                         onClick={() => handleDelete(row.email || row.name)}
                         className={style.failed}
                       >
-                        <ion-icon name="trash-outline"></ion-icon>
+                        <TrashIcon />
                       </span>
                     </td>
                   );
@@ -130,7 +130,7 @@ const Table = ({
                             : style.failed
                         }`}
                       >
-                        <ion-icon name="create"></ion-icon>
+                        <Create />
                       </Link>
                     </td>
                   );

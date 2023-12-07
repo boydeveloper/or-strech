@@ -37,6 +37,12 @@
   margin-bottom: 2rem;
   display: block;
 }
+.overiewCard__details > svg {
+  height: 50px;
+  margin-bottom: 2rem;
+  width: 50px;
+  fill: #fff;
+}
 .overiewCard__details > h1 {
   font-size: 2.6rem;
   font-weight: 300;

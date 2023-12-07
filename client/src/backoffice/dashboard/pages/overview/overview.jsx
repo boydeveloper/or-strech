@@ -6,6 +6,7 @@ import { getRecentLogin } from "../../../../Apis/event/eventService";
 import Table from "../../components/table/table";
 import { useAuth } from "../../../context/auth";
 import { getAllTags, getTags } from "../../../../Apis/tags/tagsService";
+import { Tag } from "../../../../frontend/utils/svg";
 
 function Overview() {
   const { user } = useAuth();
@@ -100,7 +101,7 @@ function Overview() {
           </div>
           <div className={style.overiewCard}>
             <div className={style.overiewCard__details}>
-              <ion-icon name="pricetag-outline"></ion-icon>
+              <Tag />
               <h1>{totalTags} Tags</h1>
               <p>Total number of tags</p>
             </div>

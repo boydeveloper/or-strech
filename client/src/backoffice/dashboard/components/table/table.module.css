@@ -28,6 +28,10 @@
   padding: 2.4rem;
   font-size: 1.4rem;
 }
+.table td svg {
+  height: 22px;
+  width: 22px;
+}
 
 .table > tbody > tr:hover {
   transition: 0.3s;

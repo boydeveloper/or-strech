@@ -103,6 +103,10 @@
   color: #00365a;
   cursor: pointer;
 }
+.videoBox .cta svg {
+  height: 30px;
+  width: 30px;
+}
 .nouser {
   display: flex;
   align-items: center;

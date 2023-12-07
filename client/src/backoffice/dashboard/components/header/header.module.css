@@ -47,6 +47,10 @@
   border: none;
   cursor: pointer;
 }
+.header__left > button > svg {
+  height: 40px;
+  width: 40px;
+}
 .header__right {
   display: flex;
   align-items: center;

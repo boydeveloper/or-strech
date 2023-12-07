@@ -3,7 +3,7 @@ import style from "./header.module.css";
 import { Link } from "react-router-dom";
 import Dropdown from "./component/dropdown";
 import { useAuth } from "../../../context/auth";
-import { Profile } from "../../../../frontend/utils/svg";
+import { Menu, Profile } from "../../../../frontend/utils/svg";
 
 function Header({ handleSidebarToggle }) {
   const { user, logout } = useAuth();
@@ -12,7 +12,7 @@ function Header({ handleSidebarToggle }) {
     <div className={style.dashboard__header}>
       <div className={style.header__left}>
         <button onClick={handleSidebarToggle}>
-          <ion-icon name="menu-outline"></ion-icon>
+          <Menu />
         </button>
         <Link to={"overview"} className={style.logo}>
           <img src="/assets/svgs/mayo-clinic-logo.svg" alt="logo" />
