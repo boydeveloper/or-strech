@@ -109,7 +109,7 @@ function Hero() {
         </h1>
         <p>
           The stretches aim to counteract the effects of interoperative strains
-          on the surgeon's position and are performed without breaking a scrub💪🏾
+          on the surgeon's position and are performed without breaking a scrub.
         </p>
         <button
           onClick={() => (user ? navigate("/stretch") : setModal("login"))}

@@ -39,7 +39,7 @@ function StretcherProfile() {
     try {
       setIsLoading(true);
       const update = await updateUser(
-        { id: user?.id, ...profileData },
+        { userid: user?.id, ...profileData },
         user?.email,
         user?.token
       );

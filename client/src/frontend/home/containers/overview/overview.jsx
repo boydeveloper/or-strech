@@ -12,7 +12,6 @@ function Overview() {
   return (
     <section className={style.features__wrapper}>
       <header>
-        <span>FULL CONTROL</span>
         <h1>Packed with Innovative Features</h1>
       </header>
       <div className={style.features}>
