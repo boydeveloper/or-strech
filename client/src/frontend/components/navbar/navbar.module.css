@@ -75,6 +75,10 @@
   width: 30px;
   cursor: pointer;
 }
+.dropdown svg {
+  height: 20px;
+  width: 20px;
+}
 .profile > span {
   font-weight: 700;
   font-size: 1.4rem;

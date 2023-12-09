@@ -3,6 +3,7 @@ import style from "./timerstoppedmodal.module.css";
 import { trigEodSurvey } from "../../../../Apis/surveys/surveyService";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Close } from "../../../utils/svg";
 function TimerStoppedModal({ cancel, stopTimer, resume }) {
   const popAnimation = {
     hidden: {
@@ -47,7 +48,7 @@ function TimerStoppedModal({ cancel, stopTimer, resume }) {
         <header>
           TIMER STOPPED
           <button className={style.close_button} onClick={cancel}>
-            <ion-icon name="close"></ion-icon>
+            <Close />
           </button>
         </header>
         <p>Thank you for stretching with OR-Stretch</p>

@@ -1,6 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import style from "./navbar.module.css";
-import { Hamburger, MayoLogo, Print, Profile } from "../../utils/svg";
+import {
+  Hamburger,
+  Logout,
+  MayoLogo,
+  Print,
+  Profile,
+  ProfileIcon,
+} from "../../utils/svg";
 import { createEvent } from "../../../Apis/event/eventService";
 import { useState } from "react";
 import AgreementModal from "../agreementModal/agreementModal";
@@ -26,11 +33,11 @@ function Navbar() {
   };
 
   const handleLogout = async () => {
-    // await createEvent({
-    //   userid: user?.id,
-    //   event_type: "PRESSED_LOGOUT",
-    //   note: "i pressed logout",
-    // });
+    await createEvent({
+      userid: user?.id,
+      event_type: "PRESSED_LOGOUT",
+      note: "i pressed logout",
+    });
     sessionStorage.clear("");
     navigate("/");
   };
@@ -151,10 +158,11 @@ function Navbar() {
                 {/* <Hamburger /> */}
                 <div className={style.dropdown}>
                   <Link to={"/profile"}>
-                    <ion-icon name="person-circle-outline"></ion-icon>Profile
+                    <ProfileIcon />
+                    Profile
                   </Link>
                   <span onClick={handleLogout}>
-                    <ion-icon name="log-out-outline"></ion-icon>Logout
+                    <Logout /> Logout
                   </span>
                 </div>
               </div>

@@ -15,7 +15,6 @@ function Timer() {
     setIsActive(!isActive);
   };
   const location = useLocation();
-  // const history = useHistory();
 
   const queryParams = new URLSearchParams(location.search);
   const includeShortCircuit = queryParams.get("include-short-circuit");
@@ -39,30 +38,30 @@ function Timer() {
   const user = JSON.parse(userJSON);
 
   const startTimer = async () => {
-    // await createEvent(
-    //   {
-    //     userid: user?.id,
-    //     event_type: "PRESSED_START",
-    //     notes: "i hit the start button",
-    //   },
-    //   token
-    // );
+    await createEvent(
+      {
+        userid: user?.id,
+        event_type: "PRESSED_START",
+        notes: "i hit the start button",
+      },
+      token
+    );
     setIsRunning(true);
     setIsTimerActive(true);
   };
 
   const stopTimer = async () => {
     setIsRunning(false);
-    // await createEvent({
-    //   userid: user?.id,
-    //   event_type: "PRESSED_STOP",
-    //   notes: "i hit the stop button",
-    // });
+    await createEvent({
+      userid: user?.id,
+      event_type: "PRESSED_STOP",
+      notes: "i hit the stop button",
+    });
   };
 
   const handlePause = () => {
     setModal("pause/stop");
-    setIsRunning(false);
+    // setIsRunning(false);
   };
 
   const increaseTime = () => {
@@ -80,11 +79,11 @@ function Timer() {
     setIsTimerActive(false);
     setSeconds(0);
     setMinutes(intervalTime);
-    // await createEvent({
-    //   userid: user?.id,
-    //   event_type: "RESET",
-    //   notes: "i hit the reset button",
-    // });
+    await createEvent({
+      userid: user?.id,
+      event_type: "RESET",
+      notes: "i hit the reset button",
+    });
   };
 
   const [toggleClass, setToggleClass] = useState(true);
@@ -112,11 +111,11 @@ function Timer() {
     } else {
       audio = new Audio(alarmSound);
       await audio.play();
-      // await createEvent({
-      //   userid: user?.id,
-      //   event_type: "FIRED_ALARM",
-      //   notes: "fired alarm",
-      // });
+      await createEvent({
+        userid: user?.id,
+        event_type: "FIRED_ALARM",
+        notes: "fired alarm",
+      });
     }
   };
   const getLinks = async () => {
@@ -134,14 +133,14 @@ function Timer() {
   );
 
   const handleGO = async () => {
-    // await createEvent(
-    //   {
-    //     userid: user?.id,
-    //     event_type: "PRESSED_GO",
-    //     notes: " i pressed the go button",
-    //   },
-    //   token
-    // );
+    await createEvent(
+      {
+        userid: user?.id,
+        event_type: "PRESSED_GO",
+        notes: " i pressed the go button",
+      },
+      token
+    );
     setModal("video");
   };
   useEffect(() => {
@@ -168,6 +167,7 @@ function Timer() {
     } else if (minutes === 0 && seconds === 0) {
       setIsRunning(false);
       playTimerExpiredSound();
+      setSnoozeClicked(false);
     }
     if (!isRunning && minutes === 0 && seconds === 0) {
       setInterval(() => {
@@ -202,11 +202,11 @@ function Timer() {
     setSeconds(0);
     setSnoozeClicked(true);
     setIsDemoTimerActive(false);
-    // await createEvent({
-    //   userid: user?.id,
-    //   event_type: "SNOOZE",
-    //   notes: "i hit the snooze button",
-    // });
+    await createEvent({
+      userid: user?.id,
+      event_type: "SNOOZE",
+      notes: "i hit the snooze button",
+    });
     if (audio) {
       console.log("Pausing audio");
       audio.pause();
@@ -383,18 +383,18 @@ function Timer() {
       {modal === "video" && (
         <VideoModal
           type={!isActive}
-          url={isActive ? standingVideo.url : seatedVideo.url}
+          url={isActive ? standingVideo?.url : seatedVideo?.url}
           cancel={async () => {
             setModal("");
 
-            // await createEvent(
-            //   {
-            //     userId: user.id,
-            //     event_type: "DONE_STRETCHING",
-            //     notes: "done stretching",
-            //   },
-            //   token
-            // );
+            await createEvent(
+              {
+                userid: user.id,
+                event_type: "DONE_STRETCHING",
+                notes: "done stretching",
+              },
+              token
+            );
           }}
         />
       )}
@@ -403,7 +403,6 @@ function Timer() {
           stopTimer={stopTimer}
           cancel={() => {
             setModal("");
-            setIsRunning(true);
           }}
         />
       )}

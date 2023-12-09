@@ -48,9 +48,18 @@ const events = [
 
 const getPreviousLogins = async (req, res) => {
   try {
+    const daysAgo = moment().subtract(4, "days");
     const login_events = await Event.findAll({
-      where: { event_type: "LOGIN_ADMIN" || "LOGIN_NORMALUSER" },
+      where: {
+        event_type: {
+          [Op.or]: ["LOGIN_ADMIN", "LOGIN_NORMALUSER"],
+        },
+        timestamp: {
+          [Op.gte]: daysAgo,
+        },
+      },
       limit: 20,
+      order: [["timestamp", "DESC"]],
     });
     return res.status(200).json({ login_events, isSuccess: true });
   } catch (err) {

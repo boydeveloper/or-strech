@@ -60,6 +60,7 @@ function Overview() {
       setLogins(login);
       setUsersNum(dataUsers?.totalNoOfUsers);
       const currentDate = new Date().toISOString().slice(0, 10);
+      console.log(login, "logijnn");
       const loginEventsToday = login?.filter((event) => {
         const createdAtDate = new Date(event.createdAt)
           .toISOString()
