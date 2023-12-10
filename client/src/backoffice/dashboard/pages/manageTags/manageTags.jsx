@@ -13,12 +13,14 @@ import Loader from "../../../../components/Loader";
 import { useAuth } from "../../../context/auth";
 import { getExports } from "../../../../Apis/users/userService";
 import { Button } from "../../components";
+import { SearchIcon } from "../../../../frontend/utils/svg";
 
 function ManageTags() {
   const { user } = useAuth();
   const [tags, setTags] = useState(null);
   const [tagToBeDelelted, setTagToBeDeleted] = useState("");
   const [loading, setLoading] = useState(false);
+  const [createTagPending, setCreateTagPending] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [modal, setModal] = useState("");
   const [formData, setFormData] = useState({
@@ -32,7 +34,7 @@ function ManageTags() {
     { heading: "Update", value: "update" },
     { heading: "Delete", value: "delete" },
   ];
-  console.log(user);
+
   const fetchTags = async () => {
     setLoading(true);
     const allTags = await getTags(1, searchInput, user?.token);
@@ -91,25 +93,25 @@ function ManageTags() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setCreateTagPending(true);
       const tagCreating = await createTag(formData, user?.token);
       if (tagCreating.isSuccess === true) {
+        setCreateTagPending(false);
         toast.success(`${tagCreating.tag.name} Tag Created`);
         fetchTags();
       } else {
+        setCreateTagPending(false);
         toast.error(tagCreating.message);
       }
-
       setFormData({
         name: "",
         baseline: 0,
       });
     } catch (error) {
-      console.log(error);
-      // toast.error(error.response.data.message);
+      setCreateTagPending(false);
       throw error;
     }
   };
-  console.log(tags);
 
   return (
     <div className={style.manageTagsWrapper}>
@@ -129,13 +131,16 @@ function ManageTags() {
             value={formData.name}
             onChange={handleInputChange}
           />
-          <button type="submit">Submit</button>
+          <button disabled={createTagPending} type="submit">
+            {createTagPending ? "Loading..." : "Submit"}
+          </button>
         </div>
       </form>
       <div>
         <div className={style.searchContainer}>
           <div className={style.searchIcon}>
-            <ion-icon name="search"></ion-icon>
+            <SearchIcon />
+            {/* <ion-icon name="search"></ion-icon> */}
           </div>
           <input
             type="text"

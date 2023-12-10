@@ -3,7 +3,12 @@ import style from "./header.module.css";
 import { Link } from "react-router-dom";
 import Dropdown from "./component/dropdown";
 import { useAuth } from "../../../context/auth";
-import { Menu, Profile } from "../../../../frontend/utils/svg";
+import {
+  Logout,
+  Menu,
+  Profile,
+  ProfileIcon,
+} from "../../../../frontend/utils/svg";
 
 function Header({ handleSidebarToggle }) {
   const { user, logout } = useAuth();
@@ -25,14 +30,15 @@ function Header({ handleSidebarToggle }) {
 
         <div className={style.quickActionsMenu}>
           <Link to={`/dashboard/profile`}>
-            <ion-icon name="person-circle-outline"></ion-icon> Your profile
+            <ProfileIcon />
+            Your profile
           </Link>
           <Link
             onClick={logout}
             className={style.logout}
             to="/backoffice/login"
           >
-            <ion-icon name="log-out-outline"></ion-icon>
+            <Logout />
             LOGOUT
           </Link>
         </div>
