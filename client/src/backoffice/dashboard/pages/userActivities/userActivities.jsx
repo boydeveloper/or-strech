@@ -39,7 +39,11 @@ function UserActivities() {
     }
   };
   const handleExports = async () => {
-    await getExports("/events/exportEvents", user?.token, "User Activities");
+    try {
+      await getExports("/events/export", user?.token, "User Activities");
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);

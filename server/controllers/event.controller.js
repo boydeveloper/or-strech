@@ -1,4 +1,5 @@
 const Event = require("../models/model").events;
+const User = require("../models/model").users;
 const Op = require("sequelize").Op;
 const excelJs = require("exceljs");
 const moment = require("moment");
@@ -208,7 +209,6 @@ const getPossibleEvents = async (req, res) => {
       .json({ message: "Internal Server Error", isSuccess: false });
   }
 };
-
 const exportEvents = async (req, res) => {
   try {
     const idArray = req.query.ids;
@@ -262,7 +262,6 @@ const exportEvents = async (req, res) => {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
-
 module.exports = {
   createEvent,
   deleteEvent,
