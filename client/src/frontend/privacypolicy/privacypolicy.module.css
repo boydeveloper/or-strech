@@ -12,7 +12,7 @@ li,
 strong {
   font-size: 18px;
   line-height: 30px;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
   list-style-type: none;
   color: #2b2b2b;
 }
@@ -103,7 +103,7 @@ strong {
   display: flex;
   font-size: 15px;
   flex-wrap: wrap;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
   /* flex-direction: column; */
   gap: 0.5rem;
 }

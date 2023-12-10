@@ -48,7 +48,7 @@ const events = [
 
 const getPreviousLogins = async (req, res) => {
   try {
-    const daysAgo = moment().subtract(4, "days");
+    const daysAgo = moment().subtract(3, "days");
     const login_events = await Event.findAll({
       where: {
         event_type: {

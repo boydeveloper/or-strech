@@ -12,7 +12,7 @@
   font-weight: 600;
   text-align: center;
   line-height: 40px;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
 }
 .testimonials {
   width: 100%;
@@ -38,7 +38,7 @@
 .testimonialBox > h1 {
   color: #212529;
 
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

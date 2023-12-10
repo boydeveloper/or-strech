@@ -42,7 +42,7 @@
 }
 .modal > h1 {
   font-size: 32px;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
   color: #003da5;
 
   font-weight: 700;
@@ -73,7 +73,7 @@
   color: #fff;
   margin: 0 !important;
   font-size: 18px;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
   padding: 10px 96px;
   cursor: pointer;
 }

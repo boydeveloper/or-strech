@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
-import { MinusSign, PlusSign } from "../utils/svg";
+import { ChevronDown, MinusSign, PlusSign } from "../utils/svg";
 import style from "./faqs.module.css";
 import { faqsData } from "./data";
 
@@ -63,7 +63,7 @@ function Faqs() {
             <i className="fa-solid fa-question"></i>
             <i className="fa-solid fa-brain"></i>
 
-            <h1>Frequently asked Questions</h1>
+            <h1>Frequently asked Questions???</h1>
 
             <p>
               Explore the precise answers to your inquiries through our
@@ -75,7 +75,7 @@ function Faqs() {
             <div className={style.currentFaq} onClick={toggleDropdown}>
               {selectedCategory.toUpperCase()}
               <button>
-                <ion-icon name="chevron-down"></ion-icon>
+                <ChevronDown />
               </button>
             </div>
             {dropdownVisible && (

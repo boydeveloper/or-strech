@@ -23,12 +23,13 @@ import "./App.css";
 import RequireAuth from "./backoffice/auth/utils/requireAuth";
 import { AuthProvider } from "./backoffice/context/auth";
 import StretcherProfile from "./frontend/profile/StretcherProfile";
-import HowToStretch from "./frontend/instructions/HowToStretch";
+// import HowToStretch from "./frontend/instructions/HowToStretch";
 import Stretches from "./frontend/stretches/Stretches";
 import Faqs from "./frontend/faqs/Faqs";
 import PrivacyPolicy from "./frontend/privacypolicy/PrivacyPolicy";
 import SurveyData from "./backoffice/dashboard/pages/surveyData/SurveyData";
 import Survey from "./frontend/survey/Survey";
+import AboutPage from "./frontend/about/AboutPage";
 function App() {
   return (
     <AuthProvider>
@@ -56,7 +57,7 @@ function App() {
             <Route path="/how-to-stretch" element={<Stretches />} />
             <Route path="/faqs" element={<Faqs />} />
             {/* <Route element={<RequireAuth />}> */}
-            <Route path="/about" element={<HowToStretch />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/survey" element={<Survey />} />
             <Route path="dashboard" element={<Dashboard />}>
               <Route path="users" element={<Users />} />

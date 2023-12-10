@@ -126,5 +126,6 @@
   border: none;
   font-weight: 600;
   border-color: #00365a;
+  cursor: pointer;
   color: #fff;
 }

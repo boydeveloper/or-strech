@@ -49,11 +49,7 @@ function Login() {
 
       if (loginAdmin?.isSuccess === true) {
         await login(loginAdmin.account);
-        await createEvent({
-          userid: loginAdmin?.account?.id,
-          event_type: "LOGIN_ADMIN",
-          notes: "Admin login",
-        });
+
         setLoading(false);
         toast.success("Login successful");
         navigate("/dashboard/overview");

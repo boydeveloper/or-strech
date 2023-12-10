@@ -20,7 +20,7 @@
   color: #000;
   font-size: 3.2rem;
   font-weight: 600;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
 }
 .features {
   display: flex;
@@ -47,7 +47,7 @@
   text-align: center;
   font-size: 2rem;
   font-weight: 600;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
 }
 .feature_header > div {
   border-radius: 100px;
@@ -65,7 +65,7 @@
 .feature > p {
   color: #212529;
   font-size: 16px;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
   font-weight: 400;
   line-height: 26px;
 }

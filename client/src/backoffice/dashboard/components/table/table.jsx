@@ -201,7 +201,7 @@ const Table = ({
         <div>
           {showFilter && !loading && sortedData?.length === 0 && (
             <div className={style.nouser}>
-              <h1>No column matches the search ''</h1>
+              <h1>No column matches the search</h1>
             </div>
           )}
         </div>

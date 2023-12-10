@@ -10,7 +10,7 @@
 }
 .listOfStrechesWrapper > header > h1 {
   font-size: 4rem;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
   color: #0b5cd5;
   margin-bottom: 2rem;
 }
@@ -29,7 +29,7 @@
 .listSummary {
   font-size: 18px;
 
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -68,11 +68,21 @@
 .excercise .textbox .procedures {
   font-size: 1.6rem;
   color: #212529;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.6px;
   display: flex;
   flex-direction: column;
 
   gap: 1rem;
+}
+.procedures li {
+  display: flex;
+  align-items: flex-start;
+}
+.procedures li::before {
+  content: "\2022";
+  color: #000;
+  font-size: 1.2em;
+  margin-right: 10px;
 }
 
 .excercise .textbox .procedures > li > a {
