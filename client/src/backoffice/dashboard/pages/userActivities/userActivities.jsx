@@ -16,7 +16,8 @@ function UserActivities() {
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState(null);
   const tableColumn = [
-    { heading: "User ID", value: "userId" },
+    { heading: "User ID", value: "userid" },
+    { heading: "User", value: "user" },
     { heading: "Event Name", value: "event_type" },
     { heading: "Event Date", value: "createdAt" },
   ];

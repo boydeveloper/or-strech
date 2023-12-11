@@ -15,7 +15,8 @@ function Overview() {
   const [totalLogins, setTotalLogins] = useState(null);
   const [logins, setLogins] = useState(null);
   const tableColumn = [
-    { heading: "UserID", value: "userId" },
+    { heading: "UserID", value: "userid" },
+    { heading: "User", value: "user" },
     { heading: "Login Type", value: "event_type" },
     { heading: "Time", value: "createdAt" },
   ];

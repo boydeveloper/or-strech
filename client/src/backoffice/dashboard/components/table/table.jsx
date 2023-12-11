@@ -15,7 +15,7 @@ const Table = ({
   updateSearchInput,
 }) => {
   const [sortConfig, setSortConfig] = useState(null);
-
+  console.log(data);
   function parseJsonSafely(jsonString) {
     try {
       return JSON?.parse(jsonString);
@@ -181,6 +181,13 @@ const Table = ({
                 } else if (columnItem?.heading === "Event Date") {
                   return (
                     <td key={index + "data"}>{convertTo12(row.createdAt)}</td>
+                  );
+                } else if (columnItem?.heading === "User") {
+                  return (
+                    <td key={index + "data"}>
+                      {" "}
+                      {row[columnItem?.value]?.email}
+                    </td>
                   );
                 } else if (
                   columnItem?.value === "createdAt" ||
