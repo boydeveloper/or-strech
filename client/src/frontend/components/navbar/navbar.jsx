@@ -33,6 +33,7 @@ function Navbar() {
   };
 
   const handleLogout = async () => {
+    console.log(user.id);
     await createEvent({
       userid: user?.id,
       event_type: "PRESSED_LOGOUT",

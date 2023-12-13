@@ -110,9 +110,9 @@ function Users() {
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
       setUsers(stretchers);
-      setTotalEntries(stretchersData.totalNoOfUsers);
+      setTotalEntries(stretchersData?.totalNoOfUsers);
       console.log(stretchers);
-      const totalUsers = stretchersData.totalNoOfUsers;
+      const totalUsers = stretchersData?.totalNoOfUsers;
 
       const calculatedPageCount = Math.ceil(totalUsers / usersPerPage);
       setPageCount(calculatedPageCount);

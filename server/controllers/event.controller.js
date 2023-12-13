@@ -87,6 +87,7 @@ const createEvent = async (req, res) => {
       });
     }
   } catch (err) {
+    console.log(err);
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };

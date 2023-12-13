@@ -38,12 +38,11 @@ function AddUser() {
   const getTags = async () => {
     const tags = await getAllTags(user?.token);
     setTags(tags?.tags);
-    console.log(tags.tags);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const selectedTagNames = Object.keys(selectedTags).filter(
+    const selectedTagNames = Object?.keys(selectedTags)?.filter(
       (tagName) => selectedTags[tagName]
     );
     const newFormdata = {
@@ -61,7 +60,7 @@ function AddUser() {
         toast.error(newUser.message);
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message);
     }
   };
 

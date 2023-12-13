@@ -36,11 +36,11 @@ function UpdateTag() {
     try {
       const updatingTag = await updateTag(
         tagData,
-        tagToBeUpdated.name,
+        tagToBeUpdated?.name,
         user?.token
       );
       if (updatingTag.isSuccess === true) {
-        toast.success(updatingTag.message);
+        toast.success(updatingTag?.message);
         navigate("/dashboard/manage-tags");
       } else {
         toast.error(updatingTag.message);

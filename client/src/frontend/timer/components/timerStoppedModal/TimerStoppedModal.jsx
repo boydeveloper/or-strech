@@ -22,16 +22,17 @@ function TimerStoppedModal({ cancel, stopTimer, resume }) {
   const userJSON = sessionStorage.getItem("strecher");
   const user = JSON.parse(userJSON);
   const handleEndofDay = async () => {
-    try {
-      const trig = await trigEodSurvey(user?.email);
-      console.log(trig);
-      if (trig?.isSuccess === true) {
-        toast.success("End of day triggered");
-        navigate("/");
-      }
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
+    navigate("/thankyou");
+    // try {
+    //   const trig = await trigEodSurvey(user?.email);
+    //   console.log(trig);
+    //   if (trig?.isSuccess === true) {
+    //     toast.success("End of day triggered");
+    //     navigate("/");
+    //   }
+    // } catch (error) {
+    //   toast.error(error.response.data.message);
+    // }
   };
   return (
     <div className={style.TimerStoppedModalWrapper}>

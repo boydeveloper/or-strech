@@ -58,7 +58,7 @@ function App() {
             <Route path="/faqs" element={<Faqs />} />
             {/* <Route element={<RequireAuth />}> */}
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/survey" element={<Survey />} />
+            <Route path="/thankyou" element={<Survey />} />
             <Route path="dashboard" element={<Dashboard />}>
               <Route path="users" element={<Users />} />
               <Route path="survey-data" element={<SurveyData />} />

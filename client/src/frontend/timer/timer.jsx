@@ -389,7 +389,7 @@ function Timer() {
 
             await createEvent(
               {
-                userid: user.id,
+                userid: user?.id,
                 event_type: "DONE_STRETCHING",
                 notes: "done stretching",
               },

@@ -45,9 +45,11 @@ function Profile() {
         user?.email,
         user?.token
       );
-      if (updateAdminUser.isSuccess === true) {
+      if (updateAdminUser?.isSuccess === true) {
         console.log(updateAdminUser);
-        toast.success(updateAdminUser.message);
+        toast.success(updateAdminUser?.message);
+      } else {
+        toast.success(updateAdminUser?.message);
       }
     } catch (error) {
       throw error;
