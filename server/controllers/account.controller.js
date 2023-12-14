@@ -97,6 +97,9 @@ const loginAccount = async (req, res) => {
     let info = {
       email: req.body.email,
     };
+    const userAccountExists = await Account.findOne({
+      where: { email: req.body.email },
+    });
     const user = await User.findOne({
       where: { email: req.body.email },
     });
@@ -116,7 +119,8 @@ const loginAccount = async (req, res) => {
           id: user.id,
           email: user.email,
           createdAt: user.createdAt,
-          isNew: false,
+
+          isNew: userAccountExists ? false : true,
           token,
         },
         isSuccess: true,
@@ -154,7 +158,8 @@ const loginAccount = async (req, res) => {
           id: account.id,
           email: account.email,
           createdAt: account.createdAt,
-          isNew: true,
+          isNew: userAccountExists ? false : true,
+          // isNew: true,
           token,
           user_type: account.user_type,
         },
