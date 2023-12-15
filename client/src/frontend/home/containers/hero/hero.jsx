@@ -42,6 +42,7 @@ function Hero() {
     try {
       setLoading(true);
       const loggedInUser = await authenticateUser(email);
+      console.log(loggedInUser);
       if (loggedInUser?.isSuccess === true) {
         const trig = await trigBaselineSurvey(email);
         console.log(trig);
@@ -71,13 +72,25 @@ function Hero() {
       const emailValid = validateEmail(email);
       if (emailValid) {
         const users = await getAllUsers();
-        const userExists = users?.find((user) => user?.email === email);
+        // console.log(loggedInUser);
+        console.log(email);
+        const userExists = users?.find(
+          (user) =>
+            user?.email.toLocaleLowerCase() === email.toLocaleLowerCase()
+        );
+        // Hallbeck.Susan@mayo.edu
+        // hallbeck.susan@mayo.edu
+
+        console.log(users);
+        // console.log(userExists);
         if (userExists) {
-          const loggedInUser = await authenticateUser(email);
+          const loggedInUser = await authenticateUser(
+            email.toLocaleLowerCase()
+          );
           if (loggedInUser?.isSuccess === true) {
             const token = loggedInUser?.account?.token;
             const parse = JSON.stringify(loggedInUser?.account);
-
+            console.log(loggedInUser);
             sessionStorage.setItem("strecher", parse);
             sessionStorage.setItem("stretcher_token", token);
             setLoading(false);
@@ -88,6 +101,7 @@ function Hero() {
           }
         } else {
           setLoading(false);
+          console.log(userExists);
           setModal("agreeModal");
         }
       } else {

@@ -103,7 +103,6 @@ const loginAccount = async (req, res) => {
     const user = await User.findOne({
       where: { email: req.body.email },
     });
-
     if (user) {
       const token = generateToken(user.id);
       console.log(user.id);
@@ -119,7 +118,7 @@ const loginAccount = async (req, res) => {
           id: user.id,
           email: user.email,
           createdAt: user.createdAt,
-
+          isNew: false,
           isNew: userAccountExists ? false : true,
           token,
         },
@@ -158,8 +157,8 @@ const loginAccount = async (req, res) => {
           id: account.id,
           email: account.email,
           createdAt: account.createdAt,
+          isNew: true,
           isNew: userAccountExists ? false : true,
-          // isNew: true,
           token,
           user_type: account.user_type,
         },
