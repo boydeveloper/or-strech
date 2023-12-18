@@ -82,7 +82,7 @@ function Hero() {
         // hallbeck.susan@mayo.edu
 
         console.log(users);
-        // console.log(userExists);
+
         if (userExists) {
           const loggedInUser = await authenticateUser(
             email.toLocaleLowerCase()
