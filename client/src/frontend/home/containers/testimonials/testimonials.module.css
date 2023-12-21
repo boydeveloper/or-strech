@@ -51,9 +51,10 @@
   gap: 1rem;
 }
 .profileImg > img {
-  height: 4.5rem;
-  width: 4.5rem;
+  height: 5rem;
+  width: 5rem;
   border-radius: 50%;
+  object-position: center;
   object-fit: cover;
 }
 .profileBox > p {

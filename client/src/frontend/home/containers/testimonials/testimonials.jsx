@@ -6,12 +6,12 @@ function Testimonials() {
     {
       author: "Dr.Emilly D",
       text: "I've been using the Surgeon Stretch app for months, and it's made a world of difference in how I feel after a long surgery. My back and shoulders used to ache, but these stretches have alleviated the strain. It's a game-changer!",
-      imgSrc: "/assets/imgs/1.png",
+      imgSrc: "/assets/imgs/default.webp",
     },
     {
       author: "Dr. M Chang",
       text: "The Surgeon Stretch app is a must-have for anyone in the operating room. It's not just about physical relief; it helps me stay focused and alert during lengthy procedures. I can't thank the creators enough for this innovation.",
-      imgSrc: "/assets/imgs/2.png",
+      imgSrc: "/assets/imgs/default.webp",
     },
   ];
   return (
