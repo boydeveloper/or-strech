@@ -154,7 +154,7 @@ const loginAccount = async (req, res) => {
       });
       return res.status(200).json({
         account: {
-          id: account.id,
+          id: user.id,
           email: account.email,
           createdAt: account.createdAt,
           isNew: true,

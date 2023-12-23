@@ -44,7 +44,7 @@ function Hero() {
       const loggedInUser = await authenticateUser(email);
       console.log(loggedInUser);
       if (loggedInUser?.isSuccess === true) {
-        // const trig = await trigBaselineSurvey(email);
+        const trig = await trigBaselineSurvey(email);
         // console.log(trig);
         const token = loggedInUser?.account?.token;
         const parse = JSON.stringify(loggedInUser?.account);
@@ -81,7 +81,7 @@ function Hero() {
         // Hallbeck.Susan@mayo.edu
         // hallbeck.susan@mayo.edu
 
-        console.log(users);
+        // console.log(users);
 
         if (userExists) {
           const loggedInUser = await authenticateUser(
