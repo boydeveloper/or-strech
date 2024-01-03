@@ -15,6 +15,7 @@ import LoginModal from "../../home/containers/hero/components/loginModal";
 import toast from "react-hot-toast";
 import { authenticateUser } from "../../../Apis/auth/loginService";
 import { getAllUsers } from "../../../Apis/users/userService";
+import { trigBaselineSurvey } from "../../../Apis/surveys/surveyService";
 
 function Navbar() {
   const [modal, setModal] = useState("");
@@ -69,8 +70,11 @@ function Navbar() {
       setLoading(true);
       const loggedInUser = await authenticateUser(email);
       if (loggedInUser?.isSuccess === true) {
+        await trigBaselineSurvey(email);
+        // console.log(trig);
         const token = loggedInUser?.account?.token;
         const parse = JSON.stringify(loggedInUser?.account);
+
         sessionStorage.setItem("strecher", parse);
         sessionStorage.setItem("stretcher_token", token);
         setLoading(false);
@@ -147,7 +151,7 @@ function Navbar() {
             <Link to="/about">About</Link>
             <Link to={"/how-to-stretch"}>How to stretch?</Link>
             {/* <Link>Stretch</Link> */}
-            <Link to={"/faqs"}>Faqs</Link>
+            <Link to={"/faqs"}>FaQs</Link>
           </div>
 
           <div>

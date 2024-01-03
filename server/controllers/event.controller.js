@@ -219,9 +219,13 @@ const exportEvents = async (req, res) => {
     if (idArray) ids = JSON.parse(idArray);
     let events;
     const workbook = new excelJs.Workbook();
-    const sheet = workbook.addWorksheet("events");
+    const sheet = workbook.addWorksheet("events")
+    ;
+    console.log(sheet)
     sheet.columns = [
       { header: "ID", key: "id" },
+      // { header: "User ID", key: "userid" },
+      
       { header: "Timestamp", key: "timestamp" },
       { header: "Event Type", key: "event_type" },
       { header: "Value", key: "value" },

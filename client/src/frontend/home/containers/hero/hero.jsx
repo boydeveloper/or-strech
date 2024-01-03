@@ -44,7 +44,7 @@ function Hero() {
       const loggedInUser = await authenticateUser(email);
       console.log(loggedInUser);
       if (loggedInUser?.isSuccess === true) {
-        const trig = await trigBaselineSurvey(email);
+        await trigBaselineSurvey(email);
         // console.log(trig);
         const token = loggedInUser?.account?.token;
         const parse = JSON.stringify(loggedInUser?.account);
@@ -119,7 +119,8 @@ function Hero() {
       <div className={style.hero_wrapper}>
         <div className={style.overlay}></div>
         <h1>
-          Surgeon.Designed. <br /> Interoperative Stretches.
+          Ergonomist and PT/OT-Designed <br /> Interoperative Stretches
+          {/* Surgeon-Designed. <br /> Interoperative Stretches. */}
         </h1>
         <p>
           The stretches aim to counteract the effects of interoperative strains

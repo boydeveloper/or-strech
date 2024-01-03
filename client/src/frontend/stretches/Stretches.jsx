@@ -51,12 +51,12 @@ function Stretches() {
                   <li>
                     {" "}
                     An instructional video leading the between surgery stretches
-                    can be found at
-                    <a href=" https://youtu.be/bLAeVbBjZV0">
-                      {" "}
-                      https://youtu.be/bLAeVbBjZV0
-                    </a>
+                    can be found at:
                   </li>
+                  <a href=" https://youtu.be/bLAeVbBjZV0">
+                    {" "}
+                    https://youtu.be/bLAeVbBjZV0
+                  </a>
                 </div>
               </div>
               <div className={style.img_box}>
@@ -68,8 +68,7 @@ function Stretches() {
             <div className={style.excercise}>
               <div className={style.img_box}>
                 <img src="/assets/imgs/base4.png" alt="sitting position" />
-                <img src="/assets/imgs/base4.png" alt="sitting position" />
-                <img src="/assets/imgs/base3.png" alt="sitting position" />
+                <img src="/assets/imgs/base5.png" alt="sitting position" />
               </div>
               <div className={style.textbox}>
                 <h1>Exercise 2: Seated Trunk Extension and Flexion</h1>
@@ -109,12 +108,11 @@ function Stretches() {
                   </li>
                   <li>
                     An instructional video leading the between surgery stretches
-                    can be found at
-                    <a href=" https://youtu.be/bLAeVbBjZV0">
-                      {" "}
-                      https://youtu.be/bLAeVbBjZV0
-                    </a>
+                    can be found at:
                   </li>
+                  <a target="_blank" href=" https://youtu.be/bLAeVbBjZV0">
+                    https://youtu.be/bLAeVbBjZV0
+                  </a>
                 </div>
               </div>
             </div>
@@ -151,8 +149,12 @@ function Stretches() {
                   </li>
                   <li>
                     An instructional video leading the between surgery stretches
-                    can be found at
+                    can be found at:
                   </li>
+
+                  <a target="_blank" href="https://youtu.be/bLAeVbBjZV0">
+                    https://youtu.be/bLAeVbBjZV0
+                  </a>
                 </div>
               </div>
               <div className={style.img_box}>
@@ -206,11 +208,11 @@ function Stretches() {
                   </li>
                   <li>
                     An instructional video leading the between surgery stretches
-                    can be found at{" "}
-                    <a href="t https://youtu.be/bLAeVbBjZV0" target="__blank">
-                      t https://youtu.be/bLAeVbBjZV0
-                    </a>
+                    can be found at:{" "}
                   </li>
+                  <a href="https://youtu.be/bLAeVbBjZV0" target="__blank">
+                    https://youtu.be/bLAeVbBjZV0
+                  </a>
                 </div>
               </div>
             </div>
@@ -254,12 +256,12 @@ function Stretches() {
                   </li>
                   <li>
                     An instructional video leading the between surgery stretches
-                    can be found at
-                    <a href=" https://youtu.be/bLAeVbBjZV0" target="__blank">
-                      {" "}
-                      https://youtu.be/bLAeVbBjZV0
-                    </a>
+                    can be found at:
                   </li>
+                  <a href=" https://youtu.be/bLAeVbBjZV0" target="__blank">
+                    {" "}
+                    https://youtu.be/bLAeVbBjZV0
+                  </a>
                 </div>
               </div>
               <div className={style.img_box}>
@@ -316,12 +318,12 @@ function Stretches() {
                   </li>
                   <li>
                     An instructional video leading the between surgery stretches
-                    can be found at{" "}
-                    <a href=" https://youtu.be/bLAeVbBjZV0">
-                      {" "}
-                      https://youtu.be/bLAeVbBjZV0
-                    </a>
+                    can be found at:{" "}
                   </li>
+                  <a target="_blank" href=" https://youtu.be/bLAeVbBjZV0">
+                    {" "}
+                    https://youtu.be/bLAeVbBjZV0
+                  </a>
                 </div>
               </div>
             </div>
@@ -370,11 +372,11 @@ function Stretches() {
                   </li>
                   <li>
                     An instructional video leading the between surgery stretches
-                    can be found at
-                    <a href="https://youtu.be/bLAeVbBjZV0" target="__blank">
-                      t https://youtu.be/bLAeVbBjZV0
-                    </a>
+                    can be found at:
                   </li>
+                  <a href="https://youtu.be/bLAeVbBjZV0" target="__blank">
+                    https://youtu.be/bLAeVbBjZV0
+                  </a>
                 </div>
               </div>
               <div className={style.img_box}>
@@ -427,12 +429,12 @@ function Stretches() {
                   </li>
                   <li>
                     An instructional video leading the between surgery stretches
-                    can be found at
-                    <a href="https://youtu.be/bLAeVbBjZV0">
-                      {" "}
-                      https://youtu.be/bLAeVbBjZV0
-                    </a>
+                    can be found at:
                   </li>
+                  <a target="_blank" href="https://youtu.be/bLAeVbBjZV0">
+                    {" "}
+                    https://youtu.be/bLAeVbBjZV0
+                  </a>
                 </div>
               </div>
             </div>
@@ -461,7 +463,7 @@ function Stretches() {
                   <li>
                     Hold the position for 10 seconds and repeat 2-3 times.
                   </li>
-                  <li></li>
+                  {/* <li></li> */}
                 </div>
               </div>
               <div className={style.img_box}>

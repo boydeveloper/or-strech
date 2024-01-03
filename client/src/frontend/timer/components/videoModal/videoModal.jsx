@@ -28,11 +28,11 @@ function VideoModal({ cancel, url, type }) {
           {"  "} Stretch
         </h1>
         <iframe
-          src={url}
           allowFullScreen
           frameborder="0"
           // width={"100%"}
           // height={"100%"}
+          autoplay
         ></iframe>
 
         <button onClick={cancel}> DONE STRETCHING</button>

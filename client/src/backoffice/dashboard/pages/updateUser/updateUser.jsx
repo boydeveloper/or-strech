@@ -112,6 +112,17 @@ function UpdateUser() {
         <form onSubmit={handleSubmit}>
           <label className={style.inputContainer}>
             <input
+              type="id"
+              name="id"
+              // required
+              readOnly
+              value={id}
+              // onChange={handleInputChange}
+            />
+            <span>User ID</span>
+          </label>
+          <label className={style.inputContainer}>
+            <input
               type="email"
               name="email"
               required

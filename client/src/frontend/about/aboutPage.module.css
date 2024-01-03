@@ -4,6 +4,9 @@
   margin-top: 10rem;
 }
 
+.aboutWrapper a {
+  color: #0b5cd5;
+}
 .aboutWrapper > header {
 }
 .aboutWrapper > header > span {

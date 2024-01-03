@@ -45,10 +45,20 @@ function AboutPage() {
                 time intervals.
               </p>
               <p>
-                Also available are two poster PDFs showing seated and standing
-                exercises plus a video that offers tips to get more out of the
-                intraoperative stretches. For example, pinch your shoulder
-                blades together when pulling hands back to chest.
+                Also available are two poster{" "}
+                <a download href="/assets/mayo-clinic-pdf.pdf">
+                  PDFs
+                </a>{" "}
+                showing seated and standing exercises plus a{" "}
+                <a
+                  target="_blank"
+                  href="https://www.youtube.com/watch?v=bLAeVbBjZV0"
+                >
+                  video
+                </a>{" "}
+                that offers tips to get more out of the intraoperative
+                stretches. For example, pinch your shoulder blades together when
+                pulling hands back to chest.
               </p>
             </div>
             <div className={style.img_box}>

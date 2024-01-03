@@ -48,13 +48,14 @@
 }
 
 .hero_wrapper > button {
-  padding: 1.2rem 2.4rem;
+  padding: 1.5rem 5.4rem;
   z-index: 2;
   border-radius: 3.9rem;
   background: #2b8a3e;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 3rem;
   border: none;
+  font-weight: 600;
   color: #fff;
   line-height: 3.4rem;
 }

@@ -33,6 +33,7 @@ function Users() {
   const [emailToBeDeleted, setEmailToBeDeleted] = useState(null);
   const [modal, setModal] = useState("");
   const tableColumn = [
+    { heading: "User ID", name: "id", value: "id" },
     { heading: "Full Name", name: "name", value: "name" },
     { heading: "Email", name: "email", value: "email" },
     { heading: "User Tag(s)", name: "tag", value: "tags_excel" },
@@ -58,6 +59,7 @@ function Users() {
 
     return "";
   };
+  // console.log(users);
   const useDebounce = (value, delay) => {
     const [debouncedValue, setDebouncedValue] = useState(value);
 
