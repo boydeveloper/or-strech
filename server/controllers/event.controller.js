@@ -47,23 +47,19 @@ const events = [
   "AUTO_DONE_STRETCHING_STANDED",
   "DONE_STRETCHING_SEATED",
 ];
-
 const getPreviousLogins = async (req, res) => {
   try {
-    const daysAgo = moment().subtract(3, "days");
     const login_events = await Event.findAll({
       where: {
         event_type: {
           [Op.or]: ["LOGIN_ADMIN", "LOGIN_NORMALUSER"],
-        },
-        timestamp: {
-          [Op.gte]: daysAgo,
         },
       },
       limit: 20,
       order: [["timestamp", "DESC"]],
       include: [{ model: User, as: "user", attributes: ["email"] }],
     });
+
     return res.status(200).json({ login_events, isSuccess: true });
   } catch (err) {
     return res.status(400).json({ message: err, isSuccess: false });
@@ -219,13 +215,12 @@ const exportEvents = async (req, res) => {
     if (idArray) ids = JSON.parse(idArray);
     let events;
     const workbook = new excelJs.Workbook();
-    const sheet = workbook.addWorksheet("events")
-    ;
-    console.log(sheet)
+    const sheet = workbook.addWorksheet("events");
+    console.log(sheet);
     sheet.columns = [
       { header: "ID", key: "id" },
       // { header: "User ID", key: "userid" },
-      
+
       { header: "Timestamp", key: "timestamp" },
       { header: "Event Type", key: "event_type" },
       { header: "Value", key: "value" },
