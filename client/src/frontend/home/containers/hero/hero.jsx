@@ -42,6 +42,7 @@ function Hero() {
     try {
       setLoading(true);
       const loggedInUser = await authenticateUser(email);
+
       console.log(loggedInUser);
       if (loggedInUser?.isSuccess === true) {
         await trigBaselineSurvey(email);
@@ -82,7 +83,7 @@ function Hero() {
         // hallbeck.susan@mayo.edu
 
         // console.log(users);
-
+        console.log(userExists);
         if (userExists) {
           const loggedInUser = await authenticateUser(
             email.toLocaleLowerCase()
