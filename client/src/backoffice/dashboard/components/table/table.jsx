@@ -15,7 +15,7 @@ const Table = ({
   updateSearchInput,
 }) => {
   const [sortConfig, setSortConfig] = useState(null);
-  console.log(data);
+  // console.log(data);
   function parseJsonSafely(jsonString) {
     try {
       return JSON?.parse(jsonString);
@@ -156,9 +156,10 @@ const Table = ({
 
                   return (
                     <td key={index + "data"}>
-                      {Array.isArray(parsedTags)
+                      {row?.tags_excel}
+                      {/* {Array.isArray(parsedTags)
                         ? parsedTags.join(", ")
-                        : parsedTags}
+                        : parsedTags} */}
                     </td>
                   );
                 } else if (columnItem?.value === "event_type") {
