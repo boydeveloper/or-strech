@@ -1,6 +1,7 @@
 import {
   BellIcon,
   CustomStrechesIcon,
+  LightBulb,
   Offfline,
   Print,
   Rise,
@@ -12,7 +13,7 @@ function Overview() {
   return (
     <section className={style.features__wrapper}>
       <header>
-        <h1>Packed with Innovative Features</h1>
+        <h1>OR-Stretch Basics</h1>
       </header>
       <div className={style.features}>
         <div className={style.feature}>
@@ -20,11 +21,12 @@ function Overview() {
             <div>
               <CustomStrechesIcon />
             </div>
-            <h1>Customized Stretches</h1>
+            <h1>Range of motion</h1>
           </div>
           <p>
-            Tailor the stretches to individual surgeon's needs, allowing for
-            personalized routines that address specific strain points.
+            By stretching, you can directly improve your performance. Lifting,
+            bending and running get a little easier when you’ve prioritized your
+            range of motion
           </p>
         </div>
         <div className={style.feature}>
@@ -32,12 +34,11 @@ function Overview() {
             <div>
               <Rise />
             </div>
-            <h1>Progress Tracking</h1>
+            <h1>Variable timing</h1>
           </div>
           <p>
-            Monitor your stretching progress over time with built-in tracking
-            features, helping you maintain a healthy routine and improve your
-            well-being.
+            Set the intervals you would like to be notified to stretch during
+            procedures
           </p>
         </div>
         <div className={style.feature}>
@@ -56,14 +57,13 @@ function Overview() {
         <div className={style.feature}>
           <div className={style.feature_header}>
             <div>
-              <Offfline />
+              <LightBulb />
             </div>
-            <h1>Offline Access</h1>
+            <h1> Simple & Intuitive</h1>
           </div>
           <p>
-            Access your stretches even without an internet connection, making it
-            convenient for use in operating rooms where connectivity might be
-            limited.
+            OR-Stretch's user interface is designed with simplicity and easy of
+            use in mind
           </p>
         </div>
       </div>
