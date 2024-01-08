@@ -30,9 +30,8 @@ function VideoModal({ cancel, url, type }) {
         <iframe
           allowFullScreen
           frameborder="0"
-          // width={"100%"}
-          // height={"100%"}
-          autoplay
+          src={url}
+          allow="autoplay; fullscreen"
         ></iframe>
 
         <button onClick={cancel}> DONE STRETCHING</button>

@@ -63,17 +63,18 @@ const Table = ({
             {column?.map((item, index) => (
               <th
                 key={index + "header"}
-                onClick={() => handleSort(item.name)}
                 style={{
                   cursor: isSortable(item.name) ? "pointer" : "auto",
                 }}
               >
-                {isSortable(item.name) && showFilter && (
-                  <span className={style.SwapVert}>
-                    <SwapVert />
-                  </span>
-                )}
-                {item?.heading}
+                <div onClick={() => handleSort(item.name)}>
+                  {isSortable(item.name) && showFilter && (
+                    <span className={style.SwapVert}>
+                      <SwapVert />
+                    </span>
+                  )}
+                  {item?.heading}
+                </div>
 
                 {showFilter && (
                   <>
@@ -150,18 +151,12 @@ const Table = ({
                     </td>
                   );
                 } else if (columnItem?.heading === "User Tag(s)") {
-                  const parsedTags = row.tags_excel
-                    ? parseJsonSafely(row.tags_excel)
-                    : [];
+                  const parsedTags =
+                    typeof row.tags_excel === "string"
+                      ? row.tags_excel?.trim()?.replace(/[, ]+$/, "")
+                      : JSON.parse(row.tags_excel.replace(/^\[|\]$/g, ""))[0];
 
-                  return (
-                    <td key={index + "data"}>
-                      {row?.tags_excel}
-                      {/* {Array.isArray(parsedTags)
-                        ? parsedTags.join(", ")
-                        : parsedTags} */}
-                    </td>
-                  );
+                  return <td key={index + "data"}>{parsedTags}</td>;
                 } else if (columnItem?.value === "event_type") {
                   return (
                     <td key={index + "data"}>

@@ -151,7 +151,7 @@ function Navbar() {
             <Link to="/about">About</Link>
             <Link to={"/how-to-stretch"}>How to stretch?</Link>
             {/* <Link>Stretch</Link> */}
-            <Link to={"/faqs"}>FaQs</Link>
+            <Link to={"/faqs"}>FAQS</Link>
           </div>
 
           <div>

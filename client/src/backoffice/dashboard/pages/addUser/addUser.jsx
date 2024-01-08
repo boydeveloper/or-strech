@@ -49,12 +49,13 @@ function AddUser() {
       ...formData,
       tags_excel: selectedTagNames,
     };
+    console.log(newFormdata);
     try {
       console.log(newFormdata);
       const newUser = await createUser(newFormdata, user?.token);
       console.log(newUser);
       if (newUser?.isSuccess === true) {
-        toast.success(newUser?.message);
+        toast.success("User created sucessfully!");
         navigate("/dashboard/users");
       } else {
         toast.error(newUser.message);
@@ -109,7 +110,7 @@ function AddUser() {
             </div>
             <span>User Type</span>
           </label>
-          <div className={style.tagsWrapper}>
+          {/* <div className={style.tagsWrapper}>
             <h1>Select User Tag(s)</h1>
             <div className={style.tagsWrapperBox}>
               {tags?.map((tag) => (
@@ -124,7 +125,7 @@ function AddUser() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className={style.adduserCta}>
             <button onClick={() => navigate("/dashboard/users")}>Cancel</button>
