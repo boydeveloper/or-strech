@@ -30,6 +30,7 @@ import PrivacyPolicy from "./frontend/privacypolicy/PrivacyPolicy";
 import SurveyData from "./backoffice/dashboard/pages/surveyData/SurveyData";
 import Survey from "./frontend/survey/Survey";
 import AboutPage from "./frontend/about/AboutPage";
+import RequireAuthStretch from "./backoffice/auth/utils/requireAuthStretch";
 function App() {
   return (
     <AuthProvider>
@@ -49,36 +50,38 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/backoffice/login" element={<Login />} />
-            <Route path="/stretch" element={<Timer />} />
             {/* <Route */}
             {/* <Route path="/about" element={<AboutPage />} /> */}
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/profile" element={<StretcherProfile />} />
+            <Route element={<RequireAuthStretch />}>
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/stretch" element={<Timer />} />
+              <Route path="/thankyou" element={<Survey />} />
+              <Route path="/profile" element={<StretcherProfile />} />
+            </Route>
             <Route path="/how-to-stretch" element={<Stretches />} />
             <Route path="/faqs" element={<Faqs />} />
-            {/* <Route element={<RequireAuth />}> */}
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/thankyou" element={<Survey />} />
-            <Route path="dashboard" element={<Dashboard />}>
-              <Route path="users" element={<Users />} />
-              <Route path="survey-data" element={<SurveyData />} />
-              <Route path="users-activities" element={<UserActivities />} />
-              <Route path="overview" element={<Overview />} />
-              <Route path="add-videos" element={<AddVideos />} />
-              <Route path="add-users" element={<AddUsers />} />
-              <Route path="update-user/:id" element={<UpdateUser />} />
-              <Route path="update-tag/:id" element={<UpdateTag />} />
-              <Route
-                path="manage-videos/:linkName"
-                element={<UpdateVideos />}
-              />
-              <Route path="manage-tags" element={<ManageTags />} />
-              <Route path="manage-videos" element={<ManageVideos />} />
-              <Route path="manage-tags/:name" element={<TagDetails />} />
-              <Route path="profile" element={<Profile />} />
-              {/* <Route path="profile" element={<Profile />} /> */}
+            <Route element={<RequireAuth />}>
+              <Route path="dashboard" element={<Dashboard />}>
+                <Route path="users" element={<Users />} />
+                <Route path="survey-data" element={<SurveyData />} />
+                <Route path="users-activities" element={<UserActivities />} />
+                <Route path="overview" element={<Overview />} />
+                <Route path="add-videos" element={<AddVideos />} />
+                <Route path="add-users" element={<AddUsers />} />
+                <Route path="update-user/:id" element={<UpdateUser />} />
+                <Route path="update-tag/:id" element={<UpdateTag />} />
+                <Route
+                  path="manage-videos/:linkName"
+                  element={<UpdateVideos />}
+                />
+                <Route path="manage-tags" element={<ManageTags />} />
+                <Route path="manage-videos" element={<ManageVideos />} />
+                <Route path="manage-tags/:name" element={<TagDetails />} />
+                <Route path="profile" element={<Profile />} />
+                {/* <Route path="profile" element={<Profile />} /> */}
+              </Route>
             </Route>
-            {/* </Route> */}
           </Routes>
         </ScrollToTop>
       </Router>
