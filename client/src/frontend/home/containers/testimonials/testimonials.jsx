@@ -34,33 +34,29 @@ function Testimonials() {
     ".testimonialsContainer"
   );
 
-  const handleScroll = (e, scrollPosition) => {
-    const container = e.target;
-    const slideWidth = container.offsetWidth;
-  };
-  const scrollToStart = (container) => {
-    if (container) {
-      container.scrollLeft = 0;
-      handleScroll({ target: container }, 0);
-    }
+  const handleScroll = (scrollPosition) => {
+    testimonialsContainer.scrollLeft = scrollPosition;
   };
 
-  const scrollToEnd = (container) => {
-    if (container) {
-      const scrollPosition = container.scrollWidth - container.offsetWidth;
-      container.scrollLeft = scrollPosition;
-      handleScroll({ target: container }, scrollPosition);
-    }
+  const scrollToStart = () => {
+    handleScroll(0);
   };
+
+  const scrollToEnd = () => {
+    const scrollPosition =
+      testimonialsContainer.scrollWidth - testimonialsContainer.offsetWidth;
+    handleScroll(scrollPosition);
+  };
+
   return (
     <section>
       <header className={style.testimonialsHeader}>
         <h1>What Surgeons are saying?</h1>
         <div className={style.testimonial_cta}>
-          <button onClick={() => scrollToStart(testimonialsContainer)}>
+          <button onClick={scrollToStart}>
             <LeftIcon />
           </button>
-          <button onClick={() => scrollToEnd(testimonialsContainer)}>
+          <button onClick={scrollToEnd}>
             <RightIcon />
           </button>
         </div>
