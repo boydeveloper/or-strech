@@ -15,6 +15,7 @@ export const getAllUsers = async (token) => {
     throw error;
   }
 };
+
 export const getUsers = async (
   page_no,
   no_of_users,

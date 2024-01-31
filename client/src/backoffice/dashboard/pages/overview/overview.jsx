@@ -49,7 +49,7 @@ function Overview() {
         "",
         10
       );
-
+      console.log(user?.token);
       const tag = await getAllTags(user?.token);
       setTotalTags(tag?.totalNoOfTags);
       const loggedInActivities = await getRecentLogin(user?.token);

@@ -20,6 +20,7 @@ function SurveyData() {
   const [baselineSurveys, setBaselineSurveys] = useState([]);
   const [eodSurveys, setEodSurveys] = useState([]);
   const { user } = useAuth();
+  // console.log(user, "hiii");
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [availableOptions, setAvailableOptions] = useState([]);
@@ -229,9 +230,10 @@ function SurveyData() {
       }`
     );
   };
-  // console.log()
   const fetchBaselineSurveys = async () => {
     try {
+      // console.log(user?.token);
+      // console.log(user);
       setLoading(true);
       // const {
       //   days_per_week,
@@ -259,50 +261,53 @@ function SurveyData() {
       //   createdAt,
       //   updatedAt,
       // } = debouncedSearchInput;
-
-      const baselineSurveys = await getBaselineSurveys(
-        currentPage,
-        entriesPerPage,
-        debouncedSearchInput?.days_per_week || "",
-        debouncedSearchInput?.age || "",
-        debouncedSearchInput?.pain_open_surgery || "",
-        debouncedSearchInput?.pain_laparoscopic_surgery || "",
-        debouncedSearchInput?.pain_robotic_surgery || "",
-        debouncedSearchInput?.pain_past_six_months || "",
-        debouncedSearchInput?.pain_interfered_relations || "",
-        debouncedSearchInput?.pain_interfered_sleep || "",
-        debouncedSearchInput?.height || "",
-        debouncedSearchInput?.gender || "",
-        debouncedSearchInput?.handness || "",
-        debouncedSearchInput?.glove_size || "",
-        debouncedSearchInput?.surgical_procedures_day || "" || "",
-        debouncedSearchInput?.exercise || "",
-        debouncedSearchInput?.primary_speciality || "",
-        debouncedSearchInput?.years_open_surgery || "",
-        debouncedSearchInput?.years_laparoscopic_surgery || "",
-        debouncedSearchInput?.years_robotic_surgery || "",
-        debouncedSearchInput?.most_common_procedures_a || "",
-        debouncedSearchInput?.most_common_procedures_b || "",
-        debouncedSearchInput?.most_common_procedures_c || "",
-        debouncedSearchInput?.createdAt || "",
-        debouncedSearchInput?.updatedAt || ""
-      );
-      setLoading(false);
-      console.log(baselineSurveys);
-      setBaselineSurveys(baselineSurveys?.baselineSurveys);
-      const totalBaseline = baselineSurveys?.totalNoOfSurveys;
-      setTotalEntries(baselineSurveys?.totalNoOfSurveys);
-      const calculatedPageCount = Math.ceil(totalBaseline / entriesPerPage);
-      setPageCount(calculatedPageCount);
+      if (user && user?.token) {
+        console.log(user?.token);
+        const baselineSurveys = await getBaselineSurveys(
+          user?.token,
+          currentPage,
+          entriesPerPage,
+          debouncedSearchInput?.days_per_week || "",
+          debouncedSearchInput?.age || "",
+          debouncedSearchInput?.pain_open_surgery || "",
+          debouncedSearchInput?.pain_laparoscopic_surgery || "",
+          debouncedSearchInput?.pain_robotic_surgery || "",
+          debouncedSearchInput?.pain_past_six_months || "",
+          debouncedSearchInput?.pain_interfered_relations || "",
+          debouncedSearchInput?.pain_interfered_sleep || "",
+          debouncedSearchInput?.height || "",
+          debouncedSearchInput?.gender || "",
+          debouncedSearchInput?.handness || "",
+          debouncedSearchInput?.glove_size || "",
+          debouncedSearchInput?.surgical_procedures_day || "" || "",
+          debouncedSearchInput?.exercise || "",
+          debouncedSearchInput?.primary_speciality || "",
+          debouncedSearchInput?.years_open_surgery || "",
+          debouncedSearchInput?.years_laparoscopic_surgery || "",
+          debouncedSearchInput?.years_robotic_surgery || "",
+          debouncedSearchInput?.most_common_procedures_a || "",
+          debouncedSearchInput?.most_common_procedures_b || "",
+          debouncedSearchInput?.most_common_procedures_c || "",
+          debouncedSearchInput?.createdAt || "",
+          debouncedSearchInput?.updatedAt || ""
+        );
+        setLoading(false);
+        console.log(baselineSurveys);
+        setBaselineSurveys(baselineSurveys?.baselineSurveys);
+        const totalBaseline = baselineSurveys?.totalNoOfSurveys;
+        setTotalEntries(baselineSurveys?.totalNoOfSurveys);
+        const calculatedPageCount = Math.ceil(totalBaseline / entriesPerPage);
+        setPageCount(calculatedPageCount);
+      }
     } catch (error) {
       throw error;
     }
   };
-  // const exportIds = "";
 
   const fetchEodSurveys = async () => {
     try {
       setLoading(true);
+      // console.log(user.token, "kfkfk");
       const {
         userid,
         day,
@@ -320,35 +325,40 @@ function SurveyData() {
         physically_demanding_surgeries,
         updatedAt,
       } = debouncedSearchInput;
-      const eodSurveys = await getEodSurveys(
-        currentPage,
-        entriesPerPage,
-        userid,
-        day,
-        createdAt,
-        complex_surgeries,
-        difficult_surgeries,
-        distracting,
-        flow_impact,
-        id,
-        impact_fatigue,
-        impact_mental,
-        impact_pain,
-        impact_physical,
-        mentaly_demanding_surgeries,
-        physically_demanding_surgeries,
-        updatedAt
-      );
-      // console.log(userid);
-      setLoading(false);
-      // console.log(eodSurveys);
-      setEodSurveys(eodSurveys?.endOfDaySurveys);
-      setTotalEntries(eodSurveys?.totalNoOfSurveys);
+      if (user && user?.token) {
+        console.log(user?.token);
+        const eodSurveys = await getEodSurveys(
+          user?.token,
+          currentPage,
+          entriesPerPage,
+          userid,
+          day,
+          createdAt,
+          complex_surgeries,
+          difficult_surgeries,
+          distracting,
+          flow_impact,
+          id,
+          impact_fatigue,
+          impact_mental,
+          impact_pain,
+          impact_physical,
+          mentaly_demanding_surgeries,
+          physically_demanding_surgeries,
+          updatedAt
+        );
+        // console.log(userid);
+        setLoading(false);
+        // console.log(eodSurveys);
+        setEodSurveys(eodSurveys?.endOfDaySurveys);
+        setTotalEntries(eodSurveys?.totalNoOfSurveys);
 
-      const totalEods = eodSurveys?.totalNoOfSurveys;
-      const calculatedPageCount = Math.ceil(totalEods / entriesPerPage);
-      setPageCount(calculatedPageCount);
+        const totalEods = eodSurveys?.totalNoOfSurveys;
+        const calculatedPageCount = Math.ceil(totalEods / entriesPerPage);
+        setPageCount(calculatedPageCount);
+      }
     } catch (error) {
+      console.log(error);
       throw error;
     }
   };

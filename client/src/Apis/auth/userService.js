@@ -4,7 +4,6 @@ const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 const userString = sessionStorage.getItem("or_user");
 
 export const deleteUser = async (mail, token) => {
-  const user = await JSON.parse(userString);
   try {
     const headers = {
       Authorization: `Bearer ${token}`,

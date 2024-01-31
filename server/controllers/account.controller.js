@@ -91,7 +91,20 @@ const loginAdminAccount = async (req, res) => {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
+const checkUserIsNew = async (req, res) => {
+  try {
+    const userAccountExists = await Account.findOne({
+      where: { email: req.body.email },
+    });
 
+    return res.status(200).json({
+      isNew: userAccountExists ? false : true,
+      isSuccess: true,
+    });
+  } catch (err) {
+    return res.status(500).json({ message: err, isSuccess: false });
+  }
+};
 const loginAccount = async (req, res) => {
   try {
     let info = {
@@ -118,7 +131,6 @@ const loginAccount = async (req, res) => {
           id: user.id,
           email: user.email,
           createdAt: user.createdAt,
-          isNew: false,
           isNew: userAccountExists ? false : true,
           token,
         },
@@ -173,4 +185,5 @@ const loginAccount = async (req, res) => {
 module.exports = {
   loginAccount,
   loginAdminAccount,
+  checkUserIsNew,
 };

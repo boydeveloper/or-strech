@@ -111,23 +111,23 @@ export const RightIcon = () => {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="none"
+      fill="#000"
     >
       <path
         d="M5 12H19"
-        stroke="#0B5CD5"
+        stroke="#000"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M13 18L19 12"
-        stroke="#0B5CD5"
+        stroke="#000"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M13 6L19 12"
-        stroke="#0B5CD5"
+        stroke="#000"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
@@ -141,23 +141,23 @@ export const LeftIcon = () => {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="none"
+      fill="#000"
     >
       <path
         d="M5 12H19"
-        stroke="#0B5CD5"
+        stroke="#000"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M5 12L11 18"
-        stroke="#0B5CD5"
+        stroke="#000"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M5 12L11 6"
-        stroke="#0B5CD5"
+        stroke="#000"
         stroke-linecap="round"
         stroke-linejoin="round"
       />

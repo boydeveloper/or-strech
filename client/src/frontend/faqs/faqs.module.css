@@ -3,6 +3,14 @@
   margin-top: 10rem;
   min-height: 100vh;
 }
+.faqsWrapper a {
+  text-decoration: underline;
+  color: #0b5cd5;
+  transition: all 0.2s;
+}
+.faqsWrapper a:hover {
+  opacity: 0.8;
+}
 
 .faqsWrapper > header {
   text-align: center;

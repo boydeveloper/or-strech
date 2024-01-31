@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authenticateUser } from "../../../../Apis/auth/loginService";
+import {
+  authenticateUser,
+  checkUserIsNew,
+} from "../../../../Apis/auth/loginService";
 import { AgreementModal } from "../../../components/index";
 import style from "./hero.module.css";
 import { createEvent } from "../../../../Apis/event/eventService";
@@ -45,9 +48,9 @@ function Hero() {
 
       console.log(loggedInUser);
       if (loggedInUser?.isSuccess === true) {
-        await trigBaselineSurvey(email);
-        // console.log(trig);
         const token = loggedInUser?.account?.token;
+        await trigBaselineSurvey(email, token);
+
         const parse = JSON.stringify(loggedInUser?.account);
         sessionStorage.setItem("strecher", parse);
         sessionStorage.setItem("stretcher_token", token);
@@ -60,31 +63,23 @@ function Hero() {
       }
     } catch (error) {
       setLoading(false);
+      console.log(error);
       toast.error(error.response.data.message);
     }
   };
   const userJSON = sessionStorage?.getItem("strecher");
   const user = JSON?.parse(userJSON);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (e) => {
     try {
-      event.preventDefault();
+      e.preventDefault();
       setLoading(true);
       const emailValid = validateEmail(email);
       if (emailValid) {
-        const users = await getAllUsers();
-        // console.log(loggedInUser);
-        console.log(email);
-        const userExists = users?.find(
-          (user) =>
-            user?.email.toLocaleLowerCase() === email.toLocaleLowerCase()
-        );
-        // Hallbeck.Susan@mayo.edu
-        // hallbeck.susan@mayo.edu
-
-        // console.log(users);
-        console.log(userExists);
-        if (userExists) {
+        const isUserNew = await checkUserIsNew(email);
+        console.log(isUserNew);
+        // console.log(userExists);
+        if (isUserNew?.isNew === false) {
           const loggedInUser = await authenticateUser(
             email.toLocaleLowerCase()
           );
@@ -102,7 +97,7 @@ function Hero() {
           }
         } else {
           setLoading(false);
-          console.log(userExists);
+          // console.log(userExists);
           setModal("agreeModal");
         }
       } else {

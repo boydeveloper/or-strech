@@ -10,7 +10,7 @@ export const faqsData = [
       {
         question: "How will OR-Stretch make my operative day better?",
         answer:
-          "In a 2017 study on the use of intraoperative breaks, 41% of the surgical team reported that the breaks had improved their physical performance and 34% reported an improvement in their mental focus. Out of all study participants, 87% planned to continue the stretches after the study concluded.",
+          "In a 2017 study on the use of intraoperative breaks, 41% of the surgical team reported that the breaks had improved their physical performance and 34% reported an improvement in their mental focus.Out of all study participants, 87% planned to continue the stretches after the study concluded.",
       },
       {
         question: "Is there a cost?",
@@ -35,10 +35,10 @@ export const faqsData = [
       {
         question: "Will it increase my operative duration?",
         answer:
-          "No. A 2017 study, The Impact of Intraoperative Microbreaks With Exercises on Surgeons: A Multi-Center Cohort Study showed that the microbreaks did not significantly increase operative duration.",
+          'No. A 2017 study, <a target="_blank" href="https://www.sciencedirect.com/science/article/pii/S0003687016302666">The Impact of Intraoperative Microbreaks With Exercises on Surgeons: A Multi-Center Cohort Study</a> showed that the microbreaks did not significantly increase operative duration.',
       },
       {
-        question: "What muscles are stretched?",
+        question: "How were the stretches designed?",
         answer:
           "The stretches are designed to counteract the postures assumed by surgeons during open and laparoscopic surgery described in Evidence-based intraoperative microbreak activities for reducing musculoskeletal injuries in the operating room.",
       },
@@ -94,7 +94,13 @@ export const faqsData = [
       },
       {
         question: "What if I am having technical difficulties?",
-        answer: "Email orstretch@mayo.edu.",
+        answer:
+          'Email  <a target="_blank" href="mailto:ORStretch@mayo.edu">orstretch@mayo.edu.</a>',
+      },
+      {
+        question: "Do I have to wait for the timer to go off to stretch?",
+        answer:
+          "You can push the 'Go' button whenever you have a natural break in a case, e.g., waiting for something from the core. 'Nduka: please add it after How will I know when it is time to stretch' ",
       },
     ],
   },
@@ -158,13 +164,14 @@ export const faqsData = [
       },
       {
         question: "What training is offered?",
+
         answer:
-          "OR-Stretch instructions can be placed in the operating room and online, and demonstration videos are available.",
+          'OR-Stretch <a target="_blank" href="https://www.mayo.edu/research/labs/human-factors-engineering/or-stretch/or-instructions">instructions</a> can be placed in the operating room and online, and demonstration <a target="_blank" href="https://youtu.be/bLAeVbBjZV0">videos</a> are available.',
       },
       {
         question: "How can I share this with others?",
         answer:
-          "To share OR-Stretch, copy this address: https://www.mayo.edu/research/labs/human-factors-engineering.",
+          'To share OR-Stretch, copy this address: <a target="_blank" href="https://www.mayo.edu/research/labs/human-factors-engineering">https://www.mayo.edu/research/labs/human-factors-engineering.</a>',
       },
     ],
   },
@@ -200,7 +207,7 @@ export const faqsData = [
       {
         question: "What data is collected?",
         answer:
-          "User analytics and survey responses are collected. User analytics help the researchers and developers understand how users are navigating OR-Stretch to make future improvements. The surveys are an opportunity to gather feedback on how the microbreaks are working in the OR, and to assess the impact of microbreaks on aspects of a surgeon's workload, such as mental focus, level of fatigue and physical demand. For more information, see the Mayo Clinic OR-Stretch Privacy Policy.",
+          'User analytics and survey responses are collected. User analytics help the researchers and developers understand how users are navigating OR-Stretch to make future improvements. The surveys are an opportunity to gather feedback on how the microbreaks are working in the OR, and to assess the impact of microbreaks on aspects of a surgeon/"s workload, such as mental focus, level of fatigue and physical demand. For more information, see the <a target="_blank" href="/privacy-policy"> Mayo Clinic OR- Stretch Privacy Policy.</a>',
       },
       {
         question: "How is the data collected?",
@@ -221,8 +228,9 @@ export const faqsData = [
         question:
           "What security measures are in place to keep the data private?",
         answer:
-          "A combination of physical, technical and administrative safeguards protects the information collected through OR-Stretch. These precautions are used to safeguard your personal data and the security of the networks, systems, servers, devices and databases we operate or that are operated on our behalf. For more information, see the Mayo Clinic OR-Stretch Privacy Policy.",
+          'A combination of physical, technical and administrative safeguards protects the information collected through OR-Stretch. These precautions are used to safeguard your personal data and the security of the networks, systems, servers, devices and databases we operate or that are operated on our behalf. For more information, see the <a target="_blank" href="/priv">Mayo Clinic OR- Stretch Privacy Policy</a>',
       },
+
       {
         question: "Will stored information include names?",
         answer:
@@ -247,7 +255,7 @@ export const faqsData = [
       {
         question: "What if I have more questions?",
         answer:
-          "If you have additional questions or comments, please email ORStretch@mayo.edu.",
+          'If you have additional questions or comments, please email  <a target="_blank" href="mailto:ORStretch@mayo.edu">ORStretch@mayo.edu</a>',
       },
     ],
   },

@@ -23,7 +23,7 @@ function TimerStoppedModal({ cancel, stopTimer, resume }) {
   const user = JSON.parse(userJSON);
   const handleEndofDay = async () => {
     try {
-      const trig = await trigEodSurvey(user?.email);
+      const trig = await trigEodSurvey(user?.email, user?.token);
       console.log(trig);
       if (trig?.isSuccess === true) {
         toast.success("End of day triggered");

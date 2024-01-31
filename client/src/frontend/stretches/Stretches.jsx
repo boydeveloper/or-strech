@@ -11,10 +11,9 @@ function Stretches() {
               Stretching Exercises <i className="fa-solid fa-person"></i>
             </h1>
             <p>
-              These stretching exercises slowly and without forceful movements
-              to enhance muscle flexibility. Listen to your body, stop if any
-              discomfort arises, and prioritize controlled motions for a safe
-              and effective routine.
+              These activities are intended to be performed slowly with no rapid
+              or forceful movements. If any activity causes discomfort, stop
+              performing the activity.
             </p>
           </header>
           <div className={style.excercises}>

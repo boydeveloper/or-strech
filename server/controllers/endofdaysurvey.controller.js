@@ -9,8 +9,8 @@ const User = require("../models/model").users;
 const triggerEndOfDaySurveyJSONWorkflow = async (req, res) => {
   try {
     const response = await axios.post(
-      `https://iad1.qualtrics.com/inbound-event/v1/events/json/triggers?urlTokenId=${process.env.QUALTRICS_ENDOFDAY_URLTOKENID}`,
-      { data: req.body }
+      ` https://iad1.qualtrics.com/inbound-event/v1/events/json/triggers?urlTokenId=${process.env.QUALTRICS_ENDOFDAY_URLTOKENID}`,
+      { email: req.body.email }
     );
     return res.status(200).json({ data: response.data, isSuccess: true });
   } catch (err) {

@@ -70,11 +70,10 @@ function Navbar() {
       setLoading(true);
       const loggedInUser = await authenticateUser(email);
       if (loggedInUser?.isSuccess === true) {
-        await trigBaselineSurvey(email);
-        // console.log(trig);
         const token = loggedInUser?.account?.token;
-        const parse = JSON.stringify(loggedInUser?.account);
+        await trigBaselineSurvey(email, token);
 
+        const parse = JSON.stringify(loggedInUser?.account);
         sessionStorage.setItem("strecher", parse);
         sessionStorage.setItem("stretcher_token", token);
         setLoading(false);
@@ -151,7 +150,7 @@ function Navbar() {
             <Link to="/about">About</Link>
             <Link to={"/how-to-stretch"}>How to stretch?</Link>
             {/* <Link>Stretch</Link> */}
-            <Link to={"/faqs"}>FAQS</Link>
+            <Link to={"/faqs"}>FAQs</Link>
           </div>
 
           <div>

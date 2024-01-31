@@ -4,7 +4,7 @@ import Footer from "../components/footer/footer";
 import { ChevronDown, MinusSign, PlusSign } from "../utils/svg";
 import style from "./faqs.module.css";
 import { faqsData } from "./data";
-
+import ReactHtmlParser from "react-html-parser";
 function Faqs() {
   const [selectedCategory, setSelectedCategory] = useState("overview");
   const [activeIndex, setActiveIndex] = useState(null);
@@ -106,7 +106,9 @@ function Faqs() {
                       {index == activeIndex ? <MinusSign /> : <PlusSign />}
                     </button>
                   </div>
-                  <div className={`${style.answer}`}>{faq.answer}</div>
+                  <div className={`${style.answer}`}>
+                    {ReactHtmlParser(faq.answer)}
+                  </div>
                 </div>
               ))}
             </div>
@@ -130,7 +132,10 @@ function Faqs() {
                       {index == activeIndex ? <MinusSign /> : <PlusSign />}
                     </button>
                   </div>
-                  <div className={`${style.answer}`}>{faq.answer}</div>
+                  <div className={`${style.answer}`}>
+                    {console.log(ReactHtmlParser(faq.answer))}
+                    {ReactHtmlParser(faq.answer)}
+                  </div>
                 </div>
               ))}
             </div>

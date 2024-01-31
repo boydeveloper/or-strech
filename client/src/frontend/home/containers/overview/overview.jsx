@@ -18,15 +18,15 @@ function Overview() {
       <div className={style.features}>
         <div className={style.feature}>
           <div className={style.feature_header}>
+            ww
             <div>
               <CustomStrechesIcon />
             </div>
-            <h1>Range of motion</h1>
+            <h1>Not need to scrub out</h1>
           </div>
           <p>
-            By stretching, you can directly improve your performance. Lifting,
-            bending and running get a little easier when you’ve prioritized your
-            range of motion
+            The stretches are designed to be performed without scrubbing out and
+            will counteract the postures you assume during surgery
           </p>
         </div>
         <div className={style.feature}>

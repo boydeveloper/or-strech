@@ -1,8 +1,26 @@
 .testimonials {
   padding: 2rem 0;
 }
+
 .testimonialsHeader {
   padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.testimonial_cta {
+  display: flex;
+  gap: 15px;
+}
+.testimonial_cta > button {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.testimonial_cta > button svg {
+  height: 22px;
+  fill: #222;
+  width: 22px;
 }
 
 .testimonialsHeader > h1 {
@@ -16,9 +34,12 @@
 }
 .testimonials {
   width: 100%;
+  overflow-x: auto;
   gap: 5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  transition: all 0.2s;
+  display: flex;
+  padding-inline: 10px;
+  /* grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); */
   margin-top: 2rem;
 }
 
@@ -27,17 +48,17 @@
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 10px;
   width: fit-content;
   border-radius: 8px;
-
+  min-width: 500px;
+  border: 1px solid #ccc;
   text-align: center;
   background: #fff;
   box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.06);
 }
 .testimonialBox > h1 {
   color: #212529;
-
   letter-spacing: -0.6px;
   font-size: 16px;
   font-style: normal;

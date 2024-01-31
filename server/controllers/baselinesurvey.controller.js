@@ -40,10 +40,15 @@ const sendEmail = async (req, res) => {
 };
 const triggerBaselineSurveyJSONWorkflow = async (req, res) => {
   try {
+    const email = req.body.email;
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+
     const response = await axios.post(
       `https://iad1.qualtrics.com/inbound-event/v1/events/json/triggers?urlTokenId=${process.env.QUALTRICS_BASELINE_URLTOKENID}&force_isolation=true`,
-      { data: req.body }
+      { email: req.body.email }
     );
+
     if (response.data.meta.httpStatus) {
       return res.status(200).json({
         status: response.data.meta.httpStatus,
@@ -51,6 +56,7 @@ const triggerBaselineSurveyJSONWorkflow = async (req, res) => {
       });
     }
   } catch (err) {
+    console.log(err);
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };

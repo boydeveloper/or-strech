@@ -4,22 +4,68 @@ import style from "./testimonials.module.css";
 function Testimonials() {
   const testimonials = [
     {
-      author: "Dr.Emilly D",
-      text: "I've been using the Surgeon Stretch app for months, and it's made a world of difference in how I feel after a long surgery. My back and shoulders used to ache, but these stretches have alleviated the strain. It's a game-changer!",
+      author: "Dr. RG:",
+      text: "The exercises have been well received among the OR team. All eight of us did them together and all gave positive feedback! No one complained that it was a bad idea, distraction, or waste of time.",
       imgSrc: "/assets/imgs/default.webp",
     },
     {
-      author: "Dr. M Chang",
-      text: "The Surgeon Stretch app is a must-have for anyone in the operating room. It's not just about physical relief; it helps me stay focused and alert during lengthy procedures. I can't thank the creators enough for this innovation.",
+      author: "Dr. MR",
+      text: "Helped me realize the stress I was adding to my upper back and neck.  It was good that somebody else was timing it so I did not have to do it myself (it won't happen),also liked the flexibility that if it was not a good moment I was able to defer it to a better time",
+      imgSrc: "/assets/imgs/default.webp",
+    },
+    {
+      author: "Dr. SH",
+      text: "I really enjoyed this.  Thought it would be a bit more distracting than it was but found it to be refreshing.  I feel great and am usually flat on my back at the end of these cases.",
+      imgSrc: "/assets/imgs/default.webp",
+    },
+
+    {
+      author: "Dr. GG",
+      text: "This program has gotten rid of my headaches that I often get at the end of an OR day!",
+      imgSrc: "/assets/imgs/default.webp",
+    },
+    {
+      author: "Dr. AP",
+      text: "extremely valuable and impactful for the WHOLE team (especially circulating and scrub nurses who seemed to appreciate it the most!)",
       imgSrc: "/assets/imgs/default.webp",
     },
   ];
+  const testimonialsContainer = document.querySelector(
+    ".testimonialsContainer"
+  );
+
+  const handleScroll = (e, scrollPosition) => {
+    const container = e.target;
+    const slideWidth = container.offsetWidth;
+  };
+  const scrollToStart = (container) => {
+    if (container) {
+      container.scrollLeft = 0;
+      handleScroll({ target: container }, 0);
+    }
+  };
+
+  const scrollToEnd = (container) => {
+    if (container) {
+      const scrollPosition = container.scrollWidth - container.offsetWidth;
+      container.scrollLeft = scrollPosition;
+      handleScroll({ target: container }, scrollPosition);
+    }
+  };
   return (
     <section>
       <header className={style.testimonialsHeader}>
         <h1>What Surgeons are saying?</h1>
+        <div className={style.testimonial_cta}>
+          <button onClick={() => scrollToStart(testimonialsContainer)}>
+            <LeftIcon />
+          </button>
+          <button onClick={() => scrollToEnd(testimonialsContainer)}>
+            <RightIcon />
+          </button>
+        </div>
       </header>
-      <div className={style.testimonials}>
+      <div className={`testimonialsContainer ${style.testimonials}`}>
         {testimonials.map((testimonial, index) => (
           <div className={style.testimonialBox} key={index}>
             <div className={style.profileBox}>
