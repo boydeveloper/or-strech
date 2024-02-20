@@ -195,7 +195,9 @@ function Navbar() {
                 <Link to={"/intraoperative-standing"}>
                   Intraoperative (standing)
                 </Link>
-                <Link>Intraoperative (seating)</Link>
+                <Link to={"/inoperative-seating"}>
+                  Intraoperative (seating)
+                </Link>
               </div>
             </Link>
 

@@ -1,12 +1,14 @@
+import { useParams } from "react-router-dom";
 import { Navbar } from "../components";
 import style from "./error.module.css";
 
-function ErrorPage() {
+function ErrorPage({}) {
+  const { title } = useParams();
   return (
     <>
       <Navbar />
       <div className={style.error_page}>
-        <h1>Page has been moved or is under construction⚒️</h1>
+        <h1>{title} has been moved or is under construction⚒️</h1>
       </div>
     </>
   );

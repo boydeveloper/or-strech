@@ -50,7 +50,7 @@ function App() {
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="/:title" element={<ErrorPage />} />
             <Route path="/backoffice/login" element={<Login />} />
             {/* <Route */}
             {/* <Route path="/about" element={<AboutPage />} /> */}
