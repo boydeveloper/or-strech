@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import style from "./navbar.module.css";
 import {
+  DownIcon,
   Hamburger,
   Logout,
   MayoLogo,
@@ -19,6 +20,8 @@ import { trigBaselineSurvey } from "../../../Apis/surveys/surveyService";
 
 function Navbar() {
   const [modal, setModal] = useState("");
+  const token = sessionStorage.getItem("stretcher_token");
+  // console.log(user);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,12 +37,15 @@ function Navbar() {
   };
 
   const handleLogout = async () => {
-    console.log(user.id);
-    await createEvent({
-      userid: user?.id,
-      event_type: "PRESSED_LOGOUT",
-      note: "i pressed logout",
-    });
+    // console.log(user.id);
+    await createEvent(
+      {
+        userid: user?.id,
+        event_type: "PRESSED_LOGOUT",
+        note: "i pressed logout",
+      },
+      token
+    );
     sessionStorage.clear("");
     navigate("/");
   };
@@ -148,8 +154,21 @@ function Navbar() {
             </Link>
             <Link to={"/"}>Home</Link>
             <Link to="/about">About</Link>
-            <Link to={"/how-to-stretch"}>How to stretch?</Link>
-            {/* <Link>Stretch</Link> */}
+            <Link
+              className={style.howtostretchlink_container}
+              to={"/how-to-stretch"}
+            >
+              How to stretch?
+              <DownIcon />
+              <div className={style.sub_menu}>
+                <Link to={"/how-to-stretch"}>Between surgery</Link>
+                <Link to={"/intraoperative-standing"}>
+                  Intraoperative (standing)
+                </Link>
+                <Link>Intraoperative (seating)</Link>
+              </div>
+            </Link>
+
             <Link to={"/faqs"}>FAQs</Link>
           </div>
 

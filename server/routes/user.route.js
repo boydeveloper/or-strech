@@ -10,6 +10,8 @@ router.get("/export", userController.exportUser);
 router.get("/search", userController.findUsers);
 router.get("/searchUsers", userController.searchUsers);
 router.post("/createUser", userController.addUser);
+router.post("/sendOTP", userController.sendOTP);
+router.post("/verifyOTP", userController.verifyOTP);
 
 router.post("/changeUserPassword", userController.changeUserPassword);
 module.exports = router;

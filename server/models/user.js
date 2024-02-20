@@ -83,36 +83,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      // is_verified: {
+      //   type: DataTypes.BOOLEAN,
+      //   defaultValue: false,
+      //   allowNull: false,
+      // },
     },
     { freezeTableName: true, tableName: "user" }
   );
-
-  User.associate = (models) => {
-    User.hasMany(models.baseline_survey, {
-      foreignKey: "userid",
-      as: "baseline_survey",
-      onDelete: "CASCADE",
-      onUpdate: "CASCADE",
-    });
-    User.hasMany(models.endofday_survey, {
-      as: "endofday_survey",
-      foreignKey: "userid",
-      onDelete: "CASCADE",
-      onUpdate: "CASCADE",
-    });
-    User.hasMany(models.usage_event, {
-      as: "event",
-      foreignKey: "userid",
-      onDelete: "CASCADE",
-      onUpdate: "CASCADE",
-    });
-    User.hasMany(models.user_tags, {
-      foreignKey: "user_id",
-      as: "user_tags",
-      onDelete: "CASCADE",
-      onUpdate: "CASCADE",
-    });
-  };
-
   return User;
 };

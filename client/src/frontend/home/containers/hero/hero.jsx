@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import {
   authenticateUser,
   checkUserIsNew,
+  sendOtp,
+  verifyOtp,
 } from "../../../../Apis/auth/loginService";
 import { AgreementModal } from "../../../components/index";
 import style from "./hero.module.css";
@@ -11,6 +13,8 @@ import LoginModal from "./components/loginModal";
 import { getAllUsers } from "../../../../Apis/users/userService";
 import toast from "react-hot-toast";
 import { trigBaselineSurvey } from "../../../../Apis/surveys/surveyService";
+import EnterOtp from "../../../components/EnterOtp/EnterOtp";
+import VerifyOtp from "../../../components/VerifyOtp/VerifyOtp";
 
 function Hero() {
   const [email, setEmail] = useState("");
@@ -30,7 +34,6 @@ function Hero() {
     const newEmail = event.target.value;
     setEmail(newEmail);
 
-    // Email validation
     setEmailError(
       newEmail.trim() === ""
         ? "Email address cannot be empty"
@@ -45,7 +48,6 @@ function Hero() {
     try {
       setLoading(true);
       const loggedInUser = await authenticateUser(email);
-
       console.log(loggedInUser);
       if (loggedInUser?.isSuccess === true) {
         const token = loggedInUser?.account?.token;
@@ -78,7 +80,6 @@ function Hero() {
       if (emailValid) {
         const isUserNew = await checkUserIsNew(email);
         console.log(isUserNew);
-        // console.log(userExists);
         if (isUserNew?.isNew === false) {
           const loggedInUser = await authenticateUser(
             email.toLocaleLowerCase()
@@ -96,9 +97,15 @@ function Hero() {
             toast.error("Error logging in");
           }
         } else {
-          setLoading(false);
-          // console.log(userExists);
-          setModal("agreeModal");
+          // setLoading(true);
+          console.log(email);
+          const otpState = await sendOtp(email);
+          if (otpState?.isSuccess === true) {
+            setLoading(false);
+            setModal("enterotp");
+          } else {
+            toast.error(otpState?.message);
+          }
         }
       } else {
         setError("Please enter a valid email address");
@@ -107,6 +114,22 @@ function Hero() {
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);
+    }
+  };
+  const handleVerifyOtp = async (email, otp) => {
+    try {
+      setLoading(true);
+      const otpverified = await verifyOtp(email, otp);
+      if (otpverified?.isSuccess === true) {
+        setLoading(false);
+        setModal("agreeModal");
+      } else {
+        setLoading(false);
+        toast.error(otpverified?.message);
+      }
+    } catch (error) {
+      toast.error(error?.data?.message);
+      throw error;
     }
   };
 
@@ -144,6 +167,15 @@ function Hero() {
           close={() => setModal("")}
           loading={loading}
           submit={handleIsNewModal}
+        />
+      )}
+
+      {modal === "enterotp" && (
+        <EnterOtp
+          handleVerifyOtp={handleVerifyOtp}
+          email={email}
+          close={() => setModal("")}
+          loading={loading}
         />
       )}
     </>

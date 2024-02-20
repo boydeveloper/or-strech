@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { LeftIcon, RightIcon } from "../../../utils/svg";
 import style from "./testimonials.module.css";
 
@@ -30,24 +31,26 @@ function Testimonials() {
       imgSrc: "/assets/imgs/default.webp",
     },
   ];
-  const testimonialsContainer = document.querySelector(
-    ".testimonialsContainer"
-  );
 
-  const handleScroll = (scrollPosition) => {
-    testimonialsContainer.scrollLeft = scrollPosition;
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const container = document.querySelector(".testimonialsContainer");
+  const testimonialsContainerRef = useRef(null);
+
+  const handleScroll = (e, scrollPosition) => {
+    const container = e.target;
+    const slideWidth = container.offsetWidth;
   };
 
   const scrollToStart = () => {
-    handleScroll(0);
+    container.scrollLeft = 0;
+    handleScroll({ target: container }, 0);
   };
 
   const scrollToEnd = () => {
-    const scrollPosition =
-      testimonialsContainer.scrollWidth - testimonialsContainer.offsetWidth;
-    handleScroll(scrollPosition);
+    const scrollPosition = container.scrollWidth - container.offsetWidth;
+    container.scrollLeft = scrollPosition;
+    handleScroll({ target: container }, scrollPosition);
   };
-
   return (
     <section>
       <header className={style.testimonialsHeader}>
@@ -61,7 +64,11 @@ function Testimonials() {
           </button>
         </div>
       </header>
-      <div className={`testimonialsContainer ${style.testimonials}`}>
+      <div
+        className={`testimonialsContainer ${style.testimonials}`}
+        ref={testimonialsContainerRef}
+        style={{ scrollLeft: scrollPosition }}
+      >
         {testimonials.map((testimonial, index) => (
           <div className={style.testimonialBox} key={index}>
             <div className={style.profileBox}>

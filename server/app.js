@@ -14,13 +14,13 @@ app.use(morgan("dev"));
 const accountRouter = require("./routes/account.route");
 app.use("/api/accounts", accountRouter);
 
+const userRouter = require("./routes/user.route");
 app.use(verifyToken);
+app.use("/api/users", userRouter);
 const baselineSurveyRouter = require("./routes/baselinesurvey.route");
 app.use("/api/baselinesurvey", baselineSurveyRouter);
 const endofdaySurveyRouter = require("./routes/endofdaysurvey.route");
 app.use("/api/endofdaysurvey", endofdaySurveyRouter);
-const userRouter = require("./routes/user.route");
-app.use("/api/users", userRouter);
 
 const eventRouter = require("./routes/event.route");
 app.use("/api/events", eventRouter);

@@ -32,9 +32,9 @@ function Timer() {
 
   const [links, setLinks] = useState(null);
   const token = sessionStorage.getItem("stretcher_token");
-  const userJSON = sessionStorage.getItem("strecher");
   const [demo, setDemo] = useState(false);
 
+  const userJSON = sessionStorage.getItem("strecher");
   const user = JSON.parse(userJSON);
   console.log(user);
   console.log(user?.id);

@@ -1,6 +1,59 @@
 import axios from "axios";
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
+export const sendOtp = async (email) => {
+  try {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      email,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${BASE_URL}/accounts/sendOTP`,
+      requestOptions
+    );
+    const data = response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const verifyOtp = async (email, otp) => {
+  try {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      email,
+      otp: Number(otp),
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    const response = await fetch(
+      `${BASE_URL}/accounts/verifyOTP`,
+      requestOptions
+    );
+    const data = response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const authenticateUser = async (email) => {
   try {
     const myHeaders = new Headers();

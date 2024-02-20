@@ -1,8 +1,13 @@
+require("dotenv").config({ path: "../.env" });
 const db = require("../models/model");
+const UserOtps = db.user_otps;
 const User = db.users;
+const BaselineSurvey = require("../models/model").baseline_survey;
+const Event = require("../models/model").events;
 const excelJs = require("exceljs");
 const Op = require("sequelize").Op;
 const moment = require("moment");
+const nodeMailer = require("nodemailer");
 const bcrypt = require("bcryptjs");
 
 const hashPassword = async (password) => {
@@ -511,7 +516,144 @@ const exportUser = async (req, res) => {
     return res.status(500).json({ message: err, isSuccess: false });
   }
 };
+// const sendOTP = async (req, res) => {
+//   const [email] = [req.body.email];
+//   try {
+//     const user = await User.findOne({ where: { email } });
+//     if (user) {
+//       if (user.is_verified === true) {
+//         return res
+//           .status(400)
+//           .json({ message: "User is already verified", isSuccess: false });
+//       }
+//     }
 
+//     const otp = `${Math.floor(Math.random() * 900000) + 100000}`;
+//     const userOtp = await UserOtps.create({
+//       email,
+//       expiresAt: Date.now() + 3600000,
+//       otp: otp,
+//     });
+//     const transporter = nodeMailer.createTransport({
+//       host: process.env.SMTPHOST,
+//       port: process.env.SMTPPORT,
+//       secure: false,
+//       auth: {
+//         user: process.env.SMTPUSER,
+//         pass: process.env.SMTPPASSWORD,
+//       },
+//     });
+//     const mailOptions = {
+//       from: process.env.SMTPUSER,
+//       to: email,
+//       subject: "MAYO CLINIC ORSTRETCH ONE TIME VERIFICATION CODE",
+//       html: `<p>Hello, ${email}.</p><br/> <p>Your OTP is <b>${otp}</b>. </p> <br/> <p>It expires in 1 hour. </p>`,
+//     };
+//     transporter.sendMail(mailOptions, (error) => {
+//       if (error) {
+//         return res.status(500).json({
+//           message: error,
+//           isSuccess: false,
+//         });
+//       } else {
+//         return res.status(200).json({
+//           message: `Email sent. This is the OTP for testing purposes: ${userOtp.otp}`,
+//           otp: userOtp.otp,
+//           isSuccess: false,
+//         });
+//       }
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).json({ message: err });
+//   }
+// };
+const sendOTP = async (req, res) => {
+  const email = req.body.email; // Destructuring unnecessary for a single variable
+  try {
+    const otp = `${Math.floor(Math.random() * 900000) + 100000}`;
+
+    // Save OTP details (you can adjust this part based on your database structure)
+    const userOtp = await UserOtps.create({
+      email,
+      expiresAt: Date.now() + 3600000,
+      otp,
+    });
+
+    const transporter = nodeMailer.createTransport({
+      host: process.env.SMTPHOST,
+      port: process.env.SMTPPORT,
+      secure: false,
+      auth: {
+        user: process.env.SMTPUSER,
+        pass: process.env.SMTPPASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.SMTPUSER,
+      to: email,
+      subject: "MAYO CLINIC ORSTRETCH ONE TIME VERIFICATION CODE",
+      html: `<p>Hello, ${email}.</p><br/> <p>Your OTP is <b>${otp}</b>. </p> <br/> <p>It expires in 1 hour. </p>`,
+    };
+
+    transporter.sendMail(mailOptions, (error) => {
+      if (error) {
+        return res.status(500).json({
+          message: error,
+          isSuccess: false,
+        });
+      } else {
+        return res.status(200).json({
+          message: `Email sent. This is the OTP for testing purposes: ${userOtp.otp}`,
+          otp: userOtp.otp,
+          isSuccess: true,
+        });
+      }
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: err });
+  }
+};
+const verifyOTP = async (req, res) => {
+  const [email, otp] = [req.body.email, req.body.otp];
+  try {
+    if (!email || !otp) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    const userVerificationRecord = await UserOtps.findAll({ where: { email } });
+
+    if (userVerificationRecord.length <= 0) {
+      return res.status(400).json({
+        message:
+          "Account record does'nt exist or has been verified already. Please sign up or login.",
+      });
+    } else {
+      const { expiresAt } = userVerificationRecord[0];
+      const { otp: dbOtp } = userVerificationRecord[0];
+      if (expiresAt < Date.now()) {
+        await UserOtps.destroy({ email });
+        return res
+          .status(402)
+          .json({ message: "Otp has expired", isSuccess: false });
+      } else {
+        if (otp === dbOtp) {
+          await UserOtps.destroy({ where: { email } });
+          return res
+            .status(200)
+            .json({ message: "The email has been verified", isSuccess: true });
+        } else {
+          return res
+            .status(402)
+            .json({ message: "Otp is incorrect", isSuccess: false });
+        }
+      }
+    }
+  } catch (err) {
+    return res.status(500).json({ err });
+  }
+};
 module.exports = {
   listUsers,
   deleteUser,
@@ -523,4 +665,6 @@ module.exports = {
   findUsers,
   searchUsers,
   exportUser,
+  sendOTP,
+  verifyOTP,
 };

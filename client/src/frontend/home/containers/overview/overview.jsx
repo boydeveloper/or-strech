@@ -18,7 +18,6 @@ function Overview() {
       <div className={style.features}>
         <div className={style.feature}>
           <div className={style.feature_header}>
-            ww
             <div>
               <CustomStrechesIcon />
             </div>

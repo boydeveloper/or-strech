@@ -93,25 +93,6 @@ function Stretches() {
                     Hold each position for 10 seconds, repeat each exercise 2-3
                     times and return to the upright position.
                   </li>
-                  <li>
-                    These activities are intended to be performed slowly with no
-                    rapid or forceful movements.
-                  </li>
-                  <li>
-                    {" "}
-                    Keep your breathing relaxed throughout all activities.
-                  </li>
-                  <li>
-                    If any activity causes discomfort, stop performing the
-                    activity
-                  </li>
-                  <li>
-                    An instructional video leading the between surgery stretches
-                    can be found at:
-                  </li>
-                  <a target="_blank" href=" https://youtu.be/bLAeVbBjZV0">
-                    https://youtu.be/bLAeVbBjZV0
-                  </a>
                 </div>
               </div>
             </div>
@@ -134,26 +115,6 @@ function Stretches() {
                   </li>
                   <li>Hold for 10 seconds, take a deep breath and relax</li>
                   <li>Repeat the exercise 2-3 times</li>
-                  <li>
-                    These activities are intended to be performed slowly with no
-                    rapid or forceful movements
-                  </li>
-                  <li>
-                    Keep your breathing relaxed throughout all activities.
-                  </li>
-                  <li>
-                    {" "}
-                    If any activity causes discomfort, stop performing the
-                    activity.
-                  </li>
-                  <li>
-                    An instructional video leading the between surgery stretches
-                    can be found at:
-                  </li>
-
-                  <a target="_blank" href="https://youtu.be/bLAeVbBjZV0">
-                    https://youtu.be/bLAeVbBjZV0
-                  </a>
                 </div>
               </div>
               <div className={style.img_box}>
@@ -193,25 +154,6 @@ function Stretches() {
                   <li>
                     In between each stretch, relax and return to sitting tall.
                   </li>
-                  <li>
-                    These activities are intended to be performed slowly with no
-                    rapid or forceful movements.
-                  </li>
-                  <li>
-                    {" "}
-                    Keep your breathing relaxed throughout all activities.
-                  </li>
-                  <li>
-                    If any activity causes discomfort, stop performing the
-                    activity
-                  </li>
-                  <li>
-                    An instructional video leading the between surgery stretches
-                    can be found at:{" "}
-                  </li>
-                  <a href="https://youtu.be/bLAeVbBjZV0" target="__blank">
-                    https://youtu.be/bLAeVbBjZV0
-                  </a>
                 </div>
               </div>
             </div>
@@ -241,26 +183,6 @@ function Stretches() {
                     Repeat each exercise to the left and right for a total of
                     2-3 times each side.
                   </li>
-                  <li>
-                    These activities are intended to be performed slowly with no
-                    rapid or forceful movements.
-                  </li>
-                  <li>
-                    Keep your breathing relaxed throughout all activities.
-                  </li>
-                  <li>
-                    {" "}
-                    If any activity causes discomfort, stop performing the
-                    activity.
-                  </li>
-                  <li>
-                    An instructional video leading the between surgery stretches
-                    can be found at:
-                  </li>
-                  <a href=" https://youtu.be/bLAeVbBjZV0" target="__blank">
-                    {" "}
-                    https://youtu.be/bLAeVbBjZV0
-                  </a>
                 </div>
               </div>
               <div className={style.img_box}>
@@ -303,26 +225,6 @@ function Stretches() {
                     Repeat the exercise on the right, and repeat each exercise
                     for a total of 2-3 times.
                   </li>
-                  <li>
-                    {" "}
-                    These activities are intended to be performed slowly with no
-                    rapid or forceful movements.
-                  </li>
-                  <li>
-                    Keep your breathing relaxed throughout all activities.
-                  </li>
-                  <li>
-                    If any activity causes discomfort, stop performing the
-                    activity.
-                  </li>
-                  <li>
-                    An instructional video leading the between surgery stretches
-                    can be found at:{" "}
-                  </li>
-                  <a target="_blank" href=" https://youtu.be/bLAeVbBjZV0">
-                    {" "}
-                    https://youtu.be/bLAeVbBjZV0
-                  </a>
                 </div>
               </div>
             </div>
@@ -357,25 +259,6 @@ function Stretches() {
                     Repeat the exercise 2-3 times on each side, holding each
                     position for approximately 10 seconds.
                   </li>
-                  <li>
-                    These activities are intended to be performed slowly with no
-                    rapid or forceful movements.
-                  </li>
-                  <li>
-                    Keep your breathing relaxed throughout all activities.
-                  </li>
-                  <li>
-                    {" "}
-                    If any activity causes discomfort, stop performing the
-                    activity.
-                  </li>
-                  <li>
-                    An instructional video leading the between surgery stretches
-                    can be found at:
-                  </li>
-                  <a href="https://youtu.be/bLAeVbBjZV0" target="__blank">
-                    https://youtu.be/bLAeVbBjZV0
-                  </a>
                 </div>
               </div>
               <div className={style.img_box}>
@@ -415,25 +298,6 @@ function Stretches() {
                     Repeat the position on the opposite side and complete each
                     exercise for a total of 2-3 repetitions.
                   </li>
-                  <li>
-                    These activities are intended to be performed slowly with no
-                    rapid or forceful movements.
-                  </li>
-                  <li>
-                    Keep your breathing relaxed throughout all activities.
-                  </li>
-                  <li>
-                    If any activity causes discomfort, stop performing the
-                    activity.
-                  </li>
-                  <li>
-                    An instructional video leading the between surgery stretches
-                    can be found at:
-                  </li>
-                  <a target="_blank" href="https://youtu.be/bLAeVbBjZV0">
-                    {" "}
-                    https://youtu.be/bLAeVbBjZV0
-                  </a>
                 </div>
               </div>
             </div>
