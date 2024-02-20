@@ -31,6 +31,7 @@ import SurveyData from "./backoffice/dashboard/pages/surveyData/SurveyData";
 import Survey from "./frontend/survey/Survey";
 import AboutPage from "./frontend/about/AboutPage";
 import RequireAuthStretch from "./backoffice/auth/utils/requireAuthStretch";
+import ErrorPage from "./frontend/error/Error";
 function App() {
   return (
     <AuthProvider>
@@ -49,6 +50,7 @@ function App() {
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="*" element={<ErrorPage />} />
             <Route path="/backoffice/login" element={<Login />} />
             {/* <Route */}
             {/* <Route path="/about" element={<AboutPage />} /> */}

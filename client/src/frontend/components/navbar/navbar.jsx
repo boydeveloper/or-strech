@@ -14,9 +14,15 @@ import { useState } from "react";
 import AgreementModal from "../agreementModal/agreementModal";
 import LoginModal from "../../home/containers/hero/components/loginModal";
 import toast from "react-hot-toast";
-import { authenticateUser } from "../../../Apis/auth/loginService";
+import {
+  authenticateUser,
+  checkUserIsNew,
+  sendOtp,
+  verifyOtp,
+} from "../../../Apis/auth/loginService";
 import { getAllUsers } from "../../../Apis/users/userService";
 import { trigBaselineSurvey } from "../../../Apis/surveys/surveyService";
+import EnterOtp from "../EnterOtp/EnterOtp";
 
 function Navbar() {
   const [modal, setModal] = useState("");
@@ -96,20 +102,22 @@ function Navbar() {
   const userJSON = sessionStorage?.getItem("strecher");
   const user = JSON?.parse(userJSON);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (e) => {
     try {
-      event.preventDefault();
+      e.preventDefault();
       setLoading(true);
       const emailValid = validateEmail(email);
       if (emailValid) {
-        const users = await getAllUsers();
-        const userExists = users?.find((user) => user?.email === email);
-
-        if (userExists) {
-          const loggedInUser = await authenticateUser(email);
+        const isUserNew = await checkUserIsNew(email);
+        console.log(isUserNew);
+        if (isUserNew?.isNew === false) {
+          const loggedInUser = await authenticateUser(
+            email.toLocaleLowerCase()
+          );
           if (loggedInUser?.isSuccess === true) {
             const token = loggedInUser?.account?.token;
             const parse = JSON.stringify(loggedInUser?.account);
+            console.log(loggedInUser);
             sessionStorage.setItem("strecher", parse);
             sessionStorage.setItem("stretcher_token", token);
             setLoading(false);
@@ -119,17 +127,42 @@ function Navbar() {
             toast.error("Error logging in");
           }
         } else {
-          setLoading(false);
-          setModal("agreeModal");
+          // setLoading(true);
+          console.log(email);
+          const otpState = await sendOtp(email);
+          if (otpState?.isSuccess === true) {
+            setLoading(false);
+            setModal("enterotp");
+          } else {
+            toast.error(otpState?.message);
+          }
         }
       } else {
         setError("Please enter a valid email address");
         setLoading(false);
       }
     } catch (error) {
+      console.log(error);
       toast.error(error?.response?.data?.message);
     }
   };
+  const handleVerifyOtp = async (email, otp) => {
+    try {
+      setLoading(true);
+      const otpverified = await verifyOtp(email, otp);
+      if (otpverified?.isSuccess === true) {
+        setLoading(false);
+        setModal("agreeModal");
+      } else {
+        setLoading(false);
+        toast.error(otpverified?.message);
+      }
+    } catch (error) {
+      toast.error(error?.data?.message);
+      throw error;
+    }
+  };
+
   return (
     <>
       <div
@@ -154,10 +187,7 @@ function Navbar() {
             </Link>
             <Link to={"/"}>Home</Link>
             <Link to="/about">About</Link>
-            <Link
-              className={style.howtostretchlink_container}
-              to={"/how-to-stretch"}
-            >
+            <Link className={style.howtostretchlink_container}>
               How to stretch?
               <DownIcon />
               <div className={style.sub_menu}>
@@ -219,6 +249,14 @@ function Navbar() {
           close={() => setModal("")}
           loading={loading}
           submit={handleIsNewModal}
+        />
+      )}
+      {modal === "enterotp" && (
+        <EnterOtp
+          handleVerifyOtp={handleVerifyOtp}
+          email={email}
+          close={() => setModal("")}
+          loading={loading}
         />
       )}
     </>

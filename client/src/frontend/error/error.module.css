@@ -1,0 +1,12 @@
+.error_page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.error_page > h1 {
+  font-size: 30px;
+  display: flex;
+  letter-spacing: -0.9px;
+  color: #000;
+}
