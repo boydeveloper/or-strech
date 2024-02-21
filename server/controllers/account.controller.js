@@ -246,7 +246,7 @@ const sendOTP = async (req, res) => {
       }
     });
   } catch (err) {
-    console.log(err);
+    console.log(err, "jjj");
     return res.status(500).json({ message: err });
   }
 };
