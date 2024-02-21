@@ -127,14 +127,18 @@ function Navbar() {
             toast.error("Error logging in");
           }
         } else {
-          // setLoading(true);
-          console.log(email);
-          const otpState = await sendOtp(email);
-          if (otpState?.isSuccess === true) {
+          try {
+            const otpState = await sendOtp(email);
+            console.log(otpState);
+            if (otpState?.isSuccess === true) {
+              setLoading(false);
+              setModal("enterotp");
+            } else {
+              toast.error(otpState?.message?.response || otpState?.message);
+            }
+          } catch (error) {
             setLoading(false);
-            setModal("enterotp");
-          } else {
-            toast.error(otpState?.message);
+            toast.error(error.data.message);
           }
         }
       } else {
