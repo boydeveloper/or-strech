@@ -10,12 +10,14 @@ import {
   UpdateUser,
   ManageTags,
   ManageVideos,
+  CreateSurvey,
   UpdateTag,
   TagDetails,
   AddVideos,
   Profile,
   UserActivities,
   UpdateVideos,
+  EditSurvey,
 } from "./backoffice/dashboard/pages/index";
 import ScrollToTop from "./frontend/utils/functions/scrollToTop";
 
@@ -63,26 +65,30 @@ function App() {
             <Route path="/how-to-stretch" element={<Stretches />} />
             <Route path="/faqs" element={<Faqs />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route element={<RequireAuth />}>
-              <Route path="dashboard" element={<Dashboard />}>
-                <Route path="users" element={<Users />} />
-                <Route path="survey-data" element={<SurveyData />} />
-                <Route path="users-activities" element={<UserActivities />} />
-                <Route path="overview" element={<Overview />} />
-                <Route path="add-videos" element={<AddVideos />} />
-                <Route path="add-users" element={<AddUsers />} />
-                <Route path="update-user/:id" element={<UpdateUser />} />
-                <Route path="update-tag/:id" element={<UpdateTag />} />
-                <Route
-                  path="manage-videos/:linkName"
-                  element={<UpdateVideos />}
-                />
-                <Route path="manage-tags" element={<ManageTags />} />
-                <Route path="manage-videos" element={<ManageVideos />} />
-                <Route path="manage-tags/:name" element={<TagDetails />} />
-                <Route path="profile" element={<Profile />} />
-                {/* <Route path="profile" element={<Profile />} /> */}
-              </Route>
+            {/* <Route element={<RequireAuth />}> */}
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route path="users" element={<Users />} />
+              <Route path="survey-data" element={<SurveyData />} />
+
+              <Route path="survey-data/edit/:id" element={<EditSurvey />} />
+              <Route path="users-activities" element={<UserActivities />} />
+              <Route path="overview" element={<Overview />} />
+              <Route path="add-videos" element={<AddVideos />} />
+              <Route path="add-users" element={<AddUsers />} />
+              <Route path="update-user/:id" element={<UpdateUser />} />
+              <Route path="update-tag/:id" element={<UpdateTag />} />
+              <Route path="create-survey" element={<CreateSurvey />} />
+
+              <Route
+                path="manage-videos/:linkName"
+                element={<UpdateVideos />}
+              />
+              <Route path="manage-tags" element={<ManageTags />} />
+              <Route path="manage-videos" element={<ManageVideos />} />
+              <Route path="manage-tags/:name" element={<TagDetails />} />
+              <Route path="profile" element={<Profile />} />
+              {/* <Route path="profile" element={<Profile />} /> */}
+              {/* </Route> */}
             </Route>
           </Routes>
         </ScrollToTop>

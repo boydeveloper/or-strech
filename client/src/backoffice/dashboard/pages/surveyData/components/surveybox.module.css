@@ -1,0 +1,45 @@
+.survey_box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+  padding-right: 30px;
+  overflow: hidden;
+}
+.icon_container {
+  padding: 30px;
+  background: #094bac;
+  height: 100%;
+}
+.icon_container svg {
+  height: 40px;
+  fill: #fff;
+  color: #fff;
+  stroke: #fff;
+}
+.survey_box > h1 {
+  text-transform: capitalize;
+  font-size: 28px;
+  letter-spacing: -0.9px;
+  margin-left: 10px;
+}
+
+.cta {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  gap: 4rem;
+}
+.cta > button,
+.cta > a {
+  font-size: 2.2rem;
+  background: none;
+  border: none;
+  color: #00365a;
+  cursor: pointer;
+}
+.cta svg {
+  height: 30px;
+  width: 30px;
+}

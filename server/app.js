@@ -14,8 +14,8 @@ app.use(morgan("dev"));
 const accountRouter = require("./routes/account.route");
 app.use("/api/accounts", accountRouter);
 
-const userRouter = require("./routes/user.route");
 app.use(verifyToken);
+const userRouter = require("./routes/user.route");
 app.use("/api/users", userRouter);
 const baselineSurveyRouter = require("./routes/baselinesurvey.route");
 app.use("/api/baselinesurvey", baselineSurveyRouter);
@@ -30,6 +30,8 @@ app.use("/api/tags", tagRouter);
 
 const linkRouter = require("./routes/link.route");
 app.use("/api/links", linkRouter);
+const surveyRouter = require("./routes/survey.route");
+app.use("/api/survey", surveyRouter);
 
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));

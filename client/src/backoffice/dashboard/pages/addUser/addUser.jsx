@@ -110,22 +110,6 @@ function AddUser() {
             </div>
             <span>User Type</span>
           </label>
-          {/* <div className={style.tagsWrapper}>
-            <h1>Select User Tag(s)</h1>
-            <div className={style.tagsWrapperBox}>
-              {tags?.map((tag) => (
-                <div key={tag.id} className={style.tagBox}>
-                  <span>{tag.name}</span>
-                  <Switch
-                    key={tag.id}
-                    value={tag.name}
-                    onChange={() => handleTagSelect(tag.name)}
-                    checked={selectedTags[tag.name] || false}
-                  />
-                </div>
-              ))}
-            </div>
-          </div> */}
 
           <div className={style.adduserCta}>
             <button onClick={() => navigate("/dashboard/users")}>Cancel</button>

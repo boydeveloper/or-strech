@@ -69,7 +69,7 @@ function UpdateTag() {
   return (
     <div className={style.updateTagWrapper}>
       <header className={style.updateTagHeader}>
-        <h1>Back Office | Manage Tags</h1>
+        <h1>Back Office | Update Tags</h1>
       </header>
 
       <form onSubmit={handleSubmit} className={style.updateTagMain}>

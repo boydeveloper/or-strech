@@ -32,6 +32,8 @@ db.baseline_survey = require("./baseline_survey.js")(sequelize, DataTypes);
 db.endofday_survey = require("./endofday_survey.js")(sequelize, DataTypes);
 db.user_tags = require("./user_tags.js")(sequelize, DataTypes);
 db.user_otps = require("./user_otp.js")(sequelize, DataTypes);
+db.survey = require("./survey.js")(sequelize, DataTypes);
+db.survey_responses = require("./survey_response.js")(sequelize, DataTypes);
 db.users.hasMany(db.events, {
   foreignKey: "userid",
   as: "event",
@@ -55,5 +57,13 @@ db.users.hasMany(db.endofday_survey, {
 db.endofday_survey.belongsTo(db.users, {
   foreignKey: "userid",
   as: "user",
+});
+db.survey.hasMany(db.survey_responses, {
+  foreignKey: "surveyid",
+  as: "survey_response",
+});
+db.survey_responses.belongsTo(db.survey, {
+  foreignKey: "surveyid",
+  as: "survey",
 });
 module.exports = db;

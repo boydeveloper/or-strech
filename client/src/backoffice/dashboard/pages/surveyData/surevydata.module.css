@@ -8,6 +8,7 @@
   margin-top: 1rem;
   margin-bottom: 4rem;
   border-bottom: 1px solid #cccc;
+  padding-bottom: 10px;
 }
 .surveyDataWrapper > header > h1 {
   font-size: 3.2rem;
@@ -22,7 +23,7 @@
 }
 .selectDataType {
   /* .selectDataType { */
-  max-width: 80rem;
+  /* max-width: 80rem; */
   width: 100%;
 
   margin: 0 auto;
@@ -48,10 +49,10 @@
   letter-spacing: -0.9px;
 }
 .surveyType {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   width: 100%;
   margin-bottom: 3rem;
-
   gap: 2rem;
 }
 .loaderContainer {
@@ -79,7 +80,7 @@
 }
 .typeBox {
   border-radius: 7px;
-  width: 50%;
+  width: 100%;
   padding: 5rem 4rem;
   cursor: pointer;
   margin: 0 auto;
@@ -93,6 +94,11 @@
   -webkit-box-shadow: 0px 0px 5px 3px rgba(214, 210, 210, 0.75);
   -moz-box-shadow: 0px 0px 5px 3px rgba(214, 210, 210, 0.75);
   color: #fff;
+}
+.custom_surveys {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .typeBox:hover > svg {
   fill: #fff;
@@ -135,11 +141,24 @@
   display: flex;
   align-items: flex-end;
   margin-top: 2rem;
-  /* flex-direction: row-reverse; */
+
   justify-content: space-between;
 }
 .surveyTableWrapper {
   margin-top: 3rem;
+}
+.custom_surveys_container > h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  letter-spacing: -0.9px;
+}
+.no_custom_survey {
+  text-align: center;
+}
+.no_custom_survey > h1 {
+  font-size: 30px;
+  margin-top: 50px;
+  letter-spacing: -1px;
 }
 @media screen and (max-width: 1024px) {
   .surveyDataWrapper {

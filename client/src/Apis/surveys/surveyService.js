@@ -123,3 +123,58 @@ export const trigEodSurvey = async (email, token) => {
     throw error;
   }
 };
+
+export const getAllCustomSurveys = async (token) => {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.get(`${BASE_URL}/survey/getAllSurveys`, {
+      headers,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteCustomSurvey = async (id, token) => {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.delete(`${BASE_URL}/survey/${id}`, {
+      headers,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const createSurvey = async (data, token) => {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.post(`${BASE_URL}/survey/createSurvey`, data, {
+      headers,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const updateSurvey = async (token, id, data) => {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.put(`${BASE_URL}/survey/edit/${id}`, data, {
+      headers,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

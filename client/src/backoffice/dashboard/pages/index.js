@@ -12,3 +12,6 @@ export { default as UpdateTag } from "./updateTag/updateTag";
 export { default as UpdateVideos } from "./updateVideos/updateVideos";
 export { default as TagDetails } from "./tagDetails/tagDetails";
 export { default as Profile } from "./profile/profile";
+export { default as CreateSurvey } from "./CreateSurvey/CreateSurvey";
+
+export { default as EditSurvey } from "./EditSurvey/EditSurvey";

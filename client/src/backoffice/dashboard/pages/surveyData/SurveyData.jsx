@@ -2,17 +2,24 @@ import React, { useState, useEffect } from "react";
 import {
   BackIcon,
   Monitoring,
+  PlusCircle,
   QueryStat,
 } from "../../../../frontend/utils/svg";
 import { Button, Pagination, Table } from "../../components";
 import style from "./surevydata.module.css";
 import {
+  deleteCustomSurvey,
+  getAllCustomSurveys,
   getBaselineSurveys,
   getEodSurveys,
 } from "../../../../Apis/surveys/surveyService";
 import Loader from "../../../../components/Loader";
 import { getExports } from "../../../../Apis/users/userService";
 import { useAuth } from "../../../context/auth";
+import { useNavigate } from "react-router-dom";
+import SurveyBox from "./components/SurveyBox";
+import DeletePrompt from "../../components/deletePrompt/deletePrompt";
+import toast from "react-hot-toast";
 
 function SurveyData() {
   const [showSurveyTypeSelection, setShowSurveyTypeSelection] = useState(true);
@@ -20,7 +27,8 @@ function SurveyData() {
   const [baselineSurveys, setBaselineSurveys] = useState([]);
   const [eodSurveys, setEodSurveys] = useState([]);
   const { user } = useAuth();
-  // console.log(user, "hiii");
+  const [modal, setModal] = useState("");
+  const [surveyidToBeDeleted, setSurveyIdToBeDeleted] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [availableOptions, setAvailableOptions] = useState([]);
@@ -28,7 +36,7 @@ function SurveyData() {
 
   const [selectOptions, setSelectOptions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [entriesPerPage] = useState(10);
+  const [customSurveys, setCustomSurveys] = useState(null);
   const [totalEntries, setTotalEntries] = useState(null);
   const baselineColumn = [
     { heading: "Days per week", name: "days_per_week", value: "days_per_week" },
@@ -170,8 +178,7 @@ function SurveyData() {
       ? initialBaselineSearchInput
       : initialEodSearchInput
   );
-  console.log(selectedSurveyType, initialBaselineSearchInput);
-  // console.log(searchInput, selectedSurveyType, initialBaselineSearchInput);
+
   const getShowingEntriesMessage = () => {
     if (selectedSurveyType === "baseline" ? baselineSurveys : eodSurveys) {
       const startIndex = (currentPage - 1) * entriesPerPage + 1;
@@ -186,7 +193,18 @@ function SurveyData() {
     // setCurrentPage(1);
   };
 
-  // console.log(searchInput);
+  const getCustomSurveys = async () => {
+    try {
+      // console.log(user?.token, "jjjj");
+      if (user?.token) {
+        const customSurveys = await getAllCustomSurveys(user?.token);
+        console.log(customSurveys);
+        setCustomSurveys(customSurveys?.surveys);
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
   const useDebounce = (value, delay) => {
     const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -211,6 +229,12 @@ function SurveyData() {
       ...prevInput,
       [name]: value,
     }));
+  };
+  const navigate = useNavigate();
+  const handleSurveyToBedeleted = (id) => {
+    console.log(id);
+    setSurveyIdToBeDeleted(id);
+    setModal("prompt");
   };
   const exportIds =
     selectedSurveyType === "baseline"
@@ -262,7 +286,6 @@ function SurveyData() {
       //   updatedAt,
       // } = debouncedSearchInput;
       if (user && user?.token) {
-        console.log(user?.token);
         const baselineSurveys = await getBaselineSurveys(
           user?.token,
           currentPage,
@@ -292,7 +315,7 @@ function SurveyData() {
           debouncedSearchInput?.updatedAt || ""
         );
         setLoading(false);
-        console.log(baselineSurveys);
+
         setBaselineSurveys(baselineSurveys?.baselineSurveys);
         const totalBaseline = baselineSurveys?.totalNoOfSurveys;
         setTotalEntries(baselineSurveys?.totalNoOfSurveys);
@@ -300,6 +323,20 @@ function SurveyData() {
         setPageCount(calculatedPageCount);
       }
     } catch (error) {
+      throw error;
+    }
+  };
+  const handleDeleteSurvey = async () => {
+    try {
+      const deletedSurvey = await deleteCustomSurvey(
+        surveyidToBeDeleted,
+        user?.token
+      );
+      await getCustomSurveys();
+      toast.success(deletedSurvey?.message);
+      setModal("");
+    } catch (error) {
+      toast.error(error.response.data.message);
       throw error;
     }
   };
@@ -326,7 +363,6 @@ function SurveyData() {
         updatedAt,
       } = debouncedSearchInput;
       if (user && user?.token) {
-        console.log(user?.token);
         const eodSurveys = await getEodSurveys(
           user?.token,
           currentPage,
@@ -358,7 +394,6 @@ function SurveyData() {
         setPageCount(calculatedPageCount);
       }
     } catch (error) {
-      console.log(error);
       throw error;
     }
   };
@@ -399,6 +434,9 @@ function SurveyData() {
       setAvailableOptions(newOptions);
     }
   }, [baselineSurveys || eodSurveys, entriesPerPage]);
+  useEffect(() => {
+    getCustomSurveys();
+  }, [user?.token]);
   return (
     <div className={style.surveyDataWrapper}>
       <header>
@@ -416,6 +454,12 @@ function SurveyData() {
           {"    "}
           Survey Data
         </h1>
+        {showSurveyTypeSelection && (
+          <Button
+            click={() => navigate("/dashboard/create-survey")}
+            textContent={"Create Survey"}
+          />
+        )}
       </header>
       {!showSurveyTypeSelection && (
         <div>
@@ -453,6 +497,7 @@ function SurveyData() {
                 <p>Baseline</p>
                 <span>Data Pertaining To The Base Survey.</span>
               </div>
+
               <div
                 className={style.typeBox}
                 onClick={() => handleTypeBoxClick("eod")}
@@ -464,6 +509,29 @@ function SurveyData() {
             </div>
           </div>
         )}
+        <div className={style.custom_surveys_container}>
+          <h1>Custom Surveys</h1>
+
+          <div className={style.custom_surveys}>
+            {customSurveys?.length > 0 ? (
+              customSurveys?.map((survey) => (
+                <SurveyBox
+                  key={survey?.id}
+                  survey={survey}
+                  edit={() =>
+                    navigate(`/dashboard/survey-data/edit/${survey?.id}`)
+                  }
+                  deleteSurvey={() => handleSurveyToBedeleted(survey?.id)}
+                />
+              ))
+            ) : (
+              <div className={style.no_custom_survey}>
+                <h1>There are currently No Custom Surveys</h1>
+              </div>
+            )}
+          </div>
+        </div>
+
         <div className={style.surveyTableWrapper}>
           {loading && !showSurveyTypeSelection && <Loader />}
           {!showSurveyTypeSelection && (
@@ -497,6 +565,13 @@ function SurveyData() {
           )}
         </div>
       </main>
+      {modal === "prompt" && (
+        <DeletePrompt
+          text={"Survey"}
+          proceed={handleDeleteSurvey}
+          cancel={() => setModal("")}
+        />
+      )}
     </div>
   );
 }
