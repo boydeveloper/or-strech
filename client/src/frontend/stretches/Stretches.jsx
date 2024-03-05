@@ -10,11 +10,35 @@ function Stretches() {
             <h1>
               Stretching Exercises <i className="fa-solid fa-person"></i>
             </h1>
-            <p>
+            {/* <p>
               These activities are intended to be performed slowly with no rapid
               or forceful movements. If any activity causes discomfort, stop
               performing the activity.
-            </p>
+            </p> */}
+            {/* <br />
+            <br />
+            <br /> */}
+            <div className={style.stretches_mainlist}>
+              <li>
+                These activities are intended to be performed slowly with no
+                rapid or forceful movements.
+              </li>
+              <li>Keep your breathing relaxed throughout all activities.</li>
+              <li>Hold for 30-60 seconds</li>
+              <li>
+                If any activity causes discomfort, stop performing the activity
+              </li>
+              <li>
+                An instructional video leading the between surgery stretches can
+                be found{"     "}
+                <a
+                  target="_blank"
+                  href="https://login.microsoftonline.com/a25fff9c-3f63-4fb2-9a8a-d9bdd0321f9a/saml2?SAMLRequest=hVJbjxMhFP4rE97nyowtpG1StzE2WbXZVh98MRQOuyQMjBxY3X8v02pcX%2BoT5Jzz8V04KxSjnfg2xSf3AN8TYCx%2BjtYhvzTWJAXHvUCD3IkRkEfJj9sP97yrGj4FH730lryC3EYIRAjReEeK%2FW5Nvi3hLPsemnZgSrN%2ByCdb0kVDgdIFbXW7mC9dxxgpvkDAjFyT%2FFCGIybYO4zCxVxqur5saNkMp3bgPePD8JUUu%2BzGOBEvqKcYJ%2BR1bf2jcdVoZPDodfTOGgeV9GMtukFrzWRJ9Rta9vrclUwsRanYWamGdq1mop49dqTY%2FjFy5x2mEcIRwrOR8Pnh%2Fi%2FViPhsFPg0WS9UNYoXX4FKdcrYWuTIwUUjRQRSHH5H%2BdY4Zdzj7RTP1yHk70%2BnQ3n4dDyRzWoWxi%2BphM1%2FBKzq18Or6wp8zDT73cFbI1%2BKdz6MIt5WMVeMKvVllE%2Fz72DMjnI41vofdwGyszWJIQGpN1fOfzdt8ws%3D&RelayState=%2Fmedia%2FMayo%2BClinic%2BOR-Stretch%2BBetween%2BSurgery%2BStretches%2BVideo%2F1_xt9dg7ce&sso_reload=true"
+                >
+                  Mayo Clinic OR-Stretch Between Surgery Stretches Video
+                </a>
+              </li>
+            </div>
           </header>
           <div className={style.excercises}>
             <div className={style.excercise}>
@@ -35,27 +59,6 @@ function Stretches() {
                     maintaining the upright posture.
                   </li>
                   <li> Return to sitting tall and repeat on the other side.</li>
-                  <li>
-                    These activities are intended to be performed slowly with no
-                    rapid or forceful movements.
-                  </li>
-                  <li>
-                    Keep your breathing relaxed throughout all activities.
-                  </li>
-                  <li>
-                    {" "}
-                    If any activity causes discomfort, stop performing the
-                    activity
-                  </li>
-                  <li>
-                    {" "}
-                    An instructional video leading the between surgery stretches
-                    can be found at:
-                  </li>
-                  <a href=" https://youtu.be/bLAeVbBjZV0">
-                    {" "}
-                    https://youtu.be/bLAeVbBjZV0
-                  </a>
                 </div>
               </div>
               <div className={style.img_box}>
@@ -108,11 +111,7 @@ function Stretches() {
                     Shrug your shoulders up and roll them back and down, lifting
                     your chest and pinching your shoulder blades together.
                   </li>
-                  <li>
-                    {" "}
-                    Lean forward from your hips as far as you can while
-                    maintaining the upright posture.
-                  </li>
+
                   <li>Hold for 10 seconds, take a deep breath and relax</li>
                   <li>Repeat the exercise 2-3 times</li>
                 </div>
@@ -138,8 +137,8 @@ function Stretches() {
                     as you can
                   </li>
                   <li>
-                    Extend one leg out in front of you with your knees straight
-                    and your heel on the floor.
+                    Extend your neck by lifting your face toward the ceiling
+                    dropping your head back as far as you comfortably can.
                   </li>
                   <li>
                     {" "}
@@ -174,7 +173,7 @@ function Stretches() {
                     Continue rotating with your shoulders and trunk while
                     lengthening the muscles in your back and spine
                   </li>
-                  <li> Return to sitting tall and repeat on the other side.</li>
+
                   <li>
                     Hold for 10 seconds and then relax and return to the upright
                     position in midline.
@@ -203,11 +202,7 @@ function Stretches() {
                     as you can
                   </li>
                   <li>Cross the left ankle over the right thigh.</li>
-                  <li>
-                    {" "}
-                    Lean forward from your hips as far as you can while
-                    maintaining the upright posture.
-                  </li>
+
                   <li>
                     Turn your trunk to the left and place your right hand over
                     your left knee.

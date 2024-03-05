@@ -143,12 +143,13 @@ function Hero() {
       <div className={style.hero_wrapper}>
         <div className={style.overlay}></div>
         <h1>
-          Ergonomist and PT/OT-Designed <br /> Interoperative Stretches
+          Multidiciplinary-Designed <br /> Interoperative Stretches
           {/* Surgeon-Designed. <br /> Interoperative Stretches. */}
         </h1>
         <p>
-          The stretches aim to counteract the effects of interoperative strains
-          on the surgeon's position and are performed without breaking a scrub.
+          OR-Stretch was designed by Ergonomists, OT/PTs and Surgeons to
+          counteract the effects of interoperative strains on the surgeon's
+          position and are performed without breaking a scrub
         </p>
         <button
           onClick={() => (user ? navigate("/stretch") : setModal("login"))}

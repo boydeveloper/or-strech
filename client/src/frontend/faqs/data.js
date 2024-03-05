@@ -40,7 +40,7 @@ export const faqsData = [
       {
         question: "How were the stretches designed?",
         answer:
-          "The stretches are designed to counteract the postures assumed by surgeons during open and laparoscopic surgery described in Evidence-based intraoperative microbreak activities for reducing musculoskeletal injuries in the operating room.",
+          'The stretches are designed to counteract the postures assumed by surgeons during open and laparoscopic surgery described in      <a target="_blank href="https://content.iospress.com/articles/work/wor2772">Evidence- based intraoperative microbreak</a> activities for reducing musculoskeletal injuries in the operating room.',
       },
       {
         question: "What if I already have pain?",
@@ -57,6 +57,11 @@ export const faqsData = [
         answer:
           "When the timer is done, a harp sound plays to indicate that it is time to stretch. Stretches also can be started at any time by simply pressing the Go button.",
       },
+      {
+        question: "Do I have to wait for the timer to go off to stretch?",
+        answer:
+          "You can push the 'Go' button whenever you have a natural break in a case, e.g., waiting for something from the core ",
+      },
     ],
   },
   {
@@ -71,7 +76,7 @@ export const faqsData = [
       {
         question: "Where is the OR-Stretch web app located?",
         answer:
-          "The web app can be found at orstretch.mayoclinic.org. The OR computer or an iPad can be used to run OR-Stretch.",
+          'The web app can be found at orstretch.mayoclinic.org. The OR computer or an iPad can be used to run  <a target="_blank" href="https://orstretch.mayoclinic.org/"> OR- Stretch. </a>',
       },
       {
         question: "How do I log in?",
@@ -96,11 +101,6 @@ export const faqsData = [
         question: "What if I am having technical difficulties?",
         answer:
           'Email  <a target="_blank" href="mailto:ORStretch@mayo.edu">orstretch@mayo.edu.</a>',
-      },
-      {
-        question: "Do I have to wait for the timer to go off to stretch?",
-        answer:
-          "You can push the 'Go' button whenever you have a natural break in a case, e.g., waiting for something from the core. 'Nduka: please add it after How will I know when it is time to stretch' ",
       },
     ],
   },
@@ -166,7 +166,7 @@ export const faqsData = [
         question: "What training is offered?",
 
         answer:
-          'OR-Stretch <a target="_blank" href="https://www.mayo.edu/research/labs/human-factors-engineering/or-stretch/or-instructions">instructions</a> can be placed in the operating room and online, and demonstration <a target="_blank" href="https://youtu.be/bLAeVbBjZV0">videos</a> are available.',
+          'OR-Stretch <a href="/how-to-stretch">instructions</a> can be placed in the operating room and online, and demonstration <a target="_blank" href="https://mssvideoupload.mayo.edu/media/Mayo+Clinic+OR-Stretch+Between+Surgery+Stretches+Video/1_xt9dg7ce">videos</a> are available.',
       },
       {
         question: "How can I share this with others?",

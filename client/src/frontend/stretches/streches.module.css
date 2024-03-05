@@ -4,10 +4,33 @@
 }
 .listOfStrechesWrapper > header {
   padding-top: 4.8rem;
-  text-align: center;
+  /* text-align: center; */
   border-bottom: solid 1px #0b5cd5;
   padding: 2rem 0;
 }
+
+.stretches_mainlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  width: 100%;
+}
+.stretches_mainlist li {
+  display: flex;
+  align-items: flex-start;
+}
+.stretches_mainlist li > a {
+  color: #0b5cd5;
+  margin-left: 4px;
+}
+.stretches_mainlist li::before {
+  content: "\2022";
+  color: #000;
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
 .listOfStrechesWrapper > header > h1 {
   font-size: 4rem;
   letter-spacing: -0.6px;

@@ -28,7 +28,10 @@ function AboutPage() {
                   PDF
                 </a>{" "}
                 &{" "}
-                <a target="_blank" href="https://youtu.be/bLAeVbBjZV0">
+                <a
+                  target="_blank"
+                  href="https://mssvideoupload.mayo.edu/media/Mayo+Clinic+OR-Stretch+Between+Surgery+Stretches+Video/1_xt9dg7ce"
+                >
                   Video
                 </a>
                 )
@@ -69,20 +72,32 @@ function AboutPage() {
               </p>
               <p>
                 Also available are two poster{" "}
-                <a href="../../../mayoclinic.pdf" download>
-                  PDFs
+                {/* <a href="../../../mayoclinic.pdf" download> */}
+                PDF
+                {/* </a> */}
+                showing
+                {"     "}
+                <a download href="../../../standing.pdf">
+                  standing
                 </a>{" "}
-                showing standing and seated exercises plus a video that offers
-                tips to get more out of the intraoperative stretches. For
-                example, pinch your shoulder blades together when pulling hands
-                back to chest. You can perform the Intraoperative stretches
-                either standing or seated . In addition, we have a longer video
-                demonstrating how to get more out of each stretch (
-                <a target="_blank" href="https://youtu.be/bLAeVbBjZV0">
+                {"  "} and {"     "}
+                <a download href="../../../seated.pdf">
+                  seated
+                </a>
+                exercises plus a video that offers tips to get more out of the
+                intraoperative stretches. For example, pinch your shoulder
+                blades together when pulling hands back to chest. You can
+                perform the Intraoperative stretches either standing or seated .
+                In addition, we have a longer video demonstrating how to get
+                more out of each stretch (
+                <a
+                  target="_blank"
+                  href="https://mssvideoupload.mayo.edu/media/Mayo+Clinic+OR-Stretch+Between+Surgery+Stretches+Video/1_xt9dg7ce"
+                >
                   video
                 </a>
                 ). Here is a quickstart guide to help you{" "}
-                <a href="../../../mayoclinic.pdf" download>
+                <a href="../../../getstarted.pdf" download>
                   get started.
                 </a>
               </p>
@@ -112,7 +127,10 @@ function AboutPage() {
                   PDF
                 </a>{" "}
                 or a guided{" "}
-                <a target="_blank" href="https://youtu.be/bLAeVbBjZV0">
+                <a
+                  target="_blank"
+                  href="https://mssvideoupload.mayo.edu/media/Mayo+Clinic+OR-Stretch+Between+Surgery+Stretches+Video/1_xt9dg7ce"
+                >
                   video
                 </a>{" "}
                 for surgical staff. Additionally, our web app provides
@@ -146,7 +164,7 @@ function AboutPage() {
               mitigating work-related musculoskeletal fatigue and promoting
               surgeons' overall well-being.
             </p>
-            <img src="/assets/imgs/surg.jpg" alt="" />
+            <img src="/assets/imgs/surg.jpg" alt="surgery image" />
           </div>
         </div>
       </div>
