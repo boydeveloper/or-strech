@@ -34,6 +34,7 @@ import Survey from "./frontend/survey/Survey";
 import AboutPage from "./frontend/about/AboutPage";
 import RequireAuthStretch from "./backoffice/auth/utils/requireAuthStretch";
 import ErrorPage from "./frontend/error/Error";
+import { UsefullLinks } from "./frontend";
 function App() {
   return (
     <AuthProvider>
@@ -52,6 +53,7 @@ function App() {
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/useful-links" element={<UsefullLinks />} />
             <Route path="/:title" element={<ErrorPage />} />
             <Route path="/backoffice/login" element={<Login />} />
             {/* <Route */}
@@ -87,6 +89,7 @@ function App() {
               <Route path="manage-videos" element={<ManageVideos />} />
               <Route path="manage-tags/:name" element={<TagDetails />} />
               <Route path="profile" element={<Profile />} />
+
               {/* <Route path="profile" element={<Profile />} /> */}
               {/* </Route> */}
             </Route>

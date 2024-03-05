@@ -206,6 +206,7 @@ function Navbar() {
             </Link>
 
             <Link to={"/faqs"}>FAQs</Link>
+            <Link to={"/useful-links"}>Useful links</Link>
           </div>
 
           <div>

@@ -1,0 +1,72 @@
+.UseFullLinksWrapper {
+  margin: 20px 0;
+}
+.UseFullLinksWrapper > header {
+  margin-top: 150px;
+  text-align: center;
+}
+.UseFullLinksWrapper > header > h1 {
+  font-size: 40px;
+  letter-spacing: -1px;
+}
+.tableContainer {
+  overflow-x: auto;
+  padding: 0 40px;
+  max-width: 140rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.customTable {
+  overflow: hidden;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 70px;
+  min-width: 1000px;
+}
+
+.customTable th,
+.customTable td {
+  padding: 8px;
+  border: 1px solid #e6e9f5;
+}
+
+.customTable thead th {
+  height: 138px;
+}
+.customTable thead th h1 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+.customTable thead th p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  display: inline-block;
+
+  color: rgba(0, 0, 0, 0.45);
+}
+.customTable thead th strong {
+  font-weight: 700;
+  font-size: 36px;
+}
+.customTable tbody tr td {
+  text-align: center;
+  font-weight: 500;
+  width: 100%;
+  font-size: 18px;
+  height: 80px;
+}
+.customTable tbody tr td:first-child {
+  font-size: 20px;
+  /* color: #0b5cd5; */
+  /* color: ; */
+  /* font-weight: bold; */
+  /* width: 45%; */
+}
+.customTable tbody tr td:first-child > a {
+  color: #0b5cd5;
+}

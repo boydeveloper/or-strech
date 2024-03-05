@@ -71,12 +71,8 @@ function AboutPage() {
                 snooze alarm if it is not a good time to take a break.
               </p>
               <p>
-                Also available are two poster{" "}
-                {/* <a href="../../../mayoclinic.pdf" download> */}
-                PDF
-                {/* </a> */}
-                showing
-                {"     "}
+                Also available are two poster PDFs showing
+                {"  "}
                 <a download href="../../../standing.pdf">
                   standing
                 </a>{" "}
@@ -84,10 +80,11 @@ function AboutPage() {
                 <a download href="../../../seated.pdf">
                   seated
                 </a>
+                {"  "}
                 exercises plus a video that offers tips to get more out of the
                 intraoperative stretches. For example, pinch your shoulder
                 blades together when pulling hands back to chest. You can
-                perform the Intraoperative stretches either standing or seated .
+                perform the Intraoperative stretches either standing or seated.
                 In addition, we have a longer video demonstrating how to get
                 more out of each stretch (
                 <a
@@ -133,11 +130,7 @@ function AboutPage() {
                 >
                   video
                 </a>{" "}
-                for surgical staff. Additionally, our web app provides
-                on-the-spot guidance, with no password required. Complete a
-                brief demographic survey on your first login, and periodic
-                emails help Mayo Clinic enhance the OR-Stretch experience,
-                reducing the risk of musculoskeletal issues for surgeons.
+                for surgical staff.
               </p>
             </div>
           </div>
@@ -146,10 +139,12 @@ function AboutPage() {
               Our Mission <QuestionMark />
             </h1>
             <p>
-              OR-Stretch is on a mission to alleviate the mental and physical
-              stress surgeons face in the operating room. By incorporating
-              simple stretches, our goal is to enhance performance, reduce pain,
-              and improve mental focus without prolonging operative time.{" "}
+              OR-Stretch is designed by ergonomists, OT/PTs and surgeons to
+              counteract the mental and physical stress surgeons face in the
+              operating room. By incorporating these simple stretches, our goal
+              is to enhance your performance, reduce pain, and improve mental
+              focus without prolonging operative time.
+              {"  "}
               <a
                 target="_blank"
                 href="https://www.mayo.edu/research/labs/human-factors-engineering/overview"
@@ -158,11 +153,11 @@ function AboutPage() {
               </a>{" "}
               show positive results, with attending surgeons experiencing
               reduced shoulder discomfort and minimal impact on workflow by
-              incorporating microbreaks with OR-Stretch exercises. Surgeons
-              express a keen interest in integrating these breaks into their
-              routine, demonstrating OR-Stretch as an effective solution for
-              mitigating work-related musculoskeletal fatigue and promoting
-              surgeons' overall well-being.
+              incorporating microbreaks with OR-Stretch exercises. Surgeons who
+              integrated OR-Stretch into their routine have found that
+              OR-Stretch is an effective solution for mitigating work-related
+              musculoskeletal fatigue and promoting surgeons' and surgical
+              teams’ overall well-being.
             </p>
             <img src="/assets/imgs/surg.jpg" alt="surgery image" />
           </div>
