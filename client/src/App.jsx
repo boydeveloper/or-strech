@@ -57,9 +57,9 @@ function App() {
             <Route path="/:title" element={<ErrorPage />} />
             <Route path="/backoffice/login" element={<Login />} />
             {/* <Route */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             {/* <Route path="/about" element={<AboutPage />} /> */}
             <Route element={<RequireAuthStretch />}>
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/stretch" element={<Timer />} />
               <Route path="/thankyou" element={<Survey />} />
               <Route path="/profile" element={<StretcherProfile />} />

@@ -228,7 +228,7 @@ export const faqsData = [
         question:
           "What security measures are in place to keep the data private?",
         answer:
-          'A combination of physical, technical and administrative safeguards protects the information collected through OR-Stretch. These precautions are used to safeguard your personal data and the security of the networks, systems, servers, devices and databases we operate or that are operated on our behalf. For more information, see the <a target="_blank" href="/priv">Mayo Clinic OR- Stretch Privacy Policy</a>',
+          'A combination of physical, technical and administrative safeguards protects the information collected through OR-Stretch. These precautions are used to safeguard your personal data and the security of the networks, systems, servers, devices and databases we operate or that are operated on our behalf. For more information, see the <a target="_blank" href="/privacy-policy">Mayo Clinic OR- Stretch Privacy Policy</a>',
       },
 
       {
