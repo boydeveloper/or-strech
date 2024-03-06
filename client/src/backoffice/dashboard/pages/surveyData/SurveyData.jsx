@@ -509,28 +509,30 @@ function SurveyData() {
             </div>
           </div>
         )}
-        <div className={style.custom_surveys_container}>
-          <h1>Custom Surveys</h1>
+        {showSurveyTypeSelection && (
+          <div className={style.custom_surveys_container}>
+            <h1>Custom Surveys</h1>
 
-          <div className={style.custom_surveys}>
-            {customSurveys?.length > 0 ? (
-              customSurveys?.map((survey) => (
-                <SurveyBox
-                  key={survey?.id}
-                  survey={survey}
-                  edit={() =>
-                    navigate(`/dashboard/survey-data/edit/${survey?.id}`)
-                  }
-                  deleteSurvey={() => handleSurveyToBedeleted(survey?.id)}
-                />
-              ))
-            ) : (
-              <div className={style.no_custom_survey}>
-                <h1>There are currently No Custom Surveys</h1>
-              </div>
-            )}
+            <div className={style.custom_surveys}>
+              {customSurveys?.length > 0 ? (
+                customSurveys?.map((survey) => (
+                  <SurveyBox
+                    key={survey?.id}
+                    survey={survey}
+                    edit={() =>
+                      navigate(`/dashboard/survey-data/edit/${survey?.id}`)
+                    }
+                    deleteSurvey={() => handleSurveyToBedeleted(survey?.id)}
+                  />
+                ))
+              ) : (
+                <div className={style.no_custom_survey}>
+                  <h1>There are currently No Custom Surveys</h1>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className={style.surveyTableWrapper}>
           {loading && !showSurveyTypeSelection && <Loader />}
