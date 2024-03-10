@@ -117,15 +117,19 @@ function IntraoperativeSitting() {
               <div className={style.textbox}>
                 <h1>Exercise 7: Upper spine rotation 1</h1>
                 <div className={style.procedures}>
-                  <li>Right foot forward and lock pelvis facing forward</li>
-                  <li>Turn your head to look over your right shoulder</li>
-                  <li>Continue rotating right with shoulders</li>
+                  <li>
+                    Hook left foot behind your right leg and lock your pelvis
+                    facing forward
+                  </li>
+                  <li>Turn looking over right shoulder </li>
+                  <li>Continue rotating with shoulders</li>
                   <li>Return to facing forward</li>
+                  <li>Feet back in the base position</li>
                 </div>
               </div>
               <div className={style.img_box}>
                 <img
-                  src="/assets/imgs/upperspinerotation.png"
+                  src="/assets/imgs/upperspinesittingrotation.png"
                   alt="upper spine rotation"
                 />
               </div>
@@ -138,7 +142,7 @@ function IntraoperativeSitting() {
                 <h1>Exercise 8: Side bending 1</h1>
                 <div className={style.procedures}>
                   <li>Side bend curling your trunk to the left</li>
-                  <li>Return to facing forward</li>
+                  <li>Return to the base position</li>
                 </div>
               </div>
             </div>
@@ -147,18 +151,19 @@ function IntraoperativeSitting() {
                 <h1>Exercise 9: Upper spine rotation 2</h1>
                 <div className={style.procedures}>
                   <li>
-                    Switch feet to left foot forward and lock pelvis facing
+                    Hook right foot behind your left leg lock your pelvis facing
                     forward
                   </li>
-                  <li>Turn your head to look over your left shoulder</li>
-                  <li>Continue rotating left with shoulders</li>
+                  <li>Turn looking over left shoulder </li>
+                  <li>Continue rotating with shoulders</li>
                   <li>Return to facing forward</li>
+                  <li>Feet back in the base position</li>
                 </div>
               </div>
               <div className={style.img_box}>
                 <img
-                  src="/assets/imgs/upperspinerotation2.png"
-                  alt="neck extension"
+                  src="/assets/imgs/uppersittingspinerotation2.png"
+                  alt="upper spine rotation"
                 />
               </div>
             </div>
@@ -169,10 +174,8 @@ function IntraoperativeSitting() {
               <div className={style.textbox}>
                 <h1>Exercise 10: Side bending 2</h1>
                 <div className={style.procedures}>
-                  <li>• Side bend curling your trunk to the right</li>
-                  <li>Turn your head to look over your left shoulder</li>
-                  <li>Continue rotating left with shoulders</li>
-                  <li>Return to facing forward</li>
+                  <li>Side bend curling your trunk to the right</li>
+                  <li>Return to the base position</li>
                 </div>
               </div>
             </div>
@@ -180,16 +183,15 @@ function IntraoperativeSitting() {
               <div className={style.textbox}>
                 <h1>Exercise 11: Lumbar Extension </h1>
                 <div className={style.procedures}>
-                  <li>Pinch buttocks together</li>
                   <li>Take a deep and gently arch your low back</li>
                   <li>
-                    Relax as you breathe out returning to the base position{" "}
+                    Relax as you breathe out returning to the base position
                   </li>
                 </div>
               </div>
               <div className={style.img_box}>
                 <img
-                  src="/assets/imgs/lumbarextension.png"
+                  src="/assets/imgs/lumbarextensionsitting.png"
                   alt="neck extension"
                 />
               </div>
@@ -197,19 +199,18 @@ function IntraoperativeSitting() {
             <div className={style.excercise}>
               <div className={style.img_box}>
                 <img
-                  src="/assets/imgs/lumbarflexion.png"
+                  src="/assets/imgs/lumbarflexionsitting.png"
                   alt="lumbar flexion"
                 />
               </div>
               <div className={style.textbox}>
                 <h1>Exercise 12: Lumbar Flexion </h1>
                 <div className={style.procedures}>
-                  <li>Pinch buttocks together </li>
                   <li>
-                    Take a breath in and perform an abdominal crunch as you
+                    Take a deep breath in and perform abdominal crunch as you
                     exhale
                   </li>
-                  <li>Return to base position</li>
+                  <li>Return to the base position</li>
                 </div>
               </div>
             </div>
@@ -221,7 +222,10 @@ function IntraoperativeSitting() {
                 </div>
               </div>
               <div className={style.img_box}>
-                <img src="/assets/imgs/deepbreath.png" alt="deep breath" />
+                <img
+                  src="/assets/imgs/deepbreathsitting.png"
+                  alt="deep breath"
+                />
               </div>
             </div>
           </main>

@@ -17,9 +17,7 @@
 .excercise {
   display: flex;
   justify-content: space-between;
-
   gap: 3.4rem;
-  /* align-items: center; */
 }
 .excercise:not(:last-child) {
   margin-bottom: 10rem;
