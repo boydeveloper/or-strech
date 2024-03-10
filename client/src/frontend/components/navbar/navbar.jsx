@@ -66,7 +66,6 @@ function Navbar() {
     const newEmail = event.target.value;
     setEmail(newEmail);
 
-    // Email validation
     setEmailError(
       newEmail.trim() === ""
         ? "Email address cannot be empty"
@@ -199,8 +198,8 @@ function Navbar() {
                 <Link to={"/intraoperative-standing"}>
                   Intraoperative (standing)
                 </Link>
-                <Link to={"/inoperative-seating"}>
-                  Intraoperative (seating)
+                <Link to={"/intraoperative-sitting"}>
+                  Intraoperative (sitting)
                 </Link>
               </div>
             </Link>

@@ -34,7 +34,11 @@ import Survey from "./frontend/survey/Survey";
 import AboutPage from "./frontend/about/AboutPage";
 import RequireAuthStretch from "./backoffice/auth/utils/requireAuthStretch";
 import ErrorPage from "./frontend/error/Error";
-import { UsefullLinks } from "./frontend";
+import {
+  UsefullLinks,
+  IntraOperativeStanding,
+  IntraOperativeSitting,
+} from "./frontend";
 function App() {
   return (
     <AuthProvider>
@@ -54,6 +58,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/useful-links" element={<UsefullLinks />} />
+            <Route
+              path="/intraoperative-standing"
+              element={<IntraOperativeStanding />}
+            />
+            <Route
+              path="/intraoperative-sitting"
+              element={<IntraOperativeSitting />}
+            />
             <Route path="/:title" element={<ErrorPage />} />
             <Route path="/backoffice/login" element={<Login />} />
             {/* <Route */}

@@ -1,0 +1,81 @@
+.IntraoperativeSittingWrapper {
+  margin-top: 10rem;
+  padding: 3.2rem;
+}
+
+.IntraoperativeSittingWrapper > header {
+  padding-top: 4.8rem;
+  padding: 2rem 0;
+}
+
+.IntraoperativeSittingWrapper > header > h1 {
+  font-size: 4rem;
+  letter-spacing: -0.6px;
+  color: #0b5cd5;
+  margin-bottom: 2rem;
+}
+
+.excercise {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 3.4rem;
+  /* align-items: center; */
+}
+.excercise:not(:last-child) {
+  margin-bottom: 10rem;
+}
+.excercise .textbox {
+  position: sticky;
+  width: 50%;
+  top: 0;
+  padding-top: 15rem;
+  height: 100%;
+}
+.excercise .textbox > h1 {
+  font-size: 3.2rem;
+  color: #0b5cd5;
+  margin-bottom: 2.5rem;
+}
+.excercise .textbox .procedures {
+  font-size: 1.6rem;
+  color: #212529;
+  letter-spacing: -0.6px;
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+.procedures li {
+  display: flex;
+  align-items: flex-start;
+  /* flex-wrap: wrap; */
+}
+.procedures li::before {
+  content: "\2022";
+  color: #000;
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+.excercise .textbox .procedures a {
+  color: #0b5cd5;
+  display: block;
+  line-height: 28px;
+  font-size: 1.8rem;
+  padding-left: 10px;
+}
+.img_box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+}
+.img_box > img {
+  height: 100%;
+}
+.img_box > div {
+  background: #dee2e6;
+  height: 250px;
+  width: 100%;
+}
