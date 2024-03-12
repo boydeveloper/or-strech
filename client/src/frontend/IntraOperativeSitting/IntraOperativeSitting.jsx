@@ -162,7 +162,7 @@ function IntraoperativeSitting() {
               </div>
               <div className={style.img_box}>
                 <img
-                  src="/assets/imgs/uppersittingspinerotation2.png"
+                  src="/assets/imgs/upperspinesittingrotation2.png"
                   alt="upper spine rotation"
                 />
               </div>
